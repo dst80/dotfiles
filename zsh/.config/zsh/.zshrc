@@ -30,5 +30,3 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 alias ls="ls --color=auto"
 alias ll="ls -l"
 alias la="ls -all"
-alias vim="nvim"
-alias nv="nvim"
