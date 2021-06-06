@@ -13,10 +13,8 @@ require'lspconfig'.clangd.setup {
 
 require'lspconfig'.pyls.setup{ on_attach=on_attach }
 require'lspconfig'.gopls.setup{ on_attach=on_attach }
--- who even uses this?
 require'lspconfig'.rust_analyzer.setup{ on_attach=on_attach }
 
--- whether to show outline guides
 require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach,
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
@@ -39,13 +37,7 @@ require'lspconfig'.sumneko_lua.setup {
     },
 }
 local opts = {
-    -- whether to highlight the currently hovered symbol
-    -- disable if your cpu usage is higher than you want it
-    -- or you just hate the highlight
-    -- default: true
     highlight_hovered_item = true,
-
--- default: true
     show_guides = true,
 }
 
