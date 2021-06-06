@@ -1,5 +1,6 @@
-require("core.telescope")
-require("core.treesitter")
 require('core.options')
 require('core.colors')
+require("core.telescope")
+require("core.treesitter")
 require('core.lsp')
+require('core.lsp_extension')

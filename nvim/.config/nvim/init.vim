@@ -5,6 +5,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'simrat39/symbols-outline.nvim'
 
+Plug 'nvim-lua/lsp_extensions.nvim'
 
 Plug 'arcticicestudio/nord-vim'
 
