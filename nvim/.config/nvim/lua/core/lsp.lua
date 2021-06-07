@@ -43,7 +43,7 @@ local opts = {
 
 require('symbols-outline').setup(opts)
 
-local keymap = require('core.keymap_binder')
+local keymap = require('core.tools.keymap')
 -- LSP shortcuts
 keymap.bind("gD"):to_lua_command("vim.lsp.buf.declaration()")
 keymap.bind("gd"):to_lua_command("vim.lsp.buf.definition()")
