@@ -56,7 +56,7 @@ function key_binding:no_wait()
 end
 
 function key_binding:to_command(command_string)
-  self.command_string = ("%s"):format(command_string)
+  self.command_string = (":%s<CR>"):format(command_string)
   self:execute_mapping ()
 end
 
