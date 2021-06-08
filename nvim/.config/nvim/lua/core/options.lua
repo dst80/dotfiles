@@ -88,7 +88,7 @@ options:set_buffer_options ({
   linebreak      = true;
   number         = true;
   relativenumber = true;
-  colorcolumn    = "140";
+  colorcolumn    = 80;
   foldenable     = true;
   signcolumn     = "yes";
   conceallevel   = 2;
