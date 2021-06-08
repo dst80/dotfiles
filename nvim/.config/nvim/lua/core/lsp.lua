@@ -1,6 +1,9 @@
 local sumneko_root_path = '/home/dennis/repos/lua-language-server'
 local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
 
+vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+
 local on_attach = function(client)
    require'completion'.on_attach(client)
 end
