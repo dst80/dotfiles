@@ -1,14 +1,18 @@
 local pbind = {}
 
 function pbind:set_global_option(option, value)
-    vim.o[option] = value
+  vim.opt[option] = value
 end
 
 function pbind:set_global_options(options)
   for option, value in pairs(options) do
-    self:set_global_option(option, value)
+  self:set_global_option(option, value)
   end
-end 
+end
+
+function pbind:add_to_global_option(option, value)
+  vim.opt[option]:append(value)
+end
 
 function pbind:is_boolean(value)
     return value == true or value == false
@@ -20,7 +24,7 @@ function pbind:set_buffer_option(option, value)
   else
     vim.cmd('set ' .. option .. '=' .. value)
   end
-end  
+end
 
 function pbind:set_buffer_options(options)
   for option, value in pairs(options) do
