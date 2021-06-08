@@ -40,7 +40,7 @@ function key_binding:not_silent()
   return self
 end
 
-function key_binding:can_remap()
+function key_binding:with_remapping()
   self.options.noremap = false
   return self
 end
@@ -53,6 +53,12 @@ end
 function key_binding:no_wait()
   self.options.nowait = true
   return self
+end
+
+
+function key_binding:as_plug_command(command_string)
+  self.command_string = ("<Plug>(%s)"):format(command_string)
+  self:execute_mapping ()
 end
 
 function key_binding:to_command(command_string)
