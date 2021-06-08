@@ -11,8 +11,6 @@ return require("packer").startup (
 
     use 'nvim-lua/lsp_extensions.nvim'
 
-    use 'arcticicestudio/nord-vim'
-
     -- Neovim Tree shitteri
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
@@ -22,5 +20,7 @@ return require("packer").startup (
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
+
+    use'tjdevries/colorbuddy.nvim'
   end
 )

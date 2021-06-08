@@ -15,8 +15,9 @@ require('telescope').setup{
       '--smart-case'
     },
 
-    prompt_prefix = ' >',
+    prompt_prefix = '🔍',
     color_devicons = true,
+    set_env = { ['COLORTERM'] = 'truecolor' },
   },
   extensions = {
     fzy_native = {
