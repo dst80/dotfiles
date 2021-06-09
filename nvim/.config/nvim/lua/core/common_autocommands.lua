@@ -9,8 +9,9 @@ autocommands.nvim_create_augroups({
     {"VimResized", "*", "tabdo wincmd ="},
     -- Check if file changed when its window is focus, more eager than 'autoread'
     {"FocusGained", "* checktime"},
-
+    {"TextYankPost", "*", "silent! lua vim.highlight.on_yank {higroup=\"IncSearch\", timeout=400}"}
   },
+
   vim_file_type_command_group = {
     -- Trim trailing whitespaces
     {"FileType", "c,cpp,cs,go,rust,lua,python", "autocmd", "InsertLeave,BufWritePre", "*", "%s/\\s\\+$//e"}
