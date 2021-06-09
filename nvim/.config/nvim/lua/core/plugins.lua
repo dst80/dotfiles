@@ -4,23 +4,41 @@ end
 
 return require("packer").startup (
   function(use)
-    use {"wbthomason/packer.nvim"}
+    use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/completion-nvim'
     use 'simrat39/symbols-outline.nvim'
-
+    use 'tpope/vim-surround'
     use 'nvim-lua/lsp_extensions.nvim'
 
     -- nvim tree sitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'nvim-treesitter/playground'
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      requires = {
+        {'nvim-treesitter/playground'}
+      }
+    }
 
     -- telescope requirements
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-fzy-native.nvim'
-    use 'kyazdani42/nvim-web-devicons'
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        {'nvim-lua/popup.nvim'},
+        {'nvim-lua/plenary.nvim'},
+        {'nvim-telescope/telescope-fzy-native.nvim'},
+        {'kyazdani42/nvim-web-devicons'}
+      }
+    }
+    use {
+      'sudormrfbin/cheatsheet.nvim',
+
+       requires = {
+         {'nvim-telescope/telescope.nvim'},
+         {'nvim-lua/popup.nvim'},
+         {'nvim-lua/plenary.nvim'},
+      }
+    }
     -- color settings
     use 'tjdevries/colorbuddy.nvim'
   end
