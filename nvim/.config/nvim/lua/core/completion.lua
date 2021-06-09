@@ -3,6 +3,7 @@ if not pcall(require, 'completion') then
 end
 
 local keymap = require('core.tools.keymap')
+keymap.bind('<c-p>'):in_mode('i'):with_remapping():as_plug_command('completion_trigger')
 keymap.bind('<Tab>'):in_mode('i'):with_remapping():as_plug_command('completion_smart_tab')
 keymap.bind('<S-Tab>'):in_mode('i'):with_remapping():as_plug_command('completion_smart_s_tab')
 
