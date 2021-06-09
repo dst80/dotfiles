@@ -90,7 +90,7 @@ Group.new("StatusLine", colors.nord8, colors.nord3, styles.none)
 
 Group.new("ColorColumn", colors.none, colors.nord1)
 Group.new("Cursor", colors.nord0, colors.nord4)
-Group.new("CursorLine", colors.none, colors.none)
+Group.new("CursorLine", colors.none, colors.nord1)
 Group.new("iCursor",colors.nord0, colors.nord4)
 Group.new("EndOfBuffer",colors.none, colors.none)
 Group.new("MatchParen",colors.nord8, colors.nord3)
