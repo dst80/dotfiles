@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 
 require('core.plugins')
 require('core.options')
+require('core.fugitive')
 require('core.completion')
 require('core.colors')
 require('core.icons')
