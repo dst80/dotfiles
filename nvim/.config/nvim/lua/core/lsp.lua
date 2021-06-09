@@ -39,12 +39,6 @@ require'lspconfig'.sumneko_lua.setup {
         },
     },
 }
-local opts = {
-    highlight_hovered_item = true,
-    show_guides = true,
-}
-
-require('symbols-outline').setup(opts)
 
 local keymap = require('core.tools.keymap')
 -- LSP shortcuts

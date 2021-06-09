@@ -7,11 +7,12 @@ return require("packer").startup (
     use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/completion-nvim'
-    use 'simrat39/symbols-outline.nvim'
+    use 'nvim-lua/lsp_extensions.nvim'
+
+    -- tpope best's
     use 'tpope/vim-surround'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-commentary'
-    use 'nvim-lua/lsp_extensions.nvim'
 
     -- nvim tree sitter
     use {
@@ -41,6 +42,7 @@ return require("packer").startup (
          {'nvim-lua/plenary.nvim'},
       }
     }
+
     -- color settings
     use 'tjdevries/colorbuddy.nvim'
   end
