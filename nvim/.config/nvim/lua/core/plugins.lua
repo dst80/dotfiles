@@ -9,6 +9,8 @@ return require("packer").startup (
     use 'nvim-lua/completion-nvim'
     use 'simrat39/symbols-outline.nvim'
     use 'tpope/vim-surround'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-commentary'
     use 'nvim-lua/lsp_extensions.nvim'
 
     -- nvim tree sitter
