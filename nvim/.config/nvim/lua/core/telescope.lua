@@ -43,5 +43,5 @@ keymap.bind("<leader>fh"):to_lua_command("require('telescope.builtin').help_tags
 keymap.bind("<leader>ps"):to_lua_command("require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For->\")})")
 keymap.bind("<leader>pw"):to_lua_command("require('telescope.builtin').grep_string({search=vim.fn.expand(\"<cword>\")})")
 
-keymap.bind("<leader>vrc"):to_command("Telescope dotfiles path=" ..os.getenv("HOME").."/dotfiles")
+keymap.bind("<leader>vrc"):to_command(":Telescope dotfiles path=" ..os.getenv("HOME").."/dotfiles<CR>")
 

@@ -62,7 +62,7 @@ function key_binding:as_plug_command(command_string)
 end
 
 function key_binding:to_command(command_string)
-  self.command_string = (":%s<CR>"):format(command_string)
+  self.command_string = ("%s"):format(command_string)
   self:execute_mapping ()
 end
 
