@@ -75,12 +75,19 @@ function key_binding:to_lua_command(command_string)
 end
 
 
-
 local pbind = {}
 
 function pbind.bind(key_string)
   local kb = key_binding:new()
   return kb:bind (key_string)
+end
+
+function pbind.deactivate_keys(keys)
+  for _, key in pairs(keys) do
+    key_binding:new():bind(key):to_command("<Nop>")
+    key_binding:new():bind(key):in_mode('i'):to_command("<Nop>")
+    key_binding:new():bind(key):in_mode('c'):to_command("<Nop>")
+  end
 end
 
 return pbind
