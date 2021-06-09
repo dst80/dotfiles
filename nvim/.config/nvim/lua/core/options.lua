@@ -1,98 +1,101 @@
 local options = require('core.tools.options')
 
-options:set_global_options ({
-  termguicolors  = true;
-  mouse          = "nv";
-  errorbells     = true;
-  visualbell     = true;
-  hidden         = true;
-  fileformats    = "unix,mac,dos";
-  magic          = true;
-  virtualedit    = "block";
-  encoding       = "utf-8";
-  viewoptions    = "folds,cursor,curdir,slash,unix";
-  sessionoptions = "curdir,help,tabpages,winsize";
-  clipboard      = "unnamedplus";
-  wildignorecase = true;
-  wildignore     = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**";
-  backup         = false;
-  writebackup    = false;
-  swapfile       = false;
-  history        = 2000;
-  shada          = "!,'300,<50,@100,s10,h";
-  backupskip     = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim";
-  smarttab       = true;
-  shiftround     = true;
-  timeout        = true;
-  ttimeout       = true;
-  timeoutlen     = 500;
-  ttimeoutlen    = 10;
-  updatetime     = 100;
-  redrawtime     = 1500;
-  ignorecase     = true;
-  smartcase      = true;
-  infercase      = true;
-  incsearch      = true;
-  wrapscan       = true;
-  complete       = ".,w,b,k";
-  inccommand    = "nosplit";
-  grepformat     = "%f:%l:%c:%m";
-  grepprg        = 'rg --hidden --vimgrep --smart-case --';
-  breakat        = [[\ \	;:,!?]];
-  startofline    = false;
-  whichwrap      = "h,l,<,>,[,],~";
-  splitbelow     = true;
-  splitright     = true;
-  switchbuf      = "useopen";
-  backspace      = "indent,eol,start";
-  diffopt        = "filler,iwhite,internal,algorithm:patience";
-  completeopt    = "menuone,noselect";
-  jumpoptions    = "stack";
-  showmode       = false;
-  shortmess      = "aoOTIcF";
-  scrolloff      = 2;
-  sidescrolloff  = 5;
-  foldlevelstart = 99;
-  ruler          = false;
-  list           = false;
-  showtabline    = 2;
-  winwidth       = 30;
-  winminwidth    = 10;
-  pumheight      = 15;
-  helpheight     = 12;
-  previewheight  = 12;
-  showcmd        = false;
-  cmdheight      = 2;
-  cmdwinheight   = 5;
-  equalalways    = false;
-  laststatus     = 2;
-  display        = "lastline";
-  showbreak      = "↳  ";
-  listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
-  pumblend       = 10;
-  winblend       = 10;
+options:set_options ({
+  magic          = true,
+  viewoptions    = "folds,cursor,curdir,slash,unix",
+  sessionoptions = "curdir,help,tabpages,winsize",
+  clipboard      = "unnamedplus",
+  fileformats    = "unix,mac,dos",
+  -- allow hidden buffers
+  hidden = true,
+  --time out and drawing
+  timeout        = true,
+  ttimeout       = true,
+  timeoutlen     = 500,
+  ttimeoutlen    = 10,
+  updatetime     = 100,
+  redrawtime     = 1500,
+  wrapscan       = true,
+  -- cursor control
+  breakat        = [[\ \	,:,!?]];
+  startofline    = false,
+  backspace      = "indent,eol,start",
+  mouse          = "nv",
+  whichwrap      = "h,l,<,>,[,],~",
+  virtualedit    = "block",
+  -- formatting stuff
+  smarttab       = true,
+  shiftround     = true,
+  tabstop        = 2,
+  shiftwidth     = 2,
+  softtabstop    = -1,
+  expandtab      = true,
+  autoindent     = true,
+  colorcolumn = {80, 120, 140},
+  breakindentopt = "shift:2,min:20",
+  wrap           = false,
+  linebreak      = true,
+
+	-- nvim visual settings
+  termguicolors  = true,
+  winwidth       = 30,
+  winminwidth    = 10,
+  pumheight      = 15,
+  helpheight     = 12,
+  previewheight  = 12,
+  cmdheight      = 2,
+  cmdwinheight   = 5,
+  equalalways    = false,
+  pumblend       = 10,
+  winblend       = 10,
+  laststatus=2,
+
+  -- tab settings
+  splitbelow     = true,
+  splitright     = true,
+  switchbuf      = "useopen",
+  diffopt        = "filler,iwhite,internal,algorithm:patience",
+  jumpoptions    = "stack",
+  sidescrolloff  = 5,
+  scrolloff      = 2,
+  ruler          = false,
+  showtabline    = 2,
+  number = true,
+  relativenumber = true,
+
+  -- list chars
+  list           = false,
+  showbreak      = "↳  ",
+  listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
+  -- last line
+  showmode = true,
+  showcmd = true,
+  display = "lastline",
+
+  -- settings for :grep
+  grepformat     = "%f:%l:%c:%m",
+  grepprg        = 'rg --hidden --vimgrep --smart-case --',
+
+  -- searching
+  hlsearch = true,
+  incsearch = true,
+  ignorecase = true,
+  smartcase = true,
+  showmatch = true,
+  infercase = true,
+  wildignorecase = true,
+  wildignore     = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
+
+  -- undo different
+  backup         = false,
+  writebackup    = false,
+  swapfile       = false,
+  history        = 2000,
+  undofile      = true,
+  shada          = "!,'300,<50,@100,s10,h",
+  backupskip     = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
+
+  -- error bell
+  errorbells     = false,
+  visualbell     = true,
 })
-
-options:set_buffer_options ({
-  undofile       = true;
-  synmaxcol      = 2500;
-  formatoptions  = "1jcroql";
-  textwidth      = 80;
-  expandtab      = true;
-  autoindent     = true;
-  tabstop        = 2;
-  shiftwidth     = 2;
-  softtabstop    = -1;
-  breakindentopt = "shift:2,min:20";
-  wrap           = false;
-  linebreak      = true;
-  number         = true;
-  relativenumber = true;
-  colorcolumn    = 80;
-  foldenable     = true;
-  signcolumn     = "yes";
-  conceallevel   = 2;
-  concealcursor  = "niv";
-})
-
-
