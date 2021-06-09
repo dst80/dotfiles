@@ -19,3 +19,9 @@ keymap.bind("<C-q>"):in_mode("n"):to_command(":wq<CR>")
 keymap.bind("<C-s>"):in_mode("n"):to_command(":w<CR>")
 keymap.bind("<C-q>"):in_mode("i"):to_command("<Esc>:wq<CR>")
 keymap.bind("<C-s>"):in_mode("i"):to_command("<Esc>:w<CR>")
+
+-- disable arrow keys
+keymap.bind("<Left>"):to_command("<Nop>")
+keymap.bind("<Right>"):to_command("<Nop>")
+keymap.bind("<Up>"):to_command("<Nop>")
+keymap.bind("<Down>"):to_command("<Nop>")
