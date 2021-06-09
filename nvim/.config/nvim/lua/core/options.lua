@@ -54,7 +54,7 @@ options:set_global_options ({
   sidescrolloff  = 5;
   foldlevelstart = 99;
   ruler          = false;
-  list           = true;
+  list           = false;
   showtabline    = 2;
   winwidth       = 30;
   winminwidth    = 10;
