@@ -1,4 +1,4 @@
 vim.g.mapleader = ' '
 
 require('plugins')
-require('core')
+require('configuration')
