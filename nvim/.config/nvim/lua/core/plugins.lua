@@ -52,4 +52,11 @@ return require("packer").startup(function(use)
 
     -- color settings
     use 'tjdevries/colorbuddy.nvim'
+
+    use {
+        'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        config = function() require('core.lualine') end
+    }
 end)
+
