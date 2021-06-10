@@ -26,6 +26,8 @@ return require("packer").startup(
             requires = {{'nvim-treesitter/playground'}},
             config = require('core.treesitter')
         }
+        use {'kyazdani42/nvim-web-devicons', config = require('core.icons')}
+
         -- telescope requirements
         use {
             'nvim-telescope/telescope.nvim',
@@ -63,13 +65,14 @@ return require("packer").startup(
         use {'fatih/vim-go'}
         use {'rust-lang/rust.vim'}
 
-        -- color settings
-
+        -- status line
         use {
             'hoob3rt/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
             config = require('core.lualine')
         }
+
+        -- color settings
         use {
             'tjdevries/colorbuddy.nvim',
             requires = {
