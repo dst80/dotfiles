@@ -1,6 +1,5 @@
 local Color, colors, Group, groups, styles = require("colorbuddy").setup()
-
-
+-- nord color definiton
 Color.new('nord0', "#2E3440")
 Color.new('nord1',"#3B4252")
 Color.new('nord2', "#434C5E")
@@ -19,8 +18,7 @@ Color.new('nord13', "#EBCB8B")
 Color.new('nord14', "#A3BE8C")
 Color.new('nord15', "#B48EAD")
 
-
-
+-- assign nord colors to default colors
 Color.new('background', '#2E3440')
 Color.new('bg', '#2E3440')
 Color.new('foreground', '#ECEFF4')
@@ -36,7 +34,7 @@ Color.new('purple', "#B48EAD")
 Color.new('violet', "#B48EAD")
 Color.new('orange', "#D08770" )
 
--- my highlight
+-- assign colors to nvim
 Group.new('TabLineSel', colors.foreground, colors.nord3, styles.bold )
 Group.new('TabLineSelSeparator', colors.blue, colors.nord3)
 Group.new('TabLine', colors.nord2, colors.nord2)
@@ -46,7 +44,7 @@ Group.new('TabLineSeparator', colors.nord2, colors.none)
 Group.new('Conceal', colors.nord3_light, colors.none)
 Group.new('VertSplit', colors.nord3, colors.none)
 
-Group.new('Normal', colors.nord4, colors.nord0)
+Group.new('Normal', colors.nord6, colors.nord0)
 Group.new('Function', colors.nord8, colors.none, styles.none)
 Group.new('Error', colors.nord11, colors.none, styles.bold)
 Group.new('ErrorMsg', colors.nord5, colors.nord11, styles.bold)
@@ -95,7 +93,7 @@ Group.new("iCursor",colors.nord0, colors.nord4)
 Group.new("EndOfBuffer",colors.none, colors.none)
 Group.new("MatchParen",colors.nord8, colors.nord3)
 Group.new("NonText",colors.none, colors.none)
-Group.new("PMenu", colors.nord4, colors.nord2)
+Group.new("PMenu", colors.nord4, colors.nord1)
 Group.new("PmenuSbar", colors.nord4, colors.nord2)
 Group.new("PMenuSel", colors.nord6, colors.nord9)
 Group.new("PmenuThumb", colors.nord8, colors.nord3)
@@ -104,7 +102,7 @@ Group.new("SpellBad",colors.nord11, colors.nord0)
 Group.new("SpellCap",colors.nord13, colors.nord0)
 Group.new("SpellLocal",colors.nord5, colors.nord0)
 Group.new("SpellRare",colors.nord6, colors.nord0)
-Group.new("Visual",colors.nord4, colors.nord9)
+Group.new("Visual",colors.nord6, colors.nord3)
 Group.new("VisualNOS",colors.nord2, colors.nord1)
 Group.new("Folded", colors.nord14, colors.none, styles.italic)
 
@@ -114,7 +112,7 @@ Group.new("healthSuccess",colors.nord14, colors.nord1)
 Group.new("healthWarning",colors.nord13, colors.nord1)
 Group.new("TermCursorNC",colors.nord1, colors.nord1)
 Group.new("IncSearch",colors.nord6, colors.nord10, styles.underline)
-Group.new("Search",colors.nord1, colors.nord8)
+Group.new("Search",colors.nord6, colors.nord10)
 
 -- vim
 Group.new('vimcommand', groups.Statement, colors.none)
@@ -129,22 +127,6 @@ Group.new('vimNotation', colors.nord7, colors.none)
 Group.new('vimBracket', groups.Delimiter, colors.none)
 Group.new('vimMap', groups.vimcommand, colors.none)
 Group.new('nvimMap', groups.vimMap, colors.none)
-
--- startify
-Group.new("StartifyFile",colors.nord6, colors.none)
-Group.new("StartifyFooter",colors.none, colors.none)
-Group.new("StartifyHeader",colors.nord8, colors.none)
-Group.new("StartifyNumber",colors.nord7, colors.none)
-Group.new("StartifyPath",colors.nord8, colors.none)
-Group.new("StartifyBracket", groups.Delimiter, groups.Delimiter)
-Group.new("StartifySlash", groups.Normal, groups.Normal)
-Group.new("StartifySpecial", groups.Comment, groups.Comment)
-
--- gitgutter
-Group.new("GitGutterAdd", colors.nord14, colors.none)
-Group.new("GitGutterDelete", colors.nord11, colors.none)
-Group.new("GitGutterChange", colors.nord13, colors.none)
-Group.new("GitGutterChangeDelete", colors.nord11, colors.none)
 
 -- built-in LSP
 Group.new("LSPDiagnosticsDefaultWarning", colors.nord13, colors.none)

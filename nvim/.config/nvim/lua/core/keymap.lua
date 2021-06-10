@@ -19,6 +19,6 @@ keymap.bind("<C-q>"):in_mode("n"):to_command(":wq<CR>")
 keymap.bind("<C-s>"):in_mode("n"):to_command(":w<CR>")
 keymap.bind("<C-q>"):in_mode("i"):to_command("<Esc>:wq<CR>")
 keymap.bind("<C-s>"):in_mode("i"):to_command("<Esc>:w<CR>")
-
+keymap.bind("<leader><CR>"):in_mode('n'):to_command(":noh<CR>")
 -- disable arrow keys
 keymap.deactivate_keys ({"<Left>", "<Right>", "<Up>", "<Down>"})

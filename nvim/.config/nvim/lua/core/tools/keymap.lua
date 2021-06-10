@@ -45,7 +45,7 @@ function key_binding:with_remapping()
   return self
 end
 
-function key_binding:expression()
+function key_binding:with_expr()
   self.options.expr = true
   return self
 end
