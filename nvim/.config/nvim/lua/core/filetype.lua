@@ -24,11 +24,11 @@ end
 
 filetype.settings_for_lua = function()
     options:set_options({
-        tabstop = 2,
-        shiftwidth = 2,
-        softtabstop = 2,
-        colorcolumn = {140},
-        textwidth = 140
+        tabstop = 4,
+        shiftwidth = 4,
+        softtabstop = 4,
+        colorcolumn = {80},
+        textwidth = 80
     })
 end
 
