@@ -3,7 +3,7 @@ local options = require('tools.options')
 local filetype = {}
 
 filetype.settings_for_cpp = function()
-    options:set_local_options({
+    options:set_options({
         tabstop = 4,
         shiftwidth = 4,
         softtabstop = 4,
