@@ -1,4 +1,4 @@
-local global = require('core.global')
+local global = require('global')
 local sumneko_root_path = global.repo_dir .. global.path_sep ..
                               'lua-language-server'
 local sumneko_binary = ''
