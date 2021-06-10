@@ -41,6 +41,11 @@ return require("packer").startup (
          {'nvim-lua/plenary.nvim'},
       }
     }
+
+    -- format
+    use {
+      'lukas-reineke/format.nvim'
+    }
     -- snipping
     use {
       'hrsh7th/vim-vsnip-integ',
