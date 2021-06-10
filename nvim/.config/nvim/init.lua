@@ -1,1 +1,1 @@
-lua require("core")
+require("core")
