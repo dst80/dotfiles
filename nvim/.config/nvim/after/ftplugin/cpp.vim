@@ -1,1 +1,1 @@
-lua require("core.filetype").settings_for_cpp()
+lua require("configuration.filetype").settings_for_cpp()

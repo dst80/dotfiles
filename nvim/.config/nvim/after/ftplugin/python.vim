@@ -1,1 +1,1 @@
-lua require("core.filetype").settings_for_python()
+lua require("configuration.filetype").settings_for_python()

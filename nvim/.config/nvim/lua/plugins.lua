@@ -7,16 +7,33 @@ end
 return require("packer").startup(
            function(use)
         use 'wbthomason/packer.nvim'
-        use {'neovim/nvim-lspconfig', config = require('configuration.lsp')}
-        use {'hrsh7th/nvim-compe', config = require('configuration.completion')}
+        use {
+            'neovim/nvim-lspconfig',
+            config = function()
+                require('configuration.lsp')
+            end
+        }
+        use {
+            'hrsh7th/nvim-compe',
+            config = function()
+                require('configuration.completion')
+            end
+        }
         use {
             'nvim-lua/lsp_extensions.nvim',
-            config = require('configuration.lsp_extension')
+            config = function()
+                require('configuration.lsp_extension')
+            end
         }
 
         -- tpope best's
         use 'tpope/vim-surround'
-        use {'tpope/vim-fugitive', config = require('configuration.fugitive')}
+        use {
+            'tpope/vim-fugitive',
+            config = function()
+                require('configuration.fugitive')
+            end
+        }
         use 'tpope/vim-commentary'
 
         -- nvim tree sitter
@@ -24,9 +41,16 @@ return require("packer").startup(
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
             requires = {{'nvim-treesitter/playground'}},
-            config = require('configuration.treesitter')
+            config = function()
+                require('configuration.treesitter')
+            end
         }
-        use {'kyazdani42/nvim-web-devicons', config = require('configuration.icons')}
+        use {
+            'kyazdani42/nvim-web-devicons',
+            config = function()
+                require('configuration.icons')
+            end
+        }
 
         -- telescope requirements
         use {
@@ -37,7 +61,9 @@ return require("packer").startup(
                 {'nvim-telescope/telescope-fzy-native.nvim'},
                 {'kyazdani42/nvim-web-devicons'}
             },
-            config = require('configuration.telescope')
+            config = function()
+                require('configuration.telescope')
+            end
 
         }
         use {
@@ -50,12 +76,19 @@ return require("packer").startup(
         }
 
         -- format
-        use {'lukas-reineke/format.nvim', config = require('configuration.format')}
+        use {
+            'lukas-reineke/format.nvim',
+            config = function()
+                require('configuration.format')
+            end
+        }
         -- snipping
         use {
             'hrsh7th/vim-vsnip-integ',
             requires = {{'hrsh7th/vim-vsnip'}},
-            config = require('configuration.snippets')
+            config = function()
+                require('configuration.snippets')
+            end
         }
 
         -- python stuff
@@ -69,7 +102,9 @@ return require("packer").startup(
         use {
             'hoob3rt/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
-            config = require('configuration.lualine')
+            config = function()
+                require('configuration.lualine')
+            end
         }
 
         -- color settings
@@ -80,7 +115,9 @@ return require("packer").startup(
                 {'nvim-telescope/telescope.nvim'},
                 {'neovim/nvim-lspconfig'}
             },
-            config = require('configuration.colors')
+            config = function()
+                require('configuration.colors')
+            end
         }
     end
        )

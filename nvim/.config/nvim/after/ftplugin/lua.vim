@@ -1,1 +1,1 @@
-lua require("core.filetype").settings_for_lua()
+lua require("configuration.filetype").settings_for_lua()
