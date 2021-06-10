@@ -1,8 +1,10 @@
 vim.g.mapleader = ' '
 
+require('core.global')
 require('core.plugins')
 require('core.options')
 require('core.fugitive')
+require('core.snippets')
 require('core.completion')
 require('core.colors')
 require('core.icons')
