@@ -6,7 +6,6 @@ return require("packer").startup (
     use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-compe'
-    -- use 'nvim-lua/completion-nvim'
     use 'nvim-lua/lsp_extensions.nvim'
 
     -- tpope best's
@@ -42,6 +41,15 @@ return require("packer").startup (
          {'nvim-lua/plenary.nvim'},
       }
     }
+    -- snipping
+    use {
+      'hrsh7th/vim-vsnip-integ',
+      requires = {
+        {'hrsh7th/vim-vsnip'}
+      }
+
+    }
+
     -- python stuff
     -- use 'ambv/black'
 
