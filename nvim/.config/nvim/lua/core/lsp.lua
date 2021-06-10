@@ -5,7 +5,6 @@ vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 
 local on_attach = function(client)
-   require'completion'.on_attach(client)
 end
 
 require'lspconfig'.tsserver.setup{ on_attach=on_attach }

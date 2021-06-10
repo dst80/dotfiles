@@ -1,12 +1,12 @@
 if not pcall(require,'packer') then
   vim.cmd("!git clone https://github.com/wbthomason/packer.nvim " .. "~/.local/share/nvim/site/pack/packer/start/packer.nvim")
 end
-
 return require("packer").startup (
   function(use)
     use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
-    use 'nvim-lua/completion-nvim'
+    use 'hrsh7th/nvim-compe'
+    -- use 'nvim-lua/completion-nvim'
     use 'nvim-lua/lsp_extensions.nvim'
 
     -- tpope best's
@@ -42,6 +42,14 @@ return require("packer").startup (
          {'nvim-lua/plenary.nvim'},
       }
     }
+    -- python stuff
+    -- use 'ambv/black'
+
+
+
+    --other languages
+    use {'fatih/vim-go'}
+    use {'rust-lang/rust.vim'}
 
     -- color settings
     use 'tjdevries/colorbuddy.nvim'
