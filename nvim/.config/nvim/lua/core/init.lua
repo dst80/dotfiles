@@ -1,15 +1,6 @@
 vim.g.mapleader = ' '
 
 require('core.options')
-require('core.fugitive')
-require('core.snippets')
-require('core.completion')
-require('core.format')
-require('core.colors')
 require('core.icons')
-require("core.telescope")
-require("core.treesitter")
-require('core.lsp')
-require('core.lsp_extension')
 require('core.keymap')
 require('core.common_autocommands')
