@@ -41,7 +41,7 @@ require'lspconfig'.sumneko_lua.setup {
     }
 }
 
-local keymap = require('core.tools.keymap')
+local keymap = require('tools.keymap')
 -- LSP shortcuts
 keymap.bind("gD"):to_lua_command("vim.lsp.buf.declaration()")
 keymap.bind("gd"):to_lua_command("vim.lsp.buf.definition()")

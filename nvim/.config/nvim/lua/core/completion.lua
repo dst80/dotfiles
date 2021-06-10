@@ -61,7 +61,7 @@ _G.s_tab_complete = function()
     end
 end
 
-local keymap = require('core.tools.keymap')
+local keymap = require('tools.keymap')
 keymap.bind('<C-Tab>'):in_mode('i'):with_expr():to_command('compe#complete()')
 keymap.bind('<CR>'):in_mode('i'):with_expr():to_command(
     'compe#confirm(\'<CR>\')')
@@ -80,6 +80,6 @@ keymap.bind('<S-Tab>'):in_mode('i'):with_remapping():with_expr():to_command(
 keymap.bind('<S-Tab>'):in_mode('s'):with_remapping():with_expr():to_command(
     'v:lua.s_tab_complete()')
 
-local options = require('core.tools.options')
+local options = require('tools.options')
 options:set_option('completeopt', {'menuone', 'noinsert', 'noselect'})
 options:add_option('shortmess', 'c')

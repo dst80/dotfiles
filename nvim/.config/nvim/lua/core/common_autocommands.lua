@@ -1,4 +1,4 @@
-local autocommands = require('core.tools.autocommand')
+local autocommands = require('tools.autocommand')
 
 autocommands.nvim_create_augroups({
     vim_window_command_group = {

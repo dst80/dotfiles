@@ -1,4 +1,4 @@
-local keymap = require("core.tools.keymap")
+local keymap = require("tools.keymap")
 
 -- window controls
 keymap.bind("<C-l>"):in_mode("n"):to_command("<C-w>l")

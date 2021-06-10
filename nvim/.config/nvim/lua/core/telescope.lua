@@ -27,7 +27,7 @@ require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('dotfiles')
 
 local global = require('global')
-local keymap = require("core.tools.keymap")
+local keymap = require("tools.keymap")
 
 keymap.bind("<leader>gf"):to_lua_command(
     "require('telescope.builtin').git_files()")

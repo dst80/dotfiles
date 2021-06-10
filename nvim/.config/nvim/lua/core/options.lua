@@ -1,4 +1,4 @@
-local options = require('core.tools.options')
+local options = require('tools.options')
 
 options:set_options({
     magic = true,

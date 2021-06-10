@@ -1,4 +1,4 @@
-local options = require('core.tools.options')
+local options = require('tools.options')
 
 local filetype = {}
 
