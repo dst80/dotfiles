@@ -1,5 +1,5 @@
-export EDITOR=/bin/vim
-export VISUAL=/bin/vim
+export EDITOR=/bin/nvim
+export VISUAL=/bin/nvim
 
 export MYVIFMRC=~/.config/vifm/vifmrc
 
