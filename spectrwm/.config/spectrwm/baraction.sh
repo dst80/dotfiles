@@ -1,6 +1,5 @@
 #!/bin/bash
 # baraction.sh for spectrwm status bar
-
 ## DISK
 hdd() {
   hdd="$(df -h | awk 'NR==4{printf "%.2fG %d %", $3, $5}')"
@@ -29,6 +28,17 @@ vol() {
     vol=`amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }' | sed 's/on://g'`
     echo -e "VOL: $vol"
 }
+## Battery 0 Lenovo
+bat0() {
+  battery=`acpi | awk '/Battery 0/ {printf "%d%", $4}'`
+  echo -e "Bat0: $battery"
+}
+
+## Battery 1 Lenovo
+bat1() {
+  battery=`acpi | awk '/Battery 1/ {printf "%d%", $4}'`
+  echo -e "Bat1: $battery"
+}
 
 SLEEP_SEC=3
 #loops forever outputting a line every SLEEP_SEC secs
@@ -38,7 +48,7 @@ SLEEP_SEC=3
 # So I would love to add more functions to this script but it makes the
 # echo output too long to display correctly.
 while :; do
-    echo "+@fg=1;+@fn=0; $(cpu)+@fg=0; |+@fg=2;+@fn=0; $(mem)+@fg=0; |+@fg=3;+@fn=0; $(hdd)+@fg=0; |+@fg=4;+@fn=0;$(vol)+@fg=0; |"
+  echo "+@fg=1;+@fn=0; $(cpu)+@fg=0; |+@fg=2;+@fn=0; $(mem)+@fg=0; |+@fg=3;+@fn=0; $(hdd)+@fg=0; |+@fg=4;+@fn=0;$(vol)+@fg=0; | +@fg=2;+@fn=0;$(bat0)+@fg=0; | +@fg=3;+@fn=0;$(bat1)+@fg=0; |"
     l
 	sleep $SLEEP_SEC
 done
