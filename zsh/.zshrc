@@ -27,3 +27,5 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 alias ls="ls --color=auto"
 alias ll="ls -l"
 alias la="ls -all"
+
+alias luamake=/home/dennis/.local/share/nvim/site/pack/lua_language-server/3rd/luamake/luamake
