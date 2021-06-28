@@ -1,8 +1,16 @@
+local globals = require ("global")
+
 if not pcall(require, 'packer') then
+    if globals.is_windows then
+        vim.cmd ("git clone https://github.com/wbthomason/packer.nvim" ..
+            globals.home ..
+            "AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim")
+    elseif globals.is_linux then
     vim.cmd(
         "!git clone https://github.com/wbthomason/packer.nvim " ..
             "~/.local/share/nvim/site/pack/packer/start/packer.nvim"
     )
+        end
 end
 return require("packer").startup(
            function(use)
