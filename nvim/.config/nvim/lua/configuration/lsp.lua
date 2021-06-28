@@ -1,14 +1,5 @@
 local global = require('global')
-local sumneko_root_path = global.repo_dir .. global.path_sep ..
-                              'lua-language-server'
-local sumneko_binary = ''
-if (global.is_linux) then
-    sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
-elseif global.is_windows then
-    sumneko_root_path = global.home .. global.path_sep .. 'repos' ..
-                            global.path.sep .. 'lua-language-server'
-    sumneko_binary = sumneko_root_path .. "\\bin\\Windows\\lua-language-server"
-end
+local sumneko = require('configuration.sumneko')
 
 vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -26,7 +17,7 @@ require'lspconfig'.rust_analyzer.setup {on_attach = on_attach}
 
 require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = {
         Lua = {
             runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},

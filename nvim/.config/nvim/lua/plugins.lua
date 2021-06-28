@@ -1,4 +1,5 @@
-local globals = require ("global")
+local globals = require('global')
+local sumneko = require('configuration.sumneko')
 
 if not pcall(require, 'packer') then
     if globals.is_windows then
@@ -17,6 +18,9 @@ return require("packer").startup(
         use 'wbthomason/packer.nvim'
         use {
             'neovim/nvim-lspconfig',
+            run = function()
+                sumneko:install()
+            end,
             config = function()
                 require('configuration.lsp')
             end
