@@ -16,6 +16,7 @@ options:set_options({
     updatetime = 100,
     redrawtime = 1500,
     wrapscan = true,
+
     -- cursor control
     breakat = [[\ \	,:,!?]],
     startofline = false,
@@ -23,6 +24,9 @@ options:set_options({
     mouse = "nv",
     whichwrap = "h,l,<,>,[,],~",
     virtualedit = "block",
+    scrolloff = 10,
+    sidescrolloff = 5,
+
     -- formatting stuff
     smarttab = true,
     shiftround = true,
@@ -49,6 +53,7 @@ options:set_options({
     pumblend = 10,
     winblend = 10,
     laststatus = 2,
+    signcolumn = 'yes',
 
     -- tab settings
     splitbelow = true,
@@ -56,8 +61,6 @@ options:set_options({
     switchbuf = "useopen",
     diffopt = "filler,iwhite,internal,algorithm:patience",
     jumpoptions = "stack",
-    sidescrolloff = 5,
-    scrolloff = 2,
     ruler = false,
     showtabline = 2,
     number = true,
@@ -80,7 +83,6 @@ options:set_options({
     hlsearch = true,
     incsearch = true,
     ignorecase = true,
-    smartcase = true,
     showmatch = true,
     infercase = true,
     inccommand = nosplit,
