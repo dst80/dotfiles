@@ -83,6 +83,7 @@ options:set_options({
     smartcase = true,
     showmatch = true,
     infercase = true,
+    inccommand = nosplit,
     wildignorecase = true,
     wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
 
