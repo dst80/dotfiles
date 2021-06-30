@@ -1,2 +1,3 @@
+local fs = require ('tools.filesystem')
 local global = require('global')
-vim.g.vsnip_snippet_dir = global.vim_path .. global.path_sep .. 'snippets'
+vim.g.vsnip_snippet_dir = fs:join_path (global.vim_path, 'snippets')

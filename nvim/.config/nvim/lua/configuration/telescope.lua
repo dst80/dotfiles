@@ -26,6 +26,7 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('dotfiles')
 
+local fs = require('tools.filesystem')
 local global = require('global')
 local keymap = require("tools.keymap")
 
@@ -50,5 +51,5 @@ keymap.bind("<leader>pw"):to_lua_command(
     "require('telescope.builtin').grep_string({search=vim.fn.expand(\"<cword>\")})")
 
 keymap.bind("<leader>vrc"):to_command(":Telescope dotfiles path=" ..
-                                          global.home .. global.path_sep .. "dotfiles<CR>")
+                                          fs.join_path(global.home, dotfiles) .."<CR>")
 
