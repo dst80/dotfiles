@@ -98,7 +98,12 @@ return require("packer").startup(
                 require('configuration.snippets')
             end
         }
-
+        use {
+            'steelsojka/pears.nvim',
+            config = function ()
+                require('configuration.pears')
+            end
+        }
         -- python stuff
         -- use 'ambv/black'
 
