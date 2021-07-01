@@ -93,7 +93,7 @@ return require("packer").startup(
         -- snipping
         use {
             'hrsh7th/vim-vsnip-integ',
-            requires = {{'hrsh7th/vim-vsnip'}},
+            requires = {{'hrsh7th/vim-vsnip'}, {'rafamadriz/friendly-snippets'}},
             config = function()
                 require('configuration.snippets')
             end
