@@ -1,0 +1,366 @@
+[colors]
+background = #2e3440
+foreground = #ECEFF4
+foreground-alt = #2E3440
+primary = #5E81AC
+secondary = #A3BE8C
+alert = #BF616A
+region1 = #5E81AC
+region2 = #81A1C1 
+region3 = #88C0D0 
+region4 = #3B4252
+region5 = #434C5E
+region6 = #4C566A  
+
+[bar/mainbar]
+
+width = 100%
+height = 24
+radius = 0.0
+fixed-center = true
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+module-padding = 4
+
+border-size = 0
+
+font-0 = "Noto Sans:pixelsize=12;0"
+font-1 = "Noto Emoji:size=12;1" 
+font-2 = "Font Awesome:size=12;1"
+font-3 = "Nerd Font:size=12;0"
+;modules-left = bspwm
+;modules-center = mpd
+modules-right = backlight pulseaudio cpu temperature memory filesystem wlan eth battery0 battery1 xkeyboard date powermenu
+
+tray-detached = false
+tray-position = right
+tray-padding = 2
+
+#wm-restack = bspwm
+
+override-redirect = true
+
+scroll-up = spectrwm-desknext
+scroll-down = spectrwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " " 
+format-padding = 2
+format-foreground = ${colors.foreground-alt}
+format-background = ${colors.region2}
+label-layout = %layout%
+
+label-indicator-padding = 0
+label-indicator-margin = 0
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem] 
+type = internal/fs
+interval = 25
+
+mount-0 = /
+mount-1 = /home
+mount-2 = /var
+mount-3 = /swap
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-} : %used%/%total%
+label-unmounted = 
+wrapping-scroll = false
+
+format-mounted-prefix = "  " 
+format-mounted =  <label-mounted>
+format-mounted-padding = 2
+format-mounted-background = ${colors.region5}
+format-unmounted-padding = 2
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+
+[module/backlight]
+type = internal/backlight
+
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+format = <ramp> <label>
+label-foreground = ${colors.foreground}
+
+label = %percentage%%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+ramp-foreground = ${colors.foreground}
+
+format-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  " 
+format = <ramp-coreload>
+format-padding = 2
+format-foreground = ${colors.foreground}
+format-background = ${colors.region6}
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▁
+ramp-coreload-2 = ▂
+ramp-coreload-3 = ▃
+ramp-coreload-4 = ▄
+ramp-coreload-5 = ▅
+ramp-coreload-6 = ▆
+ramp-coreload-7 = ▇
+ramp-coreload-8 = █
+
+[module/memory]
+type = internal/memory
+interval = 2
+format = <label> 
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+label = %gb_used%/%gb_free%
+format-padding = 2
+format-background = ${colors.region5}
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+
+format-connected-prefix = "  " 
+format-connected-prefix-foreground = ${colors.foreground}
+format-connected = <label-connected> <ramp-signal>
+format-connected-padding = 2
+format-connected-background = ${colors.region4}
+label-connected = %essid%
+
+format-disconnected = 
+format-disconnected-padding = 2
+format-disconnected-background = ${colors.region4}
+ramp-signal-0 = ▁
+ramp-signal-1 = ▂
+ramp-signal-2 = ▃
+ramp-signal-3 = ▄
+ramp-signal-4 = ▅
+ramp-signal-5 = ▆
+ramp-signal-6 = ▇
+ramp-signal-7 = █
+ramp-signal-foreground = ${colors.foreground}
+format-padding = 2
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-prefix = "  " 
+format-connected-prefix-foreground = ${colors.foreground}
+format-connected-padding = 2
+format-connected-background = ${colors.region4}
+label-connected = %local_ip%
+format-padding = 2
+
+format-disconnected-padding = 2
+format-disconnected-background = ${colors.region4}
+
+[module/date]
+type = internal/date
+interval = 30
+
+date =
+date-alt = " %d.%m.%Y"
+
+time = %H:%M
+time-alt = %H:%M
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.foreground-alt}
+format-background = ${colors.region1}
+label = "%date% %time% "
+format-padding = 2
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.foreground}
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 1
+
+format-muted = <label-muted>
+format-muted-prefix = " "  
+format-muted-background = ${colors.foreground}
+format-muted-padding = 1
+
+label-volume = "%percentage%% "
+label-volume-foreground = ${colors.foreground}
+label-muted = " Muted "
+label-muted-foreground = ${colors.foreground}
+format-padding = 2
+
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${colors.shade5}
+format-volume-padding = 1
+
+format-muted = <label-muted>
+format-muted-prefix = " "  
+format-muted-background = ${colors.foreground}
+format-muted-padding = 1
+
+label-volume = "%percentage%% "
+label-muted = " Muted "
+label-muted-foreground = ${colors.foreground}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+format-padding = 2
+
+[module/battery0]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+format-charging = <ramp-capacity> <label-charging>
+format-charging-padding = 2
+format-charging-foreground = ${colors.foreground-alt}
+format-charging-background = ${colors.region3}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 2
+format-discharging-foreground = ${colors.foreground-alt}
+format-discharging-background = ${colors.region3}
+format-full-prefix = "  "  
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-padding = 2
+format-full-foreground = ${colors.foreground-alt}
+format-full-background = ${colors.region3}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+
+[module/battery1]
+type = internal/battery
+battery = BAT1
+adapter = AC0
+full-at = 98
+
+format-charging = <ramp-capacity> <label-charging>
+format-charging-padding = 2
+format-charging-foreground = ${colors.foreground-alt}
+format-charging-background = ${colors.region3}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 2
+format-discharging-foreground = ${colors.foreground-alt}
+format-discharging-background = ${colors.region3}
+format-full-prefix = "  "  
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-padding = 2
+format-full-foreground = ${colors.foreground-alt}
+format-full-background = ${colors.region3}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 70
+
+format = <ramp> <label>
+
+format-padding = 2
+format-background = ${colors.region6}
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 =
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close =  cancel
+label-close-foreground = ${colors.foreground}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+format-padding = 2
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
