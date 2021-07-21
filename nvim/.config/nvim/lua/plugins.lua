@@ -99,9 +99,9 @@ return require("packer").startup(
             end
         }
         use {
-            'steelsojka/pears.nvim',
+            'windwp/nvim-autopairs',
             config = function ()
-                require('configuration.pears')
+                require('configuration.autopairs')
             end
         }
         -- python stuff
