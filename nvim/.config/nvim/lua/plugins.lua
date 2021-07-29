@@ -72,7 +72,6 @@ return require("packer").startup(
             config = function()
                 require('configuration.telescope')
             end
-
         }
         use {
             'sudormrfbin/cheatsheet.nvim',
@@ -88,6 +87,16 @@ return require("packer").startup(
             'lukas-reineke/format.nvim',
             config = function()
                 require('configuration.format')
+            end
+        }
+
+        use {
+            'Shatur/neovim-cmake',
+            requires = {
+                {'nvim-telescope/telescope.nvim'}
+            },
+            config = function()
+                require('configuration.cmake_config')
             end
         }
         -- snipping
