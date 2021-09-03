@@ -9,9 +9,9 @@ function global:load_variables()
     self.home = self:get_home_dir()
     self.data_dir = vim.fn.stdpath('data')
     self.vim_path = vim.fn.stdpath('config')
-    self.cache_dir = fs.join_path(home, '.cache', 'nvim')
-    self.modules_dir = fs.join_path(self.vim_path, 'modules')
-    self.site_dir = fs.join_path(self.data_dir, 'site')
+    self.cache_dir = fs.join_path(self.home, '.cache', 'nvim')
+    self.modules_dir = fs.join_path(vim.fn.stdpath('config'), 'modules')
+    self.site_dir = fs.join_path(vim.fn.stdpath('data'), 'site')
 end
 
 function global:get_home_dir()
