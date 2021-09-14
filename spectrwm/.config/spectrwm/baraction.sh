@@ -3,7 +3,7 @@
 ## DISK
 
 create_tile () {
-  echo -e "+< +@bg=1; +@fn=1;$1 +@fn=0;$2 +@fg=0;+@bg=0;"
+  echo -e "+<+<+@bg=1;+<+@fn=2;+<$1+<+@fn=1;$2+@fg=0;+<+<+@bg=0;"
 }
 
 add_spacer () {
