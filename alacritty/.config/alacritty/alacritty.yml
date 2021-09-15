@@ -8,6 +8,26 @@
 # References:
 #   https://github.com/alacritty/alacritty
 
+window:
+  padding:
+    x: 2
+    y: 2
+
+  decorations: none
+
+  startup_mode: Maximized
+  
+font:
+  normal:
+    family: Noto Sans Mono 
+    style: Regular 
+
+  size: 7.0
+
+cursor:
+  style:
+    shape: Beam
+
 colors:
   primary:
     background: '#2e3440'
