@@ -7,26 +7,26 @@ create_tile () {
 }
 
 add_spacer () {
-  if [${#1} -eq 1]
+  if [ $1 -eq 1 ]
   then
-    echo -e "   "
-  elif [${#1} -eq 2]
+    echo -e "+<+<"
+  elif [ $1 -eq 2 ]
   then
-    echo -e "  "
+    echo -e "+<"
   else
     echo -e ""
   fi
 }
 
 hdd() {
-  hdd="$(df -h | awk 'NR==4{printf "%.2fG %d %", $3, $5}')"
+  hdd=$(df -h | awk 'NR==4{printf "%.2fG %d %", $3, $5}')
   echo -e "$(create_tile " " "$1$hdd")" 
 
 }
 
 ## RAM
 mem() {
-  mem=`free | awk '/Mem/ {printf "%.3fG/%.3fG\n", $3 / 1024.0 / 1024.0, $2 / 1024.0 / 1024.0 }'`
+  mem=$(free | awk '/Mem/ {printf "%.3fG/%.3fG\n", $3 / 1024.0 / 1024.0, $2 / 1024.0 / 1024.0 }')
   echo -e "$(create_tile " " "$1$mem")" 
 }
 
@@ -38,34 +38,28 @@ cpu() {
   read cpu a b c idle rest < /proc/stat
   total=$((a+b+c+idle))
   cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
-  echo -e "$(create_tile " " "$1$(add_spacer "$cpu")$cpu %")"
+  echo -e "$(create_tile " " "$1$(add_spacer ${#cpu})$cpu %")"
 }
 
 ## VOLUME
 vol() {
-    vol=`amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }' | sed 's/on://g'`
+  vol=$(amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }' | sed 's/on://g')
     echo -e "$(create_tile " " "$1$vol")" 
 }
 ## Battery 0 Lenovo
 bat0() {
-  battery=`acpi | awk '/Battery 0/ {printf "%d%", $4}'`
-  if [-n $battery]
-    then
-      echo -e "$(create_tile " " "$1$battery")"
-  fi
+  battery=$(acpi | awk '/Battery 0/ {printf "%d%", $4}');
+  [ ${#battery} -gt 0 ] && echo -e "$(create_tile " " "$1$(add_spacer $battery)$battery")"
 }
 
 ## Battery 1 Lenovo
 bat1() {
-  battery=`acpi | awk '/Battery 1/ {printf "%d%", $4}'`
-  if [-n $battery]
-    then
-      echo -e "$(create_tile " " "$1$battery")"
-  fi
+  battery=$(acpi | awk '/Battery 1/ {printf "%d%", $4}')
+  [ ${#battery} -gt 0 ] && echo -e "$(create_tile " " "$1$(add_spacer $battery)$battery")"
 }
 
 get_date () {
-  time_string=`date +'%d %b %Y [%H:%M]'`
+  time_string=$(date +'%d %b %Y [%H:%M]')
   echo -e "$(create_tile " " "$1$time_string")"
 }
 
