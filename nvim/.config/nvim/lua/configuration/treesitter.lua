@@ -1,8 +1,16 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = {
+        "c", "cpp", "c_sharp", "css", "scss", "html", "javascript", "java",
+        "lua", "rust", "go",
+    },
     ignore_install = {
-        "dart", "fennel", "fish", "gdscript", "ledger", "nix", "svelte",
-        "turtle", "verilog", "zig"
+        "beancount", "bibtex", "dart", "devicetree", "dot", "elixir", "elm",
+        "erlang", "fennel", "fish", "fortran", "Godot", "Glimmer and Ember",
+        "Godot Resources", "gomod", "gdscript", "graphql", "haskell", "hcl",
+        "heex", "ledger", "nix", "ocaml", "ocaml_interface", "ocamllex", "php",
+        "pioasm", "ql", "r", "rst", "scala", "sparql", "supercollider",
+        "surface", "svelte", "teal", "tlaplus", "toml", "turtle", "verilog",
+        "vue", "yang", "zig"
     },
     incremental_selection = {
         enable = true,
