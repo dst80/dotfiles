@@ -3,7 +3,7 @@ local globals = require ('global')
 local sumneko = {}
 
 function sumneko:init ()
-    self.root = globals.data_dir .. "/site/pack/lua-language-server"
+    self.root = globals.site_dir .. "/pack/lua-language-server"
     self.binary = globals.is_linux and
         self.root .. "/bin/Linux/lua-language-server" or
         self.root .. "/bin/Windows/lua-language-server"
