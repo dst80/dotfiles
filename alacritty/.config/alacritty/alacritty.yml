@@ -19,7 +19,7 @@ window:
   
 font:
   normal:
-    family: Noto Sans Mono 
+    family: "Noto Sans Mono" 
     style: Regular 
 
   size: 10.0
