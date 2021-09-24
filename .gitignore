@@ -1,3 +1,12 @@
 .zcompdump
 packer_compiled.vim
 packer_compiled.lua
+*.pl
+*playlist*
+*cache
+*save
+*history
+*info*
+*help*
+*README*
+*readme*
