@@ -8,21 +8,30 @@
 # References:
 #   https://github.com/alacritty/alacritty
 
+env:
+  WINIT_X11_SCALE_FACTOR: "1.0"
+
 window:
+  position:
+    columns : 80
+    lines : 40
+
   padding:
     x: 2
     y: 2
 
+  dynamic_padding : false
+
   decorations: none
 
-  startup_mode: Maximized
+  startup_mode: Windowed
   
 font:
   normal:
     family: "Noto Sans Mono" 
     style: Regular 
 
-  size: 10.0
+  size: 12.0
 
 cursor:
   style:
