@@ -1,0 +1,10 @@
+configuration {
+  font: "Noto Sans Mono 12";
+  theme: "nord"; 
+
+  modi: "window,drun,ssh,combi";
+  combi-modi: "window,drun,ssh";
+
+  levenshtein-sort: true;
+  matching: "fuzzy";
+}

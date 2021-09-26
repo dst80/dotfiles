@@ -40,7 +40,7 @@
     padding: 0px 0px 6px 7px;
 }
 #listview {
-    lines: 10;
+    lines: 15;
     padding: 2px 0px 0px;
     scrollbar: true;
 }
