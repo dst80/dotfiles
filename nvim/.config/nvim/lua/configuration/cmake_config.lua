@@ -1,5 +1,3 @@
-require('telescope').load_extension('cmake')
-
 local keymap = require("tools.keymap")
 
 keymap.bind("<leader>ccp"):to_command(":Telescope cmake create_project")
