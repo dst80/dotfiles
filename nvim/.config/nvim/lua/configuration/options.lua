@@ -82,10 +82,10 @@ options:set_options({
     -- searching
     hlsearch = true,
     incsearch = true,
-    ignorecase = true,
+    smartcase = true,
     showmatch = true,
     infercase = true,
-    inccommand = nosplit,
+    inccommand = "nosplit",
     wildignorecase = true,
     wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
 
