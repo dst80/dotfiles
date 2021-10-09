@@ -1,5 +1,5 @@
 configuration {
-  font: "Noto Sans Mono 12";
+  font: "Noto Sans Mono Nerd Font 12";
   theme: "nord"; 
 
   modi: "window,drun,ssh,combi";
