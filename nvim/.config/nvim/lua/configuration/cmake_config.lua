@@ -1,8 +1,9 @@
 local keymap = require("tools.keymap")
-
+local Path = require ('plenary.path')
 require('cmake').setup({
   parameters_file = 'neovim.json',
   build_dir = tostring(Path:new('{cwd}', 'build', '{os}-{build_type}')),
+  default_projects_path = tostring(Path:new(vim.loop.os_homedir(), 'repos/projects')),
   configure_args = { '-D', 'CMAKE_EXPORT_COMPILE_COMMANDS=1' },
   build_args = {},
   quickfix_height = 10,
