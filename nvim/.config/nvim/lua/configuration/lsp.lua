@@ -3,20 +3,38 @@ local sumneko = require('configuration.sumneko')
 
 vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+
 local on_attach = function(client) end
 
-require'lspconfig'.tsserver.setup {on_attach = on_attach}
-require'lspconfig'.clangd.setup {
+require('lspconfig').tsserver.setup {
     on_attach = on_attach,
+    capabilities = capabilities
+}
+require('lspconfig').clangd.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
     root_dir = function() return vim.loop.cwd() end
 }
 
-require'lspconfig'.pyright.setup {on_attach = on_attach}
-require'lspconfig'.gopls.setup {on_attach = on_attach}
-require'lspconfig'.rust_analyzer.setup {on_attach = on_attach}
+-- require('lspconfig').pyright.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities
+-- }
 
-require'lspconfig'.sumneko_lua.setup {
+require('lspconfig').gopls.setup {
     on_attach = on_attach,
+    capabilities = capabilities
+}
+require('lspconfig').rust_analyzer.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+require('lspconfig').sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = {
         Lua = {

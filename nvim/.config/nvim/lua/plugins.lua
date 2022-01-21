@@ -22,15 +22,10 @@ return require("packer").startup(
             end
         }
         use {
-            'hrsh7th/nvim-compe',
+            'hrsh7th/nvim-cmp',
+            requires = {'hrsh7th/cmp-nvim-lsp'},
             config = function()
                 require('configuration.completion')
-            end
-        }
-        use {
-            'nvim-lua/lsp_extensions.nvim',
-            config = function()
-                require('configuration.lsp_extension')
             end
         }
 
@@ -102,8 +97,10 @@ return require("packer").startup(
         }
         -- snipping
         use {
-            'hrsh7th/vim-vsnip-integ',
-            requires = {{'hrsh7th/vim-vsnip'}, {'rafamadriz/friendly-snippets'}},
+            'dcampos/nvim-snippy',
+            requires = {
+                'dcampos/cmp-snippy'
+            },
             config = function()
                 require('configuration.snippets')
             end

@@ -1,85 +1,51 @@
-if not pcall(require, 'compe') then return end
-require'compe'.setup {
-    enabled = true,
-    autocomplete = true,
-    debug = false,
-    min_length = 1,
-    preselect = 'enable',
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
+local cmp = require('cmp')
 
-    source = {
-        path = true,
-        buffer = true,
-        calc = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        vsnip = true,
-        ultisnips = true
-    }
-}
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('snippy').expand_snippet(args.body)
+    end,
+  },
+  mapping = {
+    ['<TAB>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+    ['<S-TAB>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable,
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'snippy' }, 
+  }, {
+    { name = 'buffer' },
+  })
+})
 
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
 
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
 
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif vim.fn.call("vsnip#available", {1}) == 1 then
-        return t "<Plug>(vsnip-expand-or-jump)"
-    elseif check_back_space() then
-        return t "<Tab>"
-    else
-        return vim.fn['compe#complete']()
-    end
-end
-_G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-        return t "<Plug>(vsnip-jump-prev)"
-    else
-        return t "<S-Tab>"
-    end
-end
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local keymap = require('tools.keymap')
-keymap.bind('<C-Tab>'):in_mode('i'):with_expr():to_command('compe#complete()')
-keymap.bind('<CR>'):in_mode('i'):with_expr():to_command(
-    'compe#confirm(\'<CR>\')')
-keymap.bind('<C-e>'):in_mode('i'):with_expr():to_command(
-    'compe#close(\'<C-e>\')')
-keymap.bind('<C-f>'):in_mode('i'):with_expr():to_command(
-    'compe#scroll({\'delta\' : +4 })')
-keymap.bind('<C-d>'):in_mode('i'):with_expr():to_command(
-    'compe#scroll({\'delta\' : -4 })')
-keymap.bind('<Tab>'):in_mode('i'):with_remapping():with_expr():to_command(
-    'v:lua.tab_complete()')
-keymap.bind('<Tab>'):in_mode('s'):with_remapping():with_expr():to_command(
-    'v:lua.tab_complete()')
-keymap.bind('<S-Tab>'):in_mode('i'):with_remapping():with_expr():to_command(
-    'v:lua.s_tab_complete()')
-keymap.bind('<S-Tab>'):in_mode('s'):with_remapping():with_expr():to_command(
-    'v:lua.s_tab_complete()')
-
-local options = require('tools.options')
-options:set_option('completeopt', {'menuone', 'noinsert', 'noselect'})
-options:add_option('shortmess', 'c')
+-- require('lspconfig').tsserver.setup {capabilities = capabilities}
+-- require('lspconfig').clangd.setup {capabilities = capabilities}
+-- require('lspconfig').pyright.setup {capabilities = capabilities}
+-- require('lspconfig').gopls.setup {capabilities = capabilities}
+-- require('lspconfig').rust_analyzer.setup {capabilities = capabilities}
+-- require('lspconfig').sumneko_lua.setup {capabilities = capabilities}
