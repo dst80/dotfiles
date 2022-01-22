@@ -16,15 +16,12 @@ snippet mainv
 	}
 ##
 ## Preprocessor
-# #include <...>
 snippet inc
 	#include <${1:stdio}.h>
 #
-# #include "..."
 snippet Inc
 	#include "${1:`expand("%:r")`.h}"
 #
-# ifndef...define...endif
 snippet ndef
 	#ifndef $1
 	#define ${1:SYMBOL} ${2:value}
@@ -34,13 +31,11 @@ snippet ndef
 snippet def
 	#define
 #
-# ifdef...endif
 snippet ifdef
 	#ifdef ${1:FOO}
 		${2:#define }
 	#endif
 #
-# if
 snippet #if
 	#if ${1:FOO}
 		${0:${VISUAL}}
@@ -56,7 +51,6 @@ snippet once
 
 	#endif /* end of include guard: $1 */
 #
-# Disable C++ name mangling in C headers
 snippet nocxx
 	#ifdef __cplusplus
 	extern "C" {
@@ -69,36 +63,30 @@ snippet nocxx
 	#endif
 ##
 ## Control Statements
-# if
 snippet if
 	if (${1:true}) 
     {
 		${0:${VISUAL}}
 	}
 #
-# else
-snippet el
+snippet else
 	else 
     {
 		${0:${VISUAL}}
 	}
 #
-# else if
 snippet elif
 	else if (${1:true}) 
     {
 		${0:${VISUAL}}
 	}
 #
-# ifi
 snippet ifinline
 	if (${1:true}) ${0};
 #
-# ternary
 snippet ternary
 	${1:/* condition */} ? ${2:a} : ${3:b}
 #
-# switch
 snippet switch
 	switch (${1:/* variable */}) 
     {
@@ -109,30 +97,28 @@ snippet switch
 			${6}
 	}
 #
-# case
 snippet case
 	case ${1:/* variable case */}:
 		${2}
 		${3:break;}
+#    
 snippet ret
 	return ${0};
 ##
 ## Loops
-# for
+#
 snippet for
 	for (${1:int} ${2:i} = 0; $2 < ${3:count}; {4:++}$2$)
     {
 		${0:${VISUAL}}
 	}
 #
-# while
 snippet while
 	while (${1:/* condition */}) 
     {
 		${0:${VISUAL}}
 	}
 #
-# do... while
 snippet do
 	do 
     {
@@ -140,6 +126,13 @@ snippet do
 	} while (${1:/* condition */});
 ##
 ## Functions
+# function declaration
+snippet fundecl0
+	${1:void} ${2:function_name}();
+#
+snippet fundecl
+	${1:void} ${2:function_name}(${3});
+    
 # function definition
 snippet func
 	${1:void} ${2:function_name}(${3})
@@ -147,138 +140,53 @@ snippet func
 		${4}
 	}
 #
-# function definition with zero parameters
 snippet func0
 	${1:void} ${2:function_name}()
 	{
 		${3}
 	}
 #
-# function definition with Doxygen documentation
-snippet dfunc0
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \return ${3:Return parameter description}
-	 */
-	${4:void} ${5:function_name}()
-	{
-		${6}
-	}
+snippet param
+	${1:int} ${2:value}
 #
-# function definition with one parameter
-snippet func1
-	${1:void} ${2:function_name}(${3:Type} ${4:Parameter})
-	{
-		${5}
-	}
+snippet cparam
+	const ${1:int}& ${2:value}
 #
-# function definition with one parameter with  Doxygen documentation
-snippet dfunc1
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \param $3 ${4:Parameter description}
-	 * \return ${5:Return parameter description}
-	 */
-	${6:void} ${7:function_name}(${8:Type} ${3:Parameter})
-	{
-		${9}
-	}
+snippet param2
+	${1:int} ${2:value}, ${3:int} ${4:value2}
 #
-# function definition with two parameters
-snippet func2
-	${1:void} ${2:function_name}(${3:Type} ${4:Parameter}, ${5:Type} ${6:Parameter})
-	{
-		${7}
-	}
+snippet cparam2
+	const ${1:int}& ${2:value}, const ${3:int}& ${4:value2}
 #
-# function definition with two parameters with  Doxygen documentation
-snippet dfunc2
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \param $3 ${4:Parameter description}
-	 * \param $5 ${6:Parameter description}
-	 * \return ${7:Return parameter description}
-	 */
-	${8:void} ${9:function_name}(${10:Type} ${3:Parameter}, ${11:Type} ${5:Parameter})
-	{
-		${12}
-	}
+snippet param3
+	${1:int} ${2:value}, ${3:int} ${4:value2}, ${5:int} ${6:value3}
 #
-# function definition with three parameters
-snippet func3
-	${1:void} ${2:function_name}(${3:Type} ${4:Parameter}, ${5:Type} ${6:Parameter}, ${7:Type} ${8:Parameter})
-	{
-		${9}
-	}
-#
-# function definition with three parameters with  Doxygen documentation
-snippet dfunc3
-	/*! \brief ${1:Brief function description here}
-	 *
-	 *  ${2:Detailed description of the function}
-	 *
-	 * \param $3 ${4:Parameter description}
-	 * \param $5 ${6:Parameter description}
-	 * \param $7 ${8:Parameter description}
-	 * \return ${9:Return parameter description}
-	 */
-	${10:void} ${11:function_name}(${12:Type} ${3:Parameter}, ${13:Type} ${5:Parameter}, ${14:Type} ${7:Parameter})
-	{
-		${15}
-	}
-#
-# function declaration
-snippet fundecl
-	${1:void} ${2:function_name}(${3});
+snippet cparam3
+	const ${1:int}& ${2:value}, const ${3:int}& ${4:value2}, const ${5:int}& ${6:value2}
+
 ##
 ## Types
-# typedef
 snippet typedef
 	typedef ${1:int} ${2:MyCustomType};
 #
-# struct
 snippet struct
-	/*! \struct $1
-	 *  \brief ${3:Brief struct description}
-	 *
-	 *  ${4:Detailed description}
-	 */
-	struct ${1:`vim_snippets#Filename('$1_t', 'name')`} 
+	struct ${1:`expand("%:r")`} 
     {
 		${2:Data} /*!< ${4:Description} */
 	}${5: /* optional variable list */};
 #
-# typedef struct
 snippet tdstruct
-	/*! \struct $2
-	 *  \brief ${5:Brief struct description}
-	 *
-	 *  ${6:Detailed description}
-	 */
 	typedef struct ${2:_$1 }{
 		m_${3:Data} /*!< ${4:Description} */
-	} ${1:`vim_snippets#Filename('$1_t', 'name')`};
+	} ${1:`expand("%:r")`};
 
 snippet enum
-	/*! \enum $1
-	 *
-	 *  ${2:Detailed description}
-	 */
 	enum ${1:name} { ${0} };
 #
 # typedef enum
 snippet tde
-	/*! \enum $2
-	 *
-	 *  ${4:Detailed description}
-	 */
-	typedef enum {
+	typedef enum 
+    {
 		${1:Data} /*!< ${3:Description} */
 	} ${2:foo};
 ##
