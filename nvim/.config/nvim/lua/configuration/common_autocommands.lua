@@ -18,7 +18,7 @@ autocommands.nvim_create_augroups({
         -- Trim trailing whitespaces
         {
             "FileType", "c,cpp,cs,go,rust,lua,python", "autocmd",
-            "InsertLeave,BufWritePre", "*", "%s/\\s\\+$//e"
+            "BufWritePre", "*", "%s/\\s\\+$//e"
         }
     }
 })

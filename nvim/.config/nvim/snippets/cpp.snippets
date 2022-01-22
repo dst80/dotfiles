@@ -98,28 +98,19 @@ snippet mu
 ##
 ## Class
 snippet class
-	/*! \class $1
-	 *  \brief ${3:Brief class description}
-	 *
-	 *  ${4:Detailed description}
-	 */
 	class ${1:`expand("%:r")`}
 	{
 	public:
-
+		${2}
 	private:
 	};
 #
 snippet iclass
-	/*! \class $1
-	 *  \brief ${3:Brief class description}
-	 *
-	 *  ${4:Detailed description}
-	 */
 	class ${1:`expand("%:r")`}
 	{
 	public:
 		virtual ~$1 () = default;
+		${2}
 	private:
 	};	
 
@@ -200,7 +191,7 @@ snippet namesp
 	namespace ${1:some_namespace} 
 	{
 		${0:${VISUAL}}
-	} /* namespace $1 */
+	} // namespace $1
 #
 snippet namesp2
 	namespace ${1:namespace1} 
@@ -208,8 +199,8 @@ snippet namesp2
 	namespace ${2:namespace2} 
 	{	
 		${0:${VISUAL}}
-	} /* namespace $2 */
-	} /* namespace $1 */
+	} // namespace $2
+	} // namespace $1
 #
 snippet namesp3
 	namespace ${1:namespace1} 
