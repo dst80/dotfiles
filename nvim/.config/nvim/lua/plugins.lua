@@ -10,7 +10,7 @@ end
 
 return require("packer").startup(
 
-           function(use)
+    function(use)
         use 'wbthomason/packer.nvim'
         use {
             'neovim/nvim-lspconfig',
@@ -124,6 +124,14 @@ return require("packer").startup(
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
             config = function()
                 require('configuration.lualine')
+            end
+        }
+
+        -- dashboard
+        use {
+            'goolord/alpha-nvim',
+            config = function ()
+                require ('configuration.alpha')
             end
         }
 
