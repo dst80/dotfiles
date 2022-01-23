@@ -37,6 +37,9 @@ local keymap = require("tools.keymap")
 keymap.bind("<leader>gf"):to_lua_command(
     "require('telescope.builtin').git_files()"
 )
+keymap.bind("<leader>cfg"):to_lua_command(
+    "require('telescope.builtin').find_files({cwd=vim.fn.stdpath('config')})"
+)
 keymap.bind("<leader>gb"):to_lua_command(
     "require('telescope.builtin').git_branches()"
 )
