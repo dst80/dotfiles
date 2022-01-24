@@ -1,3 +1,5 @@
+require'nvim-treesitter.install'.compilers = { "clang" }
+
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
         "c", "cpp", "c_sharp", "css", "scss", "html", "javascript", "java",
