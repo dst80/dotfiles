@@ -52,12 +52,6 @@ bat0() {
   [ ${#battery} -gt 0 ] && echo -e "$(create_tile " " "$(add_spacer $battery)$battery" $1 $2)"
 }
 
-## Battery 1 Lenovo
-bat1() {
-  battery=$(acpi | awk '/Battery 1/ {printf "%d%", $4}')
-  [ ${#battery} -gt 0 ] && echo -e "$(create_tile " " "$(add_spacer $battery)$battery" $1 $2)"
-}
-
 get_date () {
   time_string=$(date +'%H:%M +|T+@fn=1;%d %b. %Y')
   echo -e "$(create_tile " " "$time_string" $1 $2)"
@@ -66,6 +60,6 @@ get_date () {
 
 SLEEP_SEC=1
 while :; do
-  echo "+@bg=0;$(cpu "0" "1")$(mem "0" "2")$(hdd "1" "3")$(vol "1" "4")$(bat0 "1" "5")$(bat1 "1" "5")$(get_date "0" "6")"
+  echo "+@bg=0;$(cpu "0" "1")$(mem "0" "2")$(hdd "1" "3")$(vol "1" "4")$(bat0 "1" "5")$(get_date "0" "6")"
   sleep $SLEEP_SEC
 done
