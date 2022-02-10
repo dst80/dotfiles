@@ -44,3 +44,5 @@ alias la="ls -all"
 alias vim="nvim"
 alias nv="nvim"
 alias v="nvim"
+
+alias luamake=/home/dennis/.config/nvim/lua-language-server/3rd/luamake/luamake
