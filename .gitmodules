@@ -7,3 +7,9 @@
 [submodule "nvim/.config/nvim/lua-language-server"]
 	path = nvim/.config/nvim/lua-language-server
 	url = https://github.com/sumneko/lua-language-server
+[submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]
+	path = zsh/.config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/.config/zsh/plugins/zsh-autocomplete"]
+	path = zsh/.config/zsh/plugins/zsh-autocomplete
+	url = https://github.com/marlonrichert/zsh-autocomplete.git

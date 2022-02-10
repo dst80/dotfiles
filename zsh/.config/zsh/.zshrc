@@ -13,8 +13,12 @@ fi
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.config/zsh/history/histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
 bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.config/.zsh/.zshrc'
@@ -31,6 +35,11 @@ if [[ -r "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
   source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+if [[ -r "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+  source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 # End of lines added by compinstall
 
