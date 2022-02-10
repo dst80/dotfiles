@@ -3,9 +3,9 @@ local globals = require ('global')
 local sumneko = {}
 
 function sumneko:init ()
-    self.root = globals.site_dir .. "/pack/lua-language-server"
+    self.root = globals.vim_path .. "/lua-language-server"
     self.binary = globals.is_linux and
-        self.root .. "/bin/Linux/lua-language-server" or
+        self.root .. "/bin/lua-language-server" or
         self.root .. "/bin/Windows/lua-language-server"
 end
 
