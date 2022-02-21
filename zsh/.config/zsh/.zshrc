@@ -47,11 +47,33 @@ fi
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 alias ls="ls --color=auto"
-alias ll="ls -l"
+alias ll="ls -lh"
 alias la="ls -all"
-
 alias vim="nvim"
-alias nv="nvim"
-alias v="nvim"
 
-alias luamake=/home/dennis/.config/nvim/lua-language-server/3rd/luamake/luamake
+if grep -q -i microsoft /proc/version; then
+  alias toclip="clip.exe"
+else
+  alias toclip="xclip -selection clipboard"
+fi
+
+function getpath () {
+  find -type f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+}
+
+function getabspath () {
+  find ~+ -type f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+}
+
+function fcd () {
+  cd "$(find -maxdepth 5 -type d | fzf)"
+}
+
+function fopen () {
+  nvim "$(find -maxdepth 5 -type f | fzf)"
+}
+
+function rf () {
+  rm -f "$(find -maxdepth 5 -type f | fzf -m)" 
+}
+
