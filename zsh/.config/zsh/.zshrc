@@ -57,6 +57,10 @@ else
   alias toclip="xclip -selection clipboard"
 fi
 
+if [ -f /bin/fdfind ]; then
+  alias fd="fdfind"
+fi
+
 function getpath () {
   find -type f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
