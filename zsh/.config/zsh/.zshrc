@@ -61,23 +61,31 @@ if [ -f /bin/fdfind ]; then
   alias fd="fdfind"
 fi
 
+alias find="fd"
+
+function gf () {
+  fd --type file --follow --hidden --exclude .git $*
+}
+
 function getpath () {
-  find -type f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+  fd -t f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
 function getabspath () {
-  find ~+ -type f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+  fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
+
 function fcd () {
-  cd "$(find -maxdepth 5 -type d | fzf)"
+  cd "$(fd -d 5 -t d | fzf)"
 }
 
 function fopen () {
-  nvim "$(find -maxdepth 5 -type f | fzf)"
+  nvim "$(fd -d 5 -t f | fzf)"
 }
 
 function rf () {
-  rm -f "$(find -maxdepth 5 -type f | fzf -m)" 
+  rm -f "$(fd -d 5 -t f | fzf -m)" 
 }
 
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
