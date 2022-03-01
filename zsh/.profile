@@ -6,11 +6,11 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-if [ -f "$HOME/bin"]; then
+if [ -f "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
 
-if [ -f "$HOME/.local/bin"]; then
+if [ -f "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
