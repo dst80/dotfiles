@@ -147,6 +147,12 @@ return require("packer").startup(
                 require('configuration.colors')
             end
         }
+        use {
+            'mfussenegger/nvim-dap',
+            config = function()
+                require('configuration.debug_adapter_protocol')
+            end
+        }
     end
-       )
+)
 
