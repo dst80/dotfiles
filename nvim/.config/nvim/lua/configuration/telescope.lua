@@ -29,6 +29,7 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('dotfiles')
+require('telescope').load_extension('file_browser')
 
 local fs = require('tools.filesystem')
 local global = require('global')
@@ -56,7 +57,7 @@ keymap.bind("<leader>buf"):to_lua_command(
     "require('telescope.builtin').buffers()"
 )
 keymap.bind("<leader>fb"):to_lua_command(
-    "require('telescope.builtin').file_browser()"
+    "require('telescope').extensions.file_browser.file_browser()"
 )
 keymap.bind("<leader>fh"):to_lua_command(
     "require('telescope.builtin').help_tags()"
