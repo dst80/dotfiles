@@ -19,7 +19,10 @@ return require("packer").startup(
             end,
             config = function()
                 require('configuration.lsp')
-            end
+            end,
+            requires = {
+                'lukas-reineke/lsp-format.nvim',
+            }
         }
         use {
             'hrsh7th/nvim-cmp',
@@ -79,7 +82,7 @@ return require("packer").startup(
 
         -- format
         use {
-            'lukas-reineke/format.nvim',
+            'lukas-reineke/lsp-format.nvim',
             config = function()
                 require('configuration.format')
             end
