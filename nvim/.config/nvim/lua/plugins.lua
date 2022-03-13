@@ -140,12 +140,7 @@ return require("packer").startup(
 
         -- color settings
         use {
-            'tjdevries/colorbuddy.nvim',
-            requires = {
-                {'hoob3rt/lualine.nvim'},
-                {'nvim-telescope/telescope.nvim'},
-                {'neovim/nvim-lspconfig'}
-            },
+            'andersevenrud/nordic.nvim',
             config = function()
                 require('configuration.colors')
             end
