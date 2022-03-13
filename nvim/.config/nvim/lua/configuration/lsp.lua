@@ -1,22 +1,15 @@
 local sumneko = require('configuration.sumneko')
-local format = require('lsp-format')
 local util = require('lspconfig/util')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    return format.on_attach
 end
 
 require('lspconfig').tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
-}
-require('lspconfig').clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git") or vim.loop.os_homedir()
 }
 
 -- require('lspconfig').pyright.setup {

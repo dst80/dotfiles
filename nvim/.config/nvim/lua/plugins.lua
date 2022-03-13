@@ -80,14 +80,13 @@ return require("packer").startup(
                 {'nvim-lua/plenary.nvim'}
             }
         }
-
-        -- format
         use {
-            'lukas-reineke/lsp-format.nvim',
-            config = function()
-                require('configuration.format')
+            'p00f/clangd_extensions.nvim',
+            config = function ()
+                require('configuration.clangd_extension')
             end
         }
+
         --TODO: look for an alternative Cmake plugin, which is not so inversive
         use {
             'Shatur/neovim-cmake',
