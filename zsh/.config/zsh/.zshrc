@@ -77,7 +77,7 @@ fi
 alias find="fd"
 
 function gf () {
-  fd --type file --follow --hidden --exclude .git $*
+  fd -t f -L -H -E .git $*
 }
 
 function getpath () {
@@ -88,20 +88,19 @@ function getabspath () {
   fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
-
 function fcd () {
-  cd "$(fd -d 5 -t d | fzf)"
+  cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
 }
 
 function fopen () {
-  nvim "$(fd -d 5 -t f | fzf)"
+  nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
 }
 
 function rf () {
-  rm -f "$(fd -d 5 -t f | fzf -m)" 
+  rm -f "$(fd -d 5 -t f -L -H | fzf -m)" 
 }
 
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND='fd -t f -L -H -E .git'
 
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.config/zsh/.p10k.zsh.
 [[ ! -f ~/dotfiles/zsh/.config/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.config/zsh/.p10k.zsh
