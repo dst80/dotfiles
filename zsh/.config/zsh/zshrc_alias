@@ -1,0 +1,51 @@
+alias ls="ls --color=auto"
+alias ll="ls -lh"
+alias la="ls -all"
+alias vim="nvim"
+
+if grep -q -i microsoft /proc/version; then
+  alias toclip="clip.exe"
+else
+  alias toclip="xclip -selection clipboard"
+fi
+
+if [ -f /bin/fdfind ]; then
+  alias fd="fdfind"
+fi
+
+alias find="fd"
+
+function ff () {
+  fd -t f -L -H -E .git $*
+}
+
+function getpath () {
+  fd -t f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+}
+
+function getabspath () {
+  fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+}
+
+function fcd () {
+  cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
+}
+
+function fopen () {
+  nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
+}
+
+function rf () {
+  rm -f "$(fd -d 5 -t f -L -H | fzf -m)" 
+}
+
+export FZF_DEFAULT_COMMAND='fd -t f -L -H -E .git'
+
+
+alias pull="git pull"
+alias push="git push"
+alias stage="git stage"
+alias checkout="git checkout"
+alias reset="git reset"
+alias commit="git commit"
+alias submodule="git submodule"

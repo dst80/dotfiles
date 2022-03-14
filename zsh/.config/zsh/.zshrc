@@ -52,55 +52,14 @@ if [[ -r "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]
 else
   source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-# End of lines added by compinstall
 
+
+if [[ -r ~/.config/zsh/zshrc_alias ]]; then
+  source ~/.config/zsh/zshrc_alias
+fi
+
+# End of lines added by compinstall
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-#eval "$(starship init zsh)"
-
-alias ls="ls --color=auto"
-alias ll="ls -lh"
-alias la="ls -all"
-alias vim="nvim"
-
-if grep -q -i microsoft /proc/version; then
-  alias toclip="clip.exe"
-else
-  alias toclip="xclip -selection clipboard"
-fi
-
-if [ -f /bin/fdfind ]; then
-  alias fd="fdfind"
-fi
-
-alias find="fd"
-
-function gf () {
-  fd -t f -L -H -E .git $*
-}
-
-function getpath () {
-  fd -t f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
-}
-
-function getabspath () {
-  fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
-}
-
-function fcd () {
-  cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
-}
-
-function fopen () {
-  nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
-}
-
-function rf () {
-  rm -f "$(fd -d 5 -t f -L -H | fzf -m)" 
-}
-
-export FZF_DEFAULT_COMMAND='fd -t f -L -H -E .git'
-
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.config/zsh/.p10k.zsh.
 [[ ! -f ~/dotfiles/zsh/.config/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.config/zsh/.p10k.zsh
