@@ -22,6 +22,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [[ ! -f ~/.config/zsh/history/histfile ]]; then
+  mkdir -p ~/.config/zsh/history && touch ~/.config/zsh/history/histfile
+fi
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.config/zsh/history/histfile
 HISTSIZE=10000
