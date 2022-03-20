@@ -28,7 +28,7 @@ window:
   
 font:
   normal:
-    family: "Noto Mono Nerd Font" 
+    family: "NotoSansMono Nerd Font" 
     style: Regular 
 
   size: 12.0
