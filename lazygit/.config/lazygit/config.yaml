@@ -1,0 +1,15 @@
+git:
+  commitPrefixes:
+    my_project: # This is repository folder name
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: '$1: '
+
+os:
+  editCommand: 'nvim'
+  editCommandTemplate: '{{editor}} +{{line}} {{filename}}'
+  openCommand: 'xdg-open {{filename}} >/dev/null'
+# Windows
+#os:
+#  editCommand: 'code'
+#  editCommandTemplate: '{{editor}} --goto {{filename}}:{{line}}'
+#  openCommand: 'code -rg {{filename}}'
