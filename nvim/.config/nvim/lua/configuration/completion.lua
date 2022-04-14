@@ -7,11 +7,11 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<TAB>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    ['<S-TAB>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<TAB>'] = cmp.mapping.select_next_item(),
+    ['<S-TAB>'] = cmp.mapping.select_prev_item(),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-y>'] = cmp.config.disable,
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
@@ -21,19 +21,21 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'snippy' }, 
+    { name = 'snippy' },
   }, {
     { name = 'buffer' },
   })
 })
 
 cmp.setup.cmdline('/', {
-  sources = {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
     { name = 'buffer' }
   }
 })
 
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
