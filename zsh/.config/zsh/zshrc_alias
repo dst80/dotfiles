@@ -2,6 +2,7 @@ alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias la="ls -all"
 alias vim="nvim"
+alias lg="lazygit"
 
 if grep -q -i microsoft /proc/version; then
   alias toclip="clip.exe"
