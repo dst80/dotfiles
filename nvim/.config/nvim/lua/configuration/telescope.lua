@@ -14,7 +14,7 @@ require('telescope').setup {
             '--column',
             '--smart-case'
         },
-
+        hidden = true,
         prompt_prefix = '🔍',
         color_devicons = true,
         set_env = {['COLORTERM'] = 'truecolor'}
@@ -71,7 +71,7 @@ keymap.bind("<leader>pw"):to_lua_command(
 )
 
 keymap.bind("<leader>df"):to_command(
-    ":Telescope dotfiles path=" .. fs:join_path(global.home, "dotfiles", "nvim") ..
+    ":Telescope dotfiles hidden=true path=" .. fs:join_path(global.home, "dotfiles", "nvim") ..
         "<CR>"
 )
 
