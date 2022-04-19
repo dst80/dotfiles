@@ -67,3 +67,5 @@ fi
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.config/zsh/.p10k.zsh.
 [[ ! -f ~/dotfiles/zsh/.config/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.config/zsh/.p10k.zsh
+
+alias luamake=/home/dennis/dotfiles/nvim/.config/nvim/lua-language-server/3rd/luamake/luamake
