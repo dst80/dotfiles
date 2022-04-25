@@ -11,7 +11,7 @@ if [ "$TMUX" ]; then
 
     run()
     {
-      tmux neww "eval $1 & while [ : ]; do sleep 1; done" 
+      tmux neww "eval $1" 
     }
 else
     run()
@@ -23,7 +23,7 @@ fi
 
 if grep -qs "$selected" ~/.config/cheatsheet/languages; then
     query=`echo $query | tr ' ' '+'`
-    run "curl cht.sh/$selected/$query"
+    run "curl -s cht.sh/$selected/$query | less -r"
   else
-    run "curl -s cht.sh/$selected~$query | less"
+    run "curl -s cht.sh/$selected~$query | less -r"
 fi
