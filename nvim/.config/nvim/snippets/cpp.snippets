@@ -321,7 +321,54 @@ snippet af auto function
 ##
 ## GoogleTest
 #
-snippet gassert
+snippet gtest_class
+	#include<gmock/gmock-matchers.h>
+	#include<gtest/gtest.h>
+
+	class ${1:`expand("%:r")`}Test : public ${2:Test}
+	{
+		protected:
+			
+			${3:ClassToTest} ${4:classToTest}_; 
+	};
+
+	TEST_F($1, InitializeDoNotFail)
+	{
+		${3}
+	}
+#
+snippet gTest
+	::testing::Test
+#
+snippet gTestWithParam
+	::testing::TestWithParam<${1:TestParameter}>
+#
+snippet gWithParamInterface
+	::testing::WithParamInterface<${1:TestParameter}>
+#
+snippet gtest_f
+	TEST_F(${1:`expand("%:r")`}, ${2:TestCase})
+	{
+		${3}
+	}
+#
+snippet gtest_p
+	TEST_P(${1:`expand("%:r")`}, ${2:TestCase})
+	{
+		${3}
+	}
+#
+snippet gInstantiateTestSuite
+	INSTANTIATE_TEST_SUITE_P(
+    ${1:TestInstantiation}, ${2:TestSuite},
+    ::testing::Values(
+			${3:TestParameter}{${4:Parameters}}${5:,}
+		));
+#
+snippet gAddParam
+			${1:TestParameter}{${2:Parameters}}${3:,}
+#
+snippet assert
 	ASSERT_THAT (${1}, ${2})
 #
 snippet Not
