@@ -1,4 +1,5 @@
 local sumneko = require('configuration.sumneko')
+local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -7,7 +8,16 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 
-require('lspconfig').tsserver.setup {
+lspconfig.clangd.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
+    },
+    single_file_support = true,
+}
+
+lspconfig.tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
@@ -17,16 +27,17 @@ require('lspconfig').tsserver.setup {
 --     capabilities = capabilities
 -- }
 
-require('lspconfig').gopls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
-}
-require('lspconfig').rust_analyzer.setup {
+lspconfig.gopls.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
 
-require('lspconfig').sumneko_lua.setup {
+lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
@@ -66,4 +77,4 @@ keymap.bind("<leader>gpd"):to_lua_command("vim.lsp.diagnostic.goto_prev()")
 keymap.bind("<leader>gnd"):to_lua_command("vim.lsp.diagnostic.goto_next()")
 keymap.bind("<leader>ll"):to_lua_command("vim.lsp.diagnostic.set_loclist()")
 keymap.bind("<leader>fo"):to_lua_command("vim.lsp.buf.formatting()")
-
+keymap.bind("<leader>sf"):in_mode('n'):to_command(":ClangdSwitchSourceHeader<CR>")
