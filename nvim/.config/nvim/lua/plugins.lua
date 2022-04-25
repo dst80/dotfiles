@@ -151,6 +151,10 @@ return require("packer").startup(
                 require('configuration.debug_adapter_protocol')
             end
         }
+
+        use {
+            'williamboman/nvim-lsp-installer',
+        }
     end
 )
 
