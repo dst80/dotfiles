@@ -23,6 +23,10 @@ require('telescope').setup {
         fzy_native = {
             override_generic_sorter = false,
             override_file_sorter = true
+        },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+            }
         }
     }
 }
@@ -30,6 +34,7 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('dotfiles')
 require('telescope').load_extension('file_browser')
+require('telescope').load_extension('ui-select')
 
 local fs = require('tools.filesystem')
 local global = require('global')

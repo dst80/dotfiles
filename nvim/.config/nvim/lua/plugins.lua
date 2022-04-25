@@ -58,6 +58,10 @@ return require("packer").startup(
             end
         }
 
+        use {
+           'nvim-telescope/telescope-ui-select.nvim'
+        }
+
         -- telescope requirements
         use {
             'nvim-telescope/telescope.nvim',
@@ -66,12 +70,14 @@ return require("packer").startup(
                 {'nvim-lua/plenary.nvim'},
                 {'nvim-telescope/telescope-file-browser.nvim'},
                 {'nvim-telescope/telescope-fzy-native.nvim'},
+                {'nvim-telescope/telescope-ui-select.nvim'},
                 {'kyazdani42/nvim-web-devicons'}
             },
             config = function()
                 require('configuration.telescope')
             end
         }
+
         use {
             'sudormrfbin/cheatsheet.nvim',
             requires = {
