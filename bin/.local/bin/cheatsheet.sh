@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
-selected=`cat ~/.config/cheatsheet/languages ~/.config/cheatsheet/commands | fzf`
+while getopts l:c:q: flag
+do
+  case "${flag}" in
+    l) selected=${OPTARG};;
+    c) selected=${OPTARG};;
+    q) query=${OPTARG};;
+  esac
+done
+
 if [[ -z $selected ]]; then
+  selected=`cat ~/.config/cheatsheet/languages ~/.config/cheatsheet/commands | fzf`
+  if [[ -z $selected ]]; then
     exit 0
+  fi
 fi
 
-read -p "Enter Query: " query
+if [[ -z $query ]]; then
+  read -p "Enter Query: " query
+fi
 
 if [ "$TMUX" ]; then
     run() { 
@@ -14,11 +27,6 @@ else
     run() { 
       eval $1 
     }
-fi
-
-if [ ! -z "$selected" ]; then
-  run "curl -s cht.sh/$selected | less -r"
-  exit 0
 fi
 
 if grep -qs "$selected" ~/.config/cheatsheet/languages; then
