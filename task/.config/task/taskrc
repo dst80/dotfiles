@@ -1,6 +1,6 @@
 data.location=~/.cache/task
 
-include colors.theme
+include ~/.config/task/colors.theme
 
 
 default.project=inbox
@@ -9,6 +9,8 @@ weekstart=monday
 
 # Context stuff
 alias.@=context
-context.work=project:work
-context.home=project:home
-context=home
+context.work.read=+work
+context.work.write=+work
+context.home.read=+home
+context.home.write=+home
+context=work
