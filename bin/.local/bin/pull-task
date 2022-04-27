@@ -1,0 +1,6 @@
+#!/bin/bash
+old_dir=$(pwd)
+cd ~/.cache/task/
+git pull
+cd "$old_dir"
+$SHELL

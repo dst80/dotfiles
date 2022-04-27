@@ -1,0 +1,10 @@
+#!/bin/bash
+old_dir=$(pwd)
+
+cd ~/.cache/task/
+
+git stage . 
+git commit -m "$(date)" 
+git push &&
+cd "$old_dir"
+$SHELL
