@@ -76,7 +76,7 @@ keymap.bind("<leader>pw"):to_lua_command(
 )
 
 keymap.bind("<leader>df"):to_command(
-    ":Telescope dotfiles hidden=true path=" .. fs:join_path(global.home, "dotfiles", "nvim") ..
+    ":Telescope find_files hidden=true path=" .. fs:join_path(global.get_home_dir (), "dotfiles") ..
         "<CR>"
 )
 
