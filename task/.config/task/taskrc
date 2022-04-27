@@ -10,4 +10,5 @@ weekstart=monday
 # Context stuff
 alias.@=context
 context.work=project:work
-ocntext.home=project:home
+context.home=project:home
+context=home
