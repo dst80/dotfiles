@@ -1,0 +1,13 @@
+data.location=~/.cache/task
+
+include colors.theme
+
+
+default.project=inbox
+
+weekstart=monday
+
+# Context stuff
+alias.@=context
+context.work=project:work
+ocntext.home=project:home
