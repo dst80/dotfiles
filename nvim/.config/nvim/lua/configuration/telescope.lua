@@ -20,7 +20,7 @@ require('telescope').setup {
         set_env = {['COLORTERM'] = 'truecolor'}
     },
     extensions = {
-        fzy_native = {
+        fzf_native = {
             override_generic_sorter = false,
             override_file_sorter = true
         },
@@ -31,7 +31,7 @@ require('telescope').setup {
     }
 }
 
-require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf')
 require('telescope').load_extension('dotfiles')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
