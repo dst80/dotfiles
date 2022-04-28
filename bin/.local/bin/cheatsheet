@@ -13,9 +13,6 @@ if [[ -z $selected ]]; then
   if [[ -z $selected ]]; then
     exit 0
   fi
-fi
-
-if [[ -z $query ]]; then
   read -p "Enter Query: " query
 fi
 
