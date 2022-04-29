@@ -36,8 +36,6 @@ require('telescope').load_extension('dotfiles')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
 
-local fs = require('tools.filesystem')
-local global = require('global')
 local keymap = require("tools.keymap")
 
 keymap.bind("<leader>gf"):to_lua_command(
@@ -75,8 +73,7 @@ keymap.bind("<leader>pw"):to_lua_command(
     "require('telescope.builtin').grep_string({search=vim.fn.expand(\"<cword>\")})"
 )
 
-keymap.bind("<leader>df"):to_command(
-    ":Telescope git_files hidden=true path=" .. fs:join_path(global.get_home_dir (), "dotfiles") ..
-        "<CR>"
+keymap.bind("<leader>df"):to_lua_command(
+    "require('telescope.builtin').git_files({cwd=(vim.fn.getenv('HOME')..'/dotfiles')})"
 )
 
