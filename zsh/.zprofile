@@ -1,4 +1,6 @@
 export ZDOTDIR=~/.config/zsh
+export GOPATH="$HOME/go"
+
 
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.config/zsh/.zshrc"]; then
@@ -7,12 +9,15 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 if [ -f "$HOME/bin" ]; then
-  PATH="$HOME/bin:$PATH"
+  export PATH="$HOME/bin:$PATH"
 fi
 
-
 if [ -f "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -f "$HOME/go/bin" ]; then
+  export PATH="$HOME/go/bin:$PATH"
 fi
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
