@@ -40,7 +40,9 @@ return require("packer").startup(
                 require('configuration.fugitive')
             end
         }
-        use 'tpope/vim-commentary'
+        use {
+            'numToStr/Comment.nvim'
+        }
 
         -- nvim tree sitter
         use {
