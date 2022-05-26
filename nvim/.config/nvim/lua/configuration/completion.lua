@@ -22,6 +22,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'snippy' },
     { name = 'buffer', keyword_length = 5 },
+    { name = 'path'},
   }),
   experimental = {
         native_menu = false,
