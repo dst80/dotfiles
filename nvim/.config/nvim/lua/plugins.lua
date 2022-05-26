@@ -23,7 +23,12 @@ return require("packer").startup(
             requires = {
                 'lukas-reineke/lsp-format.nvim',
             }
-      }
+        }
+
+        use {
+            'williamboman/nvim-lsp-installer',
+        }
+
         use {
             'hrsh7th/nvim-cmp',
             requires = {
@@ -36,14 +41,27 @@ return require("packer").startup(
             end
         }
 
+        -- snipping
+        use {
+            'dcampos/nvim-snippy',
+            requires = {
+                'dcampos/cmp-snippy'
+            },
+            config = function()
+                require('configuration.snippets')
+            end
+        }
+
         -- tpope best's
         use 'tpope/vim-surround'
+
         use {
             'tpope/vim-fugitive',
             config = function()
                 require('configuration.fugitive')
             end
         }
+
         use {
             'numToStr/Comment.nvim'
         }
@@ -57,6 +75,7 @@ return require("packer").startup(
                 require('configuration.treesitter')
             end
         }
+
         use {
             'kyazdani42/nvim-web-devicons',
             config = function()
@@ -65,20 +84,14 @@ return require("packer").startup(
         }
 
         use {
-           'nvim-telescope/telescope-ui-select.nvim'
-        }
-        -- telescope requirements
-        use {'nvim-telescope/telescope-fzf-native.nvim', run='make'}
-
-        use {
             'nvim-telescope/telescope.nvim',
             requires = {
-                {'nvim-lua/popup.nvim'},
-                {'nvim-lua/plenary.nvim'},
-                {'nvim-telescope/telescope-file-browser.nvim'},
-                {'nvim-telescope/telescope-fzf-native.nvim'},
-                {'nvim-telescope/telescope-ui-select.nvim'},
-                {'kyazdani42/nvim-web-devicons'}
+                'nvim-lua/popup.nvim',
+                'nvim-lua/plenary.nvim',
+                'nvim-telescope/telescope-file-browser.nvim',
+                {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
+                'nvim-telescope/telescope-ui-select.nvim',
+                'kyazdani42/nvim-web-devicons'
             },
             config = function()
                 require('configuration.telescope')
@@ -93,6 +106,7 @@ return require("packer").startup(
                 {'nvim-lua/plenary.nvim'}
             }
         }
+
         use {
             'p00f/clangd_extensions.nvim',
             config = function ()
@@ -111,27 +125,33 @@ return require("packer").startup(
                 require('configuration.cmake_config')
             end
         }
-        -- snipping
-        use {
-            'dcampos/nvim-snippy',
-            requires = {
-                'dcampos/cmp-snippy'
-            },
-            config = function()
-                require('configuration.snippets')
-            end
-        }
+
         use {
             'windwp/nvim-autopairs',
             config = function ()
                 require('configuration.autopairs')
             end
         }
-        -- python stuff
-        -- use 'ambv/black'
 
-        -- other languages
+        use {
+            'mfussenegger/nvim-dap',
+            config = function()
+                require('configuration.debug_adapter_protocol')
+            end
+        }
+
+        use {
+            "rcarriga/nvim-dap-ui",
+            requires = {
+                'mfussenegger/nvim-dap'
+            },
+            config = function ()
+                require('configuration.debug_adapter_protocol_ui')
+            end
+        }
+
         use {'fatih/vim-go'}
+
         use {'simrat39/rust-tools.nvim'}
 
         -- status line
@@ -157,24 +177,6 @@ return require("packer").startup(
             config = function()
                 require('configuration.colors')
             end
-        }
-        use {
-            'mfussenegger/nvim-dap',
-            config = function()
-                require('configuration.debug_adapter_protocol')
-            end
-        }
-
-        use {
-            "rcarriga/nvim-dap-ui",
-            requires = {'mfussenegger/nvim-dap'},
-            config = function ()
-                require('configuration.debug_adapter_protocol_ui')
-            end
-        }
-
-        use {
-            'williamboman/nvim-lsp-installer',
         }
     end
 )
