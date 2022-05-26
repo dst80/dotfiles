@@ -23,7 +23,7 @@ return require("packer").startup(
             requires = {
                 'lukas-reineke/lsp-format.nvim',
             }
-        }
+      }
         use {
             'hrsh7th/nvim-cmp',
             requires = {'hrsh7th/cmp-nvim-lsp'},
@@ -158,6 +158,14 @@ return require("packer").startup(
             'mfussenegger/nvim-dap',
             config = function()
                 require('configuration.debug_adapter_protocol')
+            end
+        }
+
+        use {
+            "rcarriga/nvim-dap-ui",
+            requires = {'mfussenegger/nvim-dap'},
+            config = function ()
+                require('configuration.debug_adapter_protocol_ui')
             end
         }
 
