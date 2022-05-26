@@ -132,7 +132,7 @@ return require("packer").startup(
 
         -- other languages
         use {'fatih/vim-go'}
-        use {'rust-lang/rust.vim'}
+        use {'simrat39/rust-tools.nvim'}
 
         -- status line
         use {
