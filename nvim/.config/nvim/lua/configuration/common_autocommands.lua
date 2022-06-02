@@ -1,24 +1,10 @@
-local autocommands = require('tools.autocommand')
+local window_group = vim.api.nvim_create_augroup("WindowCommandGroup", {clear = true})
+vim.api.nvim_create_autocmd({"WinEnter", "BufEnter", "InsertLeave"}, { command="lua vim.opt.cursorline = true", group = window_group })
+vim.api.nvim_create_autocmd({"WinLeave", "BufLeave", "InsertLeave"}, { command="lua vim.opt.cursorline = false", group = window_group })
+vim.api.nvim_create_autocmd({"VimResized"}, { command = "tabdo wimcmd=", group = window_group })
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, { command = "checktime", group = window_group })
+vim.api.nvim_create_autocmd({"TextYankPost"}, { command = "silent! lua vim.highlight.on_yank {higroup=\"IncSearch\", timeout=400}", group = window_group })
 
-autocommands.nvim_create_augroups({
-    vim_window_command_group = {
-        -- Highlight current line only on focused window
-        {"WinEnter,BufEnter,InsertLeave", "*", "lua vim.opt.cursorline = true"},
-        {"WinLeave,BufLeave,InsertEnter", "*", "lua vim.opt.cursorline = false"},
-        -- Equalize window dimensions when resizing vim window
-        {"VimResized", "*", "tabdo wincmd ="},
-        -- Check if file changed when its window is focus, more eager than 'autoread'
-        {"FocusGained", "* checktime"}, {
-            "TextYankPost", "*",
-            "silent! lua vim.highlight.on_yank {higroup=\"IncSearch\", timeout=400}"
-        }
-    },
+local general_file_type = vim.api.nvim_create_augroup("GeneralFileType", {clear = true})
+vim.api.nvim_create_autocmd("BufWritePre", { command = "%s/\\s\\+$//e", pattern = {"c","cpp","cs","go","rust","lua","python"}, group = general_file_type })
 
-    vim_file_type_command_group = {
-        -- Trim trailing whitespaces
-        {
-            "FileType", "c,cpp,cs,go,rust,lua,python", "autocmd",
-            "BufWritePre", "*", "%s/\\s\\+$//e"
-        }
-    }
-})
