@@ -63,7 +63,10 @@ return require("packer").startup(
         }
 
         use {
-            'numToStr/Comment.nvim'
+            'numToStr/Comment.nvim',
+            config = function ()
+                require('configuration.comment')
+            end
         }
 
         -- nvim tree sitter
