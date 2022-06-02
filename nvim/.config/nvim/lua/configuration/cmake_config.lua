@@ -14,7 +14,7 @@ require('cmake').setup({
 keymap.bind("<leader>ccp"):in_mode('n'):to_command(":CMake create_project<CR>")
 keymap.bind("<leader>cst"):in_mode('n'):to_command(":CMake select_target<CR>")
 keymap.bind("<leader>csb"):in_mode('n'):to_command(":CMake select_build_type<CR>")
-keymap.bind("<leader>cc"):in_mode('n'):to_command(":CMake configure<CR>")
+keymap.bind("<leader>ccb"):in_mode('n'):to_command(":CMake configure<CR>")
 keymap.bind("<leader>cb"):in_mode('n'):to_command(":CMake build<CR>")
 keymap.bind("<leader>cr"):in_mode('n'):to_command(":CMake run<CR>")
 keymap.bind("<leader>ccl"):in_mode('n'):to_command(":CMake clean<CR>")
