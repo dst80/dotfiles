@@ -1,6 +1,5 @@
 local sumneko = require('configuration.sumneko')
 local lspconfig = require('lspconfig')
-local util = require('lspconfig/util')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -56,25 +55,30 @@ lspconfig.sumneko_lua.setup {
     }
 }
 
-local keymap = require('tools.keymap')
 -- LSP shortcuts
-keymap.bind("gD"):to_lua_command("vim.lsp.buf.declaration()")
-keymap.bind("gd"):to_lua_command("vim.lsp.buf.definition()")
-keymap.bind("gi"):to_lua_command("vim.lsp.buf.implementation()")
-keymap.bind("gr"):to_lua_command("vim.lsp.buf.references()")
-keymap.bind("<leader>i"):to_lua_command("vim.lsp.buf.hover()")
-keymap.bind("<leader>sh"):to_lua_command("vim.lsp.buf.signature_help()")
-keymap.bind("<leader>wa"):to_lua_command("vim.lsp.buf.add_workspace_folder()")
-keymap.bind("<leader>wr"):to_lua_command("vim.lsp.buf.remove_workspace_folder()")
-keymap.bind("<leader>wl"):to_lua_command(
-    "print(vim.inspect(vim.lsp.buf.list_workspace_folders()))")
-keymap.bind("<leader>td"):to_lua_command("vim.lsp.buf.type_definition()")
-keymap.bind("<leader>rn"):to_lua_command("vim.lsp.buf.rename()")
-keymap.bind("<leader>ca"):to_lua_command("vim.lsp.buf.code_action()")
-keymap.bind("<leader>sd"):to_lua_command(
-    "vim.lsp.diagnostic.show_line_diagnostics()")
-keymap.bind("<leader>gpd"):to_lua_command("vim.lsp.diagnostic.goto_prev()")
-keymap.bind("<leader>gnd"):to_lua_command("vim.lsp.diagnostic.goto_next()")
-keymap.bind("<leader>ll"):to_lua_command("vim.lsp.diagnostic.set_loclist()")
-keymap.bind("<leader>fo"):to_lua_command("vim.lsp.buf.formatting()")
-keymap.bind("<leader>sf"):in_mode('n'):to_command(":ClangdSwitchSourceHeader<CR>")
+local options = { noremap=true, silent=true }
+
+local print_workspace = function ()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end
+
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, options)
+vim.keymap.set("n", "gr", vim.lsp.buf.references, options)
+vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, options)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, options)
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, options)
+vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, options)
+vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, options)
+vim.keymap.set("n", "<leader>wl", print_workspace, options)
+
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, options)
+vim.keymap.set("n", "<leader>fo", vim.lsp.buf.formatting, options)
+vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
+
+vim.keymap.set("n", "gpd", vim.diagnostic.goto_prev, options)
+vim.keymap.set("n", "gnd", vim.diagnostic.goto_next, options)
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, options)
+vim.keymap.set("n", "<leader>sll", vim.diagnostic.setloclist, options)
