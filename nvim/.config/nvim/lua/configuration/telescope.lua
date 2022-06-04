@@ -36,44 +36,33 @@ require('telescope').load_extension('dotfiles')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
 
-local keymap = require("tools.keymap")
 
-keymap.bind("<leader>gf"):to_lua_command(
-    "require('telescope.builtin').git_files()"
-)
-keymap.bind("<leader>cfg"):to_lua_command(
-    "require('telescope.builtin').find_files({cwd=vim.fn.stdpath('config')})"
-)
-keymap.bind("<leader>gb"):to_lua_command(
-    "require('telescope.builtin').git_branches()"
-)
-keymap.bind("<leader>ggc"):to_lua_command(
-    "require('telescope.builtin').git_commits()"
-)
-keymap.bind("<leader>ff"):to_lua_command(
-    "require('telescope.builtin').find_files()"
-)
-keymap.bind("<leader>fg"):to_lua_command(
-    "require('telescope.builtin').live_grep()"
-)
-keymap.bind("<leader>buf"):to_lua_command(
-    "require('telescope.builtin').buffers()"
-)
-keymap.bind("<leader>fb"):to_lua_command(
-    "require('telescope').extensions.file_browser.file_browser()"
-)
-keymap.bind("<leader>fh"):to_lua_command(
-    "require('telescope.builtin').help_tags()"
-)
+local options = {silent = true, noremap = true}
 
-keymap.bind("<leader>ps"):to_lua_command(
-    "require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For->\")})"
-)
-keymap.bind("<leader>pw"):to_lua_command(
-    "require('telescope.builtin').grep_string({search=vim.fn.expand(\"<cword>\")})"
-)
+vim.keymap.set("n", "<leader>gf", require('telescope.builtin').git_files, options)
+vim.keymap.set("n", "<leader>gb", require('telescope.builtin').git_branches, options)
+vim.keymap.set("n", "<leader>ggc", require('telescope.builtin').git_commits, options)
+vim.keymap.set("n", "<leader>ff", require('telescope.builtin').find_files, options)
+vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep, options)
+vim.keymap.set("n", "<leader>buf", require('telescope.builtin').buffers, options)
+vim.keymap.set("n", "<leader>fb", require('telescope').extensions.file_browser.file_browser, options)
+vim.keymap.set("n", "<leader>fh", require('telescope.builtin').help_tags, options)
 
-keymap.bind("<leader>df"):to_lua_command(
-    "require('telescope.builtin').git_files({cwd=(vim.fn.getenv('HOME')..'/dotfiles')})"
-)
+vim.keymap.set("n", "<leader>cfg", function ()
+    require('telescope.builtin').find_files({cwd=vim.fn.stdpath('config')})
+end, options)
+
+vim.keymap.set("n", "<leader>df", function ()
+    require('telescope.builtin').git_files({cwd=(vim.fn.getenv('HOME')..'/dotfiles')})
+end, options)
+
+vim.keymap.set("n", "<leader>fs", function ()
+    require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For->")})
+end, options)
+
+vim.keymap.set("n", "<leader>fw", function ()
+    require('telescope.builtin').grep_string({search=vim.fn.expand("<cword>")})
+end, options)
+
+
 
