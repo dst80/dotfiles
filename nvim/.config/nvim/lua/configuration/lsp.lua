@@ -58,10 +58,6 @@ lspconfig.sumneko_lua.setup {
 -- LSP shortcuts
 local options = { noremap=true, silent=true }
 
-local print_workspace = function ()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end
-
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, options)
@@ -71,7 +67,9 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, options)
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, options)
 vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, options)
 vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, options)
-vim.keymap.set("n", "<leader>wl", print_workspace, options)
+vim.keymap.set("n", "<leader>wl", function ()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end , options)
 
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, options)

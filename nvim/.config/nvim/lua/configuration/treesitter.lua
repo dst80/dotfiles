@@ -27,5 +27,4 @@ require'nvim-treesitter.configs'.setup {
     highlight = {enable = true}
 }
 
-local keymap = require('tools.keymap')
-keymap.bind('<leader>rts'):to_command('write | edit | TSBufEnable highlight')
+vim.keymap.set("n", "<leader>rts", ":write | edit | TSBufEnable highlight<CR>", {silent = true, noremap = true})

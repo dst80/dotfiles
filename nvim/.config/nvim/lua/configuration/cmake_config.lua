@@ -1,4 +1,3 @@
-local keymap = require("tools.keymap")
 local Path = require ('plenary.path')
 require('cmake').setup({
   parameters_file = 'build/nvim_cmake_configuration.json',

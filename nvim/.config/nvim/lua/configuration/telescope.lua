@@ -38,7 +38,6 @@ require('telescope').load_extension('ui-select')
 
 
 local options = {silent = true, noremap = true}
-
 vim.keymap.set("n", "<leader>gf", require('telescope.builtin').git_files, options)
 vim.keymap.set("n", "<leader>gb", require('telescope.builtin').git_branches, options)
 vim.keymap.set("n", "<leader>ggc", require('telescope.builtin').git_commits, options)
@@ -63,6 +62,3 @@ end, options)
 vim.keymap.set("n", "<leader>fw", function ()
     require('telescope.builtin').grep_string({search=vim.fn.expand("<cword>")})
 end, options)
-
-
-
