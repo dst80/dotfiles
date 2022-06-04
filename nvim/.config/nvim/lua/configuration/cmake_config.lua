@@ -11,11 +11,12 @@ require('cmake').setup({
   dap_open_command = require('dap').repl.open,
 })
 
-keymap.bind("<leader>ccp"):in_mode('n'):to_command(":CMake create_project<CR>")
-keymap.bind("<leader>cst"):in_mode('n'):to_command(":CMake select_target<CR>")
-keymap.bind("<leader>csb"):in_mode('n'):to_command(":CMake select_build_type<CR>")
-keymap.bind("<leader>ccb"):in_mode('n'):to_command(":CMake configure<CR>")
-keymap.bind("<leader>cb"):in_mode('n'):to_command(":CMake build<CR>")
-keymap.bind("<leader>cr"):in_mode('n'):to_command(":CMake run<CR>")
-keymap.bind("<leader>ccl"):in_mode('n'):to_command(":CMake clean<CR>")
-keymap.bind("<leader>cdbg"):in_mode('n'):to_command(":CMake clean<CR>")
+local options = {noremap = true, silent = true}
+vim.keymap.set("n", "<leader>ccp", ":CMake create_project<CR>", options)
+vim.keymap.set("n", "<leader>cst", ":CMake select_target<CR>", options)
+vim.keymap.set("n", "<leader>csb", ":CMake select_build_type<CR>", options)
+vim.keymap.set("n", "<leader>ccb", ":CMake configure<CR>", options)
+vim.keymap.set("n", "<leader>cb", ":CMake build<CR>", options)
+vim.keymap.set("n", "<leader>cr", ":CMake run<CR>", options)
+vim.keymap.set("n", "<leader>ccl", ":CMake clean<CR>", options)
+vim.keymap.set("n", "<leader>cdbg", ":CMake clean<CR>", options)
