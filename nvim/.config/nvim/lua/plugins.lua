@@ -138,18 +138,13 @@ return require("packer").startup(
 
         use {
             'mfussenegger/nvim-dap',
+            requires = {
+                "rcarriga/nvim-dap-ui",
+                "theHamsta/nvim-dap-virtual-text",
+                "nvim-telescope/telescope-dap.nvim"
+            },
             config = function()
                 require('configuration.debug_adapter_protocol')
-            end
-        }
-
-        use {
-            "rcarriga/nvim-dap-ui",
-            requires = {
-                'mfussenegger/nvim-dap'
-            },
-            config = function ()
-                require('configuration.debug_adapter_protocol_ui')
             end
         }
 
