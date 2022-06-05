@@ -1,7 +1,6 @@
 local dap = require('dap')
 
 --  c languages
-
 dap.adapters.lldb = {
     type = 'executable',
     command = '/usr/bin/lldb-vscode',
