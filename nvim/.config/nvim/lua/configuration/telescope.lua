@@ -45,7 +45,8 @@ vim.keymap.set("n", "<leader>ff", require('telescope.builtin').find_files, optio
 vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep, options)
 vim.keymap.set("n", "<leader>buf", require('telescope.builtin').buffers, options)
 vim.keymap.set("n", "<leader>fb", require('telescope').extensions.file_browser.file_browser, options)
-vim.keymap.set("n", "<leader>fh", require('telescope.builtin').help_tags, options)
+vim.keymap.set("n", "<leader>h", require('telescope.builtin').help_tags, options)
+vim.keymap.set("n", "<leader>dt", require('telescope.builtin').diagnostics, options)
 
 vim.keymap.set("n", "<leader>cfg", function ()
     require('telescope.builtin').find_files({cwd=vim.fn.stdpath('config')})
