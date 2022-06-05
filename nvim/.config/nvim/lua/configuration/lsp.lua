@@ -1,4 +1,15 @@
-local sumneko = require('configuration.sumneko')
+require("nvim-lsp-installer").setup({
+    automatic_installation = true,
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
+
+
 local lspconfig = require('lspconfig')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -65,7 +76,6 @@ lspconfig.rust_analyzer.setup {
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = { sumneko.binary, "-E", sumneko.root .. "/main.lua" },
     settings = {
         Lua = {
             runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
@@ -80,3 +90,4 @@ lspconfig.sumneko_lua.setup {
         }
     }
 }
+

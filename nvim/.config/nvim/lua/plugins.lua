@@ -1,5 +1,4 @@
 local globals = require('global')
-local sumneko = require('configuration.sumneko')
 
 if not pcall(require, 'packer') then
     vim.cmd(
@@ -14,14 +13,12 @@ return require("packer").startup(
         use 'wbthomason/packer.nvim'
         use {
             'neovim/nvim-lspconfig',
-            run = function()
-                sumneko:install()
-            end,
             config = function()
                 require('configuration.lsp')
             end,
             requires = {
                 'lukas-reineke/lsp-format.nvim',
+                'williamboman/nvim-lsp-installer'
             }
         }
 
