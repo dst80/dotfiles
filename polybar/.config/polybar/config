@@ -1,19 +1,25 @@
 [colors]
 background = #2e3440
+separator  = #3b4252
 foreground = #d8dee9
+inactive   = #4c566a
 alert      = #bf616a
 module     = #2e3440
-highlight  = #a3be8c
+highlight  = #5e81ac
+icons      = #81a1c1
+ws_icons   = #eceff4
 
 [settings]
 padding = 1
+module_padding = 0
+traypadding = 2
 
 [bar/mainbar]
 
 width = 100%
-height = 24
+height = 25
 radius = 0.0
-fixed-center = true
+fixed-center = false
 bottom = false
 
 background = ${colors.background}
@@ -21,19 +27,80 @@ foreground = ${colors.foreground}
 
 border-size = 0
 
-font-0 = "NotoSansMono Nerd Font:pixelsize=12;2"
-font-1 = "Noto Emoji:size=12;3" 
-font-2 = "Font Awesome:size=14;4"
+font-0 = "NotoSansMono Nerd Font:size=11:weight=bold;0"
 
-modules-right = cpu temperature memory filesystem wlan eth battery0 battery1 backlight pulseaudio date powermenu
+modules-left = bspwm
+modules-right = cpu temperature memory filesystem wlan eth battery0 backlight pulseaudio date powermenu
 
 tray-detached = false
-tray-position = right
-tray-padding = 2
+tray-position = center
+tray-padding = 1 
 
 override-redirect = true
 
+separator = |
+separator-foreground = ${colors.separator}
+separator-background = ${colors.module}
+ 
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+occupied-scroll = true
 
+; ws-icon-[0-9]+ = <label>;<icon>
+; Note that the <label> needs to correspond with the bspwm workspace name
+; Neither <label> nor <icon> can contain a semicolon (;)
+ws-icon-0 = 1;  
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;爵
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;ﱘ
+ws-icon-default = 
+
+format = <label-state> <label-mode>
+
+label-monitor = %name%
+
+label-dimmed-foreground = ${colors.ws_icons}
+label-dimmed-focused-background = #f00
+
+label-focused =" %icon% "
+label-focused-foreground = ${colors.ws_icons}
+label-focused-background = ${colors.highlight}
+
+label-occupied =" %icon% "
+label-occupied-foreground = ${colors.ws_icons}
+label-occupied-background = ${colors.background}
+
+label-urgent =" %icon% "
+label-urgent-foreground = ${colors.ws_icons}
+label-urgent-background = ${colors.alert}
+label-urgent-underline = #9b0a20
+
+label-empty =" %icon% "
+label-empty-foreground = ${colors.ws_icons}
+label-empty-background = ${colors.background}
+
+label-monocle = [Mono]
+label-tiled = [Tilt]
+label-fullscreen = [Full]
+label-floating = [Free]
+label-pseudotiled = [PSTL]
+label-marked = M
+
+label-separator = |
+label-separator-padding = 0
+label-separator-foreground = ${colors.separator}
 
 [module/xwindow]
 type = internal/xwindow
@@ -57,29 +124,17 @@ label-indicator-underline = ${colors.secondary}
 [module/filesystem] 
 type = internal/fs
 interval = 25
-
 mount-0 = /
-mount-1 = /home
-mount-2 = /var
-mount-3 = /swap
 
-label-unmounted = 
 wrapping-scroll = false
 
-format-mounted-prefix = "  " 
-format-mounted =  <ramp-capacity>
+format-mounted-prefix = " "  
+format-mounted-prefix-foreground = ${colors.icons}
+label-mounted =  %used%(%percentage_used%%)
+format-mounted =  <label-mounted>
 format-mounted-padding = ${settings.padding}
 format-mounted-background = ${colors.module}
 format-unmounted-padding = ${settings.padding}
-ramp-capacity-0 = ▁
-ramp-capacity-1 = ▂
-ramp-capacity-2 = ▃
-ramp-capacity-3 = ▄
-ramp-capacity-4 = ▅
-ramp-capacity-5 = ▆
-ramp-capacity-6 = ▇
-ramp-capacity-7 = █
-ramp-capacity-foreground = ${colors.highlight}
 
 [module/mpd]
 type = internal/mpd
@@ -100,8 +155,7 @@ type = internal/backlight
 card = intel_backlight
 
 format = <ramp> 
-format-prefix = 
-format-prefix-padding = 2
+format-prefix = " "
 format-padding = ${settings.padding}
 format-foreground = ${colors.foreground}
 format-background = ${colors.module}
@@ -120,14 +174,15 @@ ramp-foreground = ${colors.highlight}
 type = internal/cpu
 interval = 2
 
-format-prefix =  
-format-prefix-padding = 1
-format = <ramp-coreload>
-format-padding = 2
+format-prefix = " " 
+format-prefix-foreground = ${colors.icons}
+label = %percentage%%
+format = <label>
+format-padding = ${settings.padding}
 format-foreground = ${colors.foreground}
 format-background = ${colors.module}
 
-ramp-coreload-spacing = 1
+ramp-coreload-spacing = 0 
 ramp-coreload-0 = ▁
 ramp-coreload-1 = ▁
 ramp-coreload-2 = ▂
@@ -142,48 +197,31 @@ ramp-coreload-foreground = ${colors.highlight}
 [module/memory]
 type = internal/memory
 interval = 5
-format = <ramp-used> 
-format-prefix = " "
-format-prefix-padding = 1
+label = %used%(%percentage_used%%)
+format = <label> 
+format-prefix = " " 
+format-prefix-foreground = ${colors.icons}
 format-padding = ${settings.padding}
 format-background = ${colors.module}
 
-ramp-used-0 = ▁
-ramp-used-1 = ▂
-ramp-used-2 = ▃
-ramp-used-3 = ▄
-ramp-used-4 = ▅
-ramp-used-5 = ▆
-ramp-used-6 = ▇
-ramp-used-7 = █
-ramp-used-foreground = ${colors.highlight}
-
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlan0
 interval = 3.0
 
-format-connected-prefix =  
-format-connected-prefix-padding = 1
-format-connected = <ramp-signal>
-format-connected-padding = 2
+format-connected-prefix = " " 
+format-connected-prefix-foreground = ${colors.icons}
+label-connected = %essid% %signal%%
+format-connected = <label-connected>
+format-connected-padding = ${settings.padding}
 format-connected-background = ${colors.module}
 
-label-connected = %essid%
-
-format-disconnected = 
+format-disconnected = "睊" 
+format-disconnected-foregound = ${colors.alert} 
 format-disconnected-padding = ${settings.padding} 
 format-disconnected-background = ${colors.module}
 
-ramp-signal-0 = ▁
-ramp-signal-1 = ▂
-ramp-signal-2 = ▃
-ramp-signal-3 = ▄
-ramp-signal-4 = ▅
-ramp-signal-5 = ▆
-ramp-signal-6 = ▇
-ramp-signal-7 = █
-ramp-signal-foreground = ${colors.highlight}
+click-right = alacritty -e nmtui-connect
 
 [module/eth]
 type = internal/network
@@ -204,134 +242,77 @@ type = internal/date
 interval = 30
 
 date =
-date-alt = " %d.%m.%Y"
+date-alt = "%d.%m.%Y "
 
 time = %H:%M
 time-alt = %H:%M
 
-label = "%date% %time% "
+label = %date%%time%
 
 format-padding = ${settings.padding}
 format-foreground = ${colors.foreground}
 format-background = ${colors.module}
-format-prefix = " "
+format-prefix = " " 
+format-prefix-foreground = ${colors.icons} 
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
-ramp-volume-0 = ▁
-ramp-volume-1 = ▂
-ramp-volume-2 = ▃
-ramp-volume-3 = ▄
-ramp-volume-4 = ▅
-ramp-volume-5 = ▆
-ramp-volume-6 = ▇
-ramp-volume-7 = █
-ramp-volume-foreground = ${colors.highlight}
-
-format-volume-prefix =  
-format-volume-prefix-padding = 1
-format-volume= <ramp-volume>
-format-volume-padding = ${settings.padding} 
-format-volume-foreground = ${colors.foreground}
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = ${settings.padding}
 format-volume-background = ${colors.module}
-
-format-muted = ▁
-format-muted-prefix =    
-format-muted-prefix-padding = 2
-format-muted-padding = ${settings.padding}
-format-muted-foreground = ${colors.foreground}
-format-muted-background = ${colors.module}
-
-[module/alsa]
-type = internal/alsa
+label-volume = %percentage%%
+label-muted = 🔇 mute
+label-muted-foreground = #666
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-ramp-volume-foreground = ${colors.foreground}
-
-label-muted = " Muted "
-label-volume = %percentage%%
-
-format-volume = <ramp-volume> <label-volume>
-format-volume-padding = ${settings.padding}
-format-volume-foreground = ${colors.foreground}
-format-volume-background = ${colors.module}
-
-format-muted = <label-muted>
-format-muted-prefix = " "  
-format-muted-padding = ${settings.padding}
-format-muted-foreground = ${colors.foreground}
-format-muted-background = ${colors.module}
+ramp-volume-foreground = ${colors.icons}
+click-right = alacritty -e alsamixer
 
 [module/battery0]
 type = internal/battery
 battery = BAT0
 adapter = AC0
-full-at = 98
+full-at = 99
 
-format-charging-prefix =   
-format-charging-prefix-padding = 1
-format-charging = <ramp-capacity> 
+label-charging = %percentage%%
+format-charging = <animation-charging> <label-charging>
 format-charging-padding = ${settings.padding}
 format-charging-foreground = ${colors.foreground}
 format-charging-background = ${colors.module}
 
-format-discharging-prefix =   
-format-discharging-prefix-padding = 1
-format-discharging = <ramp-capacity> 
+label-discharging = %percentage%%
+format-discharging = <animation-discharging> <label-discharging> 
 format-discharging-padding = ${settings.padding}
 format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.module}
 
-format-full-prefix =   
-format-full-prefix-padding = 1
-format-full = <ramp-capacity> 
+format-full-prefix = " "  
+format-full-prefix-foreground = ${colors.icons}  
+label-full =  100% 
+format-full = <label-full> 
 format-full-padding = ${settings.padding}
 format-full-foreground = ${colors.foreground}
 format-full-background = ${colors.module}
 
-ramp-capacity-0 = ▁
-ramp-capacity-1 = ▂
-ramp-capacity-2 = ▃
-ramp-capacity-3 = ▄
-ramp-capacity-4 = ▅
-ramp-capacity-5 = ▆
-ramp-capacity-6 = ▇
-ramp-capacity-7 = █
-ramp-capacity-foreground = ${colors.highlight}
 
-[module/battery1]
-type = internal/battery
-battery = BAT1
-adapter = AC0
-full-at = 98
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+animation-charging-foreground = ${colors.icons}
 
-format-charging = <ramp-capacity> 
-format-charging-padding = ${settings.padding}
-format-charging-foreground = ${colors.foreground}
-format-charging-background = ${colors.module}
-
-format-discharging = <ramp-capacity> 
-format-discharging-padding = ${settings.padding}
-format-discharging-foreground = ${colors.foreground}
-format-discharging-background = ${colors.module}
-
-format-full = <ramp-capacity> 
-format-full-padding = ${settings.padding}
-format-full-foreground = ${colors.foreground}
-format-full-background = ${colors.module}
-
-ramp-capacity-0 = ▁
-ramp-capacity-1 = ▂
-ramp-capacity-2 = ▃
-ramp-capacity-3 = ▄
-ramp-capacity-4 = ▅
-ramp-capacity-5 = ▆
-ramp-capacity-6 = ▇
-ramp-capacity-7 = █
-ramp-capacity-foreground = ${colors.highlight}
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-framerate = 500
+animation-discharging-foreground = ${colors.icons}
 
 [module/temperature]
 type = internal/temperature
@@ -348,40 +329,44 @@ format-warn-background = ${colors.alert}
 label = %temperature-c%
 label-warn = %temperature-c%
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 =
+ramp-0 =
+ramp-1 =
+ramp-2 =
+ramp-3 =
+ramp-4 =
+ramp-foreground = ${colors.icons}
 
 [module/powermenu]
 type = custom/menu
 
 expand-right = true
 
-format-spacing = 1
+format-spacing = 2
 format-padding = ${settings.padding}
 
-label-open = 
+label-open =  
 label-open-foreground = ${colors.foreground}
-label-close =  cancel
+label-open-background = ${colors.module}
+label-close =  
 label-close-foreground = ${colors.foreground}
+label-close-background = ${colors.module}
 label-separator = |
-label-separator-foreground = ${colors.foreground}
+label-separator-foreground = ${colors.separator}
+label-separator-background = ${colors.module}
 
-menu-0-0 = reboot
+menu-0-0 = 勒 
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = 襤
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
+menu-1-0 = ﰸ
 menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1 = 勒
+menu-1-1-exec = reboot
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
+menu-2-0 = 襤
+menu-2-0-exec = poweroff
+menu-2-1 = ﰸ
 menu-2-1-exec = menu-open-0
 
 [settings]
