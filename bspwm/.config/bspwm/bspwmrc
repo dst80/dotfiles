@@ -2,17 +2,18 @@
 
 #Clean lingering programs when reloaded
 
-
-#Settings up Wallpapter
+# Start additional programs
 feh --bg-fill /home/dennis/Wallpaper/dark_mountain_1.jpg &
-
-#Start polybar first
 bash ~/.config/polybar/launch.sh &
-
 pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x picom > /dev/null || picom -b --config ~/.config/picom/picom.conf &
+
+# Fix cursor issue
+xsetroot -cursor_name left_ptr
 
 #Monitor Config
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
 
 #BSPWM Config
 bspc config border_width        1
@@ -47,7 +48,4 @@ bspc rule -a Gimp desktop='^8' follow=on
 bspc rule -a variety state=floating
 bspc rule -a Chromium desktop='^2'
 
-#Auto-Start
-xsettingsd &
-picom -b --config /home/dennis/.config/picom/picom.conf &
 
