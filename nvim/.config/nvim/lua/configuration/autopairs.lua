@@ -1,32 +1,36 @@
-if not pcall(require, "nvim-autopairs") then
-    return
-end
-
 require("nvim-autopairs").setup({
-        ignored_next_char = "[%w%.]",
-        enable_check_bracket_line = false,
-        check_ts = true,
-        ts_config = {
-            lua = {'string'},
-            javascript = {'template_string'},
-            java = false,
-        }
-    })
+    disable_filetype = { "TelescopePrompt", "vim" },
+    ignored_next_char = "[%w%.]",
+    enable_check_bracket_line = false,
+    check_ts = true,
+    ts_config = {
+        lua = { 'string' },
+        javascript = { 'template_string' },
+        java = false,
+    },
+    fast_wrap = {
+        map = '<M-e>',
+        chars = { '{', '[', '(', '"', "'" },
+        pattern = [=[[%'%"%)%>%]%)%}%,]]=],
+        end_key = '$',
+        keys = 'qwertyuiopzxcvbnmasdfghjkl',
+        check_comma = true,
+        highlight = 'Search',
+        highlight_grey = 'Comment'
+    },
+})
 
-if not pcall(require, "nvim-autopairs.completion.compe") then
-    return
-end
+local Rule = require('nvim-autopairs.rule')
+local ts_conds = require('nvim-autopairs.ts-conds')
+-- press % => %% only while inside a comment or string
+require('nvim-autopairs').add_rules({
+    Rule("%", "%", "lua")
+        :with_pair(ts_conds.is_ts_node({ 'string', 'comment' })),
+    Rule("$", "$", "lua")
+        :with_pair(ts_conds.is_not_ts_node({ 'function' }))
+})
 
-require("nvim-autopairs.completion.compe").setup({
-        map_cr = true,
-        map_complete = true
-    })
-
-if not pcall(require, "nvim-treesitter.configs") then
-    return
-end
-
-require('nvim-treesitter.configs').setup {
-        autopairs = {enable = true}
-    }
-
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done({
+    map_char = { tex = '' }
+}))
