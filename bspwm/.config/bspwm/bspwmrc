@@ -3,6 +3,8 @@
 #Clean lingering programs when reloaded
 
 # Start additional programs
+~/.config/bspwm/scripts/multi_monitor_detection.sh
+
 feh --bg-fill /home/dennis/Wallpaper/dark_mountain_1.jpg &
 bash ~/.config/polybar/launch.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &
