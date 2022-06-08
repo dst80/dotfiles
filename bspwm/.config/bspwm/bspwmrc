@@ -28,10 +28,12 @@ bspc config focus_follows_pointer true
 bspc config merge_overlapping_monitors true
 
 #Application Rules
-bspc rule -a Brave-browser desktop='^1' follow=on
-bspc rule -a Gimp desktop='^8' follow=on
-bspc rule -a variety state=floating
-bspc rule -a Chromium desktop='^2'
+bspc rule -a Brave-browser desktop='^4' follow=on
+bspc rule -a Thunderbird desktop='^5' follow=on
+bspc rule -a chromium desktop='^4' follow=on
+bspc rule -a Gimp desktop='^7' follow=on
+bspc rule -a Code desktop='^3' follow=on
+bspc rule -a Alacritty:cmus desktop='^10' follow=on
 
 # Start additional programs
 ~/.config/bspwm/scripts/multi_monitor_detection.sh
