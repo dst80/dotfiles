@@ -58,17 +58,27 @@ lspconfig.tsserver.setup {
     capabilities = capabilities
 }
 
--- require('lspconfig').pyright.setup {
---     on_attach = on_attach,
---     capabilities = capabilities
--- }
-
 lspconfig.gopls.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
 
 lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+lspconfig.pylsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+lspconfig.csharp_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+lspconfig.cmake.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
