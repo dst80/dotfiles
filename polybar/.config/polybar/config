@@ -14,11 +14,36 @@ padding = 1
 module_padding = 0
 traypadding = 2
 
-[bar/mainbar]
+[bar/bar_DP-0]
+inherit = bar/barbase
+monitor = DP-0
+
+[bar/bar_DP-2]
+inherit = bar/barbase
+monitor = DP-2
+
+[bar/bar_eDP]
+inherit = bar/barbase
+monitor = eDP
+
+[bar/bar_HDMI-A-0]
+inherit = bar/barbase
+monitor = HDMI-A-0
+
+[bar/bar_DisplayPort-0]
+inherit = bar/barbase
+monitor = DisplayPort-0
+
+[bar/bar_DisplayPort-1]
+inherit = bar/barbase
+monitor = DisplayPort-1
+
+[bar/barbase]
 width = 100%
 height = 26
 fixed-center = true
 bottom = false
+monitor-fallback = primary
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -38,6 +63,7 @@ separator = |
 separator-foreground = ${colors.separator}
 separator-background = ${colors.module}
  
+
 [module/bspwm]
 type = internal/bspwm
 pin-workspaces = true

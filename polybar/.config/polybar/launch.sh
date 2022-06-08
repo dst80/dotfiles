@@ -3,14 +3,9 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
 
-desktop=$(echo $DESKTOP_SESSION)
-count=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
-
 if type "xrandr" > /dev/null; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload mainbar -c ~/.config/polybar/config &
+  for m in $(xrandr --query | grep " connected " | cut -d" " -f1); do
+    polybar bar_$m -c ~/.config/polybar/config &
   done
-else
-  polybar --reload mainbar-spectrwm -c ~/.config/polybar/config &
 fi
 
