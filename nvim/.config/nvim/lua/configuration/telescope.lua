@@ -19,6 +19,12 @@ require('telescope').setup {
         color_devicons = true,
         set_env = {['COLORTERM'] = 'truecolor'}
     },
+    pickers = {
+        buffers ={
+            theme = "dropdown",
+            previewer = false,
+        }
+    },
     extensions = {
         fzf_native = {
             override_generic_sorter = false,
@@ -39,15 +45,13 @@ require('telescope').load_extension('ui-select')
 
 local options = {silent = true, noremap = true}
 vim.keymap.set("n", "<leader>gf", require('telescope.builtin').git_files, options)
-vim.keymap.set("n", "<leader>gb", require('telescope.builtin').git_branches, options)
-vim.keymap.set("n", "<leader>ggc", require('telescope.builtin').git_commits, options)
 vim.keymap.set("n", "<leader>ff", require('telescope.builtin').find_files, options)
 vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep, options)
-vim.keymap.set("n", "<leader>buf", require('telescope.builtin').buffers, options)
 vim.keymap.set("n", "<leader>fb", require('telescope').extensions.file_browser.file_browser, options)
 vim.keymap.set("n", "<leader>h", require('telescope.builtin').help_tags, options)
 vim.keymap.set("n", "<leader>dt", require('telescope.builtin').diagnostics, options)
 
+vim.keymap.set("n", "<leader>b", require('telescope.builtin').buffers, options)
 vim.keymap.set("n", "<leader>cfg", function ()
     require('telescope.builtin').find_files({cwd=vim.fn.stdpath('config')})
 end, options)
