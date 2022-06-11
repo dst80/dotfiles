@@ -12,3 +12,4 @@ packer_compiled.lua
 *readme*
 
 lazygit/.config/lazygit/state.yml
+rust/.cargo/registry
