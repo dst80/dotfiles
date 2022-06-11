@@ -25,7 +25,7 @@ end
 
 vim.keymap.set("n", "<leader>g", lazygit_toggle, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t", toggle_term, { noremap = true, silent = true })
-vim.keymap.set("t", "<leader><ESC>", [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.keymap.set("t", "<C-A-Space>", [[<C-\><C-n>]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-left>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-right>", [[<C-\><C-n><C-w>l]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-down>", [[<C-\><C-n><C-w>j]], { noremap = true, silent = true })
