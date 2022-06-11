@@ -3,7 +3,7 @@ local globals = require('global')
 if not pcall(require, 'packer') then
     vim.cmd(
         "!git clone https://github.com/wbthomason/packer.nvim " ..
-            globals.site_dir .. "pack/packer/start/packer.nvim"
+        globals.site_dir .. "pack/packer/start/packer.nvim"
     )
 end
 
@@ -32,7 +32,7 @@ return require("packer").startup(
                 'hrsh7th/cmp-nvim-lsp',
                 'hrsh7th/cmp-path',
                 'hrsh7th/cmp-buffer'
-                },
+            },
             config = function()
                 require('configuration.completion')
             end
@@ -61,7 +61,7 @@ return require("packer").startup(
 
         use {
             'numToStr/Comment.nvim',
-            config = function ()
+            config = function()
                 require('configuration.comment')
             end
         }
@@ -70,7 +70,7 @@ return require("packer").startup(
         use {
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
-            requires = {{'nvim-treesitter/playground'}},
+            requires = { { 'nvim-treesitter/playground' } },
             config = function()
                 require('configuration.treesitter')
             end
@@ -89,7 +89,7 @@ return require("packer").startup(
                 'nvim-lua/popup.nvim',
                 'nvim-lua/plenary.nvim',
                 'nvim-telescope/telescope-file-browser.nvim',
-                {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
+                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
                 'nvim-telescope/telescope-ui-select.nvim',
                 'kyazdani42/nvim-web-devicons'
             },
@@ -99,17 +99,24 @@ return require("packer").startup(
         }
 
         use {
+            "akinsho/toggleterm.nvim",
+            config = function()
+                require('configuration.terminal')
+            end
+        }
+
+        use {
             'sudormrfbin/cheatsheet.nvim',
             requires = {
-                {'nvim-telescope/telescope.nvim'},
-                {'nvim-lua/popup.nvim'},
-                {'nvim-lua/plenary.nvim'}
+                { 'nvim-telescope/telescope.nvim' },
+                { 'nvim-lua/popup.nvim' },
+                { 'nvim-lua/plenary.nvim' }
             }
         }
 
         use {
             'p00f/clangd_extensions.nvim',
-            config = function ()
+            config = function()
                 require('configuration.clangd_extension')
             end
         }
@@ -118,9 +125,9 @@ return require("packer").startup(
         use {
             'Shatur/neovim-cmake',
             requires = {
-                    {'nvim-telescope/telescope.nvim'},
-                    {'mfussenegger/nvim-dap'}
-                },
+                { 'nvim-telescope/telescope.nvim' },
+                { 'mfussenegger/nvim-dap' }
+            },
             config = function()
                 require('configuration.cmake_config')
             end
@@ -128,7 +135,7 @@ return require("packer").startup(
 
         use {
             'windwp/nvim-autopairs',
-            config = function ()
+            config = function()
                 require('configuration.autopairs')
             end
         }
@@ -145,14 +152,14 @@ return require("packer").startup(
             end
         }
 
-        use {'fatih/vim-go'}
+        use { 'fatih/vim-go' }
 
-        use {'simrat39/rust-tools.nvim'}
+        use { 'simrat39/rust-tools.nvim' }
 
         -- status line
         use {
             'hoob3rt/lualine.nvim',
-            requires = {'kyazdani42/nvim-web-devicons', opt = true},
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = function()
                 require('configuration.lualine')
             end
@@ -161,8 +168,8 @@ return require("packer").startup(
         -- dashboard
         use {
             'goolord/alpha-nvim',
-            config = function ()
-                require ('configuration.alpha')
+            config = function()
+                require('configuration.alpha')
             end
         }
 
@@ -175,4 +182,3 @@ return require("packer").startup(
         }
     end
 )
-
