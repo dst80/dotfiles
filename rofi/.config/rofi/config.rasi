@@ -1,5 +1,5 @@
 configuration {
-  font: "Hack Nerd Fonts 12";
+  font: "RobotoMono Nerd Font 13";
 
   modi: "window,drun,ssh,combi";
   combi-modi: "window,drun,ssh";

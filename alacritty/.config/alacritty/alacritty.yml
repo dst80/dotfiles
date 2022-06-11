@@ -28,7 +28,7 @@ window:
   
 font:
   normal:
-    family: "Hack Nerd Font" 
+    family: "RobotoMono Nerd Font" 
     style: Regular 
 
   size: 13.0
