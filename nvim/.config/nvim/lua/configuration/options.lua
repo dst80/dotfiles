@@ -12,7 +12,7 @@ options:set_options({
     timeout = true,
     ttimeout = true,
     timeoutlen = 500,
-    ttimeoutlen = 10,
+    ttimeoutlen = 50,
     updatetime = 100,
     redrawtime = 1500,
     wrapscan = true,
