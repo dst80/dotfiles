@@ -28,10 +28,10 @@ window:
   
 font:
   normal:
-    family: "NotoSansMono Nerd Font" 
+    family: "Hack Nerd Font" 
     style: Regular 
 
-  size: 12.0
+  size: 13.0
 
 cursor:
   style:
