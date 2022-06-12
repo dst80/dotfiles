@@ -26,6 +26,10 @@ monitor = DP-2
 inherit = bar/barbase
 monitor = eDP
 
+[bar/bar_eDP-1]
+inherit = bar/barbase
+monitor = eDP-1
+
 [bar/bar_HDMI-A-0]
 inherit = bar/barbase
 monitor = HDMI-A-0
