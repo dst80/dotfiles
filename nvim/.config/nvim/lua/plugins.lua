@@ -77,6 +77,17 @@ return require("packer").startup(
         }
 
         use {
+            "ThePrimeagen/refactoring.nvim",
+            requires = {
+                {"nvim-lua/plenary.nvim"},
+                {"nvim-treesitter/nvim-treesitter"}
+            },
+            config = function ()
+                require('configuration.refactoring')
+            end
+        }
+
+        use {
             'kyazdani42/nvim-web-devicons',
             config = function()
                 require('configuration.icons')
