@@ -19,7 +19,8 @@ super + r
 super + w
   rofi -show window
 
-
+super + s
+  tdrop -ma -w 80% -h 80% -x 10% -y 10% -s dropdown alacritty --class scratchpad
 
 #
 # bspwm hotkeys
