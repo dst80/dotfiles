@@ -17,10 +17,10 @@ require('telescope').setup {
         hidden = true,
         prompt_prefix = '🔍',
         color_devicons = true,
-        set_env = {['COLORTERM'] = 'truecolor'}
+        set_env = { ['COLORTERM'] = 'truecolor' }
     },
     pickers = {
-        buffers ={
+        buffers = {
             theme = "dropdown",
             previewer = false,
         }
@@ -43,7 +43,7 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
 
 
-local options = {silent = true, noremap = true}
+local options = { silent = true, noremap = true }
 vim.keymap.set("n", "<leader>gf", require('telescope.builtin').git_files, options)
 vim.keymap.set("n", "<leader>ff", require('telescope.builtin').find_files, options)
 vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep, options)
@@ -53,18 +53,18 @@ vim.keymap.set("n", "<leader>dt", require('telescope.builtin').diagnostics, opti
 
 vim.keymap.set("n", "<leader>sb", require('telescope.builtin').buffers, options)
 
-vim.keymap.set("n", "<leader>cfg", function ()
-    require('telescope.builtin').find_files({cwd=vim.fn.stdpath('config')})
+vim.keymap.set("n", "<leader>cfg", function()
+    require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })
 end, options)
 
-vim.keymap.set("n", "<leader>df", function ()
-    require('telescope.builtin').git_files({cwd=(vim.fn.getenv('HOME')..'/dotfiles')})
+vim.keymap.set("n", "<leader>df", function()
+    require('telescope.builtin').git_files({ cwd = (vim.fn.getenv('HOME') .. '/dotfiles') })
 end, options)
 
-vim.keymap.set("n", "<leader>fs", function ()
-    require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For->")})
+vim.keymap.set("n", "<leader>fs", function()
+    require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For->") })
 end, options)
 
-vim.keymap.set("n", "<leader>fw", function ()
-    require('telescope.builtin').grep_string({search=vim.fn.expand("<cword>")})
+vim.keymap.set("n", "<leader>fw", function()
+    require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })
 end, options)
