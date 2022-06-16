@@ -12,7 +12,10 @@ require('telescope').setup {
             '--with-filename',
             '--line-number',
             '--column',
-            '--smart-case'
+            '--smart-case',
+            '--hidden',
+            '--ignore',
+            '--glob=!.git'
         },
         hidden = true,
         prompt_prefix = '🔍',
