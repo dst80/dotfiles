@@ -22,3 +22,6 @@
 [submodule "tmux/.config/tmux/plugins/nord-tmux"]
 	path = tmux/.config/tmux/plugins/nord-tmux
 	url = https://github.com/arcticicestudio/nord-tmux
+[submodule "themes/.themes/Nordic"]
+	path = themes/.themes/Nordic
+	url = https://github.com/EliverLara/Nordic.git
