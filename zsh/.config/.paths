@@ -1,0 +1,12 @@
+
+if [ -f "$HOME/bin" ]; then
+  export PATH="$HOME/bin:$PATH"
+fi
+
+if [ -f "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -f "$HOME/go/bin" ]; then
+  export PATH="$HOME/go/bin:$PATH"
+fi
