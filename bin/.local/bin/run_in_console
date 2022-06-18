@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+while getopts e: flag
+do
+  case "${flag}" in
+    e) program=${OPTARG};;
+  esac
+done
+
+if [[ "$TERMINAL" == "alacritty" ]]; then
+  echo "run alacritty"
+  alacritty --class $program -e $program
+else
+  echo "fail to run"
+  echo $TERM
+fi
+
+

@@ -4,20 +4,20 @@
 
 # terminal emulator
 super + Return
-	alacritty 
+	$TERMINAL
 
 super + shift + t
-  alacritty --class tmux -e tmux
+  run_in_console -e tmux
 
 super + shift + c
-  alacritty --class cmus -e cmus
+  run_in_console -e cmus
 
 # program launcher
 super + r
-	rofi -show drun
+	rofi -show drun -terminal $TERMINAL
 
 super + w
-  rofi -show window
+  rofi -show window -terminal $TERMINAL
 
 super + s
   tdrop -ma -w 80% -h 80% -x 10% -y 10% -s dropdown alacritty --class scratchpad
