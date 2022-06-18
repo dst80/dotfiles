@@ -18,7 +18,7 @@ require('telescope').setup {
             '--glob=!.git'
         },
         hidden = true,
-        prompt_prefix = ' ',
+        prompt_prefix = ' :',
         color_devicons = true,
         set_env = { ['COLORTERM'] = 'truecolor' }
     },
