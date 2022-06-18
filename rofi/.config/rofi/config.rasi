@@ -6,6 +6,8 @@ configuration {
 
   levenshtein-sort: true;
   matching: "fuzzy";
+
+  terminal: "alacritty";
 }
 
 @theme "nord"
