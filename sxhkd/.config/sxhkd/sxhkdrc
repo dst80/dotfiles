@@ -7,10 +7,10 @@ super + Return
 	$TERMINAL
 
 super + shift + t
-  run_in_console -e tmux
+  ~/.local/bin/run_in_console -e tmux
 
 super + shift + c
-  run_in_console -e cmus
+  ~/.local/bin/run_in_console -e cmus
 
 # program launcher
 super + r
