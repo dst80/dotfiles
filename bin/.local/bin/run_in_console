@@ -7,11 +7,9 @@ do
 done
 
 if [[ "$TERMINAL" == "alacritty" ]]; then
-  echo "run alacritty"
-  alacritty --class $program -e $program
-else
-  echo "fail to run"
-  echo $TERM
+  alacritty --class $program -e $program&
 fi
 
-
+if [[ "$TERMINAL" == "kitty" ]]; then
+  kitty --class=$program -e $program&
+fi
