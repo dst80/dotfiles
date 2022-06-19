@@ -49,5 +49,8 @@ bash ~/.config/polybar/launch.sh &
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom -b --config ~/.config/picom/picom.conf &
 
+pgrep -x nm-applet > /dev/null || nm-applet&
+pgrep -x blueman-applet > /dev/null || blueman-applet&
+
 # Fix cursor issue
 xsetroot -cursor_name left_ptr
