@@ -13,3 +13,4 @@ packer_compiled.lua
 
 lazygit/.config/lazygit/state.yml
 rust/.cargo/registry
+.fehbg
