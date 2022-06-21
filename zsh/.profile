@@ -7,7 +7,7 @@ if [ -f "$HOME/.config/.paths" ]; then
 fi
 
 if [ -n "$BASH_VERSION" ]; then
-  if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
+  if [ -f "$HOME/.config/zsh/.zshrc"]; then
+    . "$HOME/.config/zsh/.zshrc"
   fi
 fi
