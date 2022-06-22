@@ -93,16 +93,17 @@ return require("packer").startup(
                 require('configuration.icons')
             end
         }
-
+        use {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        }
         use {
             'nvim-telescope/telescope.nvim',
             requires = {
                 'nvim-lua/popup.nvim',
                 'nvim-lua/plenary.nvim',
                 'nvim-telescope/telescope-file-browser.nvim',
-                {
-                    'nvim-telescope/telescope-fzf-native.nvim',
-                    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+                'nvim-telescope/telescope-fzf-native.nvim',
                 'nvim-telescope/telescope-ui-select.nvim',
                 'kyazdani42/nvim-web-devicons'
             },
