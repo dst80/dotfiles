@@ -45,7 +45,6 @@ require('telescope').load_extension('dotfiles')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
 
-
 local options = { silent = true, noremap = true }
 vim.keymap.set("n", "<leader>gf", require('telescope.builtin').git_files, options)
 vim.keymap.set("n", "<leader>ff", require('telescope.builtin').find_files, options)
@@ -56,12 +55,13 @@ vim.keymap.set("n", "<leader>dt", require('telescope.builtin').diagnostics, opti
 
 vim.keymap.set("n", "<leader>sb", require('telescope.builtin').buffers, options)
 
+local path = require ('plenary.path')
 vim.keymap.set("n", "<leader>cfg", function()
-    require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })
+    require('telescope.builtin').find_files({ cwd = tostring(path:new(vim.fn.stdpath('config'))) })
 end, options)
 
 vim.keymap.set("n", "<leader>df", function()
-    require('telescope.builtin').git_files({ cwd = (vim.fn.getenv('HOME') .. '/dotfiles') })
+    require('telescope.builtin').git_files({ cwd = tostring(path:new(vim.fn.getenv('HOME'), 'dotfiles')) })
 end, options)
 
 vim.keymap.set("n", "<leader>fs", function()
