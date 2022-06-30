@@ -1,0 +1,537 @@
+{
+    "append": {
+        "prefix": "ap",
+        "body": [
+            "${1:slice} = append(${1:slice}, ${0:element})"
+        ]
+    },
+    "benchmark function": {
+        "body": "func Benchmark$1(b *testing.B) {\n\tfor ${2:i} := 0; ${2:i} < b.N; ${2:i}++ {\n\t\t$0\n\t}\n}",
+        "description": "Snippet for Benchmark function",
+        "prefix": "bf"
+    },
+    "case clause": {
+        "body": "case ${1:condition}:$0",
+        "description": "Snippet for case clause",
+        "prefix": "cs"
+    },
+    "Case default": {
+        "prefix": "def",
+        "body": [
+            "default:"
+        ]
+    },
+    "channel declaration": {
+        "body": "chan ${1:type}",
+        "description": "Snippet for a channel",
+        "prefix": "ch"
+    },
+    "Close": {
+        "prefix": "cl",
+        "body": [
+            "close(${0:closable})"
+        ]
+    },
+    "ctx context.Context": {
+        "prefix": "ctx",
+        "body": [
+            "ctx context.Context"
+        ]
+    },
+    "Defer anonymous func": {
+        "prefix": "defunc",
+        "body": [
+            "defer func() {",
+            "  $0",
+            "}()"
+        ]
+    },
+    "defer statement": {
+        "body": "defer ${1:func}($0)",
+        "description": "Snippet for defer statement",
+        "prefix": "df"
+    },
+    "delete": {
+        "prefix": "del",
+        "body": [
+            "delete(${1:map}, \"${2:key}\")"
+        ]
+    },
+    "else branch": {
+        "body": "else {\n\t$0\n}",
+        "description": "Snippet for else branch",
+        "prefix": "el"
+    },
+    "empty interface": {
+        "body": "interface{}",
+        "description": "Snippet for empty interface",
+        "prefix": "in"
+    },
+    "Error with Message": {
+        "prefix": "em",
+        "body": [
+            "errors.WithMessage(err, ${0:message})"
+        ]
+    },
+    "Error with Messagef": {
+        "prefix": "emf",
+        "body": [
+            "errors.WithMessagef(err, ${1:format}, ${0:args})"
+        ]
+    },
+    "Error with Stack": {
+        "prefix": "es",
+        "body": [
+            "errors.WithStack(err)"
+        ]
+    },
+    "errors.As()": {
+        "prefix": "as",
+        "body": [
+            "var e ${1:*exec.Error}",
+            "if errors.As(err, &e) {",
+            "  $0",
+            "}"
+        ]
+    },
+    "errors.Is()": {
+        "prefix": "is",
+        "body": [
+            "if errors.Is(err, ${1:exec.ErrNotFound}) {",
+            "  $0",
+            "}"
+        ]
+    },
+    "example function": {
+        "body": "func Example$1() {\n\t$2\n\t//Output:\n\t$3\n}",
+        "description": "Snippet for Example function",
+        "prefix": "ef"
+    },
+    "fmt.Errorf": {
+        "prefix": "fme",
+        "body": [
+            "fmt.Errorf(\"${1:%+v}\", ${0:err})"
+        ]
+    },
+    "fmt.Printf": {
+        "body": "fmt.Printf(\"$1\", ${2:var})",
+        "description": "Snippet for fmt.Printf()",
+        "prefix": "ff"
+    },
+    "fmt.Println": {
+        "body": "fmt.Println(\"$1\")",
+        "description": "Snippet for fmt.Println()",
+        "prefix": "fp"
+    },
+    "fmt.Sprintf": {
+        "prefix": "fms",
+        "body": [
+            "fmt.Sprintf(\"${1:%+v}\", $0)"
+        ]
+    },
+    "For Range": {
+        "prefix": "fr",
+        "body": [
+            "for _, ${1:v} := range ${2:values} {",
+            "  $0",
+            "}"
+        ]
+    },
+    "For Range Chan": {
+        "prefix": "frr",
+        "body": [
+            "for ${1:v} := range ${2:channel} {",
+            "  $0",
+            "}"
+        ]
+    },
+    "for range statement": {
+        "body": "for ${1:_, }${2:v} := range ${3:v} {\n\t$0\n}",
+        "description": "Snippet for a for range loop",
+        "prefix": "forr"
+    },
+    "for statement": {
+        "body": "for ${1:i} := ${2:0}; $1 < ${3:count}; $1${4:++} {\n\t$0\n}",
+        "description": "Snippet for a for loop",
+        "prefix": "for"
+    },
+    "function declaration": {
+        "body": "func $1($2) $3 {\n\t$0\n}",
+        "description": "Snippet for function declaration",
+        "prefix": "func"
+    },
+    "Goroutine anonymous func": {
+        "prefix": "gofunc",
+        "body": [
+            "go func(){",
+            "  $0",
+            "}()"
+        ]
+    },
+    "goroutine anonymous function": {
+        "body": "go func($1) {\n\t$0\n}($2)",
+        "description": "Snippet for anonymous goroutine declaration",
+        "prefix": "go"
+    },
+    "goroutine function": {
+        "body": "go ${1:func}($0)",
+        "description": "Snippet for goroutine declaration",
+        "prefix": "gf"
+    },
+    "hello world web app": {
+        "body": "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"time\"\n)\n\nfunc greet(w http.ResponseWriter, r *http.Request) {\n\tfmt.Fprintf(w, \"Hello World! %s\", time.Now())\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/\", greet)\n\thttp.ListenAndServe(\":8080\", nil)\n}",
+        "description": "Snippet for sample hello world webapp",
+        "prefix": "helloweb"
+    },
+    "http handler declaration": {
+        "body": "func $1(${2:w} http.ResponseWriter, ${3:r} *http.Request) {\n\t$0\n}",
+        "description": "Snippet for http handler declaration",
+        "prefix": "hand"
+    },
+    "http ResponseWriter *Request": {
+        "body": "${1:w} http.ResponseWriter, ${2:r} *http.Request",
+        "description": "Snippet for http Response",
+        "prefix": "wr"
+    },
+    "http.Error": {
+        "body": "http.Error(${1:w}, ${2:err}.Error(), ${3:http.StatusInternalServerError})",
+        "description": "Snippet for http.Error()",
+        "prefix": "herr"
+    },
+    "http.HandleFunc": {
+        "body": "${1:http}.HandleFunc(\"${2:/}\", ${3:handler})",
+        "description": "Snippet for http.HandleFunc()",
+        "prefix": "hf"
+    },
+    "http.ListenAndServe": {
+        "body": "http.ListenAndServe(\"${1::8080}\", ${2:nil})",
+        "description": "Snippet for http.ListenAndServe",
+        "prefix": "las"
+    },
+    "http.Redirect": {
+        "body": "http.Redirect(${1:w}, ${2:r}, \"${3:/}\", ${4:http.StatusFound})",
+        "description": "Snippet for http.Redirect()",
+        "prefix": "rd"
+    },
+    "http.Serve": {
+        "body": "http.Serve(\"${1::8080}\", ${2:nil})",
+        "description": "Snippet for http.Serve",
+        "prefix": "sv"
+    },
+    "if else statement": {
+        "body": "if ${1:condition} {\n\t$2\n} else {\n\t$0\n}",
+        "description": "Snippet for if else",
+        "prefix": "ie"
+    },
+    "if err != nil": {
+        "body": "if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}",
+        "description": "Snippet for if err != nil",
+        "prefix": "iferr"
+    },
+    "if error": {
+        "prefix": "ier",
+        "body": [
+            "if err != nil {",
+            "  $0",
+            "}"
+        ]
+    },
+    "if ok": {
+        "prefix": "ifok",
+        "body": [
+            "if ${1:value}, ok := $2; ok {",
+            "  $0",
+            "}"
+        ]
+    },
+    "if statement": {
+        "body": "if ${1:condition} {\n\t$0\n}",
+        "description": "Snippet for if statement",
+        "prefix": "if"
+    },
+    "init function": {
+        "body": "func init() {\n\t$1\n}",
+        "description": "Snippet for init function",
+        "prefix": "finit"
+    },
+    "init var": {
+        "prefix": "vv",
+        "body": [
+            "${2:varName} := ${1:value}"
+        ]
+    },
+    "Interface": {
+        "prefix": "inte",
+        "body": [
+            "type ${1:interfaceName} interface {",
+            "  $0",
+            "}"
+        ]
+    },
+    "log variable content": {
+        "body": "log.Printf(\"${1:var}: %#+v\\\\n\", ${1:var})",
+        "description": "Snippet for log.Printf() with variable content",
+        "prefix": "lv"
+    },
+    "log.Errorf": {
+        "prefix": "lef",
+        "body": [
+            "log.Errorf(\"${1:%+v}\\n\", ${0:err})"
+        ]
+    },
+    "log.Fatal": {
+        "prefix": "lf",
+        "body": [
+            "log.Fatal(${0:err})"
+        ]
+    },
+    "log.Fatalf": {
+        "prefix": "lff",
+        "body": [
+            "log.Fatalf(\"${1:%+v}\\n\", ${0:err})"
+        ]
+    },
+    "log.Printf": {
+        "body": "log.Printf(\"$1\", ${2:var})",
+        "description": "Snippet for log.Printf()",
+        "prefix": "lf"
+    },
+    "log.Printf err": {
+        "prefix": "le",
+        "body": [
+            "log.Printf(\"${1:%+v}\\n\", err)"
+        ]
+    },
+    "log.Println": {
+        "body": "log.Println(\"$1\")",
+        "description": "Snippet for log.Println()",
+        "prefix": "lp"
+    },
+    "Logrus import": {
+        "description": "logrus import snippet that 'overwrites' standard log lib",
+        "prefix": "logrus",
+        "body": [
+            "${1:log} \"github.com/sirupsen/logrus\"",
+            "$0"
+        ]
+    },
+    "main function": {
+        "body": "func main() {\n\t$1\n}",
+        "description": "Snippet for main function",
+        "prefix": "fmain"
+    },
+    "make(...)": {
+        "body": "make(${1:type}, ${2:0})",
+        "description": "Snippet for make statement",
+        "prefix": "make"
+    },
+    "map declaration": {
+        "body": "map[${1:type}]${2:type}",
+        "description": "Snippet for a map",
+        "prefix": "map"
+    },
+    "method declaration": {
+        "body": "func (${1:receiver} ${2:type}) ${3:method}($4) $5 {\n\t$0\n}",
+        "description": "Snippet for method declaration",
+        "prefix": "meth"
+    },
+    "multiple constants": {
+        "body": "const (\n\t${1:name} = ${2:value}\n)",
+        "description": "Snippet for a constant block",
+        "prefix": "cos"
+    },
+    "multiple imports": {
+        "body": "import (\n\t\"${1:package}\"\n)",
+        "description": "Snippet for a import block",
+        "prefix": "ims"
+    },
+    "New Constructor Method": {
+        "prefix": "ne",
+        "body": [
+            "func New$1($2) *$1 {",
+            "  $3",
+            "  return &$1{",
+            "    $0",
+            "  }",
+            "}"
+        ]
+    },
+    "new(...)": {
+        "body": "new(${1:type})",
+        "description": "Snippet for new statement",
+        "prefix": "new"
+    },
+    "Non-blocking Channel Send": {
+        "prefix": "nb",
+        "body": [
+            "select {",
+            "case $1 <- $0:",
+            "default:",
+            "}"
+        ]
+    },
+    "package main and main function": {
+        "body": "package main\n\nfunc main() {\n\t$0\n}",
+        "description": "Snippet for main package & function",
+        "prefix": "pkgm"
+    },
+    "panic(...)": {
+        "body": "panic(\"$0\")",
+        "description": "Snippet for panic",
+        "prefix": "pn"
+    },
+    "Return err": {
+        "prefix": "re",
+        "body": [
+            "return err"
+        ]
+    },
+    "Return Nil": {
+        "prefix": "rn",
+        "body": [
+            "return nil"
+        ]
+    },
+    "Return Nil & err": {
+        "prefix": "rne",
+        "body": [
+            "return nil, err"
+        ]
+    },
+    "select statement": {
+        "body": "select {\ncase ${1:condition}:\n\t$0\n}",
+        "description": "Snippet for select statement",
+        "prefix": "sel"
+    },
+    "single constant": {
+        "body": "const ${1:name} = ${2:value}",
+        "description": "Snippet for a constant",
+        "prefix": "co"
+    },
+    "single import": {
+        "body": "import \"${1:package}\"",
+        "description": "Snippet for import statement",
+        "prefix": "im"
+    },
+    "Slice Remove": {
+        "prefix": "sr",
+        "body": [
+            "${1:slice} = append(${1:slice}[:${2:index}], ${1:slice}[${2:index}+1:]...)"
+        ]
+    },
+    "sort implementation": {
+        "body": "type ${1:SortBy} []${2:Type}\n\nfunc (a $1) Len() int           { return len(a) }\nfunc (a $1) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }\nfunc (a $1) Less(i, j int) bool { ${3:return a[i] < a[j]} }",
+        "description": "Snippet for a custom sort.Sort interface implementation, for a given slice type.",
+        "prefix": "sort"
+    },
+    "Struct": {
+        "prefix": "st",
+        "body": [
+            "type ${1:structName} struct {",
+            "  $0",
+            "}"
+        ]
+    },
+    "Struct Field": {
+        "prefix": "sf",
+        "body": [
+            "${1:fieldName} ${2:string}"
+        ]
+    },
+    "Struct Tag": {
+        "prefix": "stt",
+        "body": [
+            "`${1:json}:\"${2:jsonFieldName}\"`"
+        ]
+    },
+    "switch statement": {
+        "body": "switch ${1:expression} {\ncase ${2:condition}:\n\t$0\n}",
+        "description": "Snippet for switch statement",
+        "prefix": "switch"
+    },
+    "sync.Mutex Lock and defer Unlock": {
+        "prefix": "lock",
+        "body": [
+            "${1:mu}.Lock()",
+            "defer ${1:mu}.Unlock()"
+        ]
+    },
+    "t.Log": {
+        "body": "t.Log(\"$1\")",
+        "description": "Snippet for t.Log()",
+        "prefix": "tl"
+    },
+    "t.Logf": {
+        "body": "t.Logf(\"$1\", ${2:var})",
+        "description": "Snippet for t.Logf()",
+        "prefix": "tlf"
+    },
+    "t.Logf variable content": {
+        "body": "t.Logf(\"${1:var}: %#+v\\\\n\", ${1:var})",
+        "description": "Snippet for t.Logf() with variable content",
+        "prefix": "tlv"
+    },
+    "table driven test": {
+        "body": "func Test$1(t *testing.T) {\n\ttestCases := []struct {\n\t\tdesc\tstring\n\t\t$2\n\t}{\n\t\t{\n\t\t\tdesc: \"$3\",\n\t\t\t$4\n\t\t},\n\t}\n\tfor _, tC := range testCases {\n\t\tt.Run(tC.desc, func(t *testing.T) {\n\t\t\t$0\n\t\t})\n\t}\n}",
+        "description": "Snippet for table driven test",
+        "prefix": "tdt"
+    },
+    "test function": {
+        "body": "func Test$1(t *testing.T) {\n\t$0\n}",
+        "description": "Snippet for Test function",
+        "prefix": "tf"
+    },
+    "test main": {
+        "body": "func TestMain(m *testing.M) {\n\t$1\n\n\tos.Exit(m.Run())\n}",
+        "description": "Snippet for TestMain function",
+        "prefix": "tm"
+    },
+    "Testify Assert Equal": {
+        "prefix": "aeq",
+        "body": [
+            "assert.Equal(t, ${1:expected}, ${2:actual})",
+            "$0"
+        ]
+    },
+    "Testify Assert Nil": {
+        "prefix": "anil",
+        "body": [
+            "assert.Nil(t, ${1:actual})",
+            "$0"
+        ]
+    },
+    "Testify Assert No Error": {
+        "prefix": "anerr",
+        "body": [
+            "assert.NoError(t, ${1:err})",
+            "$0"
+        ]
+    },
+    "Testify Assert Not Nil": {
+        "prefix": "annil",
+        "body": [
+            "assert.NotNil(t, ${1:actual})",
+            "$0"
+        ]
+    },
+    "type function declaration": {
+        "body": "type ${1:name} func($3) $4",
+        "description": "Snippet for a type function declaration",
+        "prefix": "tyf"
+    },
+    "type interface declaration": {
+        "body": "type ${1:name} interface {\n\t$0\n}",
+        "description": "Snippet for a type interface",
+        "prefix": "tyi"
+    },
+    "type struct declaration": {
+        "body": "type ${1:name} struct {\n\t$0\n}",
+        "description": "Snippet for a struct declaration",
+        "prefix": "tys"
+    },
+    "variable declaration": {
+        "body": "var ${1:name} ${2:type}",
+        "description": "Snippet for a variable",
+        "prefix": "var"
+    }
+}

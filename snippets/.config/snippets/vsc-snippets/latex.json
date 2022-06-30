@@ -1,0 +1,252 @@
+{
+    "align": {
+        "body": "\\begin{align}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align}",
+        "description": "align environment",
+        "prefix": "bal"
+    },
+    "align*": {
+        "body": "\\begin{align*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align*}",
+        "description": "align* environment",
+        "prefix": "bsal"
+    },
+    "cases": {
+        "body": "\\begin{cases}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{cases}",
+        "description": "cases environment",
+        "prefix": "bcas"
+    },
+    "chapter": {
+        "body": "\\chapter{${1:${TM_SELECTED_TEXT}}}",
+        "description": "chapter",
+        "prefix": "sch"
+    },
+    "emph": {
+        "body": "\\emph{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "emphasis font",
+        "prefix": "fem"
+    },
+    "enumerate": {
+        "body": "\\begin{enumerate}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{enumerate}",
+        "description": "enumerate environment",
+        "prefix": "ben"
+    },
+    "equation": {
+        "body": "\\begin{equation}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{equation}",
+        "description": "equation environment",
+        "prefix": "beq"
+    },
+    "equation*": {
+        "body": "\\begin{equation*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{equation*}",
+        "description": "equation* environment",
+        "prefix": "bseq"
+    },
+    "etc": {
+        "body": "\\dots",
+        "description": "\\dots",
+        "prefix": "..."
+    },
+    "figure": {
+        "body": "\\begin{figure}[${1:htbp}]\n\t\\centering\n\t${0:${TM_SELECTED_TEXT}}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
+        "description": "figure",
+        "prefix": "bfi"
+    },
+    "frame": {
+        "body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t${0:${TM_SELECTED_TEXT}}\n\n\\end{frame}",
+        "description": "frame",
+        "prefix": "bfr"
+    },
+    "gather": {
+        "body": "\\begin{gather}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{gather}",
+        "description": "gather environment",
+        "prefix": "bga"
+    },
+    "gather*": {
+        "body": "\\begin{gather*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{gather*}",
+        "description": "gather* environment",
+        "prefix": "bsga"
+    },
+    "item": {
+        "body": "\n\\item ",
+        "description": "\\item on a newline",
+        "prefix": "item"
+    },
+    "itemize": {
+        "body": "\\begin{itemize}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{itemize}",
+        "description": "itemize environment",
+        "prefix": "bit"
+    },
+    "lowercase": {
+        "body": "\\lowercase{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "Make text lowercase (no caps)",
+        "prefix": "flc"
+    },
+    "mathbb": {
+        "body": "\\mathbb{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math blackboard bold font",
+        "prefix": "mbb"
+    },
+    "mathbf": {
+        "body": "\\mathbf{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math bold font",
+        "prefix": "mbf"
+    },
+    "mathcal": {
+        "body": "\\mathcal{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math caligraphic font",
+        "prefix": "mcal"
+    },
+    "mathit": {
+        "body": "\\mathit{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math italic font",
+        "prefix": "mit"
+    },
+    "mathrm": {
+        "body": "\\mathrm{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math roman font",
+        "prefix": "mrm"
+    },
+    "mathsf": {
+        "body": "\\mathsf{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math sans serif font",
+        "prefix": "msf"
+    },
+    "mathtt": {
+        "body": "\\mathtt{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "math typewriter font",
+        "prefix": "mtt"
+    },
+    "multline": {
+        "body": "\\begin{multline}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{multline}",
+        "description": "multline environment",
+        "prefix": "bmu"
+    },
+    "multline*": {
+        "body": "\\begin{multline*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{multline*}",
+        "description": "multline* environment",
+        "prefix": "bsmu"
+    },
+    "paragraph": {
+        "body": "\\paragraph{${1:${TM_SELECTED_TEXT}}}",
+        "description": "paragraph",
+        "prefix": "spg"
+    },
+    "part": {
+        "body": "\\part{${1:${TM_SELECTED_TEXT}}}",
+        "description": "part",
+        "prefix": "spa"
+    },
+    "section": {
+        "body": "\\section{${1:${TM_SELECTED_TEXT}}}",
+        "description": "section",
+        "prefix": "sse"
+    },
+    "set font size": {
+        "body": "${1|\\Huge,\\huge,\\LARGE,\\Large,\\large,\\normalsize,\\small,\\footnotesize,\\scriptsize,\\tiny|}",
+        "description": "Select a font size",
+        "prefix": "fontsize"
+    },
+    "split": {
+        "body": "\\begin{split}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{split}",
+        "description": "split environment",
+        "prefix": "bspl"
+    },
+    "subparagraph": {
+        "body": "\\subparagraph{${1:${TM_SELECTED_TEXT}}}",
+        "description": "subparagraph",
+        "prefix": "sps"
+    },
+    "subscript": {
+        "body": "_{${1:${TM_SELECTED_TEXT}}}",
+        "description": "subscript",
+        "prefix": "__"
+    },
+    "subsection": {
+        "body": "\\subsection{${1:${TM_SELECTED_TEXT}}}",
+        "description": "subsection",
+        "prefix": "sss"
+    },
+    "subsubsection": {
+        "body": "\\subsubsection{${1:${TM_SELECTED_TEXT}}}",
+        "description": "subsubsection",
+        "prefix": "ss2"
+    },
+    "superscript": {
+        "body": "^{${1:${TM_SELECTED_TEXT}}}",
+        "description": "superscript",
+        "prefix": "**"
+    },
+    "table": {
+        "body": "\\begin{table}[${1:htbp}]\n\t\\centering\\begin{tabular}{${4:<columns>}}\n\t\t${0:${TM_SELECTED_TEXT}}\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
+        "description": "table",
+        "prefix": "bta"
+    },
+    "textbf": {
+        "body": "\\textbf{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "bold font",
+        "prefix": "fbf"
+    },
+    "textit": {
+        "body": "\\textit{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "italic font",
+        "prefix": "fit"
+    },
+    "textnormal": {
+        "body": "\\textnormal{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "normal font",
+        "prefix": "fno"
+    },
+    "textrm": {
+        "body": "\\textrm{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "roman font",
+        "prefix": "frm"
+    },
+    "textsc": {
+        "body": "\\textsc{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "smallcaps font",
+        "prefix": "fsc"
+    },
+    "textsf": {
+        "body": "\\textsf{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "sans serif font",
+        "prefix": "fsf"
+    },
+    "textsl": {
+        "body": "\\textsl{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "slanted font",
+        "prefix": "fsl"
+    },
+    "textsubscript": {
+        "body": "\\textsubscript{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "Make text a superscript",
+        "prefix": "fsu"
+    },
+    "textsuperscript": {
+        "body": "\\textsuperscript{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "Make text a superscript",
+        "prefix": "fss"
+    },
+    "texttt": {
+        "body": "\\texttt{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "typewriter font",
+        "prefix": "ftt"
+    },
+    "tikzpicture": {
+        "body": "\\begin{tikzpicture}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{tikzpicture}",
+        "description": "tikzpicture",
+        "prefix": "btp"
+    },
+    "underline": {
+        "body": "\\underline{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "Underline text",
+        "prefix": "ful"
+    },
+    "uppercase": {
+        "body": "\\uppercase{${1:${TM_SELECTED_TEXT:text}}}",
+        "description": "Make text uppercase (all caps)",
+        "prefix": "fuc"
+    },
+    "wrapEnv": {
+        "body": "\n\\begin{$1}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{$1}",
+        "description": "Wrap selection into an environment",
+        "prefix": "sec"
+    }
+}

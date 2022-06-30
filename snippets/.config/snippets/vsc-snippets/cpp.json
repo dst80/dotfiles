@@ -1,0 +1,905 @@
+{
+    "#def": {
+        "body": "#define \"${1}\" \"${2}\" ",
+        "description": "#define \" \"",
+        "prefix": "#def"
+    },
+    "#if": {
+        "body": [
+            "#ifdef ${1:0}",
+            "${2}",
+            "#endif // ${1}"
+        ],
+        "description": "#if macro",
+        "prefix": "#if"
+    },
+    "#ifdef": {
+        "body": [
+            "#ifdef ${DEBUG}",
+            "${1}",
+            "#endif // ${DEBUG}"
+        ],
+        "description": "#ifdef macro",
+        "prefix": "#ifdef"
+    },
+    "#ifndef": {
+        "body": [
+            "#ifndef ${1:1}",
+            "${2}",
+            "#endif // !${1}"
+        ],
+        "description": "#ifndef macro",
+        "prefix": "#ifndef"
+    },
+    "#include": {
+        "body": "#include \"${1}\"",
+        "description": "#include \"..\"",
+        "prefix": "#inc"
+    },
+    "#include<": {
+        "body": "#include <${1}>",
+        "description": "#include <..>",
+        "prefix": "#inc<"
+    },
+    "accumulate": {
+        "body": "std::accumulate(std::begin(${1:container}), std::end(${1:container}), 0 ${2:, ${3}}))${0:;}",
+        "description": "accumulate algorithm",
+        "prefix": "accumulate"
+    },
+    "adjacent_find": {
+        "body": "std::adjacent_find(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "adjacent_find algorithm",
+        "prefix": "adjacent_find"
+    },
+    "all_of": {
+        "body": "std::all_of(std::begin(${1:container1}), std::end(${container1}), ${0:UnaryOperation}))${0:;}",
+        "description": "std::all_of check",
+        "prefix": "all_of"
+    },
+    "any_of": {
+        "body": "std::any_of(std::begin(${1:container1}), std::end(${container1}), ${0:UnaryOperation}))${0:;}",
+        "description": "std::any_of check",
+        "prefix": "any_of"
+    },
+    "begin_end": {
+        "body": "${container}.begin(), ${container}.end()",
+        "description": "begin()..end() statement",
+        "prefix": "begin end"
+    },
+    "binary_search": {
+        "body": "std::binary_search(std::begin(${1:container}), std::end(${1:container}), ${2:value}))${0:;}",
+        "description": "binary_search algorithm",
+        "prefix": "binary search"
+    },
+    "cassign": {
+        "body": "${MyClass} operator=(const ${MyClass}& ${other}) {= default};",
+        "description": "copy assignment operator",
+        "prefix": "cassign"
+    },
+    "cctor": {
+        "body": "${MyClass}(const ${MyClass}& ${other}) ${= default};",
+        "description": "copy constructor statement",
+        "prefix": "cctor"
+    },
+    "cin": {
+        "body": "std::cin >>",
+        "description": "'cc{r:container2}'",
+        "prefix": "cin"
+    },
+    "class": {
+        "body": [
+            "class ${MyClass} ${: ${BaseClass}}",
+            "{",
+            "public:",
+            "\t${1}",
+            "};"
+        ],
+        "description": "clc{r:container2}s statement",
+        "prefix": "class"
+    },
+    "copy": {
+        "body": "std::copy(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}))${0:;}",
+        "description": "copy container to another one",
+        "prefix": "copy"
+    },
+    "copy_backward": {
+        "body": "std::copy_backward(std::begin(${1:container}), std::end(${1:container}), std::end(${2}))${0:;}",
+        "description": "copy_backward container ",
+        "prefix": "copy_backward"
+    },
+    "copy_if": {
+        "body": "std::copy_if(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}), ${3})${0:;}",
+        "description": "copy_if statement",
+        "prefix": "copy_if"
+    },
+    "copy_n": {
+        "body": "std::copy_n(std::begin(${1:container}), ${2}, std::end(${1:container}))${0:;}",
+        "description": "copy_n statement",
+        "prefix": "copy_n"
+    },
+    "count": {
+        "body": "std::count(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "count statement",
+        "prefix": "count"
+    },
+    "count_if": {
+        "body": "std::count_if(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "count_if statement",
+        "prefix": "cni"
+    },
+    "cout": {
+        "body": "std::cout <<",
+        "description": "cout statement",
+        "prefix": "cout"
+    },
+    "ctor": {
+        "body": "${MyClass}() ${= default};",
+        "description": "constructor statement",
+        "prefix": "ctor"
+    },
+    "do": {
+        "body": [
+            "do",
+            "{",
+            "\t${1}",
+            "} while(${2}))${0:;}"
+        ],
+        "description": "do...while loop",
+        "prefix": "do"
+    },
+    "else": {
+        "body": [
+            "else",
+            "{",
+            "\t${1}",
+            "}"
+        ],
+        "description": "else statement",
+        "prefix": "else"
+    },
+    "else if": {
+        "body": [
+            "else if (${1})",
+            "{",
+            "\t${2}",
+            "}"
+        ],
+        "description": "else-if statement",
+        "prefix": "else if"
+    },
+    "enum": {
+        "body": [
+            "enum ${MyEnum}",
+            "{",
+            "\t${1}",
+            "};"
+        ],
+        "description": "enum type",
+        "prefix": "enum"
+    },
+    "enum class": {
+        "body": [
+            "enum class ${MyClass}",
+            "{",
+            "};"
+        ],
+        "description": "enum class (c++11)",
+        "prefix": "enum class"
+    },
+    "equal": {
+        "body": "std::equal(std::begin(${1:container}), std::end(${1:container}), std::begin(${2})))",
+        "description": "equal statement",
+        "prefix": "equal"
+    },
+    "equal_range": {
+        "body": "std::equal_range(std::begin(${1:container}), std::end(${1:container}), ${2}, ${3:, ${4}}))${0:;};",
+        "description": "equal_range statement",
+        "prefix": "equal_range"
+    },
+    "fill": {
+        "body": "std::fill(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "fill statement",
+        "prefix": "fill"
+    },
+    "fill_n": {
+        "body": "std::fill_n(std::begin(${1:container}), ${2}, ${3})${0:;}",
+        "description": "fill_n statement",
+        "prefix": "fill_n"
+    },
+    "find": {
+        "body": "std::find(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "find statement",
+        "prefix": "find"
+    },
+    "find_end": {
+        "body": "std::find_end(std::begin(${container}), std::end(${1:container}), std::begin(${2:subset}), std::end(${2:subset}))${0:;}",
+        "description": "find_end statement",
+        "prefix": "find_end"
+    },
+    "find_first_of": {
+        "body": "std::find_first_of(std::begin(${container}), std::end(${1:container}), std::begin(${2:subset}), std::end(${2:subset}))${0:;}",
+        "description": "find_first_of statement",
+        "prefix": "find_first_of"
+    },
+    "find_if": {
+        "body": "std::find_if(std::begin(${1:container}), std::end(${1:container}), ${2:Predicate}))${0:;}",
+        "description": "find_if statement",
+        "prefix": "find_if"
+    },
+    "find_if_not": {
+        "body": "std::find_if_not(std::begin(${1:container}), std::end(${1:container}), ${2:Predicate}))${0:;}",
+        "description": "find_if_not statement",
+        "prefix": "find_if_not"
+    },
+    "for": {
+        "body": [
+            "for(auto ${var} : ${collection_to_loop})",
+            "{",
+            "\t${1}",
+            "}"
+        ],
+        "description": "range-based for loop",
+        "prefix": "for"
+    },
+    "for_each": {
+        "body": "std::for_each(std::begin(${1:container}), std::end(${1:container}), ${2:UnaryFunction}))${0:;}",
+        "description": "for_each statement",
+        "prefix": "fre"
+    },
+    "fori": {
+        "body": [
+            "for (size_t ${i} = ${1:0}; ${i} < ${2:length}; ++${i})",
+            "{",
+            "\t${3}",
+            "}"
+        ],
+        "description": "index based for loop",
+        "prefix": "fori"
+    },
+    "foriter": {
+        "body": [
+            "for (auto ${iter} = ${container}.${1:begin()}; ${iter} != ${container}.${2:end()}))${0:;} ++${iter})",
+            "{",
+            "\t${3}",
+            "}"
+        ],
+        "description": "iterator based for loop",
+        "prefix": "foriter"
+    },
+    "forr": {
+        "body": [
+            "for (int ${i} = ${1:length} - 1; ${i} >= ${2:0}; --${i})",
+            "{",
+            "\t${3}",
+            "}"
+        ],
+        "description": "reverse index based for loop",
+        "prefix": "forr"
+    },
+    "func": {
+        "body": "${ReturnType} ${function}(${parameter})${1}",
+        "description": "copy assignment operator",
+        "prefix": "func"
+    },
+    "generate": {
+        "body": "std::generate(std::begin(${1:container}), std::end(${1:container}), ${2}))${0:;}",
+        "description": "generate statement",
+        "prefix": "generate"
+    },
+    "if": {
+        "body": [
+            "if (${1})",
+            "{",
+            "\t${2}",
+            "}"
+        ],
+        "description": "if statement",
+        "prefix": "if"
+    },
+    "includes": {
+        "body": "std::includes(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:subset}), std::end(${2:subset}))${0:;}",
+        "description": "includes statement",
+        "prefix": "includes"
+    },
+    "inplace_merge": {
+        "body": "std::inplace_merge(std::begin(${1:container}), std::end(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "inplace_merge statement",
+        "prefix": "inplace_merge"
+    },
+    "interface": {
+        "body": [
+            "class ${IMyClass}",
+            "{",
+            "public:",
+            "\tvirtual ~${IMyClass} () = default;",
+            "\t${1}",
+            "};"
+        ],
+        "description": "interface class statement",
+        "prefix": "interface"
+    },
+    "iota": {
+        "body": "std::iota(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "iota statement",
+        "prefix": "iota"
+    },
+    "is_heap": {
+        "body": "std::is_heap(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "is_heap statement",
+        "prefix": "in_heap"
+    },
+    "is_heap_until": {
+        "body": "std::is_heap_until(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "is_heap_until statement",
+        "prefix": "is_heap_until"
+    },
+    "is_partitioned": {
+        "body": "std::is_partitioned(std::begin(${1:container}), std::end(${1:container}), ${2:Predicate}))${0:;}",
+        "description": "is_partitioned statement",
+        "prefix": "is_partitioned"
+    },
+    "is_permutation": {
+        "body": "std::is_permutation(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:other_container}))${0:;}",
+        "description": "is_permutation statement",
+        "prefix": "is_permutation"
+    },
+    "is_sorted": {
+        "body": "std::is_sorted(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "is_sorted statement",
+        "prefix": "is_sorted"
+    },
+    "is_sorted_until": {
+        "body": "std::is_sorted_until(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "is_sorted_until statement",
+        "prefix": "is_sorted_until"
+    },
+    "lambda": {
+        "body": [
+            "[${&}](${1:const auto ${2:entry}})",
+            "{",
+            "\t${3}",
+            "}"
+        ],
+        "description": "lambda statement",
+        "prefix": "[](){}"
+    },
+    "lexigraphical_compare": {
+        "body": "std::lexigraphical_compare(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:subset}), std::end(${2:subset}))${0:;}",
+        "description": "lexigraphical_compare statement",
+        "prefix": "lexigraphical_compare"
+    },
+    "lower_bound": {
+        "body": "std::lower_bound(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "lower_bound statement",
+        "prefix": "lower_bound"
+    },
+    "main": {
+        "body": [
+            "int main(int ${argc}, const char** ${argv}) {",
+            "\treturn EXIT_SUCCESS;",
+            "}"
+        ],
+        "description": "'main entry point",
+        "prefix": "main"
+    },
+    "make_heap": {
+        "body": "std::make_heap(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "make_heap statement",
+        "prefix": "make_heap"
+    },
+    "make_pair": {
+        "body": [
+            "std::make_pair(${1:t}, ${2:r}))${0:;}"
+        ],
+        "description": "std::make_pair statement",
+        "prefix": "make_pair"
+    },
+    "make_shared": {
+        "body": "std::make_shared<${T}>(${1}))${0:;}",
+        "description": "std::make_shared statement",
+        "prefix": "make_shared"
+    },
+    "make_tuple": {
+        "body": "std::make_tuple(${1:varibles}))${0:;}",
+        "description": "std::make_tuple statement",
+        "prefix": "make_tuple"
+    },
+    "make_unique": {
+        "body": "std::make_unique<${1:T}>(${2}))${0:;}",
+        "description": "std::make_unique statement",
+        "prefix": "make_unique"
+    },
+    "massign": {
+        "body": [
+            "\t${MyClass}& operator=(${MyClass}&& ${other}) {= default};"
+        ],
+        "description": "copy assignment operator",
+        "prefix": "massign"
+    },
+    "max_element": {
+        "body": "std::max_element(std::begin(${1:container}), std::end(${1:container}))${}",
+        "description": "max_element statement",
+        "prefix": "max_element"
+    },
+    "mctor": {
+        "body": "${MyClass}(${MyClass}&& ${other}) ${= default};",
+        "description": "move constructor statement",
+        "prefix": "mctor"
+    },
+    "merge": {
+        "body": "std::merge(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}), std::end(${2:container2}), std::begin(${3:container3}))${0:;}",
+        "description": "merge statement",
+        "prefix": "merge"
+    },
+    "mfunc": {
+        "body": [
+            "${ReturnType} ${Class}::${function}(${parameter})",
+            "{",
+            "\t${1}",
+            "}"
+        ],
+        "description": "copy assignment operator",
+        "prefix": "mfunc"
+    },
+    "min_element": {
+        "body": "std::min_element(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "min_element statement",
+        "prefix": "min_element"
+    },
+    "minmax_element": {
+        "body": "std::minmax_element(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "minmax_element statement",
+        "prefix": "minmax"
+    },
+    "mismatch": {
+        "body": "std::mismatch(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}))${0:;}",
+        "description": "mismatch statement",
+        "prefix": "mismatch"
+    },
+    "move": {
+        "body": "std::move(${1:variable}))${0:;}",
+        "description": "move variable",
+        "prefix": "move"
+    },
+    "move container": {
+        "body": "std::move(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}))${0:;}",
+        "description": "container move",
+        "prefix": "cmove"
+    },
+    "move container backward": {
+        "body": "std::move_backward(std::begin(${1:container}), std::end(${1:container}), std::end(${2:container2}))${0:;}",
+        "description": "move_backward statement",
+        "prefix": "cmove_backward"
+    },
+    "namesp_2": {
+        "body": [
+            "namespace ${MyNamespace}",
+            "{",
+            "namespace ${MyNamespace2}",
+            "{",
+            "\t${1}",
+            "} // namespace ${MyNamespace2}",
+            "} // namespace ${MyNamespace}"
+        ],
+        "prefix": "namesp_2"
+    },
+    "namesp_3": {
+        "body": [
+            "namespace ${MyNamespace}",
+            "{",
+            "namespace ${MyNamespace2}",
+            "{",
+            "namespace ${MyNamespace3}",
+            "{",
+            "\t${1}",
+            "} // namespace ${MyNamespace3}",
+            "} // namespace ${MyNamespace2}",
+            "} // namespace ${MyNamespace}"
+        ],
+        "prefix": "namesp_3"
+    },
+    "namespace": {
+        "body": [
+            "namespace ${MyNamespace}",
+            "{",
+            "\t${1}",
+            "} // namespace ${MyNamespace}"
+        ],
+        "prefix": "namespace"
+    },
+    "next_permutation": {
+        "body": "std::next_permutation(std::begin(${1:container}), std::end(${1:container})))${0:;}",
+        "description": "next_permutation statement",
+        "prefix": "next_permuation"
+    },
+    "none_of": {
+        "body": "std::none_of(${1:container1}.begin(), ${1:container1}.end(), ${2:UnaryOperation}))${0:;}",
+        "description": "none_of statement",
+        "prefix": "none_of"
+    },
+    "nth_element": {
+        "body": "std::nth_element(std::begin(${1:container}), ${2:container_iter}), std::end(${1:container}))${0:;}",
+        "description": "nth_element statement",
+        "prefix": "nth_element"
+    },
+    "pair": {
+        "body": "std::pair<${1:T}, ${2:R}> ${0:;}",
+        "description": "std::pair statement",
+        "prefix": "pair"
+    },
+    "partial_sort": {
+        "body": "std::partial_sort(std::begin(${1:container}), ${2:container_middle}, std::end(${1:container}))${0:;}",
+        "description": "partial_sort statement",
+        "prefix": "partial_sort"
+    },
+    "partial_sort_copy": {
+        "body": "std::partial_sort_copy(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}), std::end(${2:container2}))${0:;}",
+        "description": "partial_sort_copy statement",
+        "prefix": "part_sort_copy"
+    },
+    "partition": {
+        "body": "std::partition(std::begin(${1:container}), std::end(${1:container}), ${2:UnaryFunction})${0:;}",
+        "description": "partition statement",
+        "prefix": "partition"
+    },
+    "partition_copy": {
+        "body": "std::partition_copy(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}), std::end(${3}))${0:;}",
+        "description": "partition_copy statement",
+        "prefix": "ptc"
+    },
+    "partition_point": {
+        "body": "std::partition_point(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "partition_point statement",
+        "prefix": "partiton_point"
+    },
+    "pop_heap": {
+        "body": "std::pop_heap(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "pop_heap statement",
+        "prefix": "pop_heap"
+    },
+    "prev_permutation": {
+        "body": "std::prev_permutation(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "prev_permutation statement",
+        "prefix": "prev_permutation"
+    },
+    "purefunc": {
+        "body": "virtual ${ReturnType} ${function}(${parameter}) = 0;",
+        "description": "pure virtual function",
+        "prefix": "purefunc"
+    },
+    "push_heap": {
+        "body": "std::push_heap(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "push_heap statement",
+        "prefix": "push_heap"
+    },
+    "random_shuffle": {
+        "body": "std::random_shuffle(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "random_shuffle statement",
+        "prefix": "shuffle"
+    },
+    "remove": {
+        "body": "std::remove(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "remove statement",
+        "prefix": "remove"
+    },
+    "remove_copy": {
+        "body": "std::remove_copy(std::begin(${1:container}), std::end(${1:container}), std::begin(${1:container}), ${2})${0:;}",
+        "description": "remove_copy statement",
+        "prefix": "remove_copy"
+    },
+    "remove_copy_if": {
+        "body": "std::remove_copy_if(std::begin(${1:container}), std::end(${1:container}), std::begin(${1:container}), ${2})${0:;}",
+        "description": "remove_copy_if statement",
+        "prefix": "remove_copy_if"
+    },
+    "remove_if": {
+        "body": "std::remove_if(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "remove_if statement",
+        "prefix": "remove_if"
+    },
+    "replace": {
+        "body": "std::replace(std::begin(${1:container}), std::end(${1:container}), ${2}, ${3})${0:;}",
+        "description": "replace statement",
+        "prefix": "replace"
+    },
+    "replace_copy": {
+        "body": "std::replace_copy(std::begin(${1:container}), std::end(${1:container}), std::begin(${1:container}), ${2}, ${3})${0:;}",
+        "description": "replace_copy statement",
+        "prefix": "replace_copy"
+    },
+    "replace_copy_if": {
+        "body": "std::replace_copy_if(std::begin(${1:container}), std::end(${1:container}), std::begin(${1:container}), ${2:predicate})${0:;}",
+        "description": "replace_copy_if statement",
+        "prefix": "replace_copy_if"
+    },
+    "replace_if": {
+        "body": "std::replace_if(std::begin(${1:container}), std::end(${1:container}), ${2:Predicate})${0:;}",
+        "description": "replace_if statement",
+        "prefix": "replace_if"
+    },
+    "reverse": {
+        "body": "std::reverse(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "reverse statement",
+        "prefix": "rvr"
+    },
+    "reverse_copy": {
+        "body": "std::reverse_copy(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}))${0:;}",
+        "description": "reverse_copy statement",
+        "prefix": "reverse_copy"
+    },
+    "rotate": {
+        "body": "std::rotate(std::begin(${1:container}), std::begin(${2}), std::end(${1:container}))${0:;}",
+        "description": "rotate statement",
+        "prefix": "rotate"
+    },
+    "rotate_copy": {
+        "body": "std::rotate_copy(std::begin(${1:container}), std::begin(${2}), std::end(${1:container}), std::begin(${3}))${0:;}",
+        "description": "rotate_copy statement",
+        "prefix": "rotate_copy"
+    },
+    "search": {
+        "body": "std::search(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}), std::end(${3}))${0:;}",
+        "description": "search statement",
+        "prefix": "search"
+    },
+    "search_n": {
+        "body": "std::search_n(std::begin(${1:container}), std::end(${1:container}),${2},${3})${0:;}",
+        "description": "search_n statement",
+        "prefix": "search_n"
+    },
+    "set_difference": {
+        "body": "std::set_difference(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}), std::end(${3}), std::begin(${4}))${0:;}",
+        "description": "set_difference statement",
+        "prefix": "set_difference"
+    },
+    "set_intersection": {
+        "body": "std::set_intersection(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}), std::end(${3}), std::begin(${4}))${0:;}",
+        "description": "set_intersection statement",
+        "prefix": "set_intersection"
+    },
+    "set_symmetric_difference": {
+        "body": "std::set_symmetric_difference(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}), std::end(${3}), std::begin(${4}))${0:;}",
+        "description": "set_symmetric_difference statement",
+        "prefix": "set_symmetric_difference"
+    },
+    "set_union": {
+        "body": "std::set_union(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}), std::end(${3}), std::begin(${4}))${0:;}",
+        "description": "set_union statement",
+        "prefix": "set_union"
+    },
+    "shared_ptr": {
+        "body": "std::shared_ptr<${1:T}> ${0:;}",
+        "description": "std::shared_ptr statement",
+        "prefix": "shared_ptr"
+    },
+    "sort": {
+        "body": "std::sort(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "sort statement",
+        "prefix": "sort"
+    },
+    "sort_heap": {
+        "body": "std::sort_heap(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "sort_heap statement",
+        "prefix": "sort_heap"
+    },
+    "stable_partition": {
+        "body": "std::stable_partition(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "stable_partition statement",
+        "prefix": "stable_partition"
+    },
+    "stable_sort": {
+        "body": "std::stable_sort(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "stable_sort statement",
+        "prefix": "stable_sort"
+    },
+    "std::array": {
+        "body": "std::array<${1:T}, ${2:N}> ${0:;}",
+        "prefix": "array"
+    },
+    "std::begin..std::end": {
+        "body": "std::begin(${container}), std::end(${container}",
+        "description": "begin()..end() statement",
+        "prefix": "sbegin"
+    },
+    "std::deque": {
+        "body": "std::deque<${1:T}> ${0:;}",
+        "prefix": "deque"
+    },
+    "std::forward_list": {
+        "body": "std::forward_list<${1:T}> ${0:;}",
+        "prefix": "flist"
+    },
+    "std::list": {
+        "body": "std::list<${1:T}> ${0:;}",
+        "prefix": "list"
+    },
+    "std::map": {
+        "body": "std::map<${1:Key}, ${2:T}> ${0:;}",
+        "prefix": "map"
+    },
+    "std::multimap": {
+        "body": "std::multimap<${1:Key}, ${2:T}> ${0:;}",
+        "prefix": [
+            "mmap",
+            "multismap"
+        ]
+    },
+    "std::multiset": {
+        "body": "std::multiset<${1:T}> ${0:;}",
+        "prefix": [
+            "mset",
+            "multiset"
+        ]
+    },
+    "std::priority_queue": {
+        "body": "std::priority_queue<${1:T}> ${0:;}",
+        "prefix": "pqueue"
+    },
+    "std::queue": {
+        "body": "std::queue<${1:T}> ${0:;}",
+        "prefix": "queue"
+    },
+    "std::set": {
+        "body": "std::set<${1:T}> ${0:;}",
+        "prefix": "set"
+    },
+    "std::stack": {
+        "body": "std::stack<${1:T}> ${0:;}",
+        "prefix": "stack"
+    },
+    "std::unordered_map": {
+        "body": "std::unordered_map<${1:Key}, ${2:T}> ${0:;}",
+        "prefix": [
+            "umap",
+            "unordered_map"
+        ]
+    },
+    "std::unordered_multimap": {
+        "body": "std::unordered_multimap<${1:Key}, ${2:T}> ${0:;}",
+        "prefix": [
+            "ummap",
+            "unordered_multimap"
+        ]
+    },
+    "std::unordered_multiset": {
+        "body": "std::unordered_multiset<${1:T}> ${0:;}",
+        "prefix": [
+            "umset",
+            "unordered_multiset"
+        ]
+    },
+    "std::unordered_set": {
+        "body": "std::unordered_set<${1:T}> ${0:;}",
+        "prefix": [
+            "uset",
+            "unordered_set"
+        ]
+    },
+    "std::vector": {
+        "body": "std::vector<${1:T}> ${0:;}",
+        "prefix": "vector"
+    },
+    "string_lower": {
+        "body": "std::transform(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}), [](char c) {return std::tolower(c);})${0:;}",
+        "description": "string_lower statement",
+        "prefix": "string_lower"
+    },
+    "string_trim_left": {
+        "body": "${1:container}.erase(0, ${1:container}.find_first_not_of(\" \\t\\n\\r\")${0:;}",
+        "description": "string_trim_left statement",
+        "prefix": "trim_left"
+    },
+    "string_trim_right": {
+        "body": "${1:container}.erase(${1:container}.find_last_not_of(\" \\t\\n\\r\") + 1)${0:;}",
+        "description": "string_trim_right statement",
+        "prefix": "trim_right"
+    },
+    "string_upper": {
+        "body": "std::transform(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}), [](char c) {return std::toupper(c);})${0:;}",
+        "description": "string_upper statement",
+        "prefix": "string_upper"
+    },
+    "struct": {
+        "body": [
+            "struct ${MyStruct}",
+            "{",
+            "\t${1}",
+            "};"
+        ],
+        "description": "struct",
+        "prefix": "struct"
+    },
+    "swap": {
+        "body": "std::swap(${1:object}, ${2:})${0:;}",
+        "description": "swap statement",
+        "prefix": "swap"
+    },
+    "swap_ranges": {
+        "body": "std::swap_ranges(std::begin(${1:container}), std::end(${1:container}), std::begin(${2}))${0:;}",
+        "description": "swap_ranges statement",
+        "prefix": "swap_ranges"
+    },
+    "switch": {
+        "body": [
+            "switch (${switch_on})",
+            "{",
+            "default:",
+            "\tbreak;${1}",
+            "}"
+        ],
+        "description": "switch statement",
+        "prefix": "switch"
+    },
+    "tie": {
+        "body": "std::tie(${parameters}) = ${1}",
+        "description": "std::tie statement",
+        "prefix": "tie"
+    },
+    "transform": {
+        "body": "std::transform(${container1}.begin(), ${container1}.end(), ${container2}.begin(), ${3:UnaryOperation}))${0:;}",
+        "description": "std::transform statement",
+        "prefix": "transform"
+    },
+    "try": {
+        "body": [
+            "try",
+            "{",
+            "\t",
+            "}",
+            "catch (const ${std::exception}& ${exception})",
+            "{",
+            "\t${1}",
+            "}"
+        ],
+        "description": "try catch exception handling",
+        "prefix": "try"
+    },
+    "tuple": {
+        "body": "std::tuple<${1:T}> ${0:;}",
+        "description": "stc{r:container2}:tuple statement",
+        "prefix": "tuple"
+    },
+    "union": {
+        "body": [
+            "u{n:container2}ion ${MyUniou{n:container2}",
+            "{",
+            "\t${1}",
+            "};"
+        ],
+        "description": "union",
+        "prefix": "union"
+    },
+    "unique": {
+        "body": "std::unique(std::begin(${1:container}), std::end(${1:container}))${0:;}",
+        "description": "unique statement",
+        "prefix": "unique"
+    },
+    "unique_copy": {
+        "body": "std::unique_copy(std::begin(${1:container}), std::end(${1:container}), std::ostream_iterator<string>(std::cout, \"\\n\"))${0:;}",
+        "description": "unique_copy statement",
+        "prefix": "unique_copy"
+    },
+    "unique_ptr": {
+        "body": "std::unique_ptr<${1:T}> ${0:;}",
+        "description": "std::unique_ptr statement",
+        "prefix": [
+            "unique_ptr",
+            "uptr"
+        ]
+    },
+    "upper_bound": {
+        "body": "std::upper_bound(std::begin(${1:container}), std::end(${1:container}), ${2})${0:;}",
+        "description": "upper_bound statement",
+        "prefix": "upper_bound"
+    },
+    "while": {
+        "body": [
+            "while (${1})",
+            "{",
+            "\t${0:;}",
+            "}"
+        ],
+        "description": "while loop",
+        "prefix": "while"
+    }
+}
