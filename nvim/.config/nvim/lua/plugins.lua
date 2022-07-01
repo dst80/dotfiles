@@ -50,18 +50,6 @@ return require("packer").startup(
             end
         }
 
-        -- snipping
-        -- use {
-        --     'dcampos/nvim-snippy',
-        --    requires = {
-        --         'dcampos/cmp-snippy'
-        --     },
-        --     config = function()
-        --         require('configuration.snippets')
-        --     end
-        -- }
-
-
         -- tpope best's
         use 'tpope/vim-surround'
 
