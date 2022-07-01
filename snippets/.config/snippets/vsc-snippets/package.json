@@ -58,6 +58,14 @@
                 "path": "markdown.json"
             },
             {
+                "language": "markdown",
+                "path": "plantuml.json"
+            },
+            {
+                "language": "plantuml",
+                "path": "plantuml.json"
+            },
+            {
                 "path": "./lua.json",
                 "language": "lua"
             },
