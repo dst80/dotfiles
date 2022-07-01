@@ -523,8 +523,7 @@
         "body": [
             "trait ${1:Name} {",
             "    ${2:// add code here}",
-            "}",
-            ""
+            "}"
         ],
         "description": "trait … { … }"
     },

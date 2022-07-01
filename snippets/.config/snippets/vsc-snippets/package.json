@@ -1,0 +1,41 @@
+{
+    "name": "personal-snippets",
+    "displayName": "My Personal Snippets",
+    "description": "My Personal Snippets for VS Code",
+    "version": "1.0.0",
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "cpp",
+                "path": "./cpp.json"
+            },
+            {
+                "language": "go",
+                "path": "./go.json"
+            },
+            {
+                "language": "javascript",
+                "path": "./javascript.json"
+            },
+            {
+                "language": "latex",
+                "path": "./latex.json"
+            },
+            {
+                "language": "lua",
+                "path": "./lua.json"
+            },
+            {
+                "language": "python",
+                "path": "./python.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust.json"
+            }
+        ]
+    }
+}
