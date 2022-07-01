@@ -1,41 +1,65 @@
 {
+    "version": "1.0.0",
     "name": "personal-snippets",
     "displayName": "My Personal Snippets",
     "description": "My Personal Snippets for VS Code",
-    "version": "1.0.0",
-    "categories": [
-        "Snippets"
-    ],
     "contributes": {
         "snippets": [
             {
-                "language": "cpp",
-                "path": "./cpp.json"
+                "path": "./cpp.json",
+                "language": "cpp"
             },
             {
-                "language": "go",
-                "path": "./go.json"
+                "path": "./go.json",
+                "language": "go"
             },
             {
-                "language": "javascript",
-                "path": "./javascript.json"
+                "path": "./latex.json",
+                "language": "latex"
             },
             {
-                "language": "latex",
-                "path": "./latex.json"
+                "path": "./lua.json",
+                "language": "lua"
             },
             {
-                "language": "lua",
-                "path": "./lua.json"
+                "path": "./python.json",
+                "language": "python"
             },
             {
-                "language": "python",
-                "path": "./python.json"
+                "path": "./rust.json",
+                "language": "rust"
             },
             {
-                "language": "rust",
-                "path": "./rust.json"
+                "path": "./javascript.json",
+                "language": "javascript"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "typescript"
+            },
+            {
+                "path": "./typescript.json",
+                "language": "typescript"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "javascriptreact"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "typescriptreact"
+            },
+            {
+                "path": "./react.json",
+                "language": "javascriptreact"
+            },
+            {
+                "path": "./react-ts.json",
+                "language": "typescriptreact"
             }
         ]
-    }
+    },
+    "categories": [
+        "Snippets"
+    ]
 }
