@@ -6,15 +6,48 @@
     "contributes": {
         "snippets": [
             {
+                "language": "css",
+                "path": "./css.json"
+            },
+            {
+                "language": "scss",
+                "path": "./css.json"
+            },
+            {
+                "language": "less",
+                "path": "./css.json"
+            },
+            {
                 "path": "./cpp.json",
                 "language": "cpp"
-            },          {
+            },
+            {
                 "path": "./csharp.json",
                 "language": "csharp"
             },
             {
                 "path": "./go.json",
                 "language": "go"
+            },
+            {
+                "language": "html",
+                "path": "./html.json"
+            },
+            {
+                "language": "php",
+                "path": "./html.json"
+            },
+            {
+                "language": "ruby",
+                "path": "./html.json"
+            },
+            {
+                "language": "njk",
+                "path": "./html.json"
+            },
+            {
+                "language": "django-html",
+                "path": "./html.json"
             },
             {
                 "path": "./latex.json",
