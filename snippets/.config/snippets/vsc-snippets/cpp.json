@@ -72,14 +72,32 @@
         "prefix": "binary search"
     },
     "cassign": {
-        "body": "${MyClass} operator=(const ${MyClass}& ${other}) {= default};",
+        "body": "${1:$TM_FILENAME_BASE} operator=(const ${1}& ${2:other}) ${3:= default};",
         "description": "copy assignment operator",
         "prefix": "cassign"
     },
+    "cassign-impl": {
+        "body": [
+            "${1:$TM_FILENAME_BASE} ${1}::operator=(const ${1}& ${2:other}) {",
+            "\t${0}",
+            "}"
+        ],
+        "description": "copy assignment operator",
+        "prefix": "icassign"
+    },
     "cctor": {
-        "body": "${MyClass}(const ${MyClass}& ${other}) ${= default};",
+        "body": "${1:$TM_FILENAME_BASE}(const ${1}& ${2:other}) ${3:= default};",
         "description": "copy constructor statement",
         "prefix": "cctor"
+    },
+    "cctor-impl": {
+        "body": [
+            "${1:$TM_FILENAME_BASE}(const ${1}& ${2:other}) {",
+            "\t${0}",
+            "}"
+        ],
+        "description": "copy constructor statement",
+        "prefix": "icctor"
     },
     "cin": {
         "body": "std::cin >>",
@@ -88,10 +106,10 @@
     },
     "class": {
         "body": [
-            "class ${MyClass} ${: ${BaseClass}}",
+            "class ${1:$TM_FILENAME_BASE} ${2: ${3:BaseClass}}",
             "{",
             "public:",
-            "\t${1}",
+            "\t${0}",
             "};"
         ],
         "description": "clc{r:container2}s statement",
@@ -133,15 +151,24 @@
         "prefix": "cout"
     },
     "ctor": {
-        "body": "${MyClass}() ${= default};",
+        "body": "${1:$TM_FILENAME_BASE}(${2}) ${3:= default};",
         "description": "constructor statement",
         "prefix": "ctor"
+    },
+    "ctor-impl": {
+        "body": [
+            "${1:$TM_FILENAME_BASE}(${2}) {",
+            "\t${0}",
+            "}"
+        ],
+        "description": "constructor statement",
+        "prefix": "ictor"
     },
     "do": {
         "body": [
             "do",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${1}",
             "} while(${2}))${0:;}"
         ],
         "description": "do...while loop",
@@ -151,7 +178,7 @@
         "body": [
             "else",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "else statement",
@@ -161,7 +188,7 @@
         "body": [
             "else if (${1})",
             "{",
-            "\t${2}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "else-if statement",
@@ -233,9 +260,9 @@
     },
     "for": {
         "body": [
-            "for(auto ${var} : ${collection_to_loop})",
+            "for(auto ${1:var} : ${2:collection_to_loop})",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "range-based for loop",
@@ -248,9 +275,9 @@
     },
     "fori": {
         "body": [
-            "for (size_t ${i} = ${1:0}; ${i} < ${2:length}; ++${i})",
+            "for (size_t ${1:i} = ${2:0}; ${1:i} < ${2:length}; ++${1:i})",
             "{",
-            "\t${3}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "index based for loop",
@@ -258,9 +285,9 @@
     },
     "foriter": {
         "body": [
-            "for (auto ${iter} = ${container}.${1:begin()}; ${iter} != ${container}.${2:end()}))${0:;} ++${iter})",
+            "for (auto ${1:iter} = ${2:container}.${3:begin()}; ${1:iter} != ${2:container}.${4:end()}; ++${iter})",
             "{",
-            "\t${3}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "iterator based for loop",
@@ -268,9 +295,9 @@
     },
     "forr": {
         "body": [
-            "for (int ${i} = ${1:length} - 1; ${i} >= ${2:0}; --${i})",
+            "for (int ${1:i} = ${2:length} - 1; ${1:i} >= ${3:0}; --${1:i})",
             "{",
-            "\t${3}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "reverse index based for loop",
@@ -290,7 +317,7 @@
         "body": [
             "if (${1})",
             "{",
-            "\t${2}",
+            "\t${TM_SELECTED_TEXT}${0}",
             "}"
         ],
         "description": "if statement",
@@ -308,11 +335,11 @@
     },
     "interface": {
         "body": [
-            "class ${IMyClass}",
+            "class ${1:$TM_FILENAME_BASE}",
             "{",
             "public:",
-            "\tvirtual ~${IMyClass} () = default;",
-            "\t${1}",
+            "\tvirtual ~${1} () = default;",
+            "\t${0}",
             "};"
         ],
         "description": "interface class statement",
@@ -357,7 +384,7 @@
         "body": [
             "[${&}](${1:const auto ${2:entry}})",
             "{",
-            "\t${3}",
+            "\t${0}",
             "}"
         ],
         "description": "lambda statement",
@@ -411,10 +438,19 @@
     },
     "massign": {
         "body": [
-            "\t${MyClass}& operator=(${MyClass}&& ${other}) {= default};"
+            "${1:$TM_FILENAME_BASE}& operator=(${1}&& ${2:other}) {3:= default};"
         ],
         "description": "copy assignment operator",
         "prefix": "massign"
+    },
+    "massign-impl": {
+        "body": [
+            "${1:$TM_FILENAME_BASE}& ${1}::operator=(${1}&& ${2:other}) {",
+            "\t${0}", 
+            "}"
+        ],
+        "description": "copy assignment operator",
+        "prefix": "imassign"
     },
     "max_element": {
         "body": "std::max_element(std::begin(${1:container}), std::end(${1:container}))${}",
@@ -422,9 +458,18 @@
         "prefix": "max_element"
     },
     "mctor": {
-        "body": "${MyClass}(${MyClass}&& ${other}) ${= default};",
+        "body": "${1:$TM_FILENAME_BASE}(${1}&& ${2:other}) ${3:= default};",
         "description": "move constructor statement",
         "prefix": "mctor"
+    },
+    "mctor-impl": {
+        "body": [
+            "${1:$TM_FILENAME_BASE}::${1}(${1}&& ${2:other}) {",
+            "\t${0}",
+            "}"
+        ],
+        "description": "move constructor statement",
+        "prefix": "imctor"
     },
     "merge": {
         "body": "std::merge(std::begin(${1:container}), std::end(${1:container}), std::begin(${2:container2}), std::end(${2:container2}), std::begin(${3:container3}))${0:;}",
@@ -433,9 +478,9 @@
     },
     "mfunc": {
         "body": [
-            "${ReturnType} ${Class}::${function}(${parameter})",
+            "${ReturnType} ${1:$TM_FILENAME_BASE}::${function}(${parameter})",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${1}",
             "}"
         ],
         "description": "copy assignment operator",
@@ -457,7 +502,7 @@
         "prefix": "mismatch"
     },
     "move": {
-        "body": "std::move(${1:variable}))${0:;}",
+        "body": "std::move(${TM_SELECTED_TEXT}${1:variable}))${0:;}",
         "description": "move variable",
         "prefix": "move"
     },
@@ -471,19 +516,19 @@
         "description": "move_backward statement",
         "prefix": "cmove_backward"
     },
-    "namesp_2": {
+    "namespace_2": {
         "body": [
             "namespace ${MyNamespace}",
             "{",
             "namespace ${MyNamespace2}",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${1}",
             "} // namespace ${MyNamespace2}",
             "} // namespace ${MyNamespace}"
         ],
         "prefix": "namesp_2"
     },
-    "namesp_3": {
+    "namespace_3": {
         "body": [
             "namespace ${MyNamespace}",
             "{",
@@ -491,7 +536,7 @@
             "{",
             "namespace ${MyNamespace3}",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${1}",
             "} // namespace ${MyNamespace3}",
             "} // namespace ${MyNamespace2}",
             "} // namespace ${MyNamespace}"
@@ -502,7 +547,7 @@
         "body": [
             "namespace ${MyNamespace}",
             "{",
-            "\t${1}",
+            "\t${TM_SELECTED_TEXT}${1}",
             "} // namespace ${MyNamespace}"
         ],
         "prefix": "namespace"
@@ -668,7 +713,7 @@
         "prefix": "set_union"
     },
     "shared_ptr": {
-        "body": "std::shared_ptr<${1:T}> ${0:;}",
+        "body": "std::shared_ptr<${TM_SELECTED_TEXT}${1:T}> ${0:;}",
         "description": "std::shared_ptr statement",
         "prefix": "shared_ptr"
     },
@@ -801,7 +846,7 @@
     },
     "struct": {
         "body": [
-            "struct ${MyStruct}",
+            "struct ${1:$TM_FILENAME_BASE}",
             "{",
             "\t${1}",
             "};"
@@ -844,7 +889,7 @@
         "body": [
             "try",
             "{",
-            "\t",
+            "\t${TM_SELECTED_TEXT}",
             "}",
             "catch (const ${std::exception}& ${exception})",
             "{",
@@ -880,7 +925,7 @@
         "prefix": "unique_copy"
     },
     "unique_ptr": {
-        "body": "std::unique_ptr<${1:T}> ${0:;}",
+        "body": "std::unique_ptr<${TM_SELECTED_TEXT}${1}> ${0:;}",
         "description": "std::unique_ptr statement",
         "prefix": [
             "unique_ptr",
@@ -896,10 +941,30 @@
         "body": [
             "while (${1})",
             "{",
-            "\t${0:;}",
+            "\t${TM_SELECTED_TEXT}${0:;}",
             "}"
         ],
         "description": "while loop",
         "prefix": "while"
+    },
+    "static_cast" : {
+        "prefix": ["static_cast", "scast"],
+        "body" : "static_cast<${1:T}> (${TM_SELECTED_TEXT}${2})${0}",
+        "description": "static_cast statment"
+    },
+    "const_cast" : {
+        "prefix": ["const_cast", "ccast"],
+        "body" : "const_cast<${1:T}> (${TM_SELECTED_TEXT}${2})${0}",
+        "description": "const_cast statment"
+    },
+    "dynamic_cast" : {
+        "prefix": ["dynamic_cast", "dcast"],
+        "body" : "dynamic_cast<${1:T}> (${TM_SELECTED_TEXT}${2})${0}",
+        "description": "dynamic_cast statment"
+    },
+    "reinterpret_cast" : {
+        "prefix": ["reinterpret_cast", "rcast"],
+        "body" : "reinterpret_cast<${1:T}> (${TM_SELECTED_TEXT}${2})${0}",
+        "description": "reinterpret_cast statment"
     }
 }
