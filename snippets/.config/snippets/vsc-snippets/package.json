@@ -8,6 +8,9 @@
             {
                 "path": "./cpp.json",
                 "language": "cpp"
+            },          {
+                "path": "./csharp.json",
+                "language": "csharp"
             },
             {
                 "path": "./go.json",
