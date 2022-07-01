@@ -55,6 +55,15 @@
         ],
         "description": "#[repr(…)]"
     },
+    "ctor": {
+        "prefix": ["fn new", "ctor"],
+        "body": [
+            "pub fn new(${1}) -> ${2:object} {",
+            "   ${2} {${3}}${0}",
+            "}"
+        ],
+        "description": "new constructor"
+    },
     "cfg": {
         "prefix": "cfg",
         "body": [
@@ -75,6 +84,14 @@
             "cfg!(${1})"
         ],
         "description": "cfg!(…)"
+    },
+    "glballo" :{
+        "prefix": ["Global", "glb"],
+        "body": [
+            "#[GlobalAllocator]",
+            "${0}"
+        ],
+        "description": "create global allocator flag"
     },
     "column": {
         "prefix": "column",
@@ -338,29 +355,18 @@
         "description": "enum … { … }"
     },
     "extern-crate": {
-        "prefix": "extern-crate",
+        "prefix": "extern",
         "body": [
-            "extern crate ${1:name};"
+            "extern ${1:crate ${2:name};}"
         ],
         "description": "extern crate …;"
     },
-    "extern-fn": {
-        "prefix": "extern-fn",
+    "extern-c": {
+        "prefix": "extern c",
         "body": [
-            "extern \"C\" fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
-            "    ${5:// add code here}",
-            "}"
+            "extern \"${1:c}\" ${2:name} ${3:{{\n\t${4}\n}}}"
         ],
-        "description": "extern \"C\" fn …(…) { … }"
-    },
-    "extern-mod": {
-        "prefix": "extern-mod",
-        "body": [
-            "extern \"C\" {",
-            "    ${2:// add code here}",
-            "}"
-        ],
-        "description": "extern \"C\" { … }"
+        "description": "extern \"c\" …;"
     },
     "fn": {
         "prefix": "fn",
@@ -389,23 +395,14 @@
         ],
         "description": "if … { … }"
     },
-    "impl-trait": {
-        "prefix": "impl-trait",
-        "body": [
-            "impl ${1:Trait} for ${2:Type} {",
-            "    ${3:// add code here}",
-            "}"
-        ],
-        "description": "impl … for … { … }"
-    },
     "impl": {
         "prefix": "impl",
         "body": [
-            "impl ${1:Type} {",
-            "    ${2:// add code here}",
+            "impl ${1:${2:Trait} for ${3:Type}} {",
+            "    ${3:// add code here}",
             "}"
         ],
-        "description": "impl … { … }"
+        "description": "impl (… for …) { … }"
     },
     "inline-fn": {
         "prefix": "inline-fn",
@@ -508,6 +505,17 @@
         ],
         "description": "struct … { … }"
     },
+    "modtest": {
+        "prefix": "modtest",
+        "body": [
+            "#[cfg(test)]",
+            "mod test {",
+            "   use super::*;",
+            "   ${0}",
+            "}"
+        ],
+        "description": "prepare module test"
+    },
     "test": {
         "prefix": "test",
         "body": [
@@ -516,7 +524,7 @@
             "    ${2:unimplemented!();}",
             "}"
         ],
-        "description": "#[test]"
+        "description": "#[test] function"
     },
     "trait": {
         "prefix": "trait",
@@ -542,5 +550,109 @@
             "}"
         ],
         "description": "while … { … }"
+    },
+    "unsafe": {
+        "prefix": "unsafe",
+        "body": [
+            "unsafe {",
+            "    ${0:unimplemented}",
+            "}"]
+    },
+    "rc":{
+        "prefix": "rc",
+        "body": "Rc::new (${1})${0}",
+        "description": "reference counting smart pointer"
+    },
+    "box": {
+        "prefix": "box",
+        "body": "Box::new (${1})${0}",
+        "description": "unique pointer to memory element immutable"
+    },
+    "arc": {
+        "prefix": "arc",
+        "body": "Arc::new (${1})${0}",
+        "description": "thread safe atomic reference counting smart pointer"
+    },
+    "cell": {
+        "prefix": "cell",
+        "body": "Cell::new (${1})${0}",
+        "description": "mutable memory location"
+    },
+    "refcell" : {
+        "prefix": "refcell",
+        "body": "RefCell::new (${1})${0}",
+        "description": "A mutable memory location with dynamically checked borrow rules"
+    },
+    "impl-partialeq": {
+        "prefix": "impl-partialeq",
+        "body": [
+            "impl PartialEq for ${1:struct} {",
+            "   fn eq(&self, other: &self) -> bool {",
+            "   {",
+            "       "${0}",
+            "   }",
+            "}"
+        ],
+        "description": "implementation of partial equal"
+    },
+    "impl-ord": {
+        "prefix": "impl-ord",
+        "body": [
+            "impl Ord for ${1:struct} {",
+            "   fn cmp(&self, other: &self) -> Ordering {",
+            "   {",
+            "       "${0}",
+            "   }",
+            "}"
+        ],
+        "description": "implementation of ordering"
+    },
+    "impl-parialord": {
+        "prefix": "impl-partialord",
+        "body": [
+            "impl PartialOrd for ${1:struct} {",
+            "   fn partial_cmp(&self, other: &self) -> Option<Ordering> {",
+            "   {",
+            "       "${0}",
+            "   }",
+            "}"
+        ],
+        "description": "implementation of partial ordering"
+    },
+    "impl-drop": {
+        "prefix": "impl-drop",
+        "body": [
+            "impl Drop for ${1:struct} {",
+            "   fn drop(&self) {",
+            "   {",
+            "       "${0}",
+            "   }",
+            "}"
+        ],
+        "description": "\"destructor\" implementation (needed only on non default destructing)"
+    },
+    "impl-asref": {
+        "prefix": "as-ref",
+        "body": [
+            "impl AsRef<${1:Ref}> for ${2:struct} {",
+            "   fn as_ref(&self) -> &${1} {",
+            "   {",
+            "       "&self.${0}",
+            "   }",
+            "}"
+        ],
+        "description": "as immutable reference implementation"
+    },
+    "impl-asmut": {
+        "prefix": "as-mut",
+        "body": [
+            "impl AsMut<${1:Ref}> for ${2:struct} {",
+            "   fn as_mut(&self) -> &mut ${1} {",
+            "   {",
+            "       "&self.${0}",
+            "   }",
+            "}"
+        ],
+        "description": "as mutable reference implementation"
     }
 }
