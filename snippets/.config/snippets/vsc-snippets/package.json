@@ -54,6 +54,10 @@
                 "language": "latex"
             },
             {
+                "language": "markdown",
+                "path": "markdown.json"
+            },
+            {
                 "path": "./lua.json",
                 "language": "lua"
             },
