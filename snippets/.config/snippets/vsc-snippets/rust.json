@@ -56,7 +56,10 @@
         "description": "#[repr(…)]"
     },
     "ctor": {
-        "prefix": ["fn new", "ctor"],
+        "prefix": [
+            "fn new",
+            "ctor"
+        ],
         "body": [
             "pub fn new(${1}) -> ${2:object} {",
             "   ${2} {${3}}${0}",
@@ -85,8 +88,11 @@
         ],
         "description": "cfg!(…)"
     },
-    "glballo" :{
-        "prefix": ["Global", "glb"],
+    "glballo": {
+        "prefix": [
+            "Global",
+            "glb"
+        ],
         "body": [
             "#[GlobalAllocator]",
             "${0}"
@@ -556,9 +562,10 @@
         "body": [
             "unsafe {",
             "    ${0:unimplemented}",
-            "}"]
+            "}"
+        ]
     },
-    "rc":{
+    "rc": {
         "prefix": "rc",
         "body": "Rc::new (${1})${0}",
         "description": "reference counting smart pointer"
@@ -578,7 +585,7 @@
         "body": "Cell::new (${1})${0}",
         "description": "mutable memory location"
     },
-    "refcell" : {
+    "refcell": {
         "prefix": "refcell",
         "body": "RefCell::new (${1})${0}",
         "description": "A mutable memory location with dynamically checked borrow rules"
@@ -589,7 +596,9 @@
             "impl PartialEq for ${1:struct} {",
             "   fn eq(&self, other: &self) -> bool {",
             "   {",
-            "       "${0}",
+            "       "${
+                0
+            }",
             "   }",
             "}"
         ],
@@ -601,7 +610,9 @@
             "impl Ord for ${1:struct} {",
             "   fn cmp(&self, other: &self) -> Ordering {",
             "   {",
-            "       "${0}",
+            "       "${
+                0
+            }",
             "   }",
             "}"
         ],
@@ -613,7 +624,9 @@
             "impl PartialOrd for ${1:struct} {",
             "   fn partial_cmp(&self, other: &self) -> Option<Ordering> {",
             "   {",
-            "       "${0}",
+            "       "${
+                0
+            }",
             "   }",
             "}"
         ],
@@ -625,7 +638,9 @@
             "impl Drop for ${1:struct} {",
             "   fn drop(&self) {",
             "   {",
-            "       "${0}",
+            "       "${
+                0
+            }",
             "   }",
             "}"
         ],
@@ -637,7 +652,9 @@
             "impl AsRef<${1:Ref}> for ${2:struct} {",
             "   fn as_ref(&self) -> &${1} {",
             "   {",
-            "       "&self.${0}",
+            "       "&self.${
+                0
+            }",
             "   }",
             "}"
         ],
@@ -649,7 +666,9 @@
             "impl AsMut<${1:Ref}> for ${2:struct} {",
             "   fn as_mut(&self) -> &mut ${1} {",
             "   {",
-            "       "&self.${0}",
+            "       "&self.${
+                0
+            }",
             "   }",
             "}"
         ],

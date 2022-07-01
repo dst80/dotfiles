@@ -12,10 +12,10 @@
         "scope": "source.lua"
     },
     "assert": {
-      "body": "assert(${1:v}${2:[, message]})",
-      "description": "5.1,5.2,5.3\n\nassert()",
-      "prefix": "assert",
-      "scope": "source.lua"
+        "body": "assert(${1:v}${2:[, message]})",
+        "description": "5.1,5.2,5.3\n\nassert()",
+        "prefix": "assert",
+        "scope": "source.lua"
     },
     "bit32.arshift": {
         "body": "bit32.arshift(${0:...})",
