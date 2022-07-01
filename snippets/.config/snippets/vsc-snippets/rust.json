@@ -596,9 +596,7 @@
             "impl PartialEq for ${1:struct} {",
             "   fn eq(&self, other: &self) -> bool {",
             "   {",
-            "       "${
-                0
-            }",
+            "       ${0}",
             "   }",
             "}"
         ],
@@ -610,9 +608,7 @@
             "impl Ord for ${1:struct} {",
             "   fn cmp(&self, other: &self) -> Ordering {",
             "   {",
-            "       "${
-                0
-            }",
+            "       ${0}",
             "   }",
             "}"
         ],
@@ -624,9 +620,7 @@
             "impl PartialOrd for ${1:struct} {",
             "   fn partial_cmp(&self, other: &self) -> Option<Ordering> {",
             "   {",
-            "       "${
-                0
-            }",
+            "       ${0}",
             "   }",
             "}"
         ],
@@ -638,9 +632,7 @@
             "impl Drop for ${1:struct} {",
             "   fn drop(&self) {",
             "   {",
-            "       "${
-                0
-            }",
+            "       ${0}",
             "   }",
             "}"
         ],
@@ -652,9 +644,7 @@
             "impl AsRef<${1:Ref}> for ${2:struct} {",
             "   fn as_ref(&self) -> &${1} {",
             "   {",
-            "       "&self.${
-                0
-            }",
+            "       &self.${0}",
             "   }",
             "}"
         ],
@@ -666,9 +656,7 @@
             "impl AsMut<${1:Ref}> for ${2:struct} {",
             "   fn as_mut(&self) -> &mut ${1} {",
             "   {",
-            "       "&self.${
-                0
-            }",
+            "       &self.${0}",
             "   }",
             "}"
         ],
