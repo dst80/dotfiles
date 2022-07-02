@@ -101,14 +101,14 @@
     },
     "cin": {
         "body": "std::cin >>",
-        "description": "'cc{r:container2}'",
+        "description": "'std::cin statement'",
         "prefix": "cin"
     },
     "class": {
-        "description": "clc{r:container2}s statement",
+        "description": "class statement",
         "prefix": "class",
         "body": [
-            "class ${1:$TM_FILENAME_BASE} ${2: ${3:BaseClass}}",
+            "class ${1:$TM_FILENAME_BASE} ${2}",
             "{",
             "public:",
             "\t${0}",
@@ -535,37 +535,37 @@
     "namespace": {
         "prefix": "namespace",
         "body": [
-            "namespace ${MyNamespace}",
+            "namespace ${1:MyNamespace}",
             "{",
-            "\t${TM_SELECTED_TEXT}${1}",
-            "} // namespace ${MyNamespace}"
+            "${TM_SELECTED_TEXT}${0}",
+            "} // namespace ${1:MyNamespace}"
         ]
     },
     "namespace_2": {
         "prefix": "namesp_2",
         "body": [
-            "namespace ${MyNamespace}",
+            "namespace ${1:MyNamespace}",
             "{",
-            "namespace ${MyNamespace2}",
+            "namespace ${2:MyNamespace2}",
             "{",
-            "\t${TM_SELECTED_TEXT}${1}",
-            "} // namespace ${MyNamespace2}",
-            "} // namespace ${MyNamespace}"
+            "${TM_SELECTED_TEXT}${0}",
+            "} // namespace ${2:MyNamespace2}",
+            "} // namespace ${1:MyNamespace}"
         ]
     },
     "namespace_3": {
         "prefix": "namesp_3",
         "body": [
-            "namespace ${MyNamespace}",
+            "namespace ${1:MyNamespace}",
             "{",
-            "namespace ${MyNamespace2}",
+            "namespace ${2:MyNamespace2}",
             "{",
-            "namespace ${MyNamespace3}",
+            "namespace ${3:MyNamespace3}",
             "{",
-            "\t${TM_SELECTED_TEXT}${1}",
-            "} // namespace ${MyNamespace3}",
-            "} // namespace ${MyNamespace2}",
-            "} // namespace ${MyNamespace}"
+            "${TM_SELECTED_TEXT}${0}",
+            "} // namespace ${3:MyNamespace3}",
+            "} // namespace ${2:MyNamespace2}",
+            "} // namespace ${1:MyNamespace}"
         ]
     },
     "next_permutation": {
@@ -906,6 +906,11 @@
             "\tbreak;${1}",
             "}"
         ]
+    },
+    "template": {
+        "prefix": "template",
+        "body": "template<class ${1:T}>${0}",
+        "description": "template statement"
     },
     "tie": {
         "body": "std::tie(${parameters}) = ${1}",
