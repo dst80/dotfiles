@@ -1,0 +1,148 @@
+{
+    "gtestclass": {
+        "prefix": "gtestclass",
+        "body": [
+            "#include <gmock/gmock.h>",
+            "#include <gtest/gtest.h",
+            "",
+            "using namespace ::testing; // NOLINT .. ugly hack for the sack of readability",
+            "",
+            "class ${1:$TM_FILENAME_BASE} : public ${2:Test} //NOLINT", 
+            "{",
+            "}",
+            "TEST_F(${1}, SetUpDoesNotFail)",
+            "{}${0}"
+        ],
+        "description": "basic body of a google test class"
+    },
+    "gtestf": {
+        "prefix": "gtestf",
+        "body": [
+            "TEST_F(${1:$TM_FILENAME_BASE}, ${2:TestCase})",
+            "{",
+            "\t${0}",
+            "}"
+        ],
+        "description": "body of a test fixture"
+    },
+    "gexpect-call": {
+        "prefix": "gexpect-call",
+        "body": "EXPECT_CALL(${1:Mock}, ${2:function})${3};${0}",
+        "description": "basic call preparation to setup a mock call"
+    },
+    "gassert": {
+        "prefix": "gassert",
+        "body": "ASSERT_THAT(${1}, ${2});${0}",
+        "description": "ASSERT_THAT statement, best assert because of matcher usage and readablilty"
+    },
+    "gexpect": {
+        "prefix": "gexpect",
+        "body": "EXPECT_THAT(${1}, ${2});${0}",
+        "description": "ASSERT_THAT statement, best assert because of matcher usage and readablilty"
+    },
+    "gmatcher-IsTrue": {
+        "prefix": "IsTrue",
+        "body": "IsTrue()${0}",
+        "description": "IsTrue matcher"
+    },
+    "gmatcher-IsFalse": {
+        "prefix": "IsFalse",
+        "body": "IsFalse()${0}",
+        "description": "IsFalse matcher"
+    },
+    "gmatcher-IsNull": {
+        "prefix": "IsNull",
+        "body": "IsNull()${0}",
+        "description": "IsNull matcher"
+    },
+    "gmatcher-NotNull": {
+        "prefix": "NotNull",
+        "body": "NotNull()${0}",
+        "description": "NotNull matcher"
+    },
+    "gmatcher-Eq": {
+        "prefix": "Eq",
+        "body": "Eq($TM_SELECTED_TEXT${1})${0}",
+        "description": "(Eq)ual matcher"
+    },
+    "gmatcher-Ne": {
+        "prefix": "Ne",
+        "body": "Ne($TM_SELECTED_TEXT${1})${0}",
+        "description": "(N)ot (e)qual matcher"
+    },
+    "gmatcher-Ge": {
+        "prefix": "Ge",
+        "body": "Ge($TM_SELECTED_TEXT${1})${0}",
+        "description": "(G)reater (e)qual matcher"
+    },
+    "gmatcher-Le": {
+        "prefix": "Le",
+        "body": "Le($TM_SELECTED_TEXT${1})${0}",
+        "description": "(L)ess (e)qual matcher"
+    },
+    "gmatcher-Gt": {
+        "prefix": "Gt",
+        "body": "Gt($TM_SELECTED_TEXT${1})${0}",
+        "description": "(G)reater (t)han matcher"
+    },
+    "gmatcher-Lt": {
+        "prefix": "Lt",
+        "body": "Lt($TM_SELECTED_TEXT${1})${0}",
+        "description": "(L)ess (t)han matcher"
+    },
+    "gmatcher-FloatEq": {
+        "prefix": "FloatEq",
+        "body": "FloatEq($TM_SELECTED_TEXT${1})${0}",
+        "description": "float equal matcher"
+    },
+    "gmatcher-NanSensitiveFloatEq": {
+        "prefix": "NanSensitiveFloatEq",
+        "body": "NanSensitiveFloatEq($TM_SELECTED_TEXT${1})${0}",
+        "description": "nan sensitive float equal matcher"
+    },
+    "gmatcher-DoubleEq": {
+        "prefix": "DoubleEq",
+        "body": "DoubleEq($TM_SELECTED_TEXT${1})${0}",
+        "description": "double equal matcher"
+    },
+    "gmatcher-NanSensitiveDoubleEq": {
+        "prefix": "NanSensitiveDoubleEq",
+        "body": "NanSensitiveDoubleEq($TM_SELECTED_TEXT${1})${0}",
+        "description": "nan sensitive double equal matcher"
+    },
+    "gmatcher-FloatNear": {
+        "prefix": "FloatNear",
+        "body": "FloatNear($TM_SELECTED_TEXT${1}, ${2:1e-6})${0}",
+        "description": "float near matcher with tolerance"
+    },
+    "gmatcher-NanSensitiveFloatNear": {
+        "prefix": "NanSensitiveFloatNear",
+        "body": "NanSensitiveFloatNear($TM_SELECTED_TEXT${1}, ${2:1e-6})${0}",
+        "description": "nan sensitive float near matcher with tolerance"
+    },
+    "gmatcher-DoubleNear": {
+        "prefix": "DoubleNear",
+        "body": "DoubleNear($TM_SELECTED_TEXT${1}, ${2:1e-13})${0}",
+        "description": "double near matcher with tolerance"
+    },
+    "gmatcher-NanSensitiveDoubleNear": {
+        "prefix": "NanSensitiveDoubleNear",
+        "body": "NanSensitiveDoubleNear($TM_SELECTED_TEXT${1}, ${2:1e-13})${0}",
+        "description": "nan sensitive double near matcher with tolerance"
+    },
+    "gmatcher-Optional": {
+        "prefix": "Optional",
+        "body": "Optional($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "optional matcher, evaluate if the optional contains the value is m"
+    },
+    "gmatcher-Variant": {
+        "prefix": "Variant",
+        "body": "Variant($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "variant matcher, evaluate if the variant contains the value is m"
+    },
+    "gmatcher-Ref": {
+        "prefix": "Ref",
+        "body": "Ref($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "Ref matcher, evaluate if the arguement if reference to variable"
+    },
+}
