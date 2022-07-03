@@ -15,7 +15,7 @@
         ],
         "description": "basic body of a google test class"
     },
-    "gtestf": {
+    "gtest-TEST_FIXTURE": {
         "prefix": "gtestf",
         "body": [
             "TEST_F(${1:$TM_FILENAME_BASE}, ${2:TestCase})",
@@ -25,110 +25,130 @@
         ],
         "description": "body of a test fixture"
     },
-    "gexpect-call": {
-        "prefix": "gexpect-call",
-        "body": "EXPECT_CALL(${1:Mock}, ${2:function})${3};${0}",
-        "description": "basic call preparation to setup a mock call"
+    "gtest-TEST_PARAMETERIZED": {
+        "prefix": "gtestp",
+        "body": [
+            "TEST_P(${1:$TM_FILENAME_BASE}, ${2:TestCase})",
+            "{",
+            "\t${0}",
+            "}"
+        ],
+        "description": "body of a parameterized test"
     },
-    "gassert": {
-        "prefix": "gassert",
+    "gtest-TEST_PARAMETERIZED": {
+        "prefix": "ginstantiate_test",
+        "body": "INSTANTIATE_TEST_SUITE_P(${1:InstantiationName},${2:TestSuiteName},${3:param_generator}, ${4:name_generator})",
+        "description": "Instantiates the value-parameterized test suite TestSuiteName (defined with TEST_P)."
+    },
+    "gtest-ON_CALL": {
+        "prefix": "ON_CALL",
+        "body": "ON_CALL(${1:mock_object}, ${2:method_name (${3:matchers})})${4};${0}",
+        "description": "Defines what happens when the method method_name of the object mock_object is called with arguments that match the given matchers matchers.... Requires a modifier clause to specify the method’s behavior. Does not set any expectations that the method will be called."
+    },
+    "gtest-EXPECT_CALL": {
+        "prefix": "EXPECT_CALL",
+        "body": "EXPECT_CALL(${1:mock_object}, ${2:method_name (${3:matchers})})${4};${0}",
+        "description": "Creates an expectation that the method method_name of the object mock_object is called with arguments that match the given matchers matchers... EXPECT_CALL must precede any code that exercises the mock object."
+    },
+    "gtest-assert": {
+        "prefix": "ASSERT_THAT",
         "body": "ASSERT_THAT(${1}, ${2});${0}",
         "description": "ASSERT_THAT statement, best assert because of matcher usage and readablilty"
     },
-    "gexpect": {
-        "prefix": "gexpect",
+    "gtest-expect": {
+        "prefix": "EXPECT_THAT",
         "body": "EXPECT_THAT(${1}, ${2});${0}",
-        "description": "ASSERT_THAT statement, best assert because of matcher usage and readablilty"
+        "description": "EXPECT_THAT statement, best assert because of matcher usage and readablilty"
     },
     "gmatcher-IsTrue": {
         "prefix": "IsTrue",
         "body": "IsTrue()${0}",
-        "description": "IsTrue matcher"
+        "description": "argument evaluates to true in a Boolean context."
     },
     "gmatcher-IsFalse": {
         "prefix": "IsFalse",
         "body": "IsFalse()${0}",
-        "description": "IsFalse matcher"
+        "description": "argument evaluates to false in a Boolean context."
     },
     "gmatcher-IsNull": {
         "prefix": "IsNull",
         "body": "IsNull()${0}",
-        "description": "IsNull matcher"
+        "description": "argument is a NULL pointer (raw or smart)."
     },
     "gmatcher-NotNull": {
         "prefix": "NotNull",
         "body": "NotNull()${0}",
-        "description": "NotNull matcher"
+        "description": "argument is a non-null pointer (raw or smart)."
     },
     "gmatcher-Eq": {
         "prefix": "Eq",
         "body": "Eq($TM_SELECTED_TEXT${1})${0}",
-        "description": "(Eq)ual matcher"
+        "description": "argument is equal the value"
     },
     "gmatcher-Ne": {
         "prefix": "Ne",
         "body": "Ne($TM_SELECTED_TEXT${1})${0}",
-        "description": "(N)ot (e)qual matcher"
+        "description": "argument is not equal the value"
     },
     "gmatcher-Ge": {
         "prefix": "Ge",
         "body": "Ge($TM_SELECTED_TEXT${1})${0}",
-        "description": "(G)reater (e)qual matcher"
+        "description": "argument is greater or equal the value"
     },
     "gmatcher-Le": {
         "prefix": "Le",
         "body": "Le($TM_SELECTED_TEXT${1})${0}",
-        "description": "(L)ess (e)qual matcher"
+        "description": "argument is less or equal the value"
     },
     "gmatcher-Gt": {
         "prefix": "Gt",
         "body": "Gt($TM_SELECTED_TEXT${1})${0}",
-        "description": "(G)reater (t)han matcher"
+        "description": "argument is greater than the value"
     },
     "gmatcher-Lt": {
         "prefix": "Lt",
         "body": "Lt($TM_SELECTED_TEXT${1})${0}",
-        "description": "(L)ess (t)han matcher"
+        "description": "argument is less than the value"
     },
     "gmatcher-FloatEq": {
         "prefix": "FloatEq",
         "body": "FloatEq($TM_SELECTED_TEXT${1})${0}",
-        "description": "float equal matcher"
+        "description": "argument is a float value approximately equal to a_float, treating two NaNs as unequal"
     },
     "gmatcher-NanSensitiveFloatEq": {
         "prefix": "NanSensitiveFloatEq",
         "body": "NanSensitiveFloatEq($TM_SELECTED_TEXT${1})${0}",
-        "description": "nan sensitive float equal matcher"
+        "description": "argument is a float value approximately equal to a_float, treating two NaNs as equal."
     },
     "gmatcher-DoubleEq": {
         "prefix": "DoubleEq",
         "body": "DoubleEq($TM_SELECTED_TEXT${1})${0}",
-        "description": "double equal matcher"
+        "description": "argument is a double value approximately equal to a_double, treating two NaNs as unequal."
     },
     "gmatcher-NanSensitiveDoubleEq": {
         "prefix": "NanSensitiveDoubleEq",
         "body": "NanSensitiveDoubleEq($TM_SELECTED_TEXT${1})${0}",
-        "description": "nan sensitive double equal matcher"
+        "description": "argument is a double value approximately equal to a_double, treating two NaNs as equal."
     },
     "gmatcher-FloatNear": {
         "prefix": "FloatNear",
-        "body": "FloatNear($TM_SELECTED_TEXT${1}, ${2:1e-6})${0}",
-        "description": "float near matcher with tolerance"
+        "body": "FloatNear($TM_SELECTED_TEXT${1}, ${2:max_abs_error})${0}",
+        "description": "argument is a float value close to a_float (absolute error <= max_abs_error), treating two NaNs as unequal."
     },
     "gmatcher-NanSensitiveFloatNear": {
         "prefix": "NanSensitiveFloatNear",
-        "body": "NanSensitiveFloatNear($TM_SELECTED_TEXT${1}, ${2:1e-6})${0}",
-        "description": "nan sensitive float near matcher with tolerance"
+        "body": "NanSensitiveFloatNear($TM_SELECTED_TEXT${1}, ${2:max_abs_error})${0}",
+        "description": "argument is a float value close to a_float (absolute error <= max_abs_error), treating two NaNs as equal."
     },
     "gmatcher-DoubleNear": {
         "prefix": "DoubleNear",
-        "body": "DoubleNear($TM_SELECTED_TEXT${1}, ${2:1e-13})${0}",
-        "description": "double near matcher with tolerance"
+        "body": "DoubleNear($TM_SELECTED_TEXT${1}, ${2:max_abs_error})${0}",
+        "description": "argument is a double value close to a_double (absolute error <= max_abs_error), treating two NaNs as unequal."
     },
     "gmatcher-NanSensitiveDoubleNear": {
         "prefix": "NanSensitiveDoubleNear",
-        "body": "NanSensitiveDoubleNear($TM_SELECTED_TEXT${1}, ${2:1e-13})${0}",
-        "description": "nan sensitive double near matcher with tolerance"
+        "body": "NanSensitiveDoubleNear($TM_SELECTED_TEXT${1}, ${2:max_abs_error})${0}",
+        "description": "argument is a double value close to a_double (absolute error <= max_abs_error), treating two NaNs as equal."
     },
     "gmatcher-Optional": {
         "prefix": "Optional",
@@ -143,6 +163,327 @@
     "gmatcher-Ref": {
         "prefix": "Ref",
         "body": "Ref($TM_SELECTED_TEXT${1:m})${0}",
-        "description": "Ref matcher, evaluate if the arguement if reference to variable"
+        "description": "Ref matcher, evaluate if the argument if reference to variable"
     },
+    "gmatcher-ContainsRegex": {
+        "prefix": "ContainsRegex",
+        "body": "ContainsRegex($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "ContainsRegex matcher, check if string contains defined regex"
+    },
+    "gmatcher-MatchesRegex": {
+        "prefix": "MatchesRegex",
+        "body": "MatchesRegex($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument matches the given regular expression with the match starting at the first character and ending at the last character."
+    },
+    "gmatcher-StartWith": {
+        "prefix": "StartWith",
+        "body": "StartWith($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "StartWith matcher, check if string starts with substring"
+    },
+    "gmatcher-EndWith": {
+        "prefix": "EndWith",
+        "body": "EndWith($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "EndWith matcher, check if string ends with substring"
+    },
+    "gmatcher-HasSubstr": {
+        "prefix": "HasSubstr",
+        "body": "HasSubstr($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "HasSubstr matcher, check if string contains substring"
+    },
+    "gmatcher-IsEmpty": {
+        "prefix": "IsEmpty",
+        "body": "IsEmpty($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "IsEmpty matcher, check if string is empty"
+    },
+    "gmatcher-StrEq": {
+        "prefix": "StrEq",
+        "body": "StrEq($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "StrEq matcher, argument is equal to string, case sensitive"
+    },
+    "gmatcher-StrCaseEq": {
+        "prefix": "StrCaseEq",
+        "body": "StrCaseEq($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "StrCaseEq matcher, argument is equal to string, ignoring case"
+    },
+    "gmatcher-StrNe": {
+        "prefix": "StrNe",
+        "body": "StrNe($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "StrNe matcher, argument is not equal to string, case sensitive"
+    },
+    "gmatcher-StrCaseEq": {
+        "prefix": "StrCaseNe",
+        "body": "StrCaseNe($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "StrCaseNe matcher, argument is not equal to string, ignoring case"
+    },
+    "gmatcher-WhenBase64Unescaped": {
+        "prefix": "WhenBase64Unescaped",
+        "body": "WhenBase64Unescaped($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument is a base-64 escaped string whose unescaped string matches m."
+    },
+    "gmatcher-BeginEndDistanceIs": {
+        "prefix": "BeginEndDistanceIs",
+        "body": "BeginEndDistanceIs($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument is a container whose begin() and end() iterators are separated by a number of increments matching. E.g. BeginEndDistanceIs(2) or BeginEndDistanceIs(Lt(2)). For containers that define a size() method, SizeIs(m) may be more efficient."
+    },
+    "gmatcher-ContainerEq": {
+        "prefix": "ContainerEq",
+        "body": "ContainerEq($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "The same as Eq(container) except that the failure message also includes which elements are in one container but not the other."
+    },
+    "gmatcher-Contains": {
+        "prefix": "Contains",
+        "body": "Contains($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument contains an element that matches e, which can be either a value or a matcher."
+    },
+    "gmatcher-Each": {
+        "prefix": "Each",
+        "body": "Each($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument is a container where every element matches e, which can be either a value or a matcher."
+    },
+    "gmatcher-ElementsAre": {
+        "prefix": "ElementsAre",
+        "body": "ElementsAre($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument has n + 1 elements, where the i-th element matches ei, which can be a value or a matcher."
+    },
+    "gmatcher-ElementsAreArray": {
+        "prefix": "ElementsAreArray",
+        "body": "ElementsAreArray({$TM_SELECTED_TEXT${1:m}})${0}",
+        "description": "The same as ElementsAre() except that the expected element values/matchers come from an initializer list, STL-style container, iterator range, or C-style array."
+    },
+    "gmatcher-IsEmpty": {
+        "prefix": "IsEmpty",
+        "body": "IsEmpty()${0}",
+        "description": "argument is an empty container (container.empty())."
+    },
+    "gmatcher-IsSupersetOf": {
+        "prefix": "IsSupersetOf",
+        "body": "IsSupersetOf({$TM_SELECTED_TEXT${1:m}})${0}",
+        "description": "Some subset of argument matches UnorderedElementsAre(expected matchers)."
+    },
+    "gmatcher-IsSubsetOf": {
+        "prefix": "IsSubsetOf",
+        "body": "IsSubsetOf({$TM_SELECTED_TEXT${1:m}})${0}",
+        "description": "argument matches UnorderedElementsAre(x0, x1, ..., xk) for some subset {x0, x1, ..., xk} of the expected matchers."
+    },
+    "gmatcher-Pointwise": {
+        "prefix": "Pointwise",
+        "body": "Pointwise($TM_SELECTED_TEXT${1:m}, ${2:container})${0}",
+        "description": "argument contains the same number of elements as in container, and for all i, (the i-th element in argument, the i-th element in container) match m, which is a matcher on 2-tuples. E.g. Pointwise(Le(), upper_bounds) verifies that each element in argument doesn’t exceed the corresponding element in upper_bounds."
+    },
+    "gmatcher-SizeIs": {
+        "prefix": "SizeIs",
+        "body": "SizeIs($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument is a container whose size matches m. E.g. SizeIs(2) or SizeIs(Lt(2))."
+    },
+    "gmatcher-UnorderedElementsAre": {
+        "prefix": "UnorderedElementsAre",
+        "body": "UnorderedElementsAre($TM_SELECTED_TEXT${1:m})${0}",
+        "description": "argument has n + 1 elements, and under some permutation of the elements, each element matches an ei (for a different i), which can be a value or a matcher."
+    },
+    "gmatcher-UnorderedElementsAreArray": {
+        "prefix": "UnorderedElementsAreArray",
+        "body": "UnorderedElementsAreArray({$TM_SELECTED_TEXT${1:m}})${0}",
+        "description": "The same as UnorderedElementsAre() except that the expected element values/matchers come from an initializer list, STL-style container, iterator range, or C-style array."
+    },
+    "gmatcher-UnorderedPointwise": {
+        "prefix": "UnorderedPointwise",
+        "body": "UnorderedPointwise(${1:m}, {$TM_SELECTED_TEXT${2:container}})${0}",
+        "description": "Like Pointwise(m, container), but ignores the order of elements."
+    },
+    "gmatcher-WhenSorted": {
+        "prefix": "WhenSorted",
+        "body": "WhenSorted({$TM_SELECTED_TEXT${1:m}})${0}",
+        "description": "When argument is sorted using the < operator, it matches container matcher m. E.g. WhenSorted(ElementsAre(1, 2, 3)) verifies that argument contains elements 1, 2, and 3, ignoring order."
+    },
+    "gmatcher-WhenSortedBy": {
+        "prefix": "WhenSortedBy",
+        "body": "WhenSortedBy(${1:comparator}, {$TM_SELECTED_TEXT${2:m}})${0}",
+        "description": "The same as WhenSorted(m), except that the given comparator instead of < is used to sort argument. E.g. WhenSortedBy(std::greater(), ElementsAre(3, 2, 1))."
+    },
+    "gmatcher-Field": {
+        "prefix": "Field",
+        "body": "Field(${1:class_field}, ${2:m}})${0}",
+        "description": "argument.field (or argument->field when argument is a plain pointer) matches matcher m, where argument is an object of type class."
+    },
+    "gmatcher-Field": {
+        "prefix": "Field",
+        "body": "Field(${1:field_name}, ${2:class_field}, ${3:m}})${0}",
+        "description": "The same as the two-parameter version, but provides a better error message."
+    },
+    "gmatcher-Key": {
+        "prefix": "Key",
+        "body": "Key(${1:key})${0}",
+        "description": "argument.first matches e, which can be either a value or a matcher. E.g. Contains(Key(Le(5))) can verify that a map contains a key <= 5."
+    },
+    "gmatcher-Pair": {
+        "prefix": "Pair",
+        "body": "Pair(${1:m1}, ${2:m2})${0}",
+        "description": "argument is an std::pair whose first field matches m1 and second field matches m2."
+    },
+    "gmatcher-FieldsAre": {
+        "prefix": "FieldsAre",
+        "body": "FieldsAre(${1:m})${0}",
+        "description": "argument is a compatible object where each field matches piecewise with the matchers m.... A compatible object is any that supports the std::tuple_size<Obj>+get<I>(obj) protocol. In C++17 and up this also supports types compatible with structured bindings, like aggregates."
+    },
+    "gmatcher-Property": {
+        "prefix": "Property",
+        "body": "Property(${1:property}, ${2:m})${0}",
+        "description": "argument.property() (or argument->property() when argument is a plain pointer) matches matcher m, where argument is an object of type class. The method property() must take no argument and be declared as const."
+    },
+    "gmatcher-Property": {
+        "prefix": "Property",
+        "body": "Property(${1:property_name}, ${2:class_property}, ${3:m})${0}",
+        "description": "The same as the two-parameter version, but provides a better error message."
+    },
+    "gmatcher-ResultOf": {
+        "prefix": "ResultOf",
+        "body": "ResultOf(${1:f}, ${2:m})${0}",
+        "description": "f(argument) matches matcher m, where f is a function or functor."
+    },
+    "gmatcher-Address": {
+        "prefix": "Address",
+        "body": "Address(${1:m})${0}",
+        "description": "the result of std::addressof(argument) matches m."
+    },
+    "gmatcher-Pointee": {
+        "prefix": "Pointee",
+        "body": "Pointee(${1:m})${0}",
+        "description": "argument (either a smart pointer or a raw pointer) points to a value that matches matcher m."
+    },
+    "gmatcher-Pointer": {
+        "prefix": "Pointer",
+        "body": "Pointer(${1:m})${0}",
+        "description": "argument (either a smart pointer or a raw pointer) contains a pointer that matches m. m will match against the raw pointer regardless of the type of argument."
+    },
+    "gmatcher-WhenDynamicCastTo": {
+        "prefix": "WhenDynamicCastTo",
+        "body": "WhenDynamicCastTo<${1:T}>(${2:m})${0}",
+        "description": "when argument is passed through dynamic_cast<T>(), it matches matcher m."
+    },
+    "gmatcher-AllOf": {
+        "prefix": "AllOf",
+        "body": "AllOf(${1:m})${0}",
+        "description": "AllOf(m1, .., mn) argument matches all of the matchers m1 to mn."
+    },
+    "gmatcher-AnyOf": {
+        "prefix": "AnyOf",
+        "body": "AnyOf(${1:m})${0}",
+        "description": "AnyOf(m1, .., mn) argument matches any of the matchers m1 to mn."
+    },
+    "gmatcher-Not": {
+        "prefix": "Not",
+        "body": "Not(${1:m})${0}",
+        "description": "argument doesn’t match matcher m."
+    },
+    "gmatcher-Conditional": {
+        "prefix": "Conditional",
+        "body": "Conditional(${1:cond}, ${2:m1}, ${3:m2})${0}",
+        "description": "Matches matcher m1 if cond evaluates to true, else matches m2."
+    },
+    "gmatcher-After": {
+        "prefix": ".After",
+        "body": ".After(${1:cond})${0}",
+        "description": "Specifies that the mock function call is expected to occur after one or more other calls."
+    },
+    "gmatcher-AnyNumber": {
+        "prefix": "AnyNumber",
+        "body": "AnyNumber()${0}",
+        "description": "The function can be called any number of times."
+    },
+    "gmatcher-AtLeast": {
+        "prefix": "AtLeast",
+        "body": "AtLeast(${1:cond})${0}",
+        "description": "The function call is expected at least n times."
+    },
+    "gmatcher-AtMost": {
+        "prefix": "AtMost",
+        "body": "AtMost(${1:cond})${0}",
+        "description": "The function call is expected at most n times."
+    },
+    "gmatcher-Between": {
+        "prefix": "Between",
+        "body": "Between(${1:start}, ${2:end})${0}",
+        "description": "The function call is expected between m and n times, inclusive."
+    },
+    "gmatcher-Exactly": {
+        "prefix": "Exactly",
+        "body": "Exactly(${1:n})${0}",
+        "description": "The function call is expected exactly n times. If n is 0, the call should never happen."
+    },
+    "gmatcher-InSequence": {
+        "prefix": ".InSequence",
+        "body": ".InSequence(${1:cond})${0}",
+        "description": "Specifies that the mock function call is expected in a certain sequence."
+    },
+    "gmatcher-Return": {
+        "prefix": ".Return",
+        "body": ".Return(${1:cond})${0}",
+        "description": "Specifies the return behavior of a matching mock function call."
+    },
+    "gmatcher-RetiresOnSaturation": {
+        "prefix": ".RetiresOnSaturation",
+        "body": ".RetiresOnSaturation()${0}",
+        "description": "Indicates that the expectation will no longer be active after the expected number of matching function calls has been reached."
+    },
+    "gmatcher-Times": {
+        "prefix": ".Times",
+        "body": ".Times(${1:cond})${0}",
+        "description": "Specifies how many times the mock function call is expected."
+    },
+    "gmatcher-WillOnce": {
+        "prefix": ".WillOnce",
+        "body": ".WillOnce(${1:cond})${0}",
+        "description": "Specifies the mock function’s actual behavior when invoked, for a single matching function call."
+    },
+    "gmatcher-WillDefault": {
+        "prefix": ".WillDefault",
+        "body": ".WillDefault(${1:cond})${0}",
+        "description": "Specifies the default behavior of a matching mock function call."
+    },
+    "gmatcher-WillRepeatly": {
+        "prefix": ".WillRepeatly",
+        "body": ".WillRepeatly(${1:cond})${0}",
+        "description": "Specifies the mock function’s actual behavior when invoked, for all subsequent matching function calls. Takes effect after the actions specified in the WillOnce clauses, if any, have been performed."
+    },
+    "gmatcher-With": {
+        "prefix": ".With",
+        "body": ".With(${1:cond})${0}",
+        "description": "Restricts the specification to only mock function calls whose arguments as a whole match the multi-argument matcher multi_argument_matcher."
+    },
+    "gmatcher-MOCK_METHOD": {
+        "prefix": "MOCK_METHOD",
+        "body": "MOCK_METHOD(${1:return_type}, ${2:function_name}, (${3:arguments}), ${4:(${5:additional_parameters)});${0}",
+        "description": "Defines a mock method method_name with arguments (args...) and return type return_type within a mock class."
+    },
+    "gmatcher-MatcherConstruction": {
+        "prefix": "MATCHER",
+        "body": [
+            "MATCHER(${1:matcher_name}, ${2:some_string})",
+            "{",
+            "\treturn (arg % 2) == 0;${0}",
+            "}"
+        ],
+        "description": "Defines a matcher IsEven() to match an even number."
+    },
+    "gmatcher-MatcherConstruction-parameter": {
+        "prefix": "MATCHER_P",
+        "body": [
+            "MATCHER_P(${1:IsDivisibleBy}, ${2:n}, ${3:some_string})",
+            "{",
+            "\t*result_listener << \"where the remainder is \" << (arg % n);",
+            "\treturn (arg % n) == 0;",
+            "}"
+        ],
+        "description": "Defines a matcher IsDivisibleBy(n) to match a number divisible by n."
+    },
+    "gmatcher-MatcherConstruction-two-parameter": {
+        "prefix": "MATCHER_P2",
+        "body": [
+            "MATCHER_P2(${1:IsDivisibleBy}, ${2:a}, ${3:b}, ${3:some_string})",
+            "{",
+            "\treturn a <= arg && arg <= b;return a <= arg && arg <= b;",
+            "}"
+        ],
+        "description": "Defines a matcher IsBetween(a, b) to match a value in the range [a, b]."
+    }
 }
