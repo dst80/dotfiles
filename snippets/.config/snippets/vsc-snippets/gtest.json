@@ -3,7 +3,7 @@
         "prefix": "gtestclass",
         "body": [
             "#include <gmock/gmock.h>",
-            "#include <gtest/gtest.h",
+            "#include <gtest/gtest.h>",
             "",
             "using namespace ::testing; // NOLINT .. ugly hack for the sack of readability",
             "",
@@ -11,7 +11,8 @@
             "{",
             "}",
             "TEST_F(${1}, SetUpDoesNotFail)",
-            "{}${0}"
+            "{}",
+            "${0}"
         ],
         "description": "basic body of a google test class"
     },
