@@ -35,7 +35,7 @@
         ],
         "description": "body of a parameterized test"
     },
-    "gtest-TEST_PARAMETERIZED": {
+    "gtest-TEST_INSTANTIATE_TEST_SUITE": {
         "prefix": "ginstantiate_test",
         "body": "INSTANTIATE_TEST_SUITE_P(${1:InstantiationName},${2:TestSuiteName},${3:param_generator}, ${4:name_generator})",
         "description": "Instantiates the value-parameterized test suite TestSuiteName (defined with TEST_P)."
@@ -190,11 +190,6 @@
         "body": "HasSubstr($TM_SELECTED_TEXT${1:m})${0}",
         "description": "HasSubstr matcher, check if string contains substring"
     },
-    "gmatcher-IsEmpty": {
-        "prefix": "IsEmpty",
-        "body": "IsEmpty($TM_SELECTED_TEXT${1:m})${0}",
-        "description": "IsEmpty matcher, check if string is empty"
-    },
     "gmatcher-StrEq": {
         "prefix": "StrEq",
         "body": "StrEq($TM_SELECTED_TEXT${1:m})${0}",
@@ -210,7 +205,7 @@
         "body": "StrNe($TM_SELECTED_TEXT${1:m})${0}",
         "description": "StrNe matcher, argument is not equal to string, case sensitive"
     },
-    "gmatcher-StrCaseEq": {
+    "gmatcher-StrCaseNe": {
         "prefix": "StrCaseNe",
         "body": "StrCaseNe($TM_SELECTED_TEXT${1:m})${0}",
         "description": "StrCaseNe matcher, argument is not equal to string, ignoring case"
@@ -302,10 +297,10 @@
     },
     "gmatcher-Field": {
         "prefix": "Field",
-        "body": "Field(${1:class_field}, ${2:m}})${0}",
+        "body": "Field(${1:class_field}, ${2:m})${0}",
         "description": "argument.field (or argument->field when argument is a plain pointer) matches matcher m, where argument is an object of type class."
     },
-    "gmatcher-Field": {
+    "gmatcher-Field2": {
         "prefix": "Field",
         "body": "Field(${1:field_name}, ${2:class_field}, ${3:m}})${0}",
         "description": "The same as the two-parameter version, but provides a better error message."
@@ -330,7 +325,7 @@
         "body": "Property(${1:property}, ${2:m})${0}",
         "description": "argument.property() (or argument->property() when argument is a plain pointer) matches matcher m, where argument is an object of type class. The method property() must take no argument and be declared as const."
     },
-    "gmatcher-Property": {
+    "gmatcher-Property2": {
         "prefix": "Property",
         "body": "Property(${1:property_name}, ${2:class_property}, ${3:m})${0}",
         "description": "The same as the two-parameter version, but provides a better error message."
