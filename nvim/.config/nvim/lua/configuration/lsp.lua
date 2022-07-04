@@ -53,6 +53,11 @@ lspconfig.clangd.setup {
     single_file_support = true,
 }
 
+lspconfig.angularls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
 lspconfig.tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
@@ -73,7 +78,7 @@ lspconfig.pylsp.setup {
     capabilities = capabilities
 }
 
-lspconfig.csharp_ls.setup {
+lspconfig.omnisharp.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
