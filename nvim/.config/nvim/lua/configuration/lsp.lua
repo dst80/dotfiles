@@ -53,6 +53,15 @@ lspconfig.clangd.setup {
     single_file_support = true,
 }
 
+lspconfig.ccls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
+    },
+    single_file_support = true,
+}
+
 lspconfig.angularls.setup {
     on_attach = on_attach,
     capabilities = capabilities
