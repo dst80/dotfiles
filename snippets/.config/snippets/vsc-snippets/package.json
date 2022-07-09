@@ -1,0 +1,117 @@
+{
+    "version": "1.0.0",
+    "name": "personal-snippets",
+    "displayName": "My Personal Snippets",
+    "description": "My Personal Snippets for VS Code",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "css",
+                "path": "./css.json"
+            },
+            {
+                "language": "scss",
+                "path": "./css.json"
+            },
+            {
+                "language": "less",
+                "path": "./css.json"
+            },
+            {
+                "path": "./cpp.json",
+                "language": "cpp"
+            },
+            {
+                "path": "./gtest.json",
+                "language": "cpp"
+            },
+            {
+                "path": "./csharp.json",
+                "language": "csharp"
+            },
+            {
+                "path": "./go.json",
+                "language": "go"
+            },
+            {
+                "language": "html",
+                "path": "./html.json"
+            },
+            {
+                "language": "php",
+                "path": "./html.json"
+            },
+            {
+                "language": "ruby",
+                "path": "./html.json"
+            },
+            {
+                "language": "njk",
+                "path": "./html.json"
+            },
+            {
+                "language": "django-html",
+                "path": "./html.json"
+            },
+            {
+                "path": "./latex.json",
+                "language": "latex"
+            },
+            {
+                "language": "markdown",
+                "path": "markdown.json"
+            },
+            {
+                "language": "markdown",
+                "path": "plantuml.json"
+            },
+            {
+                "language": "plantuml",
+                "path": "plantuml.json"
+            },
+            {
+                "path": "./lua.json",
+                "language": "lua"
+            },
+            {
+                "path": "./python.json",
+                "language": "python"
+            },
+            {
+                "path": "./rust.json",
+                "language": "rust"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "javascript"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "typescript"
+            },
+            {
+                "path": "./typescript.json",
+                "language": "typescript"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "javascriptreact"
+            },
+            {
+                "path": "./javascript.json",
+                "language": "typescriptreact"
+            },
+            {
+                "path": "./react.json",
+                "language": "javascriptreact"
+            },
+            {
+                "path": "./react-ts.json",
+                "language": "typescriptreact"
+            }
+        ]
+    },
+    "categories": [
+        "Snippets"
+    ]
+}

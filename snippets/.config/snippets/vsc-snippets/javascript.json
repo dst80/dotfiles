@@ -1,0 +1,812 @@
+{
+    "addEventListener": {
+        "body": "${1:document}.addEventListener('${2:event}', ${3:ev} => {\n\t${0}\n})",
+        "prefix": "ae"
+    },
+    "after": {
+        "body": "after(() => {\n\t${0}\n})",
+        "prefix": "aft"
+    },
+    "afterEach": {
+        "body": "afterEach(() => {\n\t${0}\n})",
+        "prefix": "afe"
+    },
+    "anonymous function": {
+        "body": "function (${1:arguments}) {${0}}",
+        "prefix": "fan"
+    },
+    "anonymousFunction": {
+        "body": "(${1:params}) => {\n\t${2}\n}",
+        "description": "Creates an anonymous function in ES6 syntax",
+        "prefix": "anfn"
+    },
+    "appendChild": {
+        "body": "${1:el}.appendChild(${2:elem})",
+        "prefix": "heac"
+    },
+    "Array.isArray()": {
+        "body": "Array.isArray(${1:source})",
+        "prefix": "ia"
+    },
+    "arrow function": {
+        "body": "(${1:arguments}) => ${2:statement}",
+        "prefix": "af"
+    },
+    "arrow function returning single object": {
+        "body": "(${1:arguments}) => ({\n\t${0}\n})",
+        "prefix": "fro"
+    },
+    "arrow function with body": {
+        "body": "(${1:arguments}) => {\n\t${0}\n}",
+        "prefix": "f"
+    },
+    "arrow function with destructuring": {
+        "body": "({${1:arguments}}) => ${2:statement}",
+        "prefix": "fd"
+    },
+    "arrow function with destructuring returning destructured": {
+        "body": "({${1:arguments}}) => ${1:arguments}",
+        "prefix": "fdr"
+    },
+    "arrow function with return": {
+        "body": "(${1:arguments}) => {\n\treturn ${0}\n}",
+        "prefix": "fr"
+    },
+    "async arrow function": {
+        "body": "async (${1:arguments}) => {\n\t${0}\n}",
+        "prefix": "aa"
+    },
+    "async function": {
+        "body": "async function (${1:arguments}) {\n\t${0}\n}",
+        "prefix": "asf"
+    },
+    "async immediately-invoked function expression": {
+        "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
+        "prefix": "aiife"
+    },
+    "await": {
+        "body": "await ${0}",
+        "prefix": "a"
+    },
+    "await Promise.all": {
+        "body": "await Promise.all(${1:value})",
+        "prefix": "apa"
+    },
+    "await Promise.all map": {
+        "body": "await Promise.all(${1:array}.map(async (${2:value}) => {\n\t${0}\n}))",
+        "prefix": "apm"
+    },
+    "await Promise.all with destructuring": {
+        "body": "const [${0}] = await Promise.all(${1:value})",
+        "prefix": "apad"
+    },
+    "await sleep": {
+        "body": "await new Promise((r) => setTimeout(r, ${0}))",
+        "prefix": "ast"
+    },
+    "before": {
+        "body": "before(async () => {\n\t${0}\n})",
+        "prefix": "bf"
+    },
+    "beforeAll": {
+        "body": "beforeAll(async () => {\n\t${0}\n})",
+        "prefix": "ba"
+    },
+    "beforeEach": {
+        "body": "beforeEach(async () => {\n\t${0}\n})",
+        "prefix": "bfe"
+    },
+    "class": {
+        "body": "class ${1:name} {\n\tconstructor (${2:arguments}) {\n\t\t${0}\n\t}\n}",
+        "prefix": "cs"
+    },
+    "class extends": {
+        "body": "class ${1:name} extends ${2:base} {\n\tconstructor (${3:arguments}) {\n\t\tsuper(${3:arguments})\n\t\t${0}\n\t}\n}",
+        "prefix": "csx"
+    },
+    "classList.add": {
+        "body": "${1:el}.classList.add('${2:class}')",
+        "prefix": "hecla"
+    },
+    "classList.remove": {
+        "body": "${1:el}.classList.remove('${2:class}')",
+        "prefix": "heclr"
+    },
+    "classList.toggle": {
+        "body": "${1:el}.classList.toggle('${2:class}')",
+        "prefix": "hect"
+    },
+    "console.dir": {
+        "body": "console.dir('${0}:', ${0})",
+        "prefix": "cod"
+    },
+    "console.error": {
+        "body": "console.error(${0})",
+        "prefix": "ce"
+    },
+    "console.log": {
+        "body": "console.log(${0})",
+        "prefix": "cl"
+    },
+    "console.log a variable": {
+        "body": "console.log('${0}:', ${0})",
+        "prefix": "cv"
+    },
+    "console.warn": {
+        "body": "console.warn(${0})",
+        "prefix": "cw"
+    },
+    "consoleAssert": {
+        "body": "console.assert(${1:expression}, ${2:object});",
+        "description": "If the specified expression is false, the message is written to the console along with a stack trace",
+        "prefix": "cas"
+    },
+    "consoleClear": {
+        "body": "console.clear();",
+        "description": "Clears the console",
+        "prefix": "ccl"
+    },
+    "consoleCount": {
+        "body": "console.count(${1:label});",
+        "description": "Writes the the number of times that count() has been invoked at the same line and with the same label",
+        "prefix": "cco"
+    },
+    "consoleDebug": {
+        "body": "console.debug(${1:object});",
+        "description": "Displays a message in the console. Also display a blue right arrow icon along with the logged message in Safari",
+        "prefix": "cdb"
+    },
+    "consoleDir": {
+        "body": "console.dir(${1:object});",
+        "description": "Prints a JavaScript representation of the specified object",
+        "prefix": "cdi"
+    },
+    "consoleError": {
+        "body": "console.error(${1:object});",
+        "description": "Displays a message in the console and also includes a stack trace from where the method was called",
+        "prefix": "cer"
+    },
+    "consoleGroup": {
+        "body": "console.group('${1:label}');",
+        "description": "Groups and indents all following output by an additional level, until console.groupEnd() is called.",
+        "prefix": "cgr"
+    },
+    "consoleGroupEnd": {
+        "body": "console.groupEnd();",
+        "description": "Closes out the corresponding console.group().",
+        "prefix": "cge"
+    },
+    "consoleInfo": {
+        "body": "console.info(${1:object});",
+        "description": "Displays a message in the console but also displays a blue information icon along with the logged message",
+        "prefix": "cin"
+    },
+    "consoleLog": {
+        "body": "console.log(${1:object});",
+        "description": "Displays a message in the console",
+        "prefix": "clg"
+    },
+    "consoleLogObject": {
+        "body": "console.log('${1:object} :>> ', ${1:object});",
+        "description": "Displays an object in the console with its name",
+        "prefix": "clo"
+    },
+    "consoleTable": {
+        "body": "console.table(${1:object});",
+        "description": "Displays tabular data as a table.",
+        "prefix": "clt"
+    },
+    "consoleTime": {
+        "body": "console.time(${1:object});",
+        "description": "Sets starting point for execution time measurement",
+        "prefix": "cti"
+    },
+    "consoleTimeEnd": {
+        "body": "console.timeEnd(${1:object});",
+        "description": "Sets end point for execution time measurement",
+        "prefix": "cte"
+    },
+    "consoleTrace": {
+        "body": "console.trace(${1:object});",
+        "description": "Prints a stack trace from the point where the method was called",
+        "prefix": "ctr"
+    },
+    "consoleWarn": {
+        "body": "console.warn(${1:object});",
+        "description": "Displays a message in the console but also displays a yellow warning icon along with the logged message",
+        "prefix": "cwa"
+    },
+    "const array": {
+        "body": "const ${1:name} = [\n\t${0}\n]",
+        "prefix": "car"
+    },
+    "const arrow function assignment": {
+        "body": "const ${1:name} = (${2:arguments}) => {\n\treturn ${0}\n}",
+        "prefix": "cf"
+    },
+    "const assignment awaited": {
+        "body": "const ${1:name} = await ${2:value}",
+        "prefix": "ca"
+    },
+    "const assignment yielded": {
+        "body": "const ${1:name} = yield ${2:value}",
+        "prefix": "cy"
+    },
+    "const destructuring assignment awaited": {
+        "body": "const { ${1:name} } = await ${2:value}",
+        "prefix": "cda"
+    },
+    "const module = require('module')": {
+        "body": "const ${1:module} = require('${1:module}')",
+        "prefix": "cr"
+    },
+    "const object": {
+        "body": "const ${1:name} = {\n\t${0}\n}",
+        "prefix": "co"
+    },
+    "const statement": {
+        "body": "const ${1:name}",
+        "prefix": "c"
+    },
+    "const statement from array destructuring": {
+        "body": "const [ ${2:prop} ] = ${1:value}",
+        "prefix": "cad"
+    },
+    "const statement from destructuring": {
+        "body": "const { ${2:prop} } = ${1:value}",
+        "prefix": "cd"
+    },
+    "constructor": {
+        "body": "constructor(${1:params}) {\n\t${0}\n}",
+        "description": "Add default constructor in a class in ES6 syntax",
+        "prefix": "con"
+    },
+    "createDocumentFragment": {
+        "body": "${1:document}.createDocumentFragment(${2:elem})",
+        "prefix": "cdf"
+    },
+    "createElement": {
+        "body": "${1:document}.createElement(${2:elem})",
+        "prefix": "cel"
+    },
+    "describe": {
+        "body": "describe('${1:description}', () => {\n\t${0}\n})",
+        "prefix": "desc"
+    },
+    "describe top level": {
+        "body": "describe('${TM_FILENAME_BASE}', () => {\n\t${0}\n})",
+        "prefix": "dt"
+    },
+    "destructingArray": {
+        "body": "const [${2:propertyName}] = ${1:arrayToDestruct};",
+        "description": "Creates and assigns a local variable using array destructing",
+        "prefix": "dar"
+    },
+    "destructingObject": {
+        "body": "const {${2:propertyName}} = ${1:objectToDestruct};",
+        "description": "Creates and assigns a local variable using object destructing",
+        "prefix": "dob"
+    },
+    "dom event cancel default and propagation": {
+        "body": "ev.preventDefault()\nev.stopPropagation()\nreturn false",
+        "prefix": "evc"
+    },
+    "else if statement": {
+        "body": "else if (${1:condition}) {\n\t${0}\n}",
+        "prefix": "ei"
+    },
+    "else statement": {
+        "body": "else {\n\t${0}\n}",
+        "prefix": "el"
+    },
+    "event handler": {
+        "body": "${1:emitter}.on('${2:event}', (${3:arguments}) => {\n\t${0}\n})",
+        "prefix": "on"
+    },
+    "every": {
+        "body": "${1:iterable}.every((${2:item}) => {\n\t${0}\n})",
+        "prefix": "every"
+    },
+    "export named function": {
+        "body": "export function ${1:member} (${2:arguments}) {\n\t${0}\n}",
+        "prefix": "ef"
+    },
+    "exportClass": {
+        "body": "export default class ${1:className} {\n\t$0\n};\n",
+        "description": "Export default class in ES6 syntax",
+        "prefix": "ecl"
+    },
+    "exportClassExtends": {
+        "body": "export default class ${1:className} extends ${2:baseclassName} {\n\t$0\n};\n",
+        "description": "Export default class which extends a base one in ES6 syntax",
+        "prefix": "ece"
+    },
+    "exportDefaultFunction": {
+        "body": "export default function ${1:${TM_FILENAME_BASE}}(${2:params}) {\n\t$0\n};\n",
+        "description": "Export default function in ES6 syntax",
+        "prefix": "edf"
+    },
+    "exportNamedFunction": {
+        "body": "export const ${1:functionName} = (${2:params}) => {\n\t$0\n};\n",
+        "description": "Export named function in ES6 syntax",
+        "prefix": "enf"
+    },
+    "exportNamedVariable": {
+        "body": "export const ${1:exportVariable} = ${2:localVariable};\n",
+        "description": "Export named variable in ES6 syntax",
+        "prefix": "env"
+    },
+    "exports.member": {
+        "body": "exports.${1:member} = ${2:value}",
+        "prefix": "em"
+    },
+    "filter": {
+        "body": "${1:iterable}.filter((${2:item}) => {\n\t${0}\n})",
+        "prefix": "filter"
+    },
+    "find": {
+        "body": "${1:iterable}.find((${2:item}) => {\n\t${0}\n})",
+        "prefix": "find"
+    },
+    "for in loop": {
+        "body": "for (let ${1:key} in ${2:source}) {\n\tif (${2:source}.hasOwnProperty(${1:key})) {\n\t\t${0}\n\t}\n}",
+        "prefix": "fi"
+    },
+    "for loop": {
+        "body": "for (let ${1:i} = 0, ${2:len} = ${3:iterable}.length; ${1:i} < ${2:len}; ${1:i}++) {\n\t${0}\n}",
+        "prefix": "fl"
+    },
+    "for of loop": {
+        "body": "for (const ${1:key} of ${2:source}) {\n\t${0}\n}",
+        "prefix": "fo"
+    },
+    "forEach": {
+        "body": "${1:array}.forEach(${2:currentItem} => {\n\t${0}\n});",
+        "description": "Creates a forEach statement in ES6 syntax",
+        "prefix": "fre"
+    },
+    "forIn": {
+        "body": "for (const ${1:item} in ${2:object}) {\n\t${0}\n}",
+        "description": "Iterating over property values of iterable objects",
+        "prefix": "fin"
+    },
+    "forOf": {
+        "body": "for (const ${1:item} of ${2:object}) {\n\t${0}\n}",
+        "description": "Iterating over property names of iterable objects",
+        "prefix": "fof"
+    },
+    "generate array of integers starting with 0": {
+        "body": "[...Array(${1:length}).keys()]",
+        "prefix": "gari0"
+    },
+    "generate array of integers starting with 1": {
+        "body": "Array.from({ length: ${1:length} }, (v, k) => k + 1)",
+        "prefix": "gari"
+    },
+    "generator function": {
+        "body": "function* (${1:arguments}) {\n\t${0}\n}",
+        "prefix": "gf"
+    },
+    "getAttribute": {
+        "body": "${1:el}.getAttribute('${2:attr}')",
+        "prefix": "hega"
+    },
+    "getElementById": {
+        "body": "${1:document}.getElementById('${2:id}')",
+        "prefix": "gi"
+    },
+    "getElementsByClassName": {
+        "body": "Array.from(${1:document}.getElementsByClassName('${2:class}'))",
+        "prefix": "gc"
+    },
+    "getElementsByTagName": {
+        "body": "Array.from(${1:document}.getElementsByTagName('${2:tag}'))",
+        "prefix": "gt"
+    },
+    "getter": {
+        "body": "get ${1:property} () {\n\t${0}\n}",
+        "prefix": "get"
+    },
+    "getter + setter": {
+        "body": "get ${1:property} () {\n\t${0}\n}\nset ${1:property} (${2:value}) {\n\t\n}",
+        "prefix": "gs"
+    },
+    "identity arrow function": {
+        "body": "(v) => v",
+        "prefix": "afi"
+    },
+    "if statement": {
+        "body": "if (${1:condition}) {\n\t${0}\n}",
+        "prefix": "i"
+    },
+    "if/else statement": {
+        "body": "if (${1:condition}) {\n\t${0}\n} else {\n\t\n}",
+        "prefix": "ife"
+    },
+    "immediately-invoked function expression": {
+        "body": ";(function (${1:arguments}) {\n\t${0}\n})(${2})",
+        "prefix": "iife"
+    },
+    "import": {
+        "body": "import ${2:moduleName} from '${1:module}';$0",
+        "description": "Imports entire module statement in ES6 syntax",
+        "prefix": "imp"
+    },
+    "import module": {
+        "body": "import ${2:*} from '${1:module}'",
+        "prefix": "im"
+    },
+    "import module as": {
+        "body": "import ${2:*} as ${3:name} from '${1:module}'",
+        "prefix": "ia"
+    },
+    "import module destructured": {
+        "body": "import {$2} from '${1:module}'",
+        "prefix": "imd"
+    },
+    "importAs": {
+        "body": "import { ${2:originalName} as ${3:alias} } from '${1:module}';$0",
+        "description": "Imports a specific portion of the module by assigning a local alias in ES6 syntax",
+        "prefix": "ima"
+    },
+    "importDestructing": {
+        "body": "import { $2 } from '${1:module}';$0",
+        "description": "Imports only a portion of the module in ES6 syntax",
+        "prefix": "imd"
+    },
+    "importEverything": {
+        "body": "import * as ${2:alias} from '${1:module}';$0",
+        "description": "Imports everything as alias from the module in ES6 syntax",
+        "prefix": "ime"
+    },
+    "importNoModuleName": {
+        "body": "import '${1:module}';$0",
+        "description": "Imports entire module in ES6 syntax without module name",
+        "prefix": "imn"
+    },
+    "instanceof": {
+        "body": "${1:source} instanceof ${2:Object}",
+        "prefix": "iof"
+    },
+    "it asynchronous": {
+        "body": "it('${1:description}', async () => {\n\t${0}\n})",
+        "prefix": "it"
+    },
+    "it synchronous": {
+        "body": "it('${1:description}', () => {\n\t${0}\n})",
+        "prefix": "its"
+    },
+    "it with a callback": {
+        "body": "it('${1:description}', (done) => {\n\t${0}\n})",
+        "prefix": "itd"
+    },
+    "it.todo": {
+        "body": "it.todo('${1:description}')",
+        "prefix": "itt"
+    },
+    "JSON.parse()": {
+        "body": "JSON.parse($0)",
+        "prefix": "jp"
+    },
+    "JSON.stringify()": {
+        "body": "JSON.stringify($0)",
+        "prefix": "js"
+    },
+    "let and if statement": {
+        "body": "let ${0} \n if (${2:condition}) {\n\t${1}\n}",
+        "prefix": "lif"
+    },
+    "let assignment awaited": {
+        "body": "let ${1:name} = await ${2:value}",
+        "prefix": "la"
+    },
+    "let assignment yielded": {
+        "body": "let ${1:name} = yield ${2:value}",
+        "prefix": "ly"
+    },
+    "let statement": {
+        "body": "let ${1:name}",
+        "prefix": "l"
+    },
+    "map": {
+        "body": "${1:iterable}.map((${2:item}) => {\n\t${0}\n})",
+        "prefix": "map"
+    },
+    "map single desctructured argument": {
+        "body": "${1:iterable}.map(({${2:item}}) => ${2:item})",
+        "prefix": "mapsd"
+    },
+    "method": {
+        "body": "${1:methodName}(${2:params}) {\n\t${0}\n}",
+        "description": "Creates a method inside a class in ES6 syntax",
+        "prefix": "met"
+    },
+    "module as class": {
+        "body": "class ${1:name} {\n\tconstructor (${2:arguments}) {\n\t\t${0}\n\t}\n}\n\nmodule.exports = ${1:name}\n",
+        "prefix": "mec"
+    },
+    "module default export": {
+        "body": "export default ${1:member}",
+        "prefix": "ed"
+    },
+    "module default export function": {
+        "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}",
+        "prefix": "edf"
+    },
+    "module export": {
+        "body": "export ${1:member}",
+        "prefix": "e"
+    },
+    "module export const": {
+        "body": "export const ${1:member} = ${2:value}",
+        "prefix": "ec"
+    },
+    "module.exports": {
+        "body": "module.exports = ${1:name}",
+        "prefix": "me"
+    },
+    "moduleExports": {
+        "body": "module.exports = {\n\t$0\n};\n",
+        "description": "Module exports from Common JS, node syntax at ES6",
+        "prefix": "mde"
+    },
+    "named function": {
+        "body": "function ${1:name} (${2:arguments}) {\n\t${0}\n}",
+        "prefix": "fn"
+    },
+    "named generator": {
+        "body": "function* ${1:name}(${2:arguments}) {\n\t${0}\n}",
+        "prefix": "gfn"
+    },
+    "namedFunction": {
+        "body": "const ${1:name} = (${2:params}) => {\n\t${3}\n}",
+        "description": "Creates a named function in ES6 syntax",
+        "prefix": "nfn"
+    },
+    "new Promise": {
+        "body": "new Promise((resolve, reject) => {\n\t${0}\n})",
+        "prefix": "np"
+    },
+    "Node callback": {
+        "body": "function (err, ${1:value}) {\n\tif (err) throw err\n\t${0}\n}",
+        "prefix": "cb"
+    },
+    "Object.assign": {
+        "body": "Object.assign(${1:dest}, ${2:source})",
+        "prefix": "oa"
+    },
+    "Object.create": {
+        "body": "Object.create(${1:obj})",
+        "prefix": "oc"
+    },
+    "Object.defineProperty": {
+        "body": "Object.defineProperty(${1:dest}, '${2:prop}', {\n\t${0}\n})",
+        "prefix": "od"
+    },
+    "Object.entries": {
+        "body": "Object.entries(${1:obj})",
+        "prefix": "oe"
+    },
+    "Object.getOwnPropertyDescriptor": {
+        "body": "Object.getOwnPropertyDescriptor(${1:obj}, '${2:prop}')",
+        "prefix": "og"
+    },
+    "Object.keys": {
+        "body": "Object.keys(${1:obj})",
+        "prefix": "ok"
+    },
+    "Object.values": {
+        "body": "Object.values(${1:obj})",
+        "prefix": "ov"
+    },
+    "process.env": {
+        "body": "process.env",
+        "prefix": "pe"
+    },
+    "promise": {
+        "body": "return new Promise((resolve, reject) => {\n\t${1}\n});",
+        "description": "Creates and returns a new Promise in the standard ES6 syntax",
+        "prefix": "prom"
+    },
+    "Promise": {
+        "body": "Promise",
+        "prefix": "p"
+    },
+    "Promise.all": {
+        "body": "Promise.all(${1:value})",
+        "prefix": "pa"
+    },
+    "Promise.catch": {
+        "body": "${1:promise}.catch(error => {\n\t${0}\n})",
+        "prefix": "pc"
+    },
+    "Promise.reject": {
+        "body": "Promise.reject(${1:value})",
+        "prefix": "prj"
+    },
+    "Promise.resolve": {
+        "body": "Promise.resolve(${1:value})",
+        "prefix": "prs"
+    },
+    "Promise.then": {
+        "body": "${1:promise}.then((${2:value}) => {\n\t${0}\n})",
+        "prefix": "pt"
+    },
+    "propertyGet": {
+        "body": "get ${1:propertyName}() {\n\treturn this.${0};\n}",
+        "description": "Creates a getter property inside a class in ES6 syntax",
+        "prefix": "pge"
+    },
+    "propertyset": {
+        "body": "set ${1:propertyName}(${2:value}) {\n\t${0};\n}",
+        "description": "Creates a setter property inside a class in ES6 syntax",
+        "prefix": "pse"
+    },
+    "prototype method": {
+        "body": "${1:Class}.prototype.${2:method} = function (${3:arguments}) {\n\t${0}\n}",
+        "prefix": "proto"
+    },
+    "querySelector": {
+        "body": "${1:document}.querySelector('${2:selector}')",
+        "prefix": "qs"
+    },
+    "querySelectorAll": {
+        "body": "Array.from(${1:document}.querySelectorAll('${2:selector}'))",
+        "prefix": "qsa"
+    },
+    "reduce": {
+        "body": "${1:iterable}.reduce((${2:previous}, ${3:current}) => {\n\t${0}\n}${4:, initial})",
+        "prefix": "reduce"
+    },
+    "removeAttribute": {
+        "body": "${1:el}.removeAttribute('${2:attr}')",
+        "prefix": "hera"
+    },
+    "removeChild": {
+        "body": "${1:el}.removeChild(${2:elem})",
+        "prefix": "herc"
+    },
+    "removeEventListener": {
+        "body": "${1:document}.removeEventListener('${2:event}', ${3:listener})",
+        "prefix": "rel"
+    },
+    "require": {
+        "body": "require('${1:package}');",
+        "description": "Require a package",
+        "prefix": "rqr"
+    },
+    "requireToConst": {
+        "body": "const ${1:packageName} = require('${1:package}');$0",
+        "description": "Require a package to const",
+        "prefix": "req"
+    },
+    "return": {
+        "body": "return ${0}",
+        "prefix": "r"
+    },
+    "return arrow function": {
+        "body": "return (${1:arguments}) => ${2:statement}",
+        "prefix": "rf"
+    },
+    "return new array": {
+        "body": "return [\n\t${0}\n]",
+        "prefix": "ra"
+    },
+    "return new object": {
+        "body": "return {\n\t${0}\n}",
+        "prefix": "ro"
+    },
+    "return null": {
+        "body": "return null",
+        "prefix": "rn"
+    },
+    "return promise": {
+        "body": "return new Promise((resolve, reject) => {\n\t${0}\n})",
+        "prefix": "rp"
+    },
+    "return this": {
+        "body": "return this",
+        "prefix": "rt"
+    },
+    "setAttribute": {
+        "body": "${1:el}.setAttribute('${2:attr}', ${3:value})",
+        "prefix": "hesa"
+    },
+    "setImmediate": {
+        "body": "setImmediate(() => {\n\t${0}\n})",
+        "prefix": "sim"
+    },
+    "setInterval": {
+        "body": "setInterval(() => {\n\t${2}\n}, ${0:intervalInms});",
+        "description": "Executes the given function at specified intervals in ES6 syntax",
+        "prefix": "sti"
+    },
+    "setter": {
+        "body": "set ${1:property} (${2:value}) {\n\t${0}\n}",
+        "prefix": "set"
+    },
+    "setTimeout": {
+        "body": "setTimeout(() => {\n\t${0}\n}, ${1:delay})",
+        "prefix": "st"
+    },
+    "setTimeOut": {
+        "body": "setTimeout(() => {\n\t${2}\n}, ${1:delayInms});",
+        "description": "Executes the given function after the specified delay in ES6 syntax",
+        "prefix": "sto"
+    },
+    "some": {
+        "body": "${1:iterable}.some((${2:item}) => {\n\t${0}\n})",
+        "prefix": "some"
+    },
+    "ternary": {
+        "body": "${1:cond} ? ${2:true} : ${3:false}",
+        "prefix": "te"
+    },
+    "ternary assignment": {
+        "body": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}",
+        "prefix": "ta"
+    },
+    "thenCatch": {
+        "body": ".then((${1:result}) => {\n\t${2}\n}).catch((${3:err}) => {\n\t${4}\n});",
+        "description": "Add the .then and .catch methods to handle promises",
+        "prefix": "thenc"
+    },
+    "this": {
+        "body": "this.",
+        "prefix": "t"
+    },
+    "throw new Error": {
+        "body": "throw new ${0:error}",
+        "prefix": "tn"
+    },
+    "try/catch": {
+        "body": "try {\n\t${0}\n} catch (${1:err}) {\n\t\n}",
+        "prefix": "tc"
+    },
+    "try/catch/finally": {
+        "body": "try {\n\t${0}\n} catch (${1:err}) {\n\t\n} finally {\n\t\n}",
+        "prefix": "tcf"
+    },
+    "try/finally": {
+        "body": "try {\n\t${0}\n} finally {\n\t\n}",
+        "prefix": "tf"
+    },
+    "typeof": {
+        "body": "typeof ${1:source} === '${2:undefined}'",
+        "prefix": "to"
+    },
+    "use strict": {
+        "body": "'use strict'",
+        "prefix": "uss"
+    },
+    "var assignment": {
+        "body": "var ${1:name} = ${2:value}",
+        "prefix": "va"
+    },
+    "var statement": {
+        "body": "var ${1:name}",
+        "prefix": "v"
+    },
+    "while iteration decrementing": {
+        "body": "let ${1:array}Index = ${1:array}.length\nwhile (${1:array}Index--) {\n\t${0}\n}",
+        "prefix": "wid"
+    },
+    "while loop": {
+        "body": "while (${1:condition}) {\n\t${0}\n}",
+        "prefix": "wl"
+    },
+    "wrap selection in arrow function": {
+        "body": "() => {\n\t{$TM_SELECTED_TEXT}\n}",
+        "description": "wraps text in arrow function",
+        "prefix": "wrap selection in arrow function"
+    },
+    "wrap selection in async arrow function": {
+        "body": "async () => {\n\t{$TM_SELECTED_TEXT}\n}",
+        "description": "wraps text in arrow function",
+        "prefix": "wrap selection in async arrow function"
+    },
+    "yield": {
+        "body": "yield ${0}",
+        "prefix": "y"
+    }
+}

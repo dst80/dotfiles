@@ -1,0 +1,504 @@
+{
+    "bind method": {
+        "description": "bind this in method",
+        "prefix": "bnd",
+        "body": [
+            "this.${1:} = this.${1:}.bind(this);"
+        ]
+    },
+    "classConstructor": {
+        "body": "constructor (props) {\n\tsuper(props)\n\t$0\n}\n",
+        "description": "Adds a default constructor for the class that contains props as arguments",
+        "prefix": "con"
+    },
+    "classConstructorContext": {
+        "body": "constructor (props, context) {\n\tsuper(props, context)\n\t$0\n}\n",
+        "description": "Adds a default constructor for the class that contains props and context as arguments",
+        "prefix": "conc"
+    },
+    "componentDidMount": {
+        "description": "Invoked immediately after a component is mounted.",
+        "prefix": "cdm",
+        "body": [
+            "componentDidMount() {",
+            "  ${1:}",
+            "}"
+        ]
+    },
+    "componentDidUpdate": {
+        "description": "Invoked immediately after updating occurs. This method is not called for the initial render",
+        "prefix": "cdu",
+        "body": [
+            "componentDidUpdate(prevProps: ${1:}, prevState) {",
+            "  ${2:}",
+            "}"
+        ]
+    },
+    "componentGetDerivedStateFromProps": {
+        "body": "\nstatic getDerivedStateFromProps(nextProps, prevState) {\n\t$0\n}\n",
+        "description": "Invoked after a component is instantiated as well as when it receives new props. It should return an object to update state, or null to indicate that the new props do not require any state updates.",
+        "prefix": "cgd"
+    },
+    "componentProps": {
+        "body": "this.props.$0",
+        "description": "Access component's props",
+        "prefix": "tp"
+    },
+    "componentRender": {
+        "body": "render () {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+        "description": "When called, it should examine this.props and this.state and return a single child element.",
+        "prefix": "ren"
+    },
+    "componentSetState": {
+        "description": "Performs a shallow merge of nextState into current state",
+        "prefix": "sst",
+        "body": [
+            "this.setState(${1:});"
+        ]
+    },
+    "componentSetStateFunc": {
+        "body": "this.setState((state, props) => { return { $0 }})\n",
+        "description": "Performs a shallow merge of nextState into current state",
+        "prefix": "ssf"
+    },
+    "componentSetStateObject": {
+        "body": "this.setState($0)",
+        "description": "Performs a shallow merge of nextState into current state",
+        "prefix": "sst"
+    },
+    "componentState": {
+        "body": "this.state.$0",
+        "description": "Access component's state",
+        "prefix": "ts"
+    },
+    "componentWillMount": {
+        "description": "Invoked immediately before mounting occurs. It is called before render().",
+        "prefix": "cwm",
+        "body": [
+            "componentWillMount() {",
+            "  ${1:}",
+            "}"
+        ]
+    },
+    "componentWillReceiveProps": {
+        "description": "Invoked before a mounted component receives new props.",
+        "prefix": "cwrp",
+        "body": [
+            "componentWillReceiveProps(nextProps: ${1:}) {",
+            "  ${2:}",
+            "}"
+        ]
+    },
+    "componentWillUnmount": {
+        "description": "Invoked immediately before a component is unmounted and destroyed",
+        "prefix": "cwum",
+        "body": [
+            "componentWillUnmount() {",
+            "  ${1:}",
+            "}"
+        ]
+    },
+    "componentWillUpdate": {
+        "description": "Invoked immediately before rendering when new props or state are being received.",
+        "prefix": "cwu",
+        "body": [
+            "componentWillUpdate(nextProps: ${1:}, nextState) {",
+            "  ${2:}",
+            "}"
+        ]
+    },
+    "constructor": {
+        "description": "Add a constructor in class.",
+        "prefix": "conc",
+        "body": [
+            "constructor(props) {",
+            "  super(props);",
+            "  ${1:}",
+            "}"
+        ]
+    },
+    "createContext": {
+        "description": "creates a react context",
+        "prefix": "cc",
+        "body": [
+            "export const $1 = createContext<$2>(",
+            "\t(null as any) as $2",
+            ")"
+        ]
+    },
+    "destructuring of props": {
+        "prefix": "dp",
+        "body": [
+            "const { ${1:name} } = this.props"
+        ]
+    },
+    "destructuring of state": {
+        "prefix": "ds",
+        "body": [
+            "const { ${1:name} } = this.state"
+        ]
+    },
+    "Export Default React Pure Function Component": {
+        "description": "Create a default-exported React Pure Function Component.",
+        "prefix": "tsdrpfc",
+        "body": [
+            "import * as React from 'react';",
+            "",
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "export default function ${1:} (props: I${1:}Props) {",
+            "  return (",
+            "    <div>",
+            "      ${0}",
+            "    </div>",
+            "  );",
+            "}",
+            ""
+        ]
+    },
+    "getDerivedStateFromProps": {
+        "description": "Invoked right before calling the render method, both on the initial mount and on subsequent updates",
+        "prefix": "gdsfp",
+        "body": [
+            "static getDerivedStateFromProps(nextProps: ${1:any}, prevState: ${2:any}) {",
+            "  ${0}",
+            "}"
+        ]
+    },
+    "getSnapshotBeforeUpdate": {
+        "description": "Invoked right before the most recently rendered output is committed to e.g. the DOM",
+        "prefix": "gsbu",
+        "body": [
+            "getSnapshotBeforeUpdate(prevProps: ${1:any}, prevState: ${2:any}) {",
+            "  ${0}",
+            "}"
+        ]
+    },
+    "import": {
+        "description": "Create a import",
+        "prefix": "imt",
+        "body": [
+            "import { $2 } from '$1';"
+        ]
+    },
+    "jsx element": {
+        "body": "<${1:elementName}>\n\t$0\n</${1}>",
+        "description": "an element",
+        "prefix": "j"
+    },
+    "jsx element self closed": {
+        "body": "<${1:elementName} />",
+        "description": "an element self closed",
+        "prefix": "jc"
+    },
+    "jsx element wrap selection": {
+        "body": "<${1:elementName}>\n\t{$TM_SELECTED_TEXT}\n</${1}>",
+        "description": "an element",
+        "prefix": "jsx wrap selection with element"
+    },
+    "jsx elements map": {
+        "body": "{${1:array}.map((item) => <${2:elementName} key={item.id}>\n\t$0\n</${2}>)}",
+        "description": "an element self closed",
+        "prefix": "jm"
+    },
+    "jsx elements map with return": {
+        "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
+        "description": "an element self closed",
+        "prefix": "jmr"
+    },
+    "method": {
+        "description": "Create a method",
+        "prefix": "met",
+        "body": [
+            "${1:methodName} = (${2:e}) => {",
+            "  ${3:}",
+            "}"
+        ]
+    },
+    "React Component": {
+        "description": "Create a React Component with typescript.",
+        "prefix": "tsrcc",
+        "body": [
+            "import * as React from 'react';",
+            "",
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "export default class ${1:} extends React.Component<I${1:}Props> {",
+            "  public render() {",
+            "    return (",
+            "      <div>",
+            "        ${2:}",
+            "      </div>",
+            "    );",
+            "  }",
+            "}",
+            ""
+        ]
+    },
+    "React Component - Full": {
+        "description": "Create a stateful React Component with typescript with Props, State, and a constructor.",
+        "prefix": "tsrcfull",
+        "body": [
+            "import * as React from 'react';",
+            "",
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "export interface I${1:App}State {",
+            "}",
+            "",
+            "export default class ${1:} extends React.Component<I${1:}Props, I${1:}State> {",
+            "  constructor(props: I${1:}Props) {",
+            "    super(props);",
+            "",
+            "    this.state = {",
+            "    }",
+            "  }",
+            "",
+            "  public render() {",
+            "    return (",
+            "      <div>",
+            "        ${2:}",
+            "      </div>",
+            "    );",
+            "  }",
+            "}",
+            ""
+        ]
+    },
+    "React Component without import and export": {
+        "description": "Create a React Component without import and export.",
+        "prefix": "tsrcjc",
+        "body": [
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "class ${1:} extends React.Component<I${1:}Props> {",
+            "  public render() {",
+            "    return (",
+            "      <div>",
+            "        ${2:}",
+            "      </div>",
+            "    );",
+            "  }",
+            "}",
+            ""
+        ]
+    },
+    "React Pure Function Component": {
+        "description": "Create a React Pure Function Component.",
+        "prefix": "tsrpfc",
+        "body": [
+            "import * as React from 'react';",
+            "",
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "export function ${1:} (props: I${1:}Props) {",
+            "  return (",
+            "    <div>",
+            "      ${0}",
+            "    </div>",
+            "  );",
+            "}",
+            ""
+        ]
+    },
+    "React PureComponent": {
+        "description": "Create a React PureComponent.",
+        "prefix": "tsrpcc",
+        "body": [
+            "import * as React from 'react';",
+            "",
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "export default class ${1:} extends React.PureComponent<I${1:}Props> {",
+            "  public render() {",
+            "    return (",
+            "      <div>",
+            "        ${2:}",
+            "      </div>",
+            "    );",
+            "  }",
+            "}",
+            ""
+        ]
+    },
+    "React PureComponent without import and export": {
+        "description": "Create a React PureComponent without import and export.",
+        "prefix": "tsrpcjc",
+        "body": [
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "class ${1:} extends React.PureComponent<I${1:}Props> {",
+            "  public render() {",
+            "    return (",
+            "      <div>",
+            "        ${2:}",
+            "      </div>",
+            "    );",
+            "  }",
+            "}",
+            ""
+        ]
+    },
+    "React redux container": {
+        "description": "React Redux container",
+        "prefix": "tscntr",
+        "body": [
+            "import * as React from 'react';",
+            "import { connect } from 'react-redux'",
+            "",
+            "export interface I${1:App}Props {",
+            "}",
+            "",
+            "class ${1:} extends React.Component<I${1:}Props> {",
+            "  public render() {",
+            "    return (",
+            "      <div>",
+            "        ${2:}",
+            "      </div>",
+            "    );",
+            "  }",
+            "}",
+            "",
+            "const mapState2Props = state => {",
+            "  return {",
+            "  };",
+            "}",
+            "",
+            "export default connect(mapState2Props)(${1:});",
+            ""
+        ]
+    },
+    "React Stateless Functional Component": {
+        "description": "Create a React Stateless Functional Component.",
+        "prefix": "tsrsfc",
+        "body": [
+            "import * as React from 'react';",
+            "",
+            "interface I${1:App}Props {$2",
+            "}",
+            "",
+            "const ${1:}: React.FunctionComponent<I${1:}Props> = (props) => {",
+            "  return $0;",
+            "};",
+            "",
+            "export default ${1:};",
+            ""
+        ]
+    },
+    "reactClassCompoment": {
+        "body": "import React, { Component } from 'react'\n\nclass ${TM_FILENAME_BASE} extends Component {\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t$0\n\t\t\t</div>\n\t\t)\n\t}\n}\n\nexport default ${1}",
+        "description": "Creates a React component class",
+        "prefix": "rcc"
+    },
+    "reactClassCompomentPropTypes": {
+        "body": "import React, { Component, PropTypes } from 'react'\n\nclass ${TM_FILENAME_BASE} extends Component {\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t$0\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n${1}.propTypes = {\n\n}\n\nexport default ${1}",
+        "description": "Creates a React component class with PropTypes",
+        "prefix": "rccp"
+    },
+    "reactClassCompomentWithMethods": {
+        "body": "import React, { Component, PropTypes } from 'react'\n\nclass ${TM_FILENAME_BASE} extends Component {\n\tconstructor(props) {\n\t\tsuper(props)\n\n\t}\n\n\tcomponentWillMount () {\n\n\t}\n\n\tcomponentDidMount () {\n\n\t}\n\n\tcomponentWillReceiveProps (nextProps) {\n\n\t}\n\n\tshouldComponentUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentWillUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentDidUpdate (prevProps, prevState) {\n\n\t}\n\n\tcomponentWillUnmount () {\n\n\t}\n\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n${1}.propTypes = {\n\n}\n\nexport default ${1}",
+        "description": "Creates a React component class with PropTypes and all lifecycle methods",
+        "prefix": "rcfc"
+    },
+    "reactFunctionComponent": {
+        "body": "import React from 'react'\n\nexport const ${TM_FILENAME_BASE}: React.FC<{}> = () => {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+        "description": "Creates a React functional component without PropTypes",
+        "prefix": "rfc"
+    },
+    "reactFunctionComponentWithEmotion": {
+        "body": "import { css } from '@emotion/core'\nimport React from 'react'\n\nexport const ${TM_FILENAME_BASE}: React.FC<{}> = () => {\n\treturn (\n\t\t<div css={css``}>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+        "description": "Creates a React functional component with emotion import",
+        "prefix": "rfce"
+    },
+    "reactJustClassCompoment": {
+        "body": "class ${TM_FILENAME_BASE} extends Component {\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t$0\n\t\t\t</div>\n\t\t)\n\t}\n}\n",
+        "description": "Creates a React component class",
+        "prefix": "rcjc"
+    },
+    "render": {
+        "description": "When called, it should examine this.props and this.state and return a single React element.",
+        "prefix": "ren",
+        "body": [
+            "public render() {",
+            "  return (",
+            "    ${1:}",
+            "  );",
+            "}"
+        ]
+    },
+    "shouldComponentUpdate": {
+        "description": "Invoked before rendering when new props or state are being received.",
+        "prefix": "scu",
+        "body": [
+            "shouldComponentUpdate(nextProps: ${1:}, nextState) {",
+            "  ${2:}",
+            "}"
+        ]
+    },
+    "useCallback": {
+        "description": "React useCallback() hook",
+        "prefix": "ucb",
+        "body": [
+            "const ${1:memoizedCallback} = useCallback(",
+            "\t() => {",
+            "\t\t${2:doSomething}(${3:a}, ${4:b})",
+            "\t},",
+            "\t[${5:a}, ${6:b}],",
+            ")$0"
+        ]
+    },
+    "useContext": {
+        "description": "React useContext() hook",
+        "prefix": "uc",
+        "body": [
+            "const $1 = useContext($2)$0"
+        ]
+    },
+    "useEffect": {
+        "description": "React useEffect() hook",
+        "prefix": "ue",
+        "body": [
+            "useEffect(() => {",
+            "\t$1",
+            "}, [${3:dependencies}])$0"
+        ]
+    },
+    "useEffect with cleanup": {
+        "description": "React useEffect() hook with a cleanup function",
+        "prefix": "uec",
+        "body": [
+            "useEffect(() => {",
+            "\t$1",
+            "\n\treturn () => {",
+            "\t\t$2",
+            "\t}",
+            "}, [${3:dependencies}])$0"
+        ]
+    },
+    "useMemo": {
+        "description": "React useMemo() hook",
+        "prefix": "ume",
+        "body": [
+            "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}])$0"
+        ]
+    },
+    "useRef": {
+        "description": "React useContext() hook",
+        "prefix": "ur",
+        "body": [
+            "const ${1:elName}El = useRef(null)$0"
+        ]
+    },
+    "useState": {
+        "body": "const [${1}, set${1/(^[a-zA-Z])(.*)/${1:/upcase}${2}/}] = useState(${2:default${1/(^[a-zA-Z])(.*)/${1:/upcase}${2}/}});",
+        "description": "use state hook",
+        "prefix": "us"
+    }
+}

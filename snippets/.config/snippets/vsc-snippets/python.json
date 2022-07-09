@@ -1,0 +1,917 @@
+{
+    "env": {
+        "prefix": [
+            "env",
+            "#!"
+        ],
+        "body": [
+            "#!/usr/bin/env python"
+        ],
+        "description": "Set default enviroment shebang"
+    },
+    "env2": {
+        "prefix": [
+            "env2",
+            "#!2"
+        ],
+        "body": [
+            "#!/usr/bin/env python2"
+        ],
+        "description": "Set shebang for Python 2"
+    },
+    "env3": {
+        "prefix": [
+            "env3",
+            "#!3"
+        ],
+        "body": [
+            "#!/usr/bin/env python3"
+        ],
+        "description": "Set shebang for Python 3"
+    },
+    "enc": {
+        "prefix": [
+            "enc"
+        ],
+        "body": [
+            "# -*- coding=utf-8 -*-"
+        ],
+        "description": "Add UTF-8 codding line"
+    },
+    "enco": {
+        "prefix": [
+            "enco"
+        ],
+        "body": [
+            "# coding=utf-8"
+        ],
+        "description": "Add UTF-8 codding line"
+    },
+    "imp": {
+        "prefix": [
+            "im",
+            "imp"
+        ],
+        "body": [
+            "import ${0:module}"
+        ],
+        "description": null
+    },
+    "from": {
+        "prefix": [
+            "fim",
+            "from"
+        ],
+        "body": [
+            "from ${1:package} import ${0:module}"
+        ],
+        "description": null
+    },
+    "fdt": {
+        "prefix": [
+            "fdt"
+        ],
+        "body": [
+            "from dataclasses import dataclass"
+        ],
+        "description": "from dataclasses import dataclass"
+    },
+    "class": {
+        "prefix": "class",
+        "body": [
+            "class ${1:ClassName}(${2:object}):",
+            "\tdef __init__(self, ${3:arg}):",
+            "\t\t${4:super($1, self).__init__()}",
+            "\t\t${0}"
+        ],
+        "description": "create basic class with __init__ function"
+    },
+    "class post": {
+        "prefix": "class post",
+        "body": [
+            "class ${1:class_name}:",
+            "\tdef __init__(self, ${2:args}):",
+            "\t\t${3}",
+            "",
+            "",
+            "\tdef __post_init__(self, ${4:args}):",
+            "\t\t${0}"
+        ],
+        "description": "create class with __init__ and __post_init__ function"
+    },
+    "data class": {
+        "prefix": [
+            "data class",
+            "dclass"
+        ],
+        "body": [
+            "@dataclass",
+            "class ${1:class_name}:",
+            "\t${0}"
+        ],
+        "description": "simple data class"
+    },
+    "data class post": {
+        "prefix": [
+            "data class post"
+        ],
+        "body": [
+            "@dataclass",
+            "class ${1:class_name}:",
+            "\t${2}",
+            "\tdef __post_init__(self, ${3:args}):",
+            "\t\t${0}"
+        ],
+        "description": "data class with __post_init__"
+    },
+    "def, func": {
+        "prefix": [
+            "def",
+            "func"
+        ],
+        "body": [
+            "def ${1:fname}(${2:args):",
+            "\t${0}"
+        ],
+        "description": "function definition"
+    },
+    "async def": {
+        "prefix": [
+            "adef",
+            "async def"
+        ],
+        "body": [
+            "async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):",
+            "\t${0}"
+        ],
+        "description": "async function statement"
+    },
+    "defi": {
+        "prefix": [
+            "defi",
+            "init"
+        ],
+        "body": [
+            "def __init__(self, ${1:args}):",
+            "\t${0}"
+        ],
+        "description": null
+    },
+    "mdef, mfunc": {
+        "prefix": [
+            "defm",
+            "mdef",
+            "mfunc"
+        ],
+        "body": [
+            "def ${1:fname}(self, ${2:args}):",
+            "\t${0}"
+        ],
+        "description": "member function definition"
+    },
+    "async mfunc": {
+        "prefix": [
+            "adefm",
+            "amfunc"
+        ],
+        "body": [
+            "async def ${1:mname}(self, ${2:arg}):",
+            "\t${0}",
+            ""
+        ],
+        "description": null
+    },
+    "sdef, sfunc": {
+        "prefix": [
+            "sdef",
+            "sfunc"
+        ],
+        "body": [
+            "@staticmethod",
+            "def ${1:fname}(${2:args}):",
+            "\t${0}"
+        ],
+        "description": "static member function definition"
+    },
+    "prop": {
+        "prefix": [
+            "prop"
+        ],
+        "body": [
+            "@property",
+            "def ${1:foo}(self):",
+            "\t${2:return self._$1}"
+        ],
+        "description": "getter property"
+    },
+    "prop setter": {
+        "prefix": [
+            "prop setter"
+        ],
+        "body": [
+            "@property",
+            "def ${1:foo}(self):",
+            "\t${2:return self._$1}",
+            "@${4:$1}.setter",
+            "def ${5:$1}(self, value):",
+            "\t${6:self._$1} = value"
+        ],
+        "description": "property with gettter and setter via decorator"
+    },
+    "if": {
+        "prefix": "if",
+        "body": [
+            "if ${1:condition}:",
+            "\t${2:pass}$0"
+        ],
+        "description": "if statement."
+    },
+    "if elif else": {
+        "prefix": "if elif else",
+        "body": [
+            "if ${1:condition}:",
+            "\t${2:pass}",
+            "elif:",
+            "\t${3:elif_pass}",
+            "else:",
+            "\t$0"
+        ],
+        "description": "if..elif..else statement."
+    },
+    "if else": {
+        "prefix": "if else",
+        "body": [
+            "if ${1:condition}:",
+            "\t${2:pass}",
+            "else:",
+            "\t$0"
+        ],
+        "description": "if..else statement."
+    },
+    "else": {
+        "prefix": "else",
+        "body": [
+            "else:",
+            "\t$0"
+        ],
+        "description": "else statement"
+    },
+    "elif": {
+        "prefix": "elif",
+        "body": [
+            "elif ${1:condition}:",
+            "\t$0"
+        ],
+        "description": "elif statement"
+    },
+    "for": {
+        "prefix": "for",
+        "body": [
+            "for ${1:value} in ${2:iterable}:",
+            "\t$0"
+        ],
+        "description": "for loop structure."
+    },
+    "for else": {
+        "prefix": "for else",
+        "body": [
+            "for ${1:value} in ${2:iterable}:",
+            "\t${3:loop_action}",
+            "else:",
+            "\t$0"
+        ],
+        "description": "for loop structure with additional else on final"
+    },
+    "while": {
+        "prefix": "while",
+        "body": [
+            "while ${1:condition}:",
+            "\t$0"
+        ],
+        "description": "a while loop structure."
+    },
+    "do while": {
+        "prefix": "do while",
+        "body": [
+            "while True:",
+            "\t${1}",
+            "\tif ${0:condition}:",
+            "\t\tbreak"
+        ],
+        "description": null
+    },
+    "try:except": {
+        "prefix": "try",
+        "body": [
+            "try:",
+            "\t${1:pass}",
+            "except ${2:Exception} as ${3:e}:",
+            "\t${4:raise $3}$0"
+        ],
+        "description": "try and except blocks."
+    },
+    "try:except:else:finally": {
+        "prefix": "try else final",
+        "body": [
+            "try:",
+            "\t${1:pass}",
+            "except${2: ${3:Exception} as ${4:e}}:",
+            "\t${5:raise}",
+            "else:",
+            "\t${6:pass}",
+            "finally:",
+            "\t${7:pass}$0"
+        ],
+        "description": "try/except/finally with else statement."
+    },
+    "try:except:else": {
+        "prefix": "trye",
+        "body": [
+            "try:",
+            "\t${1:pass}",
+            "except ${2:Exception} as ${3:e}:",
+            "\t${4:raise $3}",
+            "else:",
+            "\t${5:pass}$0"
+        ],
+        "description": "try/except with else statement."
+    },
+    "try:except:finally": {
+        "prefix": "tryf",
+        "body": [
+            "try:",
+            "\t${1:pass}",
+            "except ${2:Exception} as ${3:e}:",
+            "\t${4:raise $3}",
+            "finally:",
+            "\t${5:pass}$0"
+        ],
+        "description": "Code Snippet for a try/except/finally."
+    },
+    "self": {
+        "prefix": [
+            ".",
+            "self"
+        ],
+        "body": "self.$0",
+        "description": "Shortend snippet to reference the self property in an object."
+    },
+    "__magic__": {
+        "prefix": [
+            "__"
+        ],
+        "body": "__${1:magic}__$0",
+        "description": "Code snippet to create init method."
+    },
+    "if __name__ == \"__main__\"": {
+        "prefix": "if main",
+        "body": [
+            "if __name__ == \"__main__\":",
+            "\t${1:main()}$0"
+        ],
+        "description": "Create implicitly all the code at the top level using the __name__ special variable."
+    },
+    "with": {
+        "prefix": [
+            "wth",
+            "with"
+        ],
+        "body": [
+            "with ${1:expr}:",
+            "\t${0}"
+        ],
+        "description": "with statment"
+    },
+    "with as": {
+        "prefix": "with as",
+        "body": [
+            "with ${1:expr} as ${2:var}:",
+            "\t${0:${VISUAL}}"
+        ],
+        "description": "with as statement"
+    },
+    "asyc with": {
+        "prefix": "async with",
+        "body": [
+            "async with ${1:expr} as ${2:var}:",
+            "\t${0:${VISUAL}}"
+        ],
+        "description": "async with statement"
+    },
+    "cutf8": {
+        "prefix": "cutf8",
+        "body": [
+            "# -*- coding: utf-8 -*-"
+        ],
+        "description": null
+    },
+    "clatin1": {
+        "prefix": "clatin1",
+        "body": [
+            "# -*- coding: latin-1 -*-"
+        ],
+        "description": null
+    },
+    "cascii": {
+        "prefix": "cascii",
+        "body": [
+            "# -*- coding: ascii -*-"
+        ],
+        "description": null
+    },
+    "lamdda": {
+        "prefix": "lambda",
+        "body": [
+            "lambda ${1:vars} : ${0:action}"
+        ],
+        "description": null
+    },
+    "return": {
+        "prefix": [
+            "ret",
+            "return"
+        ],
+        "body": [
+            "return ${0}"
+        ],
+        "description": null
+    },
+    "pdb": {
+        "prefix": "pdb",
+        "body": [
+            "__import__('pdb').set_trace()"
+        ],
+        "description": null
+    },
+    "bpdb": {
+        "prefix": "bpdb",
+        "body": [
+            "__import__('bpdb').set_trace()"
+        ],
+        "description": null
+    },
+    "ipdb": {
+        "prefix": "ipdb",
+        "body": [
+            "__import__('ipdb').set_trace()"
+        ],
+        "description": null
+    },
+    "iem": {
+        "prefix": "iem",
+        "body": [
+            "__import__('IPython').embed()"
+        ],
+        "description": null
+    },
+    "rpdb": {
+        "prefix": "rpdb",
+        "body": [
+            "__import__('rpdb').set_trace()"
+        ],
+        "description": null
+    },
+    "wdb": {
+        "prefix": "wdb",
+        "body": [
+            "__import__('wdb').set_trace()"
+        ],
+        "description": null
+    },
+    "ptpython": {
+        "prefix": "ptpython",
+        "body": [
+            "__import__('ptpython.repl', fromlist=('repl')).embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})"
+        ],
+        "description": null
+    },
+    "pudb": {
+        "prefix": "pudb",
+        "body": [
+            "__import__('pudb').set_trace()"
+        ],
+        "description": null
+    },
+    "nosetrace": {
+        "prefix": "nosetrace",
+        "body": [
+            "__import__('nose').tools.set_trace()"
+        ],
+        "description": null
+    },
+    "pprint": {
+        "prefix": "pprint",
+        "body": [
+            "__import__('pprint').pprint(${1})"
+        ],
+        "description": null
+    },
+    "\"": {
+        "prefix": "\"",
+        "body": [
+            "\"\"\"${0:doc}",
+            "\"\"\""
+        ],
+        "description": null
+    },
+    "a=": {
+        "prefix": "a=",
+        "body": [
+            "self.assertEqual(${0}, ${1})"
+        ],
+        "description": null
+    },
+    "test": {
+        "prefix": "test",
+        "body": [
+            "def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):",
+            "\t${0}"
+        ],
+        "description": null
+    },
+    "testcase": {
+        "prefix": "testcase",
+        "body": [
+            "class ${1:ExampleCase}(unittest.TestCase):",
+            "",
+            "\tdef test_${2:description}(self):",
+            "\t\t${0}"
+        ],
+        "description": null
+    },
+    "tgwt": {
+        "prefix": "tgwt",
+        "body": [
+            "# given: ${1}",
+            "# when: ${2}",
+            "# then: ${3}"
+        ],
+        "description": null
+    },
+    "fut": {
+        "prefix": [
+            "fut",
+            "future"
+        ],
+        "body": [
+            "from __future__ import ${0}"
+        ],
+        "description": null
+    },
+    "getopt": {
+        "prefix": "getopt",
+        "body": [
+            "try:",
+            "\t# Short option syntax: \"hv:\"",
+            "\t# Long option syntax: \"help\" or \"verbose=\"",
+            "\topts, args = getopt.getopt(sys.argv[1:], \"${1:short_options}\", [${2:long_options}])",
+            "",
+            "except getopt.GetoptError, err:",
+            "\t# Print debug info",
+            "\tprint str(err)",
+            "\t${3:error_action}",
+            "",
+            "for option, argument in opts:",
+            "\tif option in (\"-h\", \"--help\"):",
+            "\t\t${0}",
+            "\telif option in (\"-v\", \"--verbose\"):",
+            "\t\tverbose = argument"
+        ],
+        "description": null
+    },
+    "addp": {
+        "prefix": "addp",
+        "body": [
+            "parser = ${VISUAL:argparse.}ArgumentParser()"
+        ],
+        "description": null
+    },
+    "addsp": {
+        "prefix": "addsp",
+        "body": [
+            "${0:sub_parser} = parser.add_subparsers().add_parser(\"${1:name}\")"
+        ],
+        "description": null
+    },
+    "addarg": {
+        "prefix": "addarg",
+        "body": [
+            "parser.add_argument(\"${0:short_arg}\", \"${1:long_arg}\", default=${2:None}, help=\"${3:Help text}\")"
+        ],
+        "description": null
+    },
+    "addnarg": {
+        "prefix": "addnarg",
+        "body": [
+            "parser.add_argument(\"${0:arg}\", nargs=\"${1:*}\", default\"${2:None}, help=\"${3:Help text}\")"
+        ],
+        "description": null
+    },
+    "addaarg": {
+        "prefix": "addaarg",
+        "body": [
+            "parser.add_argument(\"${0:arg}\", \"${1:long_arg}\", action=\"${2:store_true}\", default=${3:False}, help=\"${4:Help text}\")"
+        ],
+        "description": null
+    },
+    "pargs": {
+        "prefix": "pargs",
+        "body": [
+            "\"${VISUAL:return }\"parser.parse_args()",
+            ""
+        ],
+        "description": null
+    },
+    "glog": {
+        "prefix": "glog",
+        "body": [
+            "import logging",
+            "LOGGER = logging.getLogger(${0:__name__})"
+        ],
+        "description": null
+    },
+    "le": {
+        "prefix": [
+            "le",
+            "log err"
+        ],
+        "body": [
+            "LOGGER.error(${0:msg})"
+        ],
+        "description": null
+    },
+    "ld": {
+        "prefix": [
+            "ld",
+            "log deb"
+        ],
+        "body": [
+            "LOGGER.debug(${0:msg})"
+        ],
+        "description": null
+    },
+    "lw": {
+        "prefix": [
+            "lw",
+            "log warn"
+        ],
+        "body": [
+            "LOGGER.warning(${0:msg})"
+        ],
+        "description": null
+    },
+    "lc": {
+        "prefix": [
+            "lc",
+            "log crit"
+        ],
+        "body": [
+            "LOGGER.critical(${0:msg})"
+        ],
+        "description": null
+    },
+    "li": {
+        "prefix": [
+            "li",
+            "log inf"
+        ],
+        "body": [
+            "LOGGER.info(${0:msg})"
+        ],
+        "description": null
+    },
+    "epydoc": {
+        "prefix": "epydoc",
+        "body": [
+            "\"\"\"${1:Description}",
+            "",
+            "@param ${2:param}: ${3: Description}",
+            "@type    $2: ${4: Type}",
+            "",
+            "@return: ${5: Description}",
+            "@rtype : ${6: Type}",
+            "",
+            "@raise e: ${0: Description}",
+            "\"\"\""
+        ],
+        "description": null
+    },
+    "init kwargs": {
+        "prefix": "init kwargs",
+        "body": [
+            "def ${1:__init__}(self, *args, **kwargs):",
+            "        super(${0:ClassName}, self).$1(*args, **kwargs)"
+        ],
+        "description": null
+    },
+    "kwargs.get": {
+        "prefix": [
+            "kwg",
+            "kwargs.get"
+        ],
+        "body": [
+            "self.${1:var_name} = kwargs.get('$1', ${2:None})"
+        ],
+        "description": null
+    },
+    "var kwargs.get": {
+        "prefix": [
+            "lkwg",
+            "kwargvar"
+        ],
+        "body": [
+            "${1:var_name} = kwargs.get('$1', ${2:None})"
+        ],
+        "description": null
+    },
+    "args": {
+        "prefix": "args",
+        "body": [
+            "*args${1:,}${0}"
+        ],
+        "description": null
+    },
+    "kwargs": {
+        "prefix": "kwargs",
+        "body": [
+            "**kwargs${1:,}${0}"
+        ],
+        "description": null
+    },
+    "args, **kwargs": {
+        "prefix": [
+            "akw",
+            "args,"
+        ],
+        "body": [
+            "*args, **kwargs${1:,}${0}",
+            ""
+        ],
+        "description": null
+    },
+    "lcp list comprehension": {
+        "prefix": "lcp",
+        "body": [
+            "[${1} for ${2} in ${3:${VISUAL}}]${0}",
+            ""
+        ],
+        "description": null
+    },
+    "dcp dict comprehension": {
+        "prefix": "dcp",
+        "body": [
+            "{${1}: ${2} for ${3} in ${4:${VISUAL}}}${0}",
+            ""
+        ],
+        "description": null
+    },
+    "scp set comprehension": {
+        "prefix": "scp",
+        "body": [
+            "{${1} for ${2} in ${3:${VISUAL}}}${0}",
+            ""
+        ],
+        "description": null
+    },
+    "contain \"methods for emulating a container type\" b": {
+        "prefix": "contain",
+        "body": [
+            "def __len__(self):",
+            "\t${1:pass}",
+            "",
+            "def __getitem__(self, key):",
+            "\t${2:pass}",
+            "",
+            "def __setitem__(self, key, value):",
+            "\t${3:pass}",
+            "",
+            "def __delitem__(self, key):",
+            "\t${4:pass}",
+            "",
+            "def __iter__(self):",
+            "\t${5:pass}",
+            "",
+            "def __reversed__(self):",
+            "\t${6:pass}",
+            "",
+            "def __contains__(self, item):",
+            "\t${7:pass}",
+            ""
+        ],
+        "description": null
+    },
+    "context \"context manager methods\" b": {
+        "prefix": "context",
+        "body": [
+            "def __enter__(self):",
+            "\t${1:pass}",
+            "",
+            "def __exit__(self, exc_type, exc_value, traceback):",
+            "\t${2:pass}",
+            ""
+        ],
+        "description": null
+    },
+    "attr \"methods for customizing attribute access\" b": {
+        "prefix": "attr",
+        "body": [
+            "def __getattr__(self, name):",
+            "\t${1:pass}",
+            "",
+            "def __setattr__(self, name, value):",
+            "\t${2:pass}",
+            "",
+            "def __delattr__(self, name):",
+            "\t${3:pass}",
+            ""
+        ],
+        "description": null
+    },
+    "desc \"methods implementing descriptors\" b": {
+        "prefix": "desc",
+        "body": [
+            "def __get__(self, instance, owner):",
+            "\t${1:pass}",
+            "",
+            "def __set__(self, instance, value):",
+            "\t${2:pass}",
+            "",
+            "def __delete__(self, instance):",
+            "\t${3:pass}",
+            ""
+        ],
+        "description": null
+    },
+    "cmp \"methods implementing rich comparison\"": {
+        "prefix": "cmp",
+        "body": [
+            "def __eq__(self, other):",
+            "\t${1:pass}",
+            "",
+            "def __ne__(self, other):",
+            "\t${2:pass}",
+            "",
+            "def __lt__(self, other):",
+            "\t${3:pass}",
+            "",
+            "def __le__(self, other):",
+            "\t${4:pass}",
+            "",
+            "def __gt__(self, other):",
+            "\t${5:pass}",
+            "",
+            "def __ge__(self, other):",
+            "\t${6:pass}",
+            "",
+            "def __cmp__(self, other):",
+            "\t${7:pass}",
+            ""
+        ],
+        "description": null
+    },
+    "repr \"methods implementing string representation\"": {
+        "prefix": "repr",
+        "body": [
+            "def __repr__(self):",
+            "\t${1:pass}",
+            "",
+            "def __str__(self):",
+            "\t${2:pass}",
+            "",
+            "def __unicode__(self):",
+            "\t${3:pass}",
+            ""
+        ],
+        "description": null
+    },
+    "uni": {
+        "prefix": "uni",
+        "body": [
+            "def __unicode__(self):",
+            "\t${0:representation}"
+        ],
+        "description": null
+    },
+    "docs": {
+        "prefix": "docs",
+        "body": [
+            "\"\"\"",
+            "File: ${1:FileName}.py",
+            "Author: ${2:Dennis Stanze}",
+            "Email: ${3}",
+            "Github: ${4}",
+            "Description: ${0}",
+            "\"\"\"",
+            ""
+        ],
+        "description": "file document statement"
+    },
+    "sk \"skip unittests\" b": {
+        "prefix": "sk",
+        "body": [
+            "@unittest.skip(${1:skip_reason})",
+            ""
+        ],
+        "description": null
+    }
+}

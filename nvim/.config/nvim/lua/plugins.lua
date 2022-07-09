@@ -22,30 +22,31 @@ return require("packer").startup(
             }
         }
 
+        use { 'williamboman/nvim-lsp-installer' }
+
+
+        use {'saadparwaiz1/cmp_luasnip'}
+
         use {
-            'williamboman/nvim-lsp-installer',
+            'L3MON4D3/LuaSnip',
+            requires ={
+                'saadparwaiz1/cmp_luasnip',
+            },
+            config = function ()
+                require('configuration.luasnip')
+            end
         }
 
         use {
             'hrsh7th/nvim-cmp',
             requires = {
+                'saadparwaiz1/cmp_luasnip',
                 'hrsh7th/cmp-nvim-lsp',
                 'hrsh7th/cmp-path',
                 'hrsh7th/cmp-buffer'
             },
             config = function()
                 require('configuration.completion')
-            end
-        }
-
-        -- snipping
-        use {
-            'dcampos/nvim-snippy',
-            requires = {
-                'dcampos/cmp-snippy'
-            },
-            config = function()
-                require('configuration.snippets')
             end
         }
 
