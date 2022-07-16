@@ -53,6 +53,11 @@ lspconfig.clangd.setup {
     single_file_support = true,
 }
 
+lspconfig.bashls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
 lspconfig.angularls.setup {
     on_attach = on_attach,
     capabilities = capabilities
