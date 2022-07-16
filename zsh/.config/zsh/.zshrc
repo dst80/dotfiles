@@ -2,7 +2,6 @@ export EDITOR=/bin/nvim
 export VISUAL=/bin/nvim
 export MYVIFMRC=~/.config/vifm/vifmrc
 
-
 pathadd() {
   for ARG in "$@"
   do
@@ -57,9 +56,12 @@ else
   source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-
 if [[ -r ~/.config/zsh/zshrc_alias ]]; then
   source ~/.config/zsh/zshrc_alias
+fi
+
+if [[ -r "/bin/zoxide" ]]; then
+  eval "$(zoxide init zsh --cmd cd)"
 fi
 
 # End of lines added by compinstall
