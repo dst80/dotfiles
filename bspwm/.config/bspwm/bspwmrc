@@ -44,10 +44,12 @@ for m in $(xrandr --query | grep " connected " | cut -d" " -f1); do
 done
 
 pgrep -x feh > /dev/null || feh --bg-fill ~/Wallpaper/dark_mountain_1.jpg &
-bash ~/.config/polybar/launch.sh &
+exec ~/.config/polybar/launch.sh &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom -b --config ~/.config/picom/picom.conf &
+
+pgrep -x battery-monitor || exec ~/.local/bin/battery-monitor.sh
 
 pgrep -x nm-applet > /dev/null || nm-applet&
 pgrep -x blueman-applet > /dev/null || blueman-applet&
