@@ -1,5 +1,5 @@
 require("nvim-lsp-installer").setup({
-    automatic_installation = true,
+    automareq_installation = true,
     ui = {
         icons = {
             server_installed = "✓",
@@ -64,6 +64,11 @@ lspconfig.angularls.setup {
 }
 
 lspconfig.vuels.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+lspconfig.eslint.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
