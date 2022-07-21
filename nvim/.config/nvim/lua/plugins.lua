@@ -25,14 +25,14 @@ return require("packer").startup(
         use { 'williamboman/nvim-lsp-installer' }
 
 
-        use {'saadparwaiz1/cmp_luasnip'}
+        use { 'saadparwaiz1/cmp_luasnip' }
 
         use {
             'L3MON4D3/LuaSnip',
-            requires ={
+            requires = {
                 'saadparwaiz1/cmp_luasnip',
             },
-            config = function ()
+            config = function()
                 require('configuration.luasnip')
             end
         }
@@ -194,6 +194,13 @@ return require("packer").startup(
             config = function()
                 require('configuration.colors')
             end
+        }
+
+        use {
+            "iamcco/markdown-preview.nvim",
+            run = function()
+                vim.fn["mkdp#util#install"]()
+            end,
         }
     end
 )
