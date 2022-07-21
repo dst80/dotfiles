@@ -6,8 +6,10 @@ options:set_options({
     sessionoptions = "curdir,help,tabpages,winsize",
     clipboard = "unnamedplus",
     fileformats = "unix,mac,dos",
+
     -- allow hidden buffers
     hidden = true,
+
     -- time out and drawing
     timeout = true,
     ttimeout = true,
@@ -35,7 +37,7 @@ options:set_options({
     softtabstop = -1,
     expandtab = true,
     autoindent = true,
-    colorcolumn = {80, 120, 140},
+    colorcolumn = { 80, 120, 140 },
     breakindentopt = "shift:2,min:20",
     wrap = false,
     linebreak = true,
@@ -67,9 +69,9 @@ options:set_options({
     relativenumber = true,
 
     -- list chars
-    list = false,
+    list = true,
     showbreak = "↳  ",
-    listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
+    listchars = "tab:,nbsp:+,space:·,trail:█,extends:→,precedes:←",
     -- last line
     showmode = true,
     showcmd = true,
