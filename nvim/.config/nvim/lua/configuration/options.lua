@@ -71,7 +71,8 @@ options:set_options({
     -- list chars
     list = true,
     showbreak = "↳  ",
-    listchars = "tab:,nbsp:+,space:·,trail:█,extends:→,precedes:←",
+    listchars = "tab:=,nbsp:+,space:·,trail:█,extends:→,precedes:←",
+
     -- last line
     showmode = true,
     showcmd = true,
