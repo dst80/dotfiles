@@ -245,16 +245,18 @@ animation-discharging-foreground = ${colors.icons}
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 70
-
-format = <ramp> <label>
+format-prefix =" "
+format-prefix-foreground = ${colors.icons}
+format = <label>
 format-padding = ${settings.padding}
 format-background = ${colors.module}
-
-format-warn = <ramp> <label-warn>
-format-warn-background = ${colors.alert}
-
 label = %temperature-c%
+
+format-warn-prefix =" "
+format-warn = <label-warn>
+format-warn-background = ${colors.alert}
 label-warn = %temperature-c%
+
 
 [settings]
 screenchange-reload = true
