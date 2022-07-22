@@ -20,7 +20,7 @@ options:set_options({
     wrapscan = true,
 
     -- cursor control
-    breakat = [[\ \	,:,!?]],
+    breakat = [[\ \t,:,!?]],
     startofline = false,
     backspace = "indent,eol,start",
     mouse = "nv",
@@ -71,7 +71,7 @@ options:set_options({
     -- list chars
     list = true,
     showbreak = "↳  ",
-    listchars = "tab:=,nbsp:+,space:·,trail:█,extends:→,precedes:←",
+    listchars = "tab:>->,nbsp:+,space:·,trail:█,extends:→,precedes:←,eol:¬",
 
     -- last line
     showmode = true,
