@@ -51,14 +51,19 @@ return require("packer").startup(
         }
 
         -- tpope best's
-        use 'tpope/vim-surround'
-
         use {
             'tpope/vim-fugitive',
             config = function()
                 require('configuration.fugitive')
             end
         }
+
+        use({
+            "kylechui/nvim-surround",
+            config = function()
+                require('configuration.surround')
+            end
+        })
 
         use {
             'numToStr/Comment.nvim',
