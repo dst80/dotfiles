@@ -2,12 +2,12 @@ local globals = require('global')
 
 if not pcall(require, 'packer') then
     vim.cmd(
-        "!git clone https://github.com/wbthomason/packer.nvim " ..
-        globals.site_dir .. "pack/packer/start/packer.nvim"
+        '!git clone https://github.com/wbthomason/packer.nvim ' ..
+        globals.site_dir .. 'pack/packer/start/packer.nvim'
     )
 end
 
-return require("packer").startup(
+return require('packer').startup(
 
     function(use)
         use 'wbthomason/packer.nvim'
@@ -59,7 +59,7 @@ return require("packer").startup(
         }
 
         use({
-            "kylechui/nvim-surround",
+            'kylechui/nvim-surround',
             config = function()
                 require('configuration.surround')
             end
@@ -83,10 +83,10 @@ return require("packer").startup(
         }
 
         use {
-            "ThePrimeagen/refactoring.nvim",
+            'ThePrimeagen/refactoring.nvim',
             requires = {
-                { "nvim-lua/plenary.nvim" },
-                { "nvim-treesitter/nvim-treesitter" }
+                { 'nvim-lua/plenary.nvim' },
+                { 'nvim-treesitter/nvim-treesitter' }
             },
             config = function()
                 require('configuration.refactoring')
@@ -119,7 +119,7 @@ return require("packer").startup(
         }
 
         use {
-            "akinsho/toggleterm.nvim",
+            'akinsho/toggleterm.nvim',
             config = function()
                 require('configuration.terminal')
             end
@@ -163,9 +163,9 @@ return require("packer").startup(
         use {
             'mfussenegger/nvim-dap',
             requires = {
-                "rcarriga/nvim-dap-ui",
-                "theHamsta/nvim-dap-virtual-text",
-                "nvim-telescope/telescope-dap.nvim"
+                'rcarriga/nvim-dap-ui',
+                'theHamsta/nvim-dap-virtual-text',
+                'nvim-telescope/telescope-dap.nvim'
             },
             config = function()
                 require('configuration.debug_adapter_protocol')
@@ -202,7 +202,7 @@ return require("packer").startup(
         }
 
         use {
-            "iamcco/markdown-preview.nvim",
+            'iamcco/markdown-preview.nvim',
             run = function()
                 vim.fn["mkdp#util#install"]()
             end,
