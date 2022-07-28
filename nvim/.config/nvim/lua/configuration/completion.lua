@@ -50,10 +50,10 @@ cmp.setup({
         },
     },
     sources = {
-        { name = 'nvim_lua' },
-        { name = 'luasnip', priority = 500 },
         { name = 'nvim_lsp' },
         { name = 'buffer', keyword_length = 5 },
+        { name = 'luasnip', priority = 500 },
+        { name = 'nvim_lua' },
         { name = 'path' },
     },
     experimental = {
