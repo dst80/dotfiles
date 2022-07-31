@@ -1,17 +1,12 @@
+#!/bin/sh
 
-if [ -f "$HOME/bin" ]; then
-  export PATH="$HOME/bin:$PATH"
-fi
+pathadd() {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
 
-if [ -f "$HOME/.local/bin" ]; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -f "$HOME/go/bin" ]; then
-  export PATH="$HOME/go/bin:$PATH"
-fi
-
-if [ -f "$HOME/.cargo/bin" ]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
+pathadd ~/.local/bin ~/bin ~/go/bin ~/.cargo/bin
