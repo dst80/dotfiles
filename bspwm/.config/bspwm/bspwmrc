@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 #BSPWM Config
 bspc config border_width        1
