@@ -4,6 +4,28 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, options)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, options)
+    vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, options)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, options)
+    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, options)
+    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, options)
+    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, options)
+    vim.keymap.set("n", "<leader>wl", function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, options)
+
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, options)
+    vim.keymap.set("n", "<leader>fo", vim.lsp.buf.formatting, options)
+    vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
+
+    vim.keymap.set("n", "<leader>db", vim.diagnostic.goto_prev, options)
+    vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, options)
+    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, options)
+    vim.keymap.set("n", "<leader>sll", vim.diagnostic.setloclist, options)
 end
 
 
