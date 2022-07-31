@@ -2,10 +2,9 @@ data.location=~/.cache/task
 
 include ~/.config/task/colors.theme
 
+weekstart=monday
 
 default.project=inbox
-
-weekstart=monday
 
 # Context stuff
 alias.@=context
@@ -13,4 +12,141 @@ context.work.read=+work
 context.work.write=+work
 context.home.read=+home
 context.home.write=+home
-context=home
+
+alias.dailystatus=status:completed end.after:today all
+alias.someday=mod +someday wait:someday
+alias.move=modify wait:1d
+alias.shortmove=modify wait:3h
+alias.longmove=modify wait:1w
+
+report.next.filter=status:pending or status:waiting
+
+dataformat=D-M-Y
+
+urgency.tags.coefficient=0.0
+urgency.user.tags.blocks.coefficient=5.0
+
+
+#+---------+
+#+ General +
+#+---------+
+color.label=
+color.label.sort=
+color.alternate=
+color.header=bold magenta
+color.footnote=yellow
+color.warning=bold black on yellow
+color.error=bold white on red
+color.debug=magenta
+
+#+-------------+
+#+ Task States +
+#+-------------+
+color.completed=green
+color.deleted=bright black
+color.active=blue
+color.recurring=bold magenta
+color.scheduled=
+color.until=
+color.blocking=yellow
+color.blocked=bold yellow on black
+
+#+----------+
+#+ Projects +
+#+----------+
+color.project.none=
+
+#+----------+
+#+ Priority +
+#+----------+
+color.uda.priority.H=bold
+color.uda.priority.M=bold yellow
+color.uda.priority.L=
+
+#+------+
+#+ Tags +
+#+------+
+color.tag.next=
+color.tag.none=
+color.tagged=
+
+#+-----+
+#+ Due +
+#+-----+
+color.due=magenta
+color.due.today=magenta
+color.overdue=red
+
+#+---------+
+#+ Reports +
+#+---------+
+color.burndown.done=bold black on green
+color.burndown.pending=black on red
+color.burndown.started=black on yellow
+
+color.history.add=bold black on blue
+color.history.delete=bright white on bold black
+color.history.done=bold black on cyan
+
+color.summary.background=bright white on black
+color.summary.bar=black on cyan
+
+#+----------+
+#+ Calendar +
+#+----------+
+color.calendar.due=bold black on blue
+color.calendar.due.today=bold black on cyan
+color.calendar.holiday=bold blue on white
+color.calendar.overdue=white on red
+color.calendar.today=bold black on cyan
+color.calendar.weekend=bright white on bright black
+color.calendar.weeknumber=bold black
+
+#+-----------------+
+#+ Synchronization +
+#+-----------------+
+color.sync.added=green
+color.sync.changed=yellow
+color.sync.rejected=red
+
+#+------+
+#+ Undo +
+#+------+
+color.undo.after=green
+color.undo.before=red
+
+
+
+#taskwarrior-tui settings
+
+uda.taskwarrior-tui.style.navbar=blue on bright black
+uda.taskwarrior-tui.style.command=blue on bright black
+uda.taskwarrior-tui.style.calendar.title=white on bright black
+uda.taskwarrior-tui.style.calendar.today=bold white on blue
+uda.taskwarrior-tui.style.report.scrollbar=bright black on black
+uda.taskwarrior-tui.style.report.scrollbar=black on black
+uda.taskwarrior-tui.style.report.selection=on bright black
+
+uda.taskwarrior-tui.selection.indicator=•
+uda.taskwarrior-tui.selection.bold=true
+uda.taskwarrior-tui.selection.italic=true
+uda.taskwarrior-tui.selection.dim=false
+uda.taskwarrior-tui.selection.blink=no
+uda.taskwarrior-tui.selection.reverse=no
+uda.taskwarrior-tui.mark.indicator=✔
+uda.taskwarrior-tui.unmark.indicator=
+uda.taskwarrior-tui.mark-selection.indicator=⦿
+uda.taskwarrior-tui.unmark-selection.indicator=⦾
+uda.taskwarrior-tui.calendar.months-per-row=4
+uda.taskwarrior-tui.task-report.show-info=true
+uda.taskwarrior-tui.task-report.looping=true
+uda.taskwarrior-tui.task-report.jump-on-task-add=true
+uda.taskwarrior-tui.task-report.prompt-on-delete=false
+uda.taskwarrior-tui.task-report.prompt-on-done=false
+uda.taskwarrior-tui.task-report.next.filter=status:pending or status:waiting
+uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-add=true
+uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-annotate=true
+uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-log=true
+uda.taskwarrior-tui.task-report.reset-filter-on-esc=true
+uda.taskwarrior-tui.context-menu.select-on-move=false
+uda.taskwarrior-tui.tabs.change-focus-rotate=false
