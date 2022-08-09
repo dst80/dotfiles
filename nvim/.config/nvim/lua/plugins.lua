@@ -155,6 +155,13 @@ return require('packer').startup(
         }
 
         use {
+            'windwp/nvim-autopairs',
+            config = function()
+                require('configuration.autopairs')
+            end
+        }
+
+        use {
             'mfussenegger/nvim-dap',
             requires = {
                 'rcarriga/nvim-dap-ui',
