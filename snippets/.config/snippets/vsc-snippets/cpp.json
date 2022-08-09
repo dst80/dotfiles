@@ -434,21 +434,21 @@
         "description": "std::make_pair statement",
         "prefix": "make_pair",
         "body": [
-            "std::make_pair(${1:t}, ${2:r}))${0:;}"
+            "std::make_pair(${1:t}, ${2:r})${0:;}"
         ]
     },
     "make_shared": {
-        "body": "std::make_shared<${T}>(${1}))${0:;}",
+        "body": "std::make_shared<${T}>(${1})${0:;}",
         "description": "std::make_shared statement",
         "prefix": "make_shared"
     },
     "make_tuple": {
-        "body": "std::make_tuple(${1:varibles}))${0:;}",
+        "body": "std::make_tuple(${1:varibles})${0:;}",
         "description": "std::make_tuple statement",
         "prefix": "make_tuple"
     },
     "make_unique": {
-        "body": "std::make_unique<${1:T}>(${2}))${0:;}",
+        "body": "std::make_unique<${1:T}>(${2})${0:;}",
         "description": "std::make_unique statement",
         "prefix": "make_unique"
     },
