@@ -97,16 +97,7 @@ return require('packer').startup(
         }
 
         --TODO: look for an alternative Cmake plugin, which is not so inversive
-        use {
-            'Shatur/neovim-cmake',
-            requires = {
-                { 'nvim-telescope/telescope.nvim' },
-                { 'mfussenegger/nvim-dap' }
-            },
-            config = function()
-                require('configuration.cmake_config')
-            end
-        }
+        use { 'Shatur/neovim-cmake' }
 
         use { 'windwp/nvim-autopairs' }
 
