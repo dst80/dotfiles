@@ -58,14 +58,9 @@ return require('packer').startup(
         use { 'numToStr/Comment.nvim' }
 
         -- nvim tree sitter
-        use {
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
-            requires = { { 'nvim-treesitter/playground' } },
-            config = function()
-                require('configuration.treesitter')
-            end
-        }
+        use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+        use { 'nvim-treesitter/playground' }
+        use { 'romgrk/nvim-treesitter-context'}
 
         use { 'ThePrimeagen/refactoring.nvim' }
 
