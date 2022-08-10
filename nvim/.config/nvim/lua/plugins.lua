@@ -83,16 +83,7 @@ return require('packer').startup(
             end
         }
 
-        use {
-            'ThePrimeagen/refactoring.nvim',
-            requires = {
-                { 'nvim-lua/plenary.nvim' },
-                { 'nvim-treesitter/nvim-treesitter' }
-            },
-            config = function()
-                require('configuration.refactoring')
-            end
-        }
+        use { 'ThePrimeagen/refactoring.nvim' }
 
         use {
             'nvim-telescope/telescope-fzf-native.nvim',
