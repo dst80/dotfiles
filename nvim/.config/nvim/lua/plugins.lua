@@ -87,12 +87,7 @@ return require('packer').startup(
         use { 'kyazdani42/nvim-web-devicons'}
         use { 'sudormrfbin/cheatsheet.nvim' }
 
-        use {
-            'akinsho/toggleterm.nvim',
-            config = function()
-                require('configuration.terminal')
-            end
-        }
+        use { 'akinsho/toggleterm.nvim' }
 
         use {
             'p00f/clangd_extensions.nvim',
