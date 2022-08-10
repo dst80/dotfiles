@@ -95,12 +95,6 @@ return require('packer').startup(
         }
 
         use {
-            'kyazdani42/nvim-web-devicons',
-            config = function()
-                require('configuration.icons')
-            end
-        }
-        use {
             'nvim-telescope/telescope-fzf-native.nvim',
             run = 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
         }
@@ -146,17 +140,10 @@ return require('packer').startup(
             end
         }
 
-        use {
-            'mfussenegger/nvim-dap',
-            requires = {
-                'rcarriga/nvim-dap-ui',
-                'theHamsta/nvim-dap-virtual-text',
-                'nvim-telescope/telescope-dap.nvim'
-            },
-            config = function()
-                require('configuration.debug_adapter_protocol')
-            end
-        }
+        use { 'mfussenegger/nvim-dap' }
+        use { 'rcarriga/nvim-dap-ui' }
+        use { 'theHamsta/nvim-dap-virtual-text'}
+        use { 'nvim-telescope/telescope-dap.nvim'}
 
         use { 'fatih/vim-go' }
 
