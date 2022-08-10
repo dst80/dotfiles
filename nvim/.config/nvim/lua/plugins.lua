@@ -26,7 +26,6 @@ return require('packer').startup(
 
 
         use { 'saadparwaiz1/cmp_luasnip' }
-
         use {
             'L3MON4D3/LuaSnip',
             requires = {
@@ -124,12 +123,7 @@ return require('packer').startup(
             end
         }
 
-        use {
-            'windwp/nvim-autopairs',
-            config = function()
-                require('configuration.autopairs')
-            end
-        }
+        use { 'windwp/nvim-autopairs' }
 
         use { 'mfussenegger/nvim-dap' }
         use { 'rcarriga/nvim-dap-ui' }
