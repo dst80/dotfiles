@@ -51,12 +51,7 @@ return require('packer').startup(
         }
 
         -- tpope best's
-        use {
-            'tpope/vim-fugitive',
-            config = function()
-                require('configuration.fugitive')
-            end
-        }
+        use { 'tpope/vim-fugitive' }
 
         use { 'kylechui/nvim-surround' }
 
