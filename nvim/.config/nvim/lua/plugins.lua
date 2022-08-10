@@ -11,44 +11,19 @@ return require('packer').startup(
 
     function(use)
         use 'wbthomason/packer.nvim'
-        use {
-            'neovim/nvim-lspconfig',
-            config = function()
-                require('configuration.lsp')
-            end,
-            requires = {
-                'lukas-reineke/lsp-format.nvim',
-                'williamboman/nvim-lsp-installer'
-            }
-        }
-
+        
+        use { 'neovim/nvim-lspconfig'}
+        use { 'lukas-reineke/lsp-format.nvim'}
         use { 'williamboman/nvim-lsp-installer' }
 
-
+        use { 'hrsh7th/nvim-cmp' }
+        use { 'hrsh7th/cmp-nvim-lsp' }
+        use { 'hrsh7th/cmp-nvim-lua' }
+        use { 'hrsh7th/cmp-path' }
+        use { 'hrsh7th/cmp-buffer' }
+        
+        use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
-        use {
-            'L3MON4D3/LuaSnip',
-            requires = {
-                'saadparwaiz1/cmp_luasnip',
-            },
-            config = function()
-                require('configuration.luasnip')
-            end
-        }
-
-        use {
-            'hrsh7th/nvim-cmp',
-            requires = {
-                'saadparwaiz1/cmp_luasnip',
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-nvim-lua',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-buffer',
-            },
-            config = function()
-                require('configuration.completion')
-            end
-        }
 
         -- tpope best's
         use { 'tpope/vim-fugitive' }
