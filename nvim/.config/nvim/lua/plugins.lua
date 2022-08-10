@@ -181,12 +181,7 @@ return require('packer').startup(
         use { 'hoob3rt/lualine.nvim' }
 
         -- dashboard
-        use {
-            'goolord/alpha-nvim',
-            config = function()
-                require('configuration.alpha')
-            end
-        }
+        use { 'goolord/alpha-nvim' }
 
         -- color settings
         use { 'andersevenrud/nordic.nvim' }
