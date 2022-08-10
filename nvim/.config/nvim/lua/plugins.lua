@@ -104,35 +104,20 @@ return require('packer').startup(
             'nvim-telescope/telescope-fzf-native.nvim',
             run = 'cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
         }
-        use {
-            'nvim-telescope/telescope.nvim',
-            requires = {
-                'nvim-lua/popup.nvim',
-                'nvim-lua/plenary.nvim',
-                'nvim-telescope/telescope-file-browser.nvim',
-                'nvim-telescope/telescope-fzf-native.nvim',
-                'nvim-telescope/telescope-ui-select.nvim',
-                'kyazdani42/nvim-web-devicons'
-            },
-            config = function()
-                require('configuration.telescope')
-            end
-        }
+
+        use { 'nvim-lua/popup.nvim' }
+        use { 'nvim-lua/plenary.nvim' }
+        use { 'nvim-telescope/telescope.nvim' }
+        use { 'nvim-telescope/telescope-file-browser.nvim'}
+        use { 'nvim-telescope/telescope-ui-select.nvim'}
+        use { 'kyazdani42/nvim-web-devicons'}
+        use { 'sudormrfbin/cheatsheet.nvim' }
 
         use {
             'akinsho/toggleterm.nvim',
             config = function()
                 require('configuration.terminal')
             end
-        }
-
-        use {
-            'sudormrfbin/cheatsheet.nvim',
-            requires = {
-                { 'nvim-telescope/telescope.nvim' },
-                { 'nvim-lua/popup.nvim' },
-                { 'nvim-lua/plenary.nvim' }
-            }
         }
 
         use {
