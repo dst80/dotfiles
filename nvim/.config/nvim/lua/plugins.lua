@@ -10,18 +10,19 @@ end
 return require('packer').startup(
 
     function(use)
-        use 'wbthomason/packer.nvim'
-        
-        use { 'neovim/nvim-lspconfig'}
-        use { 'lukas-reineke/lsp-format.nvim'}
+        use {'wbthomason/packer.nvim'}
+
+        use { 'neovim/nvim-lspconfig' }
+        use { 'lukas-reineke/lsp-format.nvim' }
         use { 'williamboman/nvim-lsp-installer' }
+        use { 'onsails/lspkind.nvim' }
 
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-nvim-lua' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
-        
+
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
 
@@ -35,7 +36,7 @@ return require('packer').startup(
         -- nvim tree sitter
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
         use { 'nvim-treesitter/playground' }
-        use { 'romgrk/nvim-treesitter-context'}
+        use { 'romgrk/nvim-treesitter-context' }
 
         use { 'ThePrimeagen/refactoring.nvim' }
 
@@ -47,9 +48,9 @@ return require('packer').startup(
         use { 'nvim-lua/popup.nvim' }
         use { 'nvim-lua/plenary.nvim' }
         use { 'nvim-telescope/telescope.nvim' }
-        use { 'nvim-telescope/telescope-file-browser.nvim'}
-        use { 'nvim-telescope/telescope-ui-select.nvim'}
-        use { 'kyazdani42/nvim-web-devicons'}
+        use { 'nvim-telescope/telescope-file-browser.nvim' }
+        use { 'nvim-telescope/telescope-ui-select.nvim' }
+        use { 'kyazdani42/nvim-web-devicons' }
         use { 'sudormrfbin/cheatsheet.nvim' }
 
         use { 'akinsho/toggleterm.nvim' }
@@ -68,8 +69,8 @@ return require('packer').startup(
 
         use { 'mfussenegger/nvim-dap' }
         use { 'rcarriga/nvim-dap-ui' }
-        use { 'theHamsta/nvim-dap-virtual-text'}
-        use { 'nvim-telescope/telescope-dap.nvim'}
+        use { 'theHamsta/nvim-dap-virtual-text' }
+        use { 'nvim-telescope/telescope-dap.nvim' }
 
         use { 'fatih/vim-go' }
 
