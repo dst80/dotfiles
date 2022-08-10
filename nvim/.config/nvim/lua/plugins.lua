@@ -178,13 +178,7 @@ return require('packer').startup(
         use { 'simrat39/rust-tools.nvim' }
 
         -- status line
-        use {
-            'hoob3rt/lualine.nvim',
-            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-            config = function()
-                require('configuration.lualine')
-            end
-        }
+        use { 'hoob3rt/lualine.nvim' }
 
         -- dashboard
         use {
@@ -195,12 +189,7 @@ return require('packer').startup(
         }
 
         -- color settings
-        use {
-            'andersevenrud/nordic.nvim',
-            config = function()
-                require('configuration.colors')
-            end
-        }
+        use { 'andersevenrud/nordic.nvim' }
 
         use {
             'iamcco/markdown-preview.nvim',
