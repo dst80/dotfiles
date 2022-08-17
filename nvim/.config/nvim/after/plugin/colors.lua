@@ -80,6 +80,15 @@ require('nordic').colorscheme({
             'shCmdSubRegion',
         }
 
+        local strings_specials = {
+            -- TS
+            'TSStringRegex',
+            'TSStringEscape',
+            'SpecialChar', -- VL
+            'cSpecialCharacter', -- C/C++
+            'pythonescape', -- python
+        }
+
         return {
             { 'TelescopeSelection', c.yellow, c.gray, s.bold },
             { 'TelescopeMatching', c.yellow, c.gray },
@@ -88,6 +97,7 @@ require('nordic').colorscheme({
             { constructors, c.bright_cyan, c.none, cs.bold },
             { functions, c.bright_cyan, c.none, cs.bold },
             { operators, c.purple, c.none, cs.none },
+            { strings_specials, c.yellow, c.none, cs.none },
             { punctuations, c.white, c.none, cs.none },
         }
     end
