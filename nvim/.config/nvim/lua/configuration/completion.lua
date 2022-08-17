@@ -3,6 +3,15 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local tabnine = require("cmp_tabnine.config")
+tabnine:setup({
+	max_lines = 1000,
+	max_num_results = 20,
+	sort = true,
+	run_on_every_keystroke = true,
+	snippet_placeholder = "..",
+})
+
 
 local source_mapping = {
     nvim_lua = "[Lua]",
@@ -60,6 +69,7 @@ cmp.setup({
         },
     },
     sources = {
+        { name = 'cmp_tabnine' },
         { name = 'nvim_lsp' },
         { name = 'buffer', keyword_length = 5 },
         { name = 'luasnip', priority = 500 },

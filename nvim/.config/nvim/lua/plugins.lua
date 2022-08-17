@@ -22,7 +22,7 @@ return require('packer').startup(
         use { 'hrsh7th/cmp-nvim-lua' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
-
+        use {'tzachar/cmp-tabnine', run='./install.sh'}
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
 
