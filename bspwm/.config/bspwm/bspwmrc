@@ -29,7 +29,10 @@ bspc config merge_overlapping_monitors true
 
 #Application Rules
 bspc rule -a Brave-browser desktop='^4' follow=on
+bspc rule -a Firefox desktop='^4' follow=on
+bspc rule -a firefox desktop='^4' follow=on
 bspc rule -a Thunderbird desktop='^5' follow=on
+bspc rule -a thunderbird desktop='^5' follow=on
 bspc rule -a chromium desktop='^4' follow=on
 bspc rule -a Gimp desktop='^7' follow=on
 bspc rule -a Code desktop='^3' follow=on
