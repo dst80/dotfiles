@@ -65,6 +65,8 @@ override-redirect = true
 
 line-size = 0
 
+enable-ipc = true
+
 [module/bspwm]
 type = internal/bspwm
 pin-workspaces = true
