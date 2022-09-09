@@ -22,7 +22,7 @@ return require('packer').startup(
         use { 'hrsh7th/cmp-nvim-lua' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
-        use {'tzachar/cmp-tabnine', run='./install.sh'}
+        use { 'tzachar/cmp-tabnine', run='./install.sh'}
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
 
@@ -62,7 +62,7 @@ return require('packer').startup(
             end
         }
 
-        --TODO: look for an alternative Cmake plugin, which is not so inversive
+        --TODO: look for an alternative Cmake plugin. which is not so inversive
         use { 'Shatur/neovim-cmake' }
 
         use { 'windwp/nvim-autopairs' }
@@ -78,7 +78,7 @@ return require('packer').startup(
 
         -- status line
         use { 'hoob3rt/lualine.nvim' }
-
+        use { 'lukas-reineke/indent-blankline.nvim' }
         -- dashboard
         use { 'goolord/alpha-nvim' }
 
