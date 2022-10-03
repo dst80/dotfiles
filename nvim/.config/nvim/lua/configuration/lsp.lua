@@ -1,10 +1,10 @@
-require("nvim-lsp-installer").setup({
+require("mason").setup({
     automareq_installation = true,
     ui = {
         icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
         }
     }
 })

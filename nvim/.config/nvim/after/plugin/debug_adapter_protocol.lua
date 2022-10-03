@@ -1,12 +1,5 @@
 local dap = require('dap')
 
---  c languages
-dap.adapters.lldb = {
-    type = 'executable',
-    command = '/usr/bin/lldb-vscode',
-    name = "lldb"
-}
-
 dap.configurations.cpp = {
     {
         name = "Launch",
@@ -46,13 +39,6 @@ dap.configurations.rust = dap.configurations.cpp
 
 
 -- python
-
-dap.adapters.python = {
-    type = 'executable',
-    command = '/home/dennis/VirtualEnv/bin/python',
-    args = { '-m', 'debugpy.adapter' }
-}
-
 dap.configurations.python = {
     name = "Launch file",
     type = 'python',

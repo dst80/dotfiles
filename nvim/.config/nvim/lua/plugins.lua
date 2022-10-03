@@ -15,8 +15,10 @@ return require('packer').startup(
 
         use { 'neovim/nvim-lspconfig' }
         use { 'lukas-reineke/lsp-format.nvim' }
-        use { 'williamboman/nvim-lsp-installer' }
         use { 'onsails/lspkind.nvim' }
+
+        use { 'williamboman/mason.nvim' }
+        use { 'williamboman/mason-lsp-config.nvim'}
 
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
