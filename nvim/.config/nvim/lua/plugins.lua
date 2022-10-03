@@ -18,7 +18,7 @@ return require('packer').startup(
         use { 'onsails/lspkind.nvim' }
 
         use { 'williamboman/mason.nvim' }
-        use { 'williamboman/mason-lsp-config.nvim'}
+        use { 'williamboman/mason-lspconfig.nvim'}
 
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
