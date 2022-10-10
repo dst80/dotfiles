@@ -33,11 +33,7 @@ return require('packer').startup(
             use { 'tzachar/cmp-tabnine', run='./install.sh'}
         end
 
-        -- tpope best's
-        use { 'tpope/vim-fugitive' }
-
         use { 'kylechui/nvim-surround' }
-
         use { 'numToStr/Comment.nvim' }
 
         -- nvim tree sitter
