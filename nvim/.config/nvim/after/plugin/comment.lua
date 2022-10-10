@@ -1,10 +1,9 @@
-require('Comment.api').setup({
+require('Comment').setup({
     padding = true,
     sticky = true,
     mappings = {
         basic = true,
         extra = true,
-        extended = true,
     },
     toggler = {
         line = 'gcc',
