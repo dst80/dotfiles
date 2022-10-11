@@ -35,3 +35,5 @@ bin/.local/bin/qtpy
 bin/.local/bin/send2trash
 bin/.local/bin/voila
 bin/.local/bin/wsdump
+
+bin/.local/bin/ezdxf
