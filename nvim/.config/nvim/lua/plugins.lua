@@ -15,7 +15,7 @@ return require('packer').startup(
         -- lsp basics
         use { 'neovim/nvim-lspconfig' }
         use { 'lukas-reineke/lsp-format.nvim' }
-        use { 'onsails/lspkind.nv' }
+        use { 'onsails/lspkind.nvim' }
         use { 'p00f/clangd_extensions.nvim' }
 
         -- lsp config helper
