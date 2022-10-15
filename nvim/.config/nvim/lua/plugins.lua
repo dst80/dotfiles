@@ -73,8 +73,7 @@ return require('packer').startup(
         -- some language plugins
         use { 'Shatur/neovim-cmake' }
         use { 'fatih/vim-go' }
-        use { 'simrat39/rust-tools.nvim' }
-        use {'iamcco/markdown-preview.nvim',
+        use { 'iamcco/markdown-preview.nvim',
             run = function()
                 vim.fn["mkdp#util#install"]()
             end,

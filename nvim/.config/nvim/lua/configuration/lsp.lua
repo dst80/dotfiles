@@ -13,11 +13,15 @@ local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local on_attach = function(client, bufnr)
+local lsp_flags = {
+    debounce_text_changes = 150,
+}
+
+local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- LSP shortcuts
-    local options = { noremap = true, silent = true, buffer = 0 }
+    local options = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, options)
@@ -42,62 +46,68 @@ end
 
 lspconfig.bashls.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.angularls.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.vuels.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.eslint.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.tsserver.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.gopls.setup {
     on_attach = on_attach,
-    capabilities = capabilities
-}
-
-lspconfig.rust_analyzer.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.jedi_language_server.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.omnisharp.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.marksman.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.cmake.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    flags = lsp_flags,
 }
 
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    flags = lsp_flags,
     settings = {
         Lua = {
             runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
@@ -114,12 +124,13 @@ lspconfig.sumneko_lua.setup {
 }
 
 local server_settings = {
-    on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-        local options = { noremap = true, silent = true, buffer = 0 }
+    on_attach = function(_, bufnr)
+        on_attach(_, bufnr)
+        local options = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
     end,
     capabilities = capabilities,
+    flags = lsp_flags,
     filetypes = {
         "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
     },
@@ -134,56 +145,31 @@ local server_settings = {
     single_file_support = true,
 }
 
-if not pcall(require, 'clangd_extensions') then
-    lspconfig.clangd.setup(server_settings)
-else
-    require("clangd_extensions").setup {
+local has_ext_clang, ext_clang = pcall(require("clangd_extensions"))
+if has_ext_clang then
+    ext_clang.setup {
         server = server_settings,
-        extensions = {
-            autoSetHints = true,
-            hover_with_actions = true,
-            inlay_hints = {
-                only_current_line = false,
-                only_current_line_autocmd = "CursorHold",
-                show_parameter_hints = true,
-                parameter_hints_prefix = "<- ",
-                other_hints_prefix = "=> ",
-                max_len_align = false,
-                max_len_align_padding = 1,
-                right_align = false,
-                right_align_padding = 7,
-                highlight = "Comment",
-            },
-            ast = {
-                role_icons = {
-                    type = "",
-                    declaration = "",
-                    expression = "",
-                    specifier = "",
-                    statement = "",
-                    ["template argument"] = "",
-                },
+    }
+else
+    lspconfig.clangd.setup(server_settings)
+end
 
-                kind_icons = {
-                    Compound = "",
-                    Recovery = "",
-                    TranslationUnit = "",
-                    PackExpansion = "",
-                    TemplateTypeParm = "",
-                    TemplateTemplateParm = "",
-                    TemplateParamObject = "",
-                },
-
-                highlights = {
-                    detail = "Comment",
-                },
-                memory_usage = {
-                    border = "none",
-                },
-                symbol_info = {
-                    border = "none",
-                },
-            },
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+    settings = {
+        ["rust_analyzer"] = {
+            cargo = { allFreatures = true },
+            checkOnSave = { allFreatures = true, command = "clippy" },
         }
     }
-end
+})
+
+local lsp_group = vim.api.nvim_create_augroup("LSPGroup", { clear = true })
+vim.api.nvim_create_autocmd(
+    { "BufWritePre" },
+    {
+        command = [[lua vim.lsp.buf.format({async = false})]],
+        group = lsp_group
+    })

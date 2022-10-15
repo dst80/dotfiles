@@ -32,4 +32,14 @@ filetype.settings_for_lua = function()
     })
 end
 
+filetype.settings_for_rust = function()
+    options:set_options({
+        tapstop = 4,
+        shiftwidth = 4,
+        softtabstop = 4,
+        colorcolumn = {80, 100},
+        textwidth =100
+    })
+end
+
 return filetype
