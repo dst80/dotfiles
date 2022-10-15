@@ -1,8 +1,10 @@
 local util = require('lspconfig/util')
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local on_attach = function(client, bufnr)
+    local options = { noremap = true, silent = true, buffer = 0 }
+
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
