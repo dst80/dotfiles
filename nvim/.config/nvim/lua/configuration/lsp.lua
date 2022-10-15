@@ -9,9 +9,8 @@ require("mason").setup({
     }
 })
 
-
 local lspconfig = require('lspconfig')
-
+local util = require('lspconfig/util')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local on_attach = function(client, bufnr)
@@ -19,7 +18,6 @@ local on_attach = function(client, bufnr)
 
     -- LSP shortcuts
     local options = { noremap = true, silent = true, buffer = 0 }
-
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, options)
@@ -35,23 +33,12 @@ local on_attach = function(client, bufnr)
 
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, options)
-    vim.keymap.set("n", "<leader>fo", vim.lsp.buf.formatting, options)
-    vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
-
+    vim.keymap.set("n", "<leader>fo", function() vim.lsp.buf.format({ async = true }) end, options)
     vim.keymap.set("n", "<leader>db", vim.diagnostic.goto_prev, options)
     vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, options)
     vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, options)
     vim.keymap.set("n", "<leader>sll", vim.diagnostic.setloclist, options)
 end
-
-lspconfig.clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {
-        "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
-    },
-    single_file_support = true,
-}
 
 lspconfig.bashls.setup {
     on_attach = on_attach,
@@ -126,3 +113,77 @@ lspconfig.sumneko_lua.setup {
     }
 }
 
+local server_settings = {
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        local options = { noremap = true, silent = true, buffer = 0 }
+        vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
+    end,
+    capabilities = capabilities,
+    filetypes = {
+        "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
+    },
+    root_dir = util.root_pattern(
+        ".clangd",
+        ".clang-tidy",
+        ".clang-format",
+        "compile_commands.json",
+        "compile_flags.txt",
+        "configure.ac",
+        ".git") or vim.loop.os_homedir(),
+    single_file_support = true,
+}
+
+if not pcall(require, 'clangd_extensions') then
+    lspconfig.clangd.setup(server_settings)
+else
+    require("clangd_extensions").setup {
+        server = server_settings,
+        extensions = {
+            autoSetHints = true,
+            hover_with_actions = true,
+            inlay_hints = {
+                only_current_line = false,
+                only_current_line_autocmd = "CursorHold",
+                show_parameter_hints = true,
+                parameter_hints_prefix = "<- ",
+                other_hints_prefix = "=> ",
+                max_len_align = false,
+                max_len_align_padding = 1,
+                right_align = false,
+                right_align_padding = 7,
+                highlight = "Comment",
+            },
+            ast = {
+                role_icons = {
+                    type = "",
+                    declaration = "",
+                    expression = "",
+                    specifier = "",
+                    statement = "",
+                    ["template argument"] = "",
+                },
+
+                kind_icons = {
+                    Compound = "",
+                    Recovery = "",
+                    TranslationUnit = "",
+                    PackExpansion = "",
+                    TemplateTypeParm = "",
+                    TemplateTemplateParm = "",
+                    TemplateParamObject = "",
+                },
+
+                highlights = {
+                    detail = "Comment",
+                },
+                memory_usage = {
+                    border = "none",
+                },
+                symbol_info = {
+                    border = "none",
+                },
+            },
+        }
+    }
+end

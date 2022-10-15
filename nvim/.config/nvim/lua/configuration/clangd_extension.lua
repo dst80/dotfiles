@@ -31,7 +31,7 @@ local on_attach = function(client, bufnr)
 end
 
 
-return require("clangd_extensions").setup {
+require("clangd_extensions").setup {
     server = {
         on_attach = on_attach,
         capabilities = capabilities,
