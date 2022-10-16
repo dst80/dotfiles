@@ -56,7 +56,14 @@ dap.configurations.python = {
     end
 }
 
-require("dapui").setup({
+
+local has_dapui
+dapui = pcall(require, 'dapui')
+if not has_dapui then
+    return
+end
+
+dapui.setup({
     icons = { expanded = "▾", collapsed = "▸" },
     mappings = {
         -- Use a table to apply multiple mappings
@@ -89,8 +96,8 @@ require("dapui").setup({
             size = 10,
             position = 'bottom',
         },
-     },
-     floating = {
+    },
+    floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
         max_width = nil, -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
@@ -104,14 +111,26 @@ require("dapui").setup({
     }
 })
 
-local options = {noremap = true, silent = true}
+dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+end
+
+local options = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", options)
 vim.keymap.set("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>", options)
 vim.keymap.set("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>", options)
 vim.keymap.set("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", options)
 vim.keymap.set("n", "<Leader>b", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", options)
-vim.keymap.set("n", "<Leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", options)
-vim.keymap.set("n", "<Leader>lp", "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", options)
+vim.keymap.set("n", "<Leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+    options)
+vim.keymap.set("n", "<Leader>lp",
+    "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", options)
 vim.keymap.set("n", "<Leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", options)
 vim.keymap.set("n", "<Leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", options)
