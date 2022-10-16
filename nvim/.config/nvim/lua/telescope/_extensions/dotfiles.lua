@@ -3,15 +3,20 @@ local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 local make_entry = require('telescope.make_entry')
 local conf = require('telescope.config').values
-local global = require('global')
 
 local dotfiles_list = function(opts)
     local dir = opts.path or ''
     local list = {}
     local p = io.popen('rg --files --hidden ' .. dir)
-    for file in p:lines() do table.insert(list, file) end
-    local nvim_conf = io.popen('rg --files ' .. global.home .. '/dotfiles')
-    for file in nvim_conf:lines() do table.insert(list, file) end
+    if p ~= nil then
+        for file in p:lines() do table.insert(list, file) end
+    end
+
+    local nvim_conf = io.popen('rg --files ' .. vim.fn.stdpath('HOME') .. '/dotfiles')
+    if nvim_conf ~= nil then
+        for file in nvim_conf:lines() do table.insert(list, file) end
+    end
+
     return list
 end
 
@@ -31,4 +36,4 @@ local dotfiles = function(opts)
     }):find()
 end
 
-return telescope.register_extension {exports = {dotfiles = dotfiles}}
+return telescope.register_extension { exports = { dotfiles = dotfiles } }

@@ -1,9 +1,7 @@
-local globals = require('global')
-
 if not pcall(require, 'packer') then
     vim.cmd(
         '!git clone https://github.com/wbthomason/packer.nvim ' ..
-        globals.site_dir .. 'pack/packer/start/packer.nvim'
+        vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     )
 end
 
