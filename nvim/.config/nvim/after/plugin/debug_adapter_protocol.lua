@@ -1,42 +1,34 @@
-local dap = require('dap')
+local has_dap, dap = pcall(require, 'dap')
+if not has_dap then
+    return
+end
+
+local function get_lldb_path()
+    return '/usr/bin/lldb-vscode'
+end
+
+dap.adapters.lldb = {
+    type = 'executable',
+    command = get_lldb_path(),
+    name = 'lldb'
+}
 
 dap.configurations.cpp = {
     {
-        name = "Launch",
-        type = "lldb",
-        request = "launch",
+        name = 'Launch',
+        type = 'lldb',
+        request = 'launch',
         program = function()
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
         args = {},
-        runInTerminal = false,
-    },
-    {
-        name = "Attach by name",
-        type = "lldb",
-        request = "attach",
-        program = function()
-            return vim.fn.input('Program name to attach', vim.fn.getcwd())
-        end,
-    },
-    {
-        name = "Attach by PID",
-        type = "lldb",
-        request = "attach",
-        program = function()
-            return vim.fn.input('Program name to attach', vim.fn.getcwd())
-        end,
-        pid = function()
-            return vim.fn.input('Programs PID', vim.fn.getcwd())
-        end
     }
 }
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
-
 
 -- python
 dap.configurations.python = {
@@ -56,9 +48,18 @@ dap.configurations.python = {
     end
 }
 
+local options = { noremap = true, silent = true }
+vim.keymap.set("n", "<F5>", dap.continue, options)
+vim.keymap.set("n", "<F10>", dap.step_over, options)
+vim.keymap.set("n", "<F11>", dap.step_into, options)
+vim.keymap.set("n", "<F12>", dap.step_out, options)
+vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, options)
+vim.keymap.set("n", "<Leader>tB", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+    options)
+vim.keymap.set("n", "<Leader>dr", dap.repl.open, options)
+vim.keymap.set("n", "<Leader>dl", dap.run_last, options)
 
-local has_dapui
-dapui = pcall(require, 'dapui')
+local has_dapui, dapui = pcall(require, 'dapui')
 if not has_dapui then
     return
 end
@@ -120,17 +121,3 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
-
-local options = { noremap = true, silent = true }
-
-vim.keymap.set("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", options)
-vim.keymap.set("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>", options)
-vim.keymap.set("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>", options)
-vim.keymap.set("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", options)
-vim.keymap.set("n", "<Leader>b", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", options)
-vim.keymap.set("n", "<Leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-    options)
-vim.keymap.set("n", "<Leader>lp",
-    "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", options)
-vim.keymap.set("n", "<Leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", options)
-vim.keymap.set("n", "<Leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", options)
