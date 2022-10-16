@@ -19,7 +19,8 @@ dap.configurations.cpp = {
         type = 'lldb',
         request = 'launch',
         program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input(
+                'Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
@@ -50,14 +51,25 @@ dap.configurations.python = {
 
 local options = { noremap = true, silent = true }
 vim.keymap.set("n", "<F5>", dap.continue, options)
+vim.keymap.set("n", "<F9>", dap.step_back, options)
 vim.keymap.set("n", "<F10>", dap.step_over, options)
 vim.keymap.set("n", "<F11>", dap.step_into, options)
 vim.keymap.set("n", "<F12>", dap.step_out, options)
-vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, options)
-vim.keymap.set("n", "<Leader>tB", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-    options)
+vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, options)
+vim.keymap.set("n", "<Leader>dB", function()
+    dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+end, options)
 vim.keymap.set("n", "<Leader>dr", dap.repl.open, options)
 vim.keymap.set("n", "<Leader>dl", dap.run_last, options)
+
+
+-- not working :(
+-- local dap_group = vim.api.nvim_create_augroup('DapRepl', { clean = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--     group = dap_group,
+--     pattern = { 'dap-repl' },
+--     callback = function() require('dap.ext.autocompl').attach() end
+-- })
 
 local has_dapui, dapui = pcall(require, 'dapui')
 if not has_dapui then
@@ -65,51 +77,26 @@ if not has_dapui then
 end
 
 dapui.setup({
-    icons = { expanded = "▾", collapsed = "▸" },
-    mappings = {
-        -- Use a table to apply multiple mappings
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        edit = "e",
-        repl = "r",
-        toggle = "t",
-    },
-    -- Expand lines larger than the window
-    -- Requires >= 0.7
-    expand_lines = vim.fn.has("nvim-0.7"),
     layouts = {
         {
             elements = {
-                'scopes',
-                'breakpoints',
-                'stacks',
-                'watches',
+                "scopes",
+                "breakpoints",
+                "stacks",
+                "watches",
             },
             size = 40,
-            position = 'left',
+            position = "left",
         },
         {
             elements = {
-                'repl',
-                'console',
+                "repl",
+                "console",
             },
             size = 10,
-            position = 'bottom',
+            position = "bottom",
         },
     },
-    floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
-        border = "single", -- Border style. Can be "single", "double" or "rounded"
-        mappings = {
-            close = { "q", "<Esc>" },
-        },
-    },
-    windows = { indent = 1 },
-    render = {
-        max_type_length = nil, -- Can be integer or nil.
-    }
 })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -121,3 +108,8 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
+
+vim.keymap.set("n", "<Leader>de", dapui.eval, options)
+vim.keymap.set("n", "<Leader>dE", function()
+    dapui.eval(vim.fn.input("[DAP] expression >"))
+end, options)
