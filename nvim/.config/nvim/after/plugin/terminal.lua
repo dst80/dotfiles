@@ -18,12 +18,12 @@ local lazygit_toggle = function()
     lazygit:toggle()
 end
 
-local toggle_term = function ()
-    local option = { nargs = "*" , count = true}
+local toggle_term = function()
+    local option = { nargs = "*", count = true }
     require('toggleterm').toggle_command(option.args, 2)
 end
 
-vim.keymap.set("n", "<leader>g", lazygit_toggle, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>lg", lazygit_toggle, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t", toggle_term, { noremap = true, silent = true })
 vim.keymap.set("t", "<C-A-Space>", [[<C-\><C-n>]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-left>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
