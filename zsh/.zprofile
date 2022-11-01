@@ -9,7 +9,7 @@ if [ -f "$HOME/.config/.env" ]; then
 fi
 
 if [ -n "$BASH_VERSION" ]; then
-  if [ -f "$HOME/config/.zsh/.zshrc"]; then
-    source "$HOME/config/.zsh/.zshrc"
+  if [ -f "$HOME/.config/zsh/.zshrc"]; then
+    source "$HOME/.config/zsh/.zshrc"
   fi
 fi
