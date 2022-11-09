@@ -3,6 +3,7 @@ if not has_dap then
     return
 end
 
+
 local function get_lldb_path()
     return '/usr/bin/lldb-vscode'
 end
@@ -55,13 +56,18 @@ vim.keymap.set("n", "<F9>", dap.step_back, options)
 vim.keymap.set("n", "<F10>", dap.step_over, options)
 vim.keymap.set("n", "<F11>", dap.step_into, options)
 vim.keymap.set("n", "<F12>", dap.step_out, options)
-vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, options)
-vim.keymap.set("n", "<Leader>dB", function()
+vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, options)
+vim.keymap.set("n", "<Leader>cb", function()
     dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end, options)
 vim.keymap.set("n", "<Leader>dr", dap.repl.open, options)
 vim.keymap.set("n", "<Leader>dl", dap.run_last, options)
 
+
+vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "warning", linehl = "", numhl = "" })
 
 -- not working :(
 -- local dap_group = vim.api.nvim_create_augroup('DapRepl', { clean = true })
@@ -70,6 +76,25 @@ vim.keymap.set("n", "<Leader>dl", dap.run_last, options)
 --     pattern = { 'dap-repl' },
 --     callback = function() require('dap.ext.autocompl').attach() end
 -- })
+
+
+local has_dap_vt, dap_vt = pcall(require, 'nvim-dap-virtual-text')
+if has_dap_vt then
+    dap_vt.setup({
+        enabled_commands = true,
+        highlight_changed_variables = true,
+        highlight_new_as_changed = false,
+        show_stop_reason = true,
+        commented = false,
+        only_first_definition = true,
+        all_references = false,
+        filter_references_pattern = '<module',
+        virt_text_pos = 'eol',
+        all_frames = false,
+        virt_lines = false,
+        virt_text_win_col = nil,
+    })
+end
 
 local has_dapui, dapui = pcall(require, 'dapui')
 if not has_dapui then
