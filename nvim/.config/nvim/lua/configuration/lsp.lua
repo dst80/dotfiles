@@ -160,14 +160,48 @@ else
     lspconfig.clangd.setup(server_settings)
 end
 
-lspconfig.rust_analyzer.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-    settings = {
-        ["rust_analyzer"] = {
-            cargo = { allFreatures = true },
-            checkOnSave = { allFreatures = true, command = "clippy" },
+-- lspconfig.rust_analyzer.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = lsp_flags,
+--     settings = {
+--         ["rust_analyzer"] = {
+--             cargo = { allFreatures = true },
+--             checkOnSave = { allFreatures = true, command = "clippy" },
+--         }
+--     }
+-- })
+
+local rt = require('rust-tools')
+rt.setup({
+    tools = {
+        inlay_hints = {
+            auto = true,
+            show_parameter_hints = true,
+        },
+        hover_actions = {
+            border = {
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+                { "", "FloatBorder" },
+            },
+            auto_focus = true
+        }
+    },
+    server = {
+        on_attach = function(_, bufnr)
+            on_attach(_, bufnr)
+            vim.keymap.set("n", "<leader>rf", rt.hover_actions.hover_actions, { buffer = bufnr })
+        end,
+        settings = {
+            ["rust_analyzer"] = {
+                checkOnSave = "clippy",
+            }
         }
     }
 })

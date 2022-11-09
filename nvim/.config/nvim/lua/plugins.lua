@@ -70,6 +70,7 @@ return require('packer').startup(
 
         -- some language plugins
         use { 'Shatur/neovim-cmake' }
+        use { 'simrat39/rust-tools.nvim' }
         use { 'fatih/vim-go' }
         use { 'iamcco/markdown-preview.nvim',
             run = function()
