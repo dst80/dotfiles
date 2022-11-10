@@ -9,9 +9,60 @@ require("mason").setup({
     }
 })
 
+
+local signs = {
+    Error = "",
+    Warn = " ",
+    Hint = "",
+    Information = ""
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+local config = {
+    -- disable virtual text
+    virtual_text = true,
+    -- show signs
+    signs = {
+        active = signs,
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
+}
+
+vim.diagnostic.config(config)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+    width = 60,
+})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+    width = 60,
+})
+
+
+
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+}
+capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lsp_flags = {
     debounce_text_changes = 80,
@@ -129,13 +180,17 @@ lspconfig.sumneko_lua.setup {
     }
 }
 
+
+local clangd_capabilities = capabilities
+clangd_capabilities.textDocument.semanHighlighting = true
+clangd_capabilities.offsetEncoding = "utf-8"
 local server_settings = {
     on_attach = function(_, bufnr)
         on_attach(_, bufnr)
         local options = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
     end,
-    capabilities = capabilities,
+    capabilities = clangd_capabilities,
     flags = lsp_flags,
     filetypes = {
         "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
@@ -149,6 +204,14 @@ local server_settings = {
         "configure.ac",
         ".git") or vim.loop.os_homedir(),
     single_file_support = true,
+
+    init_options = {
+        clangdFileStatus = true,
+        usePlaceholders = true,
+        completeUnimported = true,
+        semanticHighlighting = true,
+    }
+
 }
 
 local has_ext_clang, ext_clang = pcall(require("clangd_extensions"))
@@ -157,7 +220,7 @@ if has_ext_clang then
         server = server_settings,
     }
 else
-    lspconfig.clangd.setup(server_settings)
+    require('lspconfig').clangd.setup(server_settings)
 end
 
 -- lspconfig.rust_analyzer.setup({
