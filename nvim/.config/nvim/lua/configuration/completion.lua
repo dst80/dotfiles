@@ -5,13 +5,12 @@ end
 
 local tabnine = require("cmp_tabnine.config")
 tabnine:setup({
-	max_lines = 1000,
-	max_num_results = 20,
-	sort = true,
-	run_on_every_keystroke = true,
-	snippet_placeholder = "..",
+    max_lines = 1000,
+    max_num_results = 20,
+    sort = true,
+    run_on_every_keystroke = true,
+    snippet_placeholder = "..",
 })
-
 
 local source_mapping = {
     nvim_lua = "[Lua]",
@@ -32,9 +31,9 @@ cmp.setup({
         end,
     },
     mapping = {
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-v>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-m>'] = cmp.mapping.scroll_docs(4),
+        ['<C-b>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<Tab>'] = cmp.mapping(
             function(fallback)

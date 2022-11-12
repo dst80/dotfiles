@@ -27,7 +27,7 @@ options:set_options({
     mouse = "nv",
     whichwrap = "h,l,<,>,[,],~",
     virtualedit = "block",
-    scrolloff = 35,
+    scrolloff = 40,
     sidescrolloff = 5,
 
     -- formatting stuff
