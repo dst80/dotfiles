@@ -1,6 +1,7 @@
 require('configuration.options')
 require('configuration.keymap')
 require('configuration.common_autocommands')
+require('configuration.diagnostic')
 require('configuration.lsp')
 require('configuration.luasnip')
 require('configuration.completion')
