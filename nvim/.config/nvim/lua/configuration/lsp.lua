@@ -23,8 +23,11 @@ for type, icon in pairs(signs) do
 end
 
 local config = {
-    -- disable virtual text
-    virtual_text = true,
+    virtual_text = {
+        severity = "ERROR",
+        spacing = 2,
+        prefix = "<=",
+    },
     -- show signs
     signs = {
         active = signs,
@@ -35,8 +38,9 @@ local config = {
     float = {
         focusable = false,
         style = "minimal",
-        border = "rounded",
+        border = "none",
         source = "always",
+        severity = { max = "WARN" },
         header = "",
         prefix = "",
     },
@@ -51,8 +55,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
     border = "rounded",
     width = 60,
 })
-
-
 
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
@@ -96,9 +98,9 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>cr", vim.lsp.codelens.refresh, options)
     vim.keymap.set("n", "<leader>ce", vim.lsp.codelens.run, options)
     vim.keymap.set("n", "<leader>fo", function() vim.lsp.buf.format({ async = true }) end, options)
-    vim.keymap.set("n", "<leader>db", vim.diagnostic.goto_prev, options)
-    vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, options)
-    vim.keymap.set("n", "<leader>sll", vim.diagnostic.setloclist, options)
+    vim.keymap.set("n", "<leader>bd", vim.diagnostic.goto_prev, options)
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, options)
+    vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, options)
 end
 
 lspconfig.bashls.setup {
@@ -211,7 +213,6 @@ local server_settings = {
         completeUnimported = true,
         semanticHighlighting = true,
     }
-
 }
 
 local has_ext_clang, ext_clang = pcall(require("clangd_extensions"))
@@ -223,52 +224,57 @@ else
     require('lspconfig').clangd.setup(server_settings)
 end
 
--- lspconfig.rust_analyzer.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
---     flags = lsp_flags,
---     settings = {
---         ["rust_analyzer"] = {
---             cargo = { allFreatures = true },
---             checkOnSave = { allFreatures = true, command = "clippy" },
---         }
---     }
--- })
-
-local rt = require('rust-tools')
-rt.setup({
-    tools = {
-        inlay_hints = {
-            auto = true,
-            show_parameter_hints = true,
-        },
-        hover_actions = {
-            border = {
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
-                { "", "FloatBorder" },
+local has_rust_tools, rt = pcall(require, 'rust_tools')
+if has_rust_tools then
+    rt.setup({
+        tools = {
+            inlay_hints = {
+                auto = true,
+                only_current_line = true,
+                show_parameter_hints = true,
             },
-            auto_focus = true
-        }
-    },
-    server = {
-        on_attach = function(_, bufnr)
-            on_attach(_, bufnr)
-            vim.keymap.set("n", "<leader>rf", rt.hover_actions.hover_actions, { buffer = bufnr })
-        end,
-        settings = {
-            ["rust_analyzer"] = {
-                checkOnSave = "clippy",
+            hover_actions = {
+                border = {
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                    { "", "FloatBorder" },
+                },
+                auto_focus = true
+            }
+        },
+        server = {
+            on_attach = function(_, bufnr)
+                on_attach(_, bufnr)
+                vim.keymap.set("n", "<leader>rf", rt.hover_actions.hover_actions, { buffer = bufnr })
+            end,
+            settings = {
+                ["rust_analyzer"] = {
+                    cargo = { allFreatures = true },
+                    checkOnSave = { allFreatures = true, command = "clippy" },
+                    completion = { postfix = { enable = false, }, },
+                }
             }
         }
-    }
-})
-
+    })
+else
+    lspconfig.rust_analyzer.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = lsp_flags,
+        settings = {
+            ["rust_analyzer"] = {
+                cargo = { allFreatures = true },
+                checkOnSave = { allFreatures = true, command = "clippy" },
+                completion = { postfix = { enable = false, }, },
+            }
+        }
+    })
+end
 local lsp_group = vim.api.nvim_create_augroup("LSPGroup", { clear = true })
 vim.api.nvim_create_autocmd(
     { "BufWritePre" },
@@ -276,3 +282,8 @@ vim.api.nvim_create_autocmd(
         command = [[lua vim.lsp.buf.format({async = false})]],
         group = lsp_group
     })
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    command = [[lua vim.diagnostic.open_float(nil, {focus=false})]],
+    group = lsp_group
+})
