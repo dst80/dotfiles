@@ -37,7 +37,6 @@ return require('packer').startup(
         -- nvim tree sitter
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
         use { 'nvim-treesitter/playground' }
-        use { 'romgrk/nvim-treesitter-context' }
 
         -- telescope, what else
         use { 'nvim-lua/popup.nvim' }
