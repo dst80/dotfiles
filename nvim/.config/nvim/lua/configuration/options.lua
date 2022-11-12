@@ -6,6 +6,7 @@ options:set_options({
     sessionoptions = "curdir,help,tabpages,winsize",
     clipboard = "unnamedplus",
     fileformats = "unix,mac,dos",
+    encoding = "utf-8",
 
     -- allow hidden buffers
     hidden = true,
@@ -15,7 +16,7 @@ options:set_options({
     ttimeout = true,
     timeoutlen = 500,
     ttimeoutlen = 50,
-    updatetime = 100,
+    updatetime = 300,
     redrawtime = 1500,
     wrapscan = true,
 
@@ -26,14 +27,14 @@ options:set_options({
     mouse = "nv",
     whichwrap = "h,l,<,>,[,],~",
     virtualedit = "block",
-    scrolloff = 10,
+    scrolloff = 35,
     sidescrolloff = 5,
 
     -- formatting stuff
     smarttab = true,
     shiftround = true,
-    tabstop = 2,
-    shiftwidth = 2,
+    tabstop = 4,
+    shiftwidth = 4,
     softtabstop = -1,
     expandtab = true,
     autoindent = true,
