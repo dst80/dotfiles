@@ -55,87 +55,42 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, options)
 end
 
-lspconfig.bashls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
+-- use {module, function} or "module" to call server
+local my_servers = {
+    { "lspconfig", "bashls" },
+    { "lspconfig", "angularls" },
+    { "lspconfig", "vuels" },
+    { "lspconfig", "eslint" },
+    { "lspconfig", "tsserver" },
+    { "lspconfig", "gopls" },
+    { "lspconfig", "jedi_language_server" },
+    { "lspconfig", "omnisharp" },
+    { "lspconfig", "marksman" },
+    { "lspconfig", "cmake" },
+    "configuration.lsp.rust",
+    "configuration.lsp.clangd",
+    "configuration.lsp.lua",
 }
 
-lspconfig.angularls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
+local setup_servers = function(servers, config)
+    for _, server in pairs(servers) do
+        if type(server) == "table" then
+            local has_server, current_server = pcall(require, server[1])
+            if has_server then
+                current_server[server[2]].setup(config)
+            end
+        else
+            local _server = require(server)
+            _server.setup(config)
+        end
+    end
+end
 
-lspconfig.vuels.setup {
+setup_servers(my_servers, {
     on_attach = on_attach,
     capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.eslint.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.tsserver.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.gopls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.jedi_language_server.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.omnisharp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.marksman.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-lspconfig.cmake.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-}
-
-local lua = require('configuration.lsp.lua')
-lua.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    lsp_flags = lsp_flags,
+    flags = lsp_flags
 })
-
-local rust_lsp = require('configuration.lsp.rust')
-rust_lsp.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    lsp_flags = lsp_flags,
-})
-
-local clangd = require('configuration.lsp.clangd')
-clangd.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    lsp_flags = lsp_flags,
-})
-
 
 local has_null_lsp, null_lsp = pcall(require, "null-lsp")
 if has_null_lsp then
