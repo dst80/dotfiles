@@ -9,8 +9,6 @@ require("mason").setup({
     }
 })
 
-local lspconfig = require('lspconfig')
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -55,23 +53,6 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, options)
 end
 
--- use {module, function} or "module" to call server
-local my_servers = {
-    { "lspconfig", "bashls" },
-    { "lspconfig", "angularls" },
-    { "lspconfig", "vuels" },
-    { "lspconfig", "eslint" },
-    { "lspconfig", "tsserver" },
-    { "lspconfig", "gopls" },
-    { "lspconfig", "jedi_language_server" },
-    { "lspconfig", "omnisharp" },
-    { "lspconfig", "marksman" },
-    { "lspconfig", "cmake" },
-    "configuration.lsp.rust",
-    "configuration.lsp.clangd",
-    "configuration.lsp.lua",
-}
-
 local setup_servers = function(servers, config)
     for _, server in pairs(servers) do
         if type(server) == "table" then
@@ -86,19 +67,31 @@ local setup_servers = function(servers, config)
     end
 end
 
-setup_servers(my_servers, {
+-- use {module, function} or "module" to call server
+local servers = {
+    { "lspconfig", "bashls" },
+    { "lspconfig", "angularls" },
+    { "lspconfig", "vuels" },
+    { "lspconfig", "eslint" },
+    { "lspconfig", "tsserver" },
+    { "lspconfig", "gopls" },
+    { "lspconfig", "jedi_language_server" },
+    { "lspconfig", "omnisharp" },
+    { "lspconfig", "marksman" },
+    { "lspconfig", "cmake" },
+    "configuration.lsp.rust",
+    "configuration.lsp.clangd",
+    "configuration.lsp.lua",
+    "configuration.lsp.null-lsp",
+}
+
+local config = {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags
-})
+}
 
-local has_null_lsp, null_lsp = pcall(require, "null-lsp")
-if has_null_lsp then
-    null_lsp.setup({
-        null_lsp.buildin.formatting.stylua,
-        null_lsp.buildin.formatting.prettierd,
-    })
-end
+setup_servers(servers, config)
 
 local lsp_group = vim.api.nvim_create_augroup("LSPGroup", { clear = true })
 vim.api.nvim_create_autocmd(
