@@ -10,7 +10,6 @@ require("mason").setup({
 })
 
 local lspconfig = require('lspconfig')
-local util = require('lspconfig/util')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -142,47 +141,12 @@ rust_lsp.setup({
     lsp_flags = lsp_flags,
 })
 
-local clangd_capabilities = capabilities
-clangd_capabilities.textDocument.semanHighlighting = true
-clangd_capabilities.offsetEncoding = "utf-8"
-local server_settings = {
-    on_attach = function(_, bufnr)
-        on_attach(_, bufnr)
-        local options = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
-    end,
-    capabilities = clangd_capabilities,
-    flags = lsp_flags,
-    filetypes = {
-        "c", "cc", "cpp", "cxx", "h", "hpp", "hxx", "objc", "objcc"
-    },
-    root_dir = util.root_pattern(
-        ".clangd",
-        ".clang-tidy",
-        ".clang-format",
-        "compile_commands.json",
-        "compile_flags.txt",
-        "configure.ac",
-        ".git") or vim.loop.os_homedir(),
-    single_file_support = true,
-
-    init_options = {
-        clangdFileStatus = true,
-        usePlaceholders = true,
-        completeUnimported = true,
-        semanticHighlighting = true,
-    }
-}
-
-local has_ext_clang, ext_clang = pcall(require("clangd_extensions"))
-if has_ext_clang then
-    ext_clang.setup {
-        server = server_settings,
-    }
-else
-    require('lspconfig').clangd.setup(server_settings)
-end
-
+local clangd = require('configuration.lsp.clangd')
+clangd.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    lsp_flags = lsp_flags,
+})
 
 
 local has_null_lsp, null_lsp = pcall(require, "null-lsp")
