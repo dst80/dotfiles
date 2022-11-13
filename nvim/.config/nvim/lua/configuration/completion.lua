@@ -7,6 +7,14 @@ tabnine:setup({
     snippet_placeholder = "..",
 })
 
+local prefetch = vim.api.nvim_create_augroup("prefetch", { clear = true })
+vim.api.nvim_create_autocmd('BufRead', {
+    group = prefetch,
+    callback = function()
+        require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
+    end
+})
+
 local lspkind = require("lspkind")
 local source_mapping = {
     nvim_lua = "[Lua]",
@@ -19,15 +27,20 @@ local source_mapping = {
 
 local lspkind_format_function = function(entry, vim_item)
     vim_item.kind = lspkind.presets.default[vim_item.kind]
-    local menu = source_mapping[entry.source.name]
+    vim_item.menu = source_mapping[entry.source.name]
     if entry.source.name == "cmp_tabnine" then
-        local data = entry.completion_item.data
-        if data ~= nil and data.detail ~= nil then
-            menu = data.detail .. " " .. menu
-        end
+        local detail = (entry.completion_item.data or {}).detail
         vim_item.kind = ""
+        if detail and detail:find('.*%%.*') then
+            vim_item.kind = vim_item.kind .. ' ' .. detail
+        end
+
+        if (entry.completion_item.data or {}).multiline then
+            vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+        end
     end
-    vim_item.menu = menu
+    local maxwidth = 80
+    vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
     return vim_item
 end
 
@@ -56,7 +69,6 @@ local super_tab_mapping = function(fallback)
 end
 
 local confirm_config = {
-    behavior = cmp.ConfirmBehavior.Insert,
     select = true
 }
 
@@ -64,29 +76,64 @@ local expand_function = function(args)
     luasnip.lsp_expand(args.body)
 end
 
+local compare = require('cmp.config.compare')
+
+local window_config = cmp.config.window.bordered()
+window_config.border = "none"
+
+local WIDE_HEIGHT = 40
 cmp.setup({
-    completion = { keyword_length = 2, },
+    completion = { keyword_length = 1, },
     experimental = { native_menu = false, ghost_text = true },
     formatting = { format = lspkind_format_function },
     mapping = {
-        ['<C-v>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-m>'] = cmp.mapping.scroll_docs(4),
-        ['<C-b>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-b>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
         ['<Tab>'] = cmp.mapping(tab_mapping, { "i", "s" }),
         ['<S-Tab>'] = cmp.mapping(super_tab_mapping, { "i", "s" }),
         ['<C-e>'] = cmp.mapping.close(),
-        ['<C-y>'] = cmp.mapping.confirm(confirm_config),
         ['<CR>'] = cmp.mapping.confirm(confirm_config),
     },
     preselect = cmp.PreselectMode.None,
     snippet = { expand = expand_function },
     sources = {
-        { name = 'nvim_lsp' },
-        { name = 'cmp_tabnine' },
-        { name = 'buffer', keyword_length = 5 },
-        { name = 'luasnip', priority = 500 },
+        { name = 'cmp_tabnine', priority = 300 },
+        { name = 'nvim_lsp', priority = 250 },
+        { name = 'buffer', keyword_length = 5, priority = 200 },
+        { name = 'luasnip', priority = 200 },
         { name = 'nvim_lua' },
         { name = 'path' },
+    },
+
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            require('cmp_tabnine.compare'),
+            compare.offset,
+            compare.exact,
+            compare.score,
+            compare.recently_used,
+            compare.kind,
+            compare.sort_text,
+            compare.length,
+            compare.order,
+        },
+    },
+
+    window = {
+        completion = {
+            border = { '', '', '', '', '', '', '', '' },
+            winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None',
+            scrolloff = 0,
+            col_offset = 0,
+            side_padding = 1,
+        },
+        documentation = {
+            max_height = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
+            max_width = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
+            border = { '', '', '', ' ', '', '', '', ' ' },
+            winhighlight = 'FloatBorder:NormalFloat',
+        },
     },
 })
