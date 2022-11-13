@@ -1,14 +1,13 @@
--- if vim.g.snippets ~= "luasnip" or not pcall(require, "luasnip") then
---   return
--- end
+local has_luasnip, luasnip = pcall(require, "luasnip")
+if not has_luasnip then
+    return
+end
 
-local luasnip = require('luasnip')
 local types = require('luasnip.util.types')
 
 luasnip.config.setup({
     history = true,
     update_events = "TextChanged,TextChangedI",
-    --update_events = "InsertLeave",
     enable_autosnippets = true,
     region_check_events = "CursorHold,InsertLeave",
     delete_check_events = "TextChanged,InsertEnter",
@@ -22,43 +21,33 @@ luasnip.config.setup({
     },
 })
 
-require('luasnip.loaders.from_vscode').lazy_load({
-    paths = {
-        "~/.config/snippets/vsc-snippets"
-    }
-})
+local has_vsc_ldr, vsc_ldr = pcall(require, 'luasnip.loaders.from_vscode')
+if has_vsc_ldr then
+    vsc_ldr.lazy_load(
+        { paths = { "~/.config/snippets/vsc-snippets" } }
+    )
+end
 
-require('luasnip.loaders.from_lua').lazy_load({
-    paths = {
-        '~/.config/nvim/lua/configuration/luasnip/filetypes'
-    }
-})
+local has_lua_ldr, lua_ldr = pcall(require, 'luasnip.loaders.from_lua')
+if has_lua_ldr then
+    lua_ldr.lazy_load(
+        { paths = { '~/.config/nvim/lua/configuration/luasnip/filetypes' } }
+    )
+end
 
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
-    if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-    end
+    if luasnip.expand_or_jumpable() then luasnip.expand_or_jump() end
 end, { silent = true })
 
--- <c-j> is my jump backwards key.
--- this always moves to the previous item within the snippet
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
-    if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-    end
+    if luasnip.jumpable(-1) then luasnip.jump(-1) end
 end, { silent = true })
 
--- <c-l> is selecting within a list of options.
--- This is useful for choice nodes (introduced in the forthcoming episode 2)
 vim.keymap.set({ "i", "s" }, "<C-h>", function()
-    if luasnip.choice_active() then
-        luasnip.change_choice(-1)
-    end
+    if luasnip.choice_active() then luasnip.change_choice(-1) end
 end)
 vim.keymap.set({ "i", "s" }, "<C-l>", function()
-    if luasnip.choice_active() then
-        luasnip.change_choice(1)
-    end
+    if luasnip.choice_active() then luasnip.change_choice(1) end
 end)
 
 vim.keymap.set("i", "<C-u>", require "luasnip.extras.select_choice")
