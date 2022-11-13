@@ -115,24 +115,12 @@ lspconfig.cmake.setup {
     flags = lsp_flags,
 }
 
-lspconfig.sumneko_lua.setup {
-    on_attach = on_attach,
+local lua = require('configuration.lsp.lua')
+lua.setup({
     capabilities = capabilities,
-    flags = lsp_flags,
-    settings = {
-        Lua = {
-            runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-            diagnostics = { globals = { 'vim' } },
-            workspace = {
-                library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                    [vim.fn.stdpath('config') .. "/lua"] = true
-                }
-            }
-        }
-    }
-}
+    on_attach = on_attach,
+    lsp_flags = lsp_flags,
+})
 
 local rust_lsp = require('configuration.lsp.rust')
 rust_lsp.setup({
