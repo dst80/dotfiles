@@ -106,9 +106,13 @@ vim.api.nvim_create_autocmd(
     {
         command = [[lua vim.lsp.buf.format({async = false})]],
         group = lsp_group
-    })
+    }
+)
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    command = [[lua vim.diagnostic.open_float(nil, {focus=false})]],
-    group = lsp_group
-})
+vim.api.nvim_create_autocmd(
+    { "CursorHold", "CursorHoldI" },
+    {
+        command = [[lua vim.diagnostic.open_float(nil, {focus=false})]],
+        group = lsp_group
+    }
+)
