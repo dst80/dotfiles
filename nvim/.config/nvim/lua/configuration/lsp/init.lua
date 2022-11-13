@@ -1,20 +1,27 @@
-require("mason").setup({
-    automareq_installation = true,
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
+local has_mason, mason = pcall(require, "mason")
+if has_mason then
+    mason.setup({
+        automareq_installation = true,
+        ui = {
+            icons = {
+                package_installed = "✓",
+                package_pending = "➜",
+                package_uninstalled = "✗"
+            }
         }
-    }
-})
+    })
+end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = { "documentation", "detail", "additionalTextEdits" },
 }
-capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local has_cmp_lsp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
+if has_cmp_lsp then
+    capabilities = cmp_lsp.default_capabilities(capabilities)
+end
 
 local lsp_flags = {
     debounce_text_changes = 80,
