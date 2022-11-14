@@ -30,7 +30,7 @@ return require('packer').startup(
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
         if (vim.loop.os_uname().sysname == 'Windows_NT') then
-            use { 'tzachar/cmp-tabnine', after = 'nvim-cmp', run = 'powershell ./install.ps1' }
+            use { 'tzachar/cmp-tabnine', run = 'powershell ./install.ps1' }
         else
             use { 'tzachar/cmp-tabnine', run = './install.sh' }
         end
