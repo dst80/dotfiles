@@ -80,6 +80,7 @@ return require('packer').startup(
 
         -- optical sugar
         use { 'hoob3rt/lualine.nvim' }
+        use { 'akinsho/bufferline.nvim' }
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'goolord/alpha-nvim' }
         use { 'sudormrfbin/cheatsheet.nvim' }
