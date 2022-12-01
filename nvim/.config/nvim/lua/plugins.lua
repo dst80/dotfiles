@@ -69,7 +69,7 @@ return require('packer').startup(
         use { 'ThePrimeagen/refactoring.nvim' }
 
         -- some language plugins
-        use { 'Shatur/neovim-cmake' }
+        use { 'Civitasv/cmake-tools.nvim' }
         use { 'simrat39/rust-tools.nvim' }
         use { 'fatih/vim-go' }
         use { 'iamcco/markdown-preview.nvim',

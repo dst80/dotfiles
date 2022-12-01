@@ -37,3 +37,4 @@ bin/.local/bin/voila
 bin/.local/bin/wsdump
 
 bin/.local/bin/ezdxf
+bin/.local/bin
