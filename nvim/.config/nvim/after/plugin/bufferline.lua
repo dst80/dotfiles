@@ -7,11 +7,11 @@ require("bufferline").setup {
     }
 }
 
-local options = { silent = true, remap = false }
-vim.keymap.set("n", "<leader>nb", [[:BufferLineCycleNext<CR>]], options)
-vim.keymap.set("n", "<leader>pb", [[:BufferLineCyclePrev<CR>]], options)
-vim.keymap.set("n", "<leader>mnb", [[:BufferLineMoveNext<CR>]], options)
-vim.keymap.set("n", "<leader>mpb", [[:BufferLineMovePrev<CR>]], options)
+local options = { silent = true, noremap = true }
+vim.keymap.set("n", "<C-b><C-n>", [[:BufferLineCycleNext<CR>]], options)
+vim.keymap.set("n", "<C-b><C-p>", [[:BufferLineCyclePrev<CR>]], options)
+vim.keymap.set("n", "<C-b><C-m><C-n>", [[:BufferLineMoveNext<CR>]], options)
+vim.keymap.set("n", "<C-b><C-m><C-p>", [[:BufferLineMovePrev<CR>]], options)
 
 vim.keymap.set("n", "<leader>1", [[:BufferLineGoToBuffer 1<CR>]], options)
 vim.keymap.set("n", "<leader>2", [[:BufferLineGoToBuffer 2<CR>]], options)
@@ -22,4 +22,4 @@ vim.keymap.set("n", "<leader>6", [[:BufferLineGoToBuffer 6<CR>]], options)
 vim.keymap.set("n", "<leader>7", [[:BufferLineGoToBuffer 7<CR>]], options)
 vim.keymap.set("n", "<leader>8", [[:BufferLineGoToBuffer 8<CR>]], options)
 vim.keymap.set("n", "<leader>9", [[:BufferLineGoToBuffer 9<CR>]], options)
-vim.keymap.set("n", "<leader>$", [[:BufferLineGoToBuffer -1<CR>]], options)
+vim.keymap.set("n", "<leader>0", [[:BufferLineGoToBuffer -1<CR>]], options)
