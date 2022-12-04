@@ -1,19 +1,23 @@
-local options = { silent = true, remap = true }
+local options = { silent = true, noremap = true }
 
 -- system keymap cannot be deleted, hence overriding
-vim.keymap.set({ "n", "v", "i" }, "<F1>", "<nop>")
-vim.keymap.set({ "n", "v", "i" }, "<C-j>", "<nop>")
-vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<nop>")
+vim.keymap.set({ "n", "v", "i" }, "<F1>", "<nop>", options)
+vim.keymap.set({ "n", "v", "i" }, "<C-j>", "<nop>", options)
+vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<nop>", options)
 
 -- window controls
-vim.keymap.set("n", "<C-Left>", "<C-w>h")
-vim.keymap.set("n", "<C-Right>", "<C-w>l")
-vim.keymap.set("n", "<C-Down>", "<C-w>j")
-vim.keymap.set("n", "<C-Up>", "<C-w>k")
+vim.keymap.set("n", "<C-Left>", "<C-w>h", options)
+vim.keymap.set("n", "<C-Right>", "<C-w>l", options)
+vim.keymap.set("n", "<C-Down>", "<C-w>j", options)
+vim.keymap.set("n", "<C-Up>", "<C-w>k", options)
 
 --fix weird behavior of PageUp and PageDown
-vim.keymap.set("n", "<PageUp>", "<C-U>")
-vim.keymap.set("n", "<PageDown>", "<C-D>")
+vim.keymap.set("n", "<PageUp>", "<C-u>zz", options)
+vim.keymap.set("n", "<PageDown>", "<C-d>zz", options)
+
+-- move half page to center of the screen
+vim.keymap.set("n", "<C-d>", "<C-d>zz", options)
+vim.keymap.set("n", "<C-u>", "<C-u>zz", options)
 
 -- line mover commands
 vim.keymap.set("n", "<A-Down>", "<CMD>m .+1<CR>==", options)
@@ -24,13 +28,13 @@ vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", options)
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", options)
 
 -- shortcuts for open, save and close
-vim.keymap.set("n", "<leader>o", [[:e <C-R>=expand("%:p:h") . "/"<CR>]], { remap = false })
-vim.keymap.set("n", "<C-n>", [[:e <C-R>=expand("%:p:h") . "/"<CR>]], { remap = false })
+vim.keymap.set("n", "<leader>o", [[:e <C-R>=expand("%:p:h") . "/"<CR>]], { noremap = false })
+vim.keymap.set("n", "<C-n>", [[:e <C-R>=expand("%:p:h") . "/"<CR>]], { noremap = false })
 vim.keymap.set("n", "<C-s>", ":w<CR>", options)
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>", options)
 vim.keymap.set("n", "<C-q>", ":wq<CR>", options)
 vim.keymap.set("i", "<C-q>", "<Esc>:wq<CR>", options)
-vim.keymap.set("n", "<leader><CR>", ":noh<CR>", options)
+vim.keymap.set("i", "<C-h>", "<Esc>:wq<CR>", options)
 vim.keymap.set("n", "<leader><leader>x", ":luafile %<CR>", options)
 
 -- simpler copy and paste commands
