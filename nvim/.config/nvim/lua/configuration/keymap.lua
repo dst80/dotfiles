@@ -38,10 +38,15 @@ vim.keymap.set("i", "<C-h>", "<Esc>:wq<CR>", options)
 vim.keymap.set("n", "<leader><leader>x", ":luafile %<CR>", options)
 
 -- simpler copy and paste commands
+vim.keymap.set("v", "p", "_dP", options)
 vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]], options)
 vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]], options)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], options)
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+y$]], options)
+
+-- easier indent in visual mode, because it will stay in indent mode
+vim.keymap.set("v", "<", "<gv", options)
+vim.keymap.set("v", ">", ">gv", options)
 
 -- addtional useful commands
 vim.keymap.set("n", "<leader>e", [[/_<CR>l:noh<CR>:let @/=""<CR>]], options)
