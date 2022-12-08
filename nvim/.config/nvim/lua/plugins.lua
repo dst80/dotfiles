@@ -92,6 +92,7 @@ return require("packer").startup(
         use { "goolord/alpha-nvim" }
         use { "sudormrfbin/cheatsheet.nvim" }
         use { "andersevenrud/nordic.nvim" }
+        use { "lewis6991/gitsigns.nvim" }
 
     end
 )
