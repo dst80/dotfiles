@@ -93,6 +93,7 @@ return require("packer").startup(
         use { "sudormrfbin/cheatsheet.nvim" }
         use { "andersevenrud/nordic.nvim" }
         use { "lewis6991/gitsigns.nvim" }
+        use { "petertriho/nvim-scrollbar" }
 
     end
 )
