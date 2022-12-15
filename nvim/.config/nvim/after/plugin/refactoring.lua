@@ -4,6 +4,8 @@ require('refactoring').setup({
         go = true,
         cpp = true,
         c = true,
+        h = true,
+        hpp = true,
         java = true,
     },
     -- prompt for function parameters
@@ -11,6 +13,8 @@ require('refactoring').setup({
         go = true,
         cpp = true,
         c = true,
+        h = true,
+        hpp = true,
         java = true,
     },
 })
