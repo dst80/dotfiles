@@ -5,6 +5,10 @@ vim.keymap.set({ "n", "v", "i" }, "<F1>", "<nop>", options)
 vim.keymap.set({ "n", "v", "i" }, "<C-j>", "<nop>", options)
 vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<nop>", options)
 
+-- fast exit in insert mode
+vim.keymap.set("i", "jj", "<Esc>", options)
+vim.keymap.set("i", "kk", "<Esc>", options)
+
 -- window controls
 vim.keymap.set("n", "<C-Left>", "<C-w>h", options)
 vim.keymap.set("n", "<C-Right>", "<C-w>l", options)
