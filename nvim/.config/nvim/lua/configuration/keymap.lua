@@ -15,9 +15,16 @@ vim.keymap.set("n", "<C-Up>", "<C-w>k", options)
 vim.keymap.set("n", "<PageUp>", "<C-u>zz", options)
 vim.keymap.set("n", "<PageDown>", "<C-d>zz", options)
 
+-- keeps cursor on the front
+vim.keymap.set("n", "J", "mzJ`z", options)
+
 -- move half page to center of the screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz", options)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", options)
+
+-- centers cursor on search
+vim.keymap.set("n", "n", "nzzzv", options)
+vim.keymap.set("n", "N", "Nzzzv", options)
 
 -- line mover commands
 vim.keymap.set("n", "<A-Down>", "<CMD>m .+1<CR>==", options)
@@ -38,11 +45,12 @@ vim.keymap.set("i", "<C-h>", "<Esc>:wq<CR>", options)
 vim.keymap.set("n", "<leader><leader>x", ":luafile %<CR>", options)
 
 -- simpler copy and paste commands
-vim.keymap.set("v", "p", "_dP", options)
+vim.keymap.set("v", "p", "\"_dP", options)
 vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]], options)
 vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]], options)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], options)
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+y$]], options)
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], options)
 
 -- easier indent in visual mode, because it will stay in indent mode
 vim.keymap.set("v", "<", "<gv", options)
@@ -52,3 +60,10 @@ vim.keymap.set("v", ">", ">gv", options)
 vim.keymap.set("n", "<leader>e", [[/_<CR>l:noh<CR>:let @/=""<CR>]], options)
 vim.keymap.set("n", "<leader>m", "ct_", options)
 vim.keymap.set("n", "<leader>w", [[/[A-Z]<CR>:noh<CR>:let @/=""<CR>]], options)
+
+-- i hate Q hence nop
+vim.keymap.set("n", "Q", "<nop>", options)
+
+-- useful keymaps
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
