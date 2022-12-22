@@ -30,6 +30,7 @@ vim.opt.wrap = false
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
 
 -- list chars
 vim.opt.list = true
