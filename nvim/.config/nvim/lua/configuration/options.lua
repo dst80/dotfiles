@@ -1,107 +1,63 @@
-local options = require('tools.options')
+vim.opt.magic = true
+vim.opt.viewoptions = "folds,cursor,curdir,slash,unix"
+vim.opt.sessionoptions = "curdir,help,tabpages,winsize"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.fileformats = "unix,mac,dos"
+vim.opt.encoding = "utf-8"
 
-options:set_options({
-    magic = true,
-    viewoptions = "folds,cursor,curdir,slash,unix",
-    sessionoptions = "curdir,help,tabpages,winsize",
-    clipboard = "unnamedplus",
-    fileformats = "unix,mac,dos",
-    encoding = "utf-8",
+-- allow hidden buffers
+vim.opt.hidden = true
 
-    -- allow hidden buffers
-    hidden = true,
+-- time out and drawing
+vim.opt.timeout = true
+vim.opt.ttimeout = true
+vim.opt.timeoutlen = 500
+vim.opt.ttimeoutlen = 50
+vim.opt.updatetime = 100
+vim.opt.redrawtime = 500
 
-    -- time out and drawing
-    timeout = true,
-    ttimeout = true,
-    timeoutlen = 500,
-    ttimeoutlen = 50,
-    updatetime = 300,
-    redrawtime = 1500,
-    wrapscan = true,
+-- cursor control
+vim.opt.backspace = "indent,eol,start"
+vim.opt.mouse = "nv"
 
-    -- cursor control
-    breakat = [[\ \t,:,!?]],
-    startofline = false,
-    backspace = "indent,eol,start",
-    mouse = "nv",
-    whichwrap = "h,l,<,>,[,],~",
-    virtualedit = "block",
-    sidescrolloff = 5,
+-- formatting stuff
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.scrolloff = 8
+vim.opt.autoindent = true
+vim.opt.wrap = false
 
-    -- formatting stuff
-    smarttab = true,
-    shiftround = true,
-    tabstop = 4,
-    shiftwidth = 4,
-    softtabstop = -1,
-    expandtab = true,
-    autoindent = true,
-    colorcolumn = { 80, 120, 140 },
-    breakindentopt = "shift:2,min:20",
-    wrap = false,
-    linebreak = true,
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-    -- nvim visual settings
-    termguicolors = true,
-    winwidth = 30,
-    winminwidth = 10,
-    pumheight = 15,
-    helpheight = 12,
-    previewheight = 12,
-    cmdheight = 2,
-    cmdwinheight = 5,
-    equalalways = false,
-    pumblend = 10,
-    winblend = 10,
-    laststatus = 2,
-    signcolumn = 'yes',
+-- list chars
+vim.opt.list = true
+vim.opt.showbreak = "↳  "
+vim.opt.listchars = "tab:>->,nbsp:+,space:·,trail:█,extends:→,precedes:←,eol:¬"
 
-    -- tab settings
-    splitbelow = true,
-    splitright = true,
-    switchbuf = "useopen",
-    diffopt = "filler,iwhite,internal,algorithm:patience",
-    jumpoptions = "stack",
-    ruler = false,
-    showtabline = 2,
-    number = true,
-    relativenumber = true,
+-- settings for :grep
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = 'rg --hidden --vimgrep --smart-case --'
 
-    -- list chars
-    list = true,
-    showbreak = "↳  ",
-    listchars = "tab:>->,nbsp:+,space:·,trail:█,extends:→,precedes:←,eol:¬",
+-- searching
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "nosplit"
+vim.opt.wildignorecase = true
+vim.opt.wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
 
-    -- last line
-    showmode = true,
-    showcmd = true,
-    display = "lastline",
+-- undo different
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.history = 2000
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
+vim.opt.shada = "!,'300,<50,@100,s10,h"
+vim.opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 
-    -- settings for :grep
-    grepformat = "%f:%l:%c:%m",
-    grepprg = 'rg --hidden --vimgrep --smart-case --',
-
-    -- searching
-    hlsearch = true,
-    incsearch = true,
-    smartcase = true,
-    showmatch = true,
-    infercase = true,
-    inccommand = "nosplit",
-    wildignorecase = true,
-    wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
-
-    -- undo different
-    backup = false,
-    writebackup = false,
-    swapfile = false,
-    history = 2000,
-    undofile = true,
-    shada = "!,'300,<50,@100,s10,h",
-    backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
-
-    -- error bell
-    errorbells = false,
-    visualbell = true
-})
+-- error bell
+vim.opt.errorbells = false
+vim.opt.visualbell = true
