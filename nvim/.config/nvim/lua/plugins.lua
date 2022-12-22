@@ -90,7 +90,6 @@ return require("packer").startup(
         use { "hoob3rt/lualine.nvim" }
         use { "akinsho/bufferline.nvim" }
         use { "lukas-reineke/indent-blankline.nvim" }
-        use { "sudormrfbin/cheatsheet.nvim" }
         use { "andersevenrud/nordic.nvim" }
         use { "lewis6991/gitsigns.nvim" }
         use { "petertriho/nvim-scrollbar" }
