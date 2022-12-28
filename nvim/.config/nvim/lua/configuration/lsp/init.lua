@@ -86,6 +86,7 @@ local servers = {
     { "lspconfig", "omnisharp" },
     { "lspconfig", "marksman" },
     { "lspconfig", "cmake" },
+    { "lspconfig", "ltex" },
     "configuration.lsp.rust",
     "configuration.lsp.clangd",
     "configuration.lsp.lua",
