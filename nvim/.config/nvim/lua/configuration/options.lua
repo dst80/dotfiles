@@ -62,3 +62,4 @@ vim.opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.va
 -- error bell
 vim.opt.errorbells = false
 vim.opt.visualbell = true
+vim.o.termguicolors = true
