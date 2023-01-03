@@ -1,0 +1,80 @@
+date_time_format = "%d.%m.%Y %R"
+default_flags = "ghI"
+modal = true
+
+show_selection_mark = true
+
+true_colors = true
+
+content_search_max_file_size = "10MB"
+
+cols_order = [
+    "mark",
+    "git",
+    "branch",
+    "permission",
+    "date",
+    "size",
+    "count",
+    "name",
+]
+
+[[verbs]]
+invocation = "root"
+key = "F9"
+internal = ":focus /"
+
+[[verbs]]
+invocation = "pl"
+key = "ctrl-H"
+internal = ":panel_left_no_open"
+
+[[verbs]]
+invocation = "pr"
+key = "ctrl-L"
+internal = ":panel_right"
+
+[[verbs]]
+invocation = "rd"
+key = "ctrl-j"
+internal = ":root_down"
+
+[[verbs]]
+invocation = "ru"
+key = "ctrl-k"
+internal = ":root_up"
+
+[[verbs]]
+invocation = "mkdir {subpath}"
+external = "mkdir -p {directory}/{subpath}"
+
+[[verbs]]
+invocation = "git_diff"
+shortcut = "gd"
+leave_broodt = false
+execution = "git difftool -y {file}"
+
+[[verbs]]
+invocation = "terminal"
+key = "ctrl-t"
+execution = "$TERMINAL"
+set_working_dir = true
+leave_broot = false
+
+[[verbs]]
+invocation = "edit"
+shortcut = "e"
+key = "enter"
+apply_to = "file"
+external = "nvim {file}"
+leave_broot = false
+
+[[verbs]]
+invocation = "input_go_right"
+key = "right"
+apply_to = "file"
+external = "nvim {file}"
+leave_broot = false
+
+[[imports]]
+file = "nord.toml"
