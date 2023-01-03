@@ -1,3 +1,5 @@
+#!/bin/sh
+
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias la="ls -all"
@@ -32,16 +34,19 @@ function fcd () {
   cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
 }
 
-function fopen () {
+function open () {
   nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
 }
 
 function rf () {
-  rm -f "$(fd -d 5 -t f -L -H | fzf -m)" 
+  rm -f "$(fd -d 5 -t f -L -H | fzf -m)"
+}
+
+function rd () {
+  rm -rf "$(fd -d 5 -t d -L -H | fzf -m)"
 }
 
 export FZF_DEFAULT_COMMAND='fd -t f -L -H -E .git'
-
 
 alias pull="git pull"
 alias push="git push"
