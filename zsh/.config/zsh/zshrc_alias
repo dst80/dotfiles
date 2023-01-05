@@ -1,8 +1,14 @@
 #!/bin/sh
 
-alias ls="ls --color=auto"
+if [ -f /bin/exa ]; then
+  alias ls="exa"
+else
+  alias ls="ls --color=auto"
+fi
+
 alias ll="ls -lh"
 alias la="ls -all"
+
 alias vim="nvim"
 alias lg="lazygit"
 
@@ -12,37 +18,38 @@ else
   alias toclip="xclip -selection clipboard"
 fi
 
+
 if [ -f /bin/fdfind ]; then
   alias fd="fdfind"
 fi
 
 alias find="fd"
 
-function ff () {
+function ff() {
   fd -t f -L -H -E .git $*
 }
 
-function getpath () {
+function getpath() {
   fd -t f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
-function getabspath () {
+function getabspath() {
   fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
-function fcd () {
+function fcd() {
   cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
 }
 
-function open () {
+function open() {
   nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
 }
 
-function rf () {
+function rf() {
   rm -f "$(fd -d 5 -t f -L -H | fzf -m)"
 }
 
-function rd () {
+function rd() {
   rm -rf "$(fd -d 5 -t d -L -H | fzf -m)"
 }
 
