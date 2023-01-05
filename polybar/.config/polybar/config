@@ -22,6 +22,10 @@ monitor = DP-0
 inherit = bar/barbase
 monitor = DP-2
 
+[bar/bar_DP-3]
+inherit = bar/barbase
+monitor = DP-3
+
 [bar/bar_eDP]
 inherit = bar/barbase
 monitor = eDP
