@@ -1,0 +1,2 @@
+#!/bin/sh
+pgrep -x alsamixer > /dev/null || alsamixer

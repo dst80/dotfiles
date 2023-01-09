@@ -140,6 +140,9 @@ super + {Left,Down,Up,Right}
   bspc node -v {-20 0,0 20,0 -20,20 0}
   
 # volume control
+super + a
+  $TERMINAL -e audiomixer
+
 XF86AudioLowerVolume
   pactl set-sink-volume 0 -5%
 XF86AudioRaiseVolume
