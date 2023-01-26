@@ -110,18 +110,19 @@ dapui.setup({
                 "stacks",
                 "watches",
             },
-            size = 40,
+            size = 80,
             position = "left",
         },
         {
-            elements = {
-                "repl",
-                "console",
-            },
-            size = 10,
+            elements = { "repl", "console" },
+            size = 0.25,
             position = "bottom",
         },
     },
+    render = {
+        max_value_lines = 3,
+    },
+    floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
 })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
