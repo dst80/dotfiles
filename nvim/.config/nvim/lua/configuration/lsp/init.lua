@@ -33,31 +33,44 @@ local on_attach = function(_, bufnr)
     -- LSP shortcuts
     local options = { noremap = true, silent = true, buffer = bufnr }
 
-    local has_ts, ts = pcall(require, 'telescope.builtin')
-    if has_ts then
-        vim.keymap.set("n", "gd", ts.lsp_definitions, options)
-        vim.keymap.set("n", "gi", ts.lsp_implementations, options)
-        vim.keymap.set("n", "gr", ts.lsp_references, options)
-        vim.keymap.set("n", "gt", ts.lsp_type_definitions, options)
-    else
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, options)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, options)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, options)
-        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, options)
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = 'LSP: ' .. desc
+        end
+
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, options)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, options)
-    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, options)
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, options)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, options)
-    vim.keymap.set("n", "<leader>cr", vim.lsp.codelens.refresh, options)
-    vim.keymap.set("n", "<leader>ce", vim.lsp.codelens.run, options)
-    vim.keymap.set("n", "<leader>fo", function() vim.lsp.buf.format({ async = true }) end, options)
-    vim.keymap.set("n", "<leader>bd", vim.diagnostic.goto_prev, options)
-    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, options)
-    vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, options)
+    local has_ts, ts = pcall(require, 'telescope.builtin')
+    if has_ts then
+        nmap("gd", ts.lsp_definitions, '[g]oto [d]efinition')
+        nmap("gi", ts.lsp_implementations, '[g]oto [i]mplementatio')
+        nmap("gr", ts.lsp_references, '[g]oto [r]eferences')
+        nmap("gt", ts.lsp_type_definitions, '[g]oto [t]ype definitions')
+        nmap("<leader>ds", ts.lsp_document_symbols, '[d]ocument [s]ymbols')
+        nmap("<leader>ws", ts.lsp_dynamic_workspace_symbols, '[w]orkspace [s]ymbols')
+    else
+        nmap("gd", vim.lsp.buf.definition, '[g]oto [d]efinition')
+        nmap("gi", vim.lsp.buf.implementation, '[g]oto [i]mplementatio')
+        nmap("gr", vim.lsp.buf.references, '[g]oto [r]eferences')
+        nmap("gt", vim.lsp.buf.type_definition, '[g]oto [t]ype definitions')
+        nmap("<leader>ds", vim.lsp.buf.document_symbol, '[d]ocument [s]ymbols')
+        nmap("<leader>ws", vim.lsp.buf.workspace_symbol, '[w]orkspace [s]ymbols')
+    end
+
+    nmap("K", vim.lsp.buf.hover, 'hover documentation')
+    nmap("<C-k>", vim.lsp.buf.signature_help, 'signature help')
+    nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd folder')
+    nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, '[w]orkspace [r]emove folder')
+    nmap("<leader>rn", vim.lsp.buf.rename, '[r]e[n]ame')
+    nmap("<leader>ca", vim.lsp.buf.code_action, '[c]ode [a]ction')
+    nmap("<leader>clr", vim.lsp.codelens.refresh, '[c]ode[l]ens [r]efresh')
+    nmap("<leader>cle", vim.lsp.codelens.run, '[c]ode[l]ens [e]xecute')
+    nmap("<leader>fo", function() vim.lsp.buf.format({ async = true }) end, '[fo]rmat file')
+    nmap("[d", vim.diagnostic.goto_prev, 'goto previous [d]iagnostic')
+    nmap("]d", vim.diagnostic.goto_next, 'goto next [d]iagnostic')
+    nmap("<leader>e", vim.diagnostic.open_float, 'open float')
+    nmap("<leader>q", vim.diagnostic.setloclist, 'set local list')
 end
 
 local setup_servers = function(servers, config)

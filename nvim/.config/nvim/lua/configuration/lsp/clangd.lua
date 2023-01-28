@@ -14,7 +14,8 @@ M.setup = function(config)
             local options = {
                 noremap = true,
                 silent = true,
-                buffer = bufnr
+                buffer = bufnr,
+                desc   = '[s]witch [s]source [h]eader'
             }
             vim.keymap.set(
                 "n", "<leader>sf", ":ClangdSwitchSourceHeader<CR>", options)
