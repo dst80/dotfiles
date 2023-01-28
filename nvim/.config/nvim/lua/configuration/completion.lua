@@ -69,6 +69,7 @@ local super_tab_mapping = function(fallback)
 end
 
 local confirm_config = {
+    behavior = cmp.ConfirmBehavior.Replace,
     select = true
 }
 
@@ -87,13 +88,13 @@ cmp.setup({
     experimental = { native_menu = false, ghost_text = true },
     formatting = { format = lspkind_format_function },
     mapping = {
-        ['<C-f>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-b>'] = cmp.mapping.scroll_docs(4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm(confirm_config),
         ['<Tab>'] = cmp.mapping(tab_mapping, { "i", "s" }),
         ['<S-Tab>'] = cmp.mapping(super_tab_mapping, { "i", "s" }),
         ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm(confirm_config),
     },
     preselect = cmp.PreselectMode.None,
     snippet = { expand = expand_function },
