@@ -29,10 +29,10 @@ require("nvim-treesitter.configs").setup {
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm"
+            init_selection = "<c-space>",
+            node_incremental = "<c-space>",
+            scope_incremental = "<c-s>",
+            node_decremental = "<c-backspace>"
         }
     },
     indent = { enable = true },
@@ -44,63 +44,48 @@ require("nvim-treesitter.configs").setup {
     textobjects = {
         select = {
             enable = true,
-            disable = should_disable,
-            lookahead = true,
+            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-                ["aa"] = "@parameter.outer",
-                ["ia"] = "@parameter.inner",
-                ["ab"] = "@block.outer",
-                ["ib"] = "@block.inner",
-                ["al"] = "@loop.outer",
-                ["il"] = "@loop.inner",
-                ["ai"] = "@conditional.outer",
-                ["ii"] = "@conditional.inner",
+                -- You can use the capture groups defined in textobjects.scm
+                ['aa'] = '@parameter.outer',
+                ['ia'] = '@parameter.inner',
+                ['af'] = '@function.outer',
+                ['if'] = '@function.inner',
+                ['ac'] = '@class.outer',
+                ['ic'] = '@class.inner',
             },
-            include_surrounding_whitespace = false,
         },
         move = {
             enable = true,
-            set_jumps = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-                ["]f"] = "@function.outer",
-                ["]c"] = "@class.outer",
-                ["]a"] = "@parameter.inner",
-                ["]b"] = "@block.outer",
-                ["]l"] = "@loop.outer",
-                ["]i"] = "@conditional.outer",
+                [']m'] = '@function.outer',
+                [']]'] = '@class.outer',
             },
             goto_next_end = {
-                ["]F"] = "@function.outer",
-                ["]C"] = "@class.outer",
-                ["]A"] = "@parameter.inner",
-                ["]B"] = "@block.outer",
-                ["]L"] = "@loop.outer",
-                ["]I"] = "@conditional.outer",
+                [']M'] = '@function.outer',
+                [']['] = '@class.outer',
             },
             goto_previous_start = {
-                ["[f"] = "@function.outer",
-                ["[c"] = "@class.outer",
-                ["[a"] = "@parameter.inner",
-                ["[b"] = "@block.outer",
-                ["[l"] = "@loop.outer",
-                ["[i"] = "@conditional.outer",
+                ['[m'] = '@function.outer',
+                ['[['] = '@class.outer',
             },
             goto_previous_end = {
-                ["[F"] = "@function.outer",
-                ["[C"] = "@class.outer",
-                ["[A"] = "@parameter.inner",
-                ["[B"] = "@block.outer",
-                ["[L"] = "@loop.outer",
-                ["[I"] = "@conditional.outer",
+                ['[M'] = '@function.outer',
+                ['[]'] = '@class.outer',
+            },
+        },
+        swap = {
+            enable = true,
+            swap_next = {
+                ['<leader>a'] = '@parameter.inner',
+            },
+            swap_previous = {
+                ['<leader>A'] = '@parameter.inner',
             },
         },
     },
 }
-
 vim.keymap.set(
     "n",
     "<leader>rts",
