@@ -13,6 +13,9 @@ return require("packer").startup(
     function(use)
         use { "wbthomason/packer.nvim" }
 
+        -- speed up plugins
+        use { "lewis6991/impatient.nvim" }
+
         -- lsp basics
         use { "neovim/nvim-lspconfig" }
         use { "lukas-reineke/lsp-format.nvim" }
