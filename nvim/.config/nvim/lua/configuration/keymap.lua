@@ -5,10 +5,6 @@ vim.keymap.set({ "n", "v", "i" }, "<F1>", "<nop>", options)
 vim.keymap.set({ "n", "v", "i" }, "<C-j>", "<nop>", options)
 vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<nop>", options)
 
--- fast exit in insert mode
-vim.keymap.set("i", "jj", "<Esc>", options)
-vim.keymap.set("i", "kk", "<Esc>", options)
-
 -- window controls
 vim.keymap.set("n", "<C-Left>", "<C-w>h", options)
 vim.keymap.set("n", "<C-Right>", "<C-w>l", options)
@@ -29,6 +25,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", options)
 -- centers cursor on search
 vim.keymap.set("n", "n", "nzzzv", options)
 vim.keymap.set("n", "N", "Nzzzv", options)
+
+-- Force to work in normal mode in VS
+vim.keymap.set("<Up>", "<Esc><Up>", options)
+vim.keymap.set("<Down>", "<Esc><Down>", options)
 
 -- line mover commands
 vim.keymap.set("n", "<A-Down>", "<CMD>m .+1<CR>==", options)
@@ -71,3 +71,8 @@ vim.keymap.set("n", "Q", "<nop>", options)
 -- useful keymaps
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = 'goto previous [d]iagnostic' })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = 'goto next [d]iagnostic' })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = 'open float' })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = 'set local list' })
