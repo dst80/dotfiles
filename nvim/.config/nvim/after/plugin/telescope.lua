@@ -45,7 +45,6 @@ require('telescope').load_extension('dotfiles')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
 
-
 local path = require('plenary.path')
 local function find_git_repo_or_use_current_dir(current_path)
     local root_dir = current_path
@@ -58,36 +57,33 @@ local function find_git_repo_or_use_current_dir(current_path)
     return root_dir
 end
 
-local options = { silent = true, noremap = true }
-vim.keymap.set("n", "<leader>fb", require('telescope').extensions.file_browser.file_browser, options)
-vim.keymap.set("n", "<leader>h", require('telescope.builtin').help_tags, options)
-vim.keymap.set("n", "<leader>fd", require('telescope.builtin').diagnostics, options)
-vim.keymap.set("n", "<leader>sb", require('telescope.builtin').buffers, options)
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] find recently opened files' })
 
-vim.keymap.set("n", "<leader>ff", function()
-    require('telescope.builtin').find_files({
-        cwd = find_git_repo_or_use_current_dir(vim.fn.getcwd()),
-        hidden = false
-    })
-end, options)
+vim.keymap.set('n', '<leader>/', function()
+    require('telescope.builtin')
+        .current_buffer_fuzzy_find(require('telescope.themes')
+            .get_dropdown { winblend = 10, previewer = false })
+end, { desc = '[/] fuzzily search in current buffer]' })
 
-vim.keymap.set("n", "<leader>fhf", function()
-    require('telescope.builtin').find_files({
-        cwd = find_git_repo_or_use_current_dir(vim.fn.getcwd()),
-        hidden = true,
-    })
-end, options)
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
+vim.keymap.set("n", "<leader>sb", require('telescope.builtin').buffers, { desc = '[s]witch [b]uffer' })
+vim.keymap.set("n", "<leader>fb", require('telescope').extensions.file_browser.file_browser,
+    { desc = '[f]ile [b]rowser]' })
+
+vim.keymap.set("n", "<leader>sf", function()
+    require('telescope.builtin')
+        .find_files({ cwd = find_git_repo_or_use_current_dir(vim.fn.getcwd()), hidden = false })
+end, { desc = '[s]earch [f]ile' })
+
+vim.keymap.set("n", "<leader>shf", function()
+    require('telescope.builtin')
+        .find_files({ cwd = find_git_repo_or_use_current_dir(vim.fn.getcwd()), hidden = true })
+end, { desc = '[s]earch [h]idden [f]ile' })
 
 vim.keymap.set("n", "<leader>df", function()
-    require('telescope.builtin').find_files({
-        cwd = tostring(path:new(vim.fn.getenv('HOME'), 'dotfiles')),
-        hidden = true
-    })
-end, options)
-
-
-vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep, options)
-
-vim.keymap.set("n", "<leader>fw", function()
-    require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })
-end, options)
+    require('telescope.builtin')
+        .find_files({ cwd = tostring(path:new(vim.fn.getenv('HOME'), 'dotfiles')), hidden = true })
+end, { desc = '[d]ot [f]iles' })
