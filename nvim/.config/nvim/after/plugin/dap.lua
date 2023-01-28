@@ -101,41 +101,41 @@ if not has_dapui then
     return
 end
 
-dapui.setup({
-    layouts = {
-        {
-            elements = {
-                "scopes",
-                "breakpoints",
-                "stacks",
-                "watches",
-            },
-            size = 80,
-            position = "left",
-        },
-        {
-            elements = { "repl", "console" },
-            size = 0.25,
-            position = "bottom",
-        },
-    },
-    render = {
-        max_value_lines = 3,
-    },
-    floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
-})
-
-dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
-end
-
-vim.keymap.set("n", "<Leader>de", dapui.eval, options)
-vim.keymap.set("n", "<Leader>dE", function()
-    dapui.eval(vim.fn.input("[DAP] expression >"))
-end, options)
+-- dapui.setup({
+--     layouts = {
+--         {
+--             elements = {
+--                 "scopes",
+--                 "breakpoints",
+--                 "stacks",
+--                 "watches",
+--             },
+--             size = 80,
+--             position = "left",
+--         },
+--         {
+--             elements = { "repl", "console" },
+--             size = 0.25,
+--             position = "bottom",
+--         },
+--     },
+--     render = {
+--         max_value_lines = 3,
+--     },
+--     floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
+-- })
+--
+-- dap.listeners.after.event_initialized["dapui_config"] = function()
+--     dapui.open()
+-- end
+-- dap.listeners.before.event_terminated["dapui_config"] = function()
+--     dapui.close()
+-- end
+-- dap.listeners.before.event_exited["dapui_config"] = function()
+--     dapui.close()
+-- end
+--
+-- vim.keymap.set("n", "<Leader>de", dapui.eval, options)
+-- vim.keymap.set("n", "<Leader>dE", function()
+--     dapui.eval(vim.fn.input("[DAP] expression >"))
+-- end, options)
