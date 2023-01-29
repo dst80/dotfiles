@@ -7,6 +7,7 @@ local M = {
         "folke/neodev.nvim",
     },
     lazy = true,
+    cmd = "Mason",
     event = "BufReadPost",
 }
 
