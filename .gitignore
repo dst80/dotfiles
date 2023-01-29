@@ -38,3 +38,4 @@ bin/.local/bin/wsdump
 
 bin/.local/bin/ezdxf
 bin/.local/bin
+nvim_lazy/.config/nvim/lazy-lock.json
