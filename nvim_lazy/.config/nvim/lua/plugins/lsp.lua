@@ -60,18 +60,8 @@ function M.config()
     end
 
     local servers = {
+        angularls = {},
         clangd = {
-            filetypes = {
-                "c",
-                "cc",
-                "cpp",
-                "cxx",
-                "h",
-                "hpp",
-                "hxx",
-                "objc",
-                "objcc",
-            },
             single_file_support = true,
             init_options = {
                 clangdFileStatus = true,
@@ -81,7 +71,11 @@ function M.config()
             },
         },
         gopls = {},
+        ltex = {},
         jedi_language_server = {},
+        neocmake = {},
+        marksman = {},
+        omnisharp = {},
         rust_analyzer = {
             settings = {
                 ["rust_analyzer"] = {
@@ -91,14 +85,15 @@ function M.config()
                 },
             },
         },
+        taplo = {},
         tsserver = {},
-
         sumneko_lua = {
             Lua = {
                 workspace = { checkThirdParty = false },
                 telemetry = { enable = false },
             },
         },
+        volar = {},
     }
 
     require("neodev").setup()
