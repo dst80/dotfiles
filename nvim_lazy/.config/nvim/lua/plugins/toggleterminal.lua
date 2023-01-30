@@ -2,7 +2,8 @@ local M = {
     "akinsho/toggleterm.nvim",
     lazy = true,
     keys = {
-        { "<leader>t", "ToggleTerm", desc = '[t]oggle terminal' }
+        { "<leader>t", "ToggleTerm", desc = '[t]oggle terminal' },
+        { "<leader>lg", "ToggleTerm", desc = '[t]oggle terminal' }
     }
 }
 
@@ -42,6 +43,10 @@ function M.config()
     map("n", "<leader>lg", lazygit_toggle, '[l]azy[g]it toggle')
     map("n", "<leader>t", toggle_term, '[t]erminal toggle')
     map("t", "<C-A-Space>", [[<C-\><C-n>]], 'goto ex mode in terminal')
+    map("t", "<C-h>", [[<C-\><C-n><C-w>h]], 'goto left window from terminal')
+    map("t", "<C-l>", [[<C-\><C-n><C-w>l]], 'goto right window from terminal')
+    map("t", "<C-j>", [[<C-\><C-n><C-w>j]], 'goto lower window from terminal')
+    map("t", "<C-k>", [[<C-\><C-n><C-w>k]], 'goto upper window from terminal')
     map("t", "<C-left>", [[<C-\><C-n><C-w>h]], 'goto left window from terminal')
     map("t", "<C-right>", [[<C-\><C-n><C-w>l]], 'goto right window from terminal')
     map("t", "<C-down>", [[<C-\><C-n><C-w>j]], 'goto lower window from terminal')
