@@ -1,7 +1,6 @@
 local M = {
     "mfussenegger/nvim-dap",
     dependencies = {
-        { "rcarriga/nvim-dap-ui" },
         { "theHamsta/nvim-dap-virtual-text" },
         { "nvim-telescope/telescope.nvim" },
         { "nvim-telescope/telescope-dap.nvim" },
@@ -63,19 +62,32 @@ function M.config()
         end
     }
 
-    local options = { noremap = true, silent = true }
+    local options = { noremap = true }
     vim.keymap.set("n", "<F5>", dap.continue, options)
     vim.keymap.set("n", "<F9>", dap.step_back, options)
     vim.keymap.set("n", "<F10>", dap.step_over, options)
     vim.keymap.set("n", "<F11>", dap.step_into, options)
     vim.keymap.set("n", "<F12>", dap.step_out, options)
     vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, options)
-    vim.keymap.set("n", "<Leader>cb", function()
+    vim.keymap.set("n", "<Leader>scb", function()
         dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
     end, options)
     vim.keymap.set("n", "<Leader>dr", dap.repl.open, options)
     vim.keymap.set("n", "<Leader>dl", dap.run_last, options)
-
+    vim.keymap.set({ 'n', 'v' }, '<Leader>dbh', function()
+        require('dap.ui.widgets').hover()
+    end, { desc = "[d]e[b]ug [h]overs" })
+    vim.keymap.set({ 'n', 'v' }, '<Leader>dbp', function()
+        require('dap.ui.widgets').preview()
+    end, { desc = "[d]e[b]ug [p]reviews" })
+    vim.keymap.set('n', '<Leader>dbf', function()
+        local widgets = require('dap.ui.widgets')
+        widgets.centered_float(widgets.frames)
+    end, { desc = "[d]e[b]ug [f]rames" })
+    vim.keymap.set('n', '<Leader>dbs', function()
+        local widgets = require('dap.ui.widgets')
+        widgets.centered_float(widgets.scopes)
+    end, { desc = "[d]e[b]ug [s]copes" })
 
     vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "error", linehl = "", numhl = "" })
     vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "error", linehl = "", numhl = "" })
@@ -109,50 +121,12 @@ function M.config()
         })
     end
 
-    local has_dapui, dapui = pcall(require, 'dapui')
-    if not has_dapui then
-        return
-    end
-
-    dapui.setup({
-        layouts = {
-            {
-                elements = {
-                    "scopes",
-                    "breakpoints",
-                    "stacks",
-                    "watches",
-                },
-                size = 80,
-                position = "left",
-            },
-            {
-                elements = { "repl", "console" },
-                size = 0.25,
-                position = "bottom",
-            },
-        },
-        render = {
-            max_value_lines = 3,
-        },
-        floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
-    })
-
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-    end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-    end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-    end
-
-    vim.keymap.set("n", "<Leader>de", dapui.eval, options)
-    vim.keymap.set("n", "<Leader>dE", function()
-        dapui.eval(vim.fn.input("[DAP] expression >"))
-    end, options)
-
+    require('telescope').load_extension('dap')
+    vim.keymap.set('n', '<Leader>dbb', require 'telescope'.extensions.dap.list_breakpoints,
+        { desc = "[d]e[b]ug [b]reakpoints" })
+    vim.keymap.set('n', '<Leader>dbc', require 'telescope'.extensions.dap.commands, { desc = "[d]e[b]ug [c]ommands" })
+    vim.keymap.set('n', '<Leader>dbp', require 'telescope'.extensions.dap.variables, { desc = "[d]e[b]ug [p]reviews" })
+    vim.keymap.set('n', '<Leader>dbf', require 'telescope'.extensions.dap.frames, { desc = "[d]e[b]ug [f]rames" })
 end
 
 return M
