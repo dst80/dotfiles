@@ -5,6 +5,7 @@ local M = {
         "williamboman/mason-lspconfig.nvim",
         "j-hui/fidget.nvim",
         "folke/neodev.nvim",
+        "simrat39/rust-tools.nvim"
     },
     lazy = true,
     cmd = "Mason",
@@ -48,8 +49,8 @@ function M.config()
         nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[w]orkspace [r]emove folder")
         nmap("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
         nmap("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
-        nmap("<leader>clr", vim.lsp.codelens.refresh, "[c]ode[l]ens [r]efresh")
-        nmap("<leader>cle", vim.lsp.codelens.run, "[c]ode[l]ens [e]xecute")
+        nmap("<leader>cr", vim.lsp.codelens.refresh, "[c]odelens [r]efresh")
+        nmap("<leader>ce", vim.lsp.codelens.run, "[c]odelens [e]xecute")
         nmap("<leader>fo", function()
             vim.lsp.buf.format({ async = true })
         end, "[fo]rmat file")
@@ -116,6 +117,36 @@ function M.config()
                 on_attach = on_attach,
                 settings = servers[server_name],
             })
+        end,
+        ["rust_analyzer"] = function()
+            local rt = require("rust-tools")
+            rt.setup {
+                tools = {
+                    inlay_hints = {
+                        auto = true,
+                        only_current_line = true,
+                        show_parameter_hints = true,
+                    },
+                    executor = require("rust-tools/executors").toggleterm,
+                    hover_actions = {
+                        border = "none",
+                        auto_focus = true
+                    },
+                },
+                server = {
+                    on_attach = function(_, bufnr)
+                        on_attach(_, bufnr)
+                        vim.keymap.set("n", "<leader>rf", rt.hover_actions.hover_actions, { buffer = bufnr })
+                    end,
+                },
+                dap = {
+                    adapter = {
+                        type = "executable",
+                        command = "lldb-vscode",
+                        name = "rt_lldb",
+                    },
+                },
+            }
         end,
     })
 
