@@ -88,9 +88,6 @@ function M.setup()
     map_key("n", "<leader>e", vim.diagnostic.open_float, 'open float')
     map_key("n", "<leader>q", vim.diagnostic.setloclist, 'set local list')
 
-    map_key('n', 'k', "v:count == 0 ? 'gk' : 'k'", 'remap to deal with word wrap')
-    map_key('n', 'j', "v:count == 0 ? 'gj' : 'j'", 'remap to deal with word wrap')
-
 end
 
 return M
