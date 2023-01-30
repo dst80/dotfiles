@@ -5,8 +5,9 @@ local M = {
     dependencies = {
         { "nvim-neotest/neotest-go" },
         { "nvim-neotest/neotest-python" },
-        { "rouge8/neotest-rust" },
+        { "nvim-neotest/neotest-vim-test" },
         { "Issafalcon/neotest-dotnet" },
+        { "vim-test/vim-test" },
     },
 }
 
@@ -22,7 +23,16 @@ function M.config()
             require("neotest-python"),
             require("neotest-dotnet"),
             require("neotest-go"),
-            require("neotest-rust"),
+            require("neotest-vim-test")({
+                ignore_file_types = { "python", "vim", "lua", "go" },
+            }),
+        },
+
+        icons = {
+            failed = "",
+            passed = "",
+            running = "ﰌ",
+
         }
     })
 
