@@ -11,7 +11,7 @@ local M = {
 function M.config()
     local null_ls = require("null-ls")
     require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "prettier", "clang_format" },
+        ensure_installed = { "stylua", "prettier", "clang_format", "beautysh" },
     })
 
     require("mason-null-ls").setup_handlers({
