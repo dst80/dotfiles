@@ -16,18 +16,10 @@ local M = {
 function M.config()
     require("nvim-treesitter.configs").setup {
         ensure_installed = {
-            "bash", "c", "cpp", "c_sharp", "css", "scss", "html", "javascript",
-            "java", "json", "lua", "rust", "go", "typescript", "markdown", "python",
-            "vue", "graphql", "glsl", "make", "toml", "yaml",
-        },
-        ignore_install = {
-            "beancount", "bibtex", "dart", "devicetree", "dot", "elixir", "elm",
-            "erlang", "fennel", "fish", "fortran", "Godot", "Glimmer and Ember",
-            "Godot Resources", "gomod", "gdscript", "haskell", "hcl",
-            "heex", "ledger", "nix", "ocaml", "ocaml_interface", "ocamllex", "php",
-            "pioasm", "ql", "r", "rst", "scala", "sparql", "supercollider",
-            "surface", "svelte", "teal", "tlaplus", "turtle", "verilog",
-            "yang"
+            "bash", "c", "cpp", "c_sharp", "css", "cmake", "scss", "html",
+            "javascript", "java", "json", "json5", "lua", "rust", "go", "vim",
+            "typescript", "markdown", "python", "regex", "vue", "graphql",
+            "glsl", "make", "toml", "yaml", "dockerfile", "comment", "latex"
         },
         incremental_selection = {
             enable = true,
