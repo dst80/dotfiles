@@ -62,6 +62,7 @@ function M.config()
 
     local servers = {
         angularls = {},
+        bashls = {},
         clangd = {
             single_file_support = true,
             init_options = {
