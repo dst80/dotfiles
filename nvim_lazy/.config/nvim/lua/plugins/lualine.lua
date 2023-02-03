@@ -1,7 +1,7 @@
 local M = {
     "hoob3rt/lualine.nvim",
     dependencies = {
-        "andersevenrud/nordic.nvim"
+        "navarasu/onedark.nvim",
     },
 }
 
@@ -9,7 +9,7 @@ function M.config()
     require 'lualine'.setup {
         options = {
             lower = true,
-            theme = 'nord',
+            theme = 'auto',
             icons_enabled = 1,
             component_separators = {
                 left = '',
