@@ -54,9 +54,8 @@ function M.setup()
     map_key_non_silent("n", "<leader>o", [[:e <C-R>=expand("%:p:h") . "/"<CR>]], "create new file")
     map_key("n", "<C-s>", ":w<CR>", 'fast save of buffer')
     map_key("i", "<C-s>", "<Esc>:w<CR>", 'fast save of buffer')
-    map_key("n", "<C-q>", ":wq<CR>", 'fast quit of nvim')
-    map_key("i", "<C-q>", "<Esc>:wq<CR>", 'fast quit of nvim')
-    map_key("i", "<C-q>", "<Esc>:wq<CR>", 'fast quit of nvim')
+    map_key("n", "<C-x><C-x>", [[:bd!<CR>]], "close buffer without saving")
+    map_key("n", "<C-q><C-q>", [[:w<CR>:bd<CR>]], "fast save and close buffer")
     map_key("n", "<leader><leader>x", ":luafile %<CR>", 'source luafile')
 
     -- simpler copy and paste commands
