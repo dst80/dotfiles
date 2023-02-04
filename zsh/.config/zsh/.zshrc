@@ -1,9 +1,9 @@
 if [[ -f "$HOME/.config/.env" ]]; then
-  source "$HOME/.config/.env"
+    source "$HOME/.config/.env"
 fi
 
 if [[ -f "$HOME/.config/.paths" ]]; then
-  source "$HOME/.config/.paths"
+    source "$HOME/.config/.paths"
 fi
 
 
@@ -11,11 +11,11 @@ export LS_COLORS="di=1;38;2;143;188;187:mi=1;38;2;236;239;244;48;2;191;97;106:so
 
 #Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 if [[ ! -f ~/.config/zsh/history/histfile ]]; then
-  mkdir -p ~/.config/zsh/history && touch ~/.config/zsh/history/histfile
+    mkdir -p ~/.config/zsh/history && touch ~/.config/zsh/history/histfile
 fi
 
 # Lines configured by zsh-newuser-install
@@ -33,28 +33,18 @@ zstyle :compinstall filename '~/.config/.zsh/.zshrc'
 autoload -Uz compinit
 compinit
 
-if [[ -r "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-  source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-else
-  source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
-fi
-if [[ -r "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
-  source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-if [[ -r "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-else
-  source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
+
 
 if [[ -r ~/.config/zsh/zshrc_alias ]]; then
-  source ~/.config/zsh/zshrc_alias
+    source ~/.config/zsh/zshrc_alias
 fi
 
 if [[ -r "/bin/zoxide" ]]; then
-  eval "$(zoxide init zsh --cmd cd)"
+    eval "$(zoxide init zsh --cmd cd)"
 fi
 
 # End of lines added by compinstall
