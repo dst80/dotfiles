@@ -56,7 +56,7 @@ monitor-fallback = primary
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = "JetBrains Mono Nerd Font:size=11;3:antialias=true"
+font-0 = "FiraCode Nerd Font:size=12:style=Retina;3:antialias=true"
 
 modules-left = bspwm xwindow
 modules-right = cpu temperature memory filesystem battery0 pulseaudio date
