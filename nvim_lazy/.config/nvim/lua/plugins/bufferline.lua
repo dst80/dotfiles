@@ -4,11 +4,25 @@ local M = {
 
 function M.config()
     require("bufferline").setup {
+        highlights = {
+            separator = {
+                fg = "#2e3440",
+                bg = "#2e3440",
+            },
+        },
         options = {
             diagnostics = "nvim_lsp",
             indicator = {
-                style = 'underline',
-            }
+                style = 'none',
+            },
+            offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "File Explorer",
+                    text_align = "center",
+                    separator = true,
+                }
+            },
         }
     }
 
@@ -19,7 +33,6 @@ function M.config()
         vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = desc })
     end
 
-    local options = { silent = true, noremap = true }
     map("n", "<C-b><C-n>", [[:BufferLineCycleNext<CR>]], '[b]uffer [n]ext')
     map("n", "<C-b><C-p>", [[:BufferLineCyclePrev<CR>]], '[b]uffer [p]revious')
     map("n", "<C-b><C-m><C-n>", [[:BufferLineMoveNext<CR>]], '[b]uffer [m]ove [n]ext')
