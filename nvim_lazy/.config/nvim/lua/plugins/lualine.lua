@@ -1,7 +1,7 @@
 local M = {
     "hoob3rt/lualine.nvim",
     dependencies = {
-        "navarasu/onedark.nvim",
+        'rmehri01/onenord.nvim',
     },
 }
 
