@@ -22,11 +22,16 @@ fi
 HISTFILE=~/.config/zsh/history/histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_verify
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+
 bindkey -e
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.config/.zsh/.zshrc'
 
@@ -35,9 +40,9 @@ compinit
 
 source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
-
+source ~/.config/zsh/plugins/fzf-tab/fzf-tab.zsh
+source ~/.config/zsh/plugins/fzf/fzf.zsh
+source ~/.config/zsh/plugins/fzf/completion.zsh
 
 if [[ -r ~/.config/zsh/zshrc_alias ]]; then
     source ~/.config/zsh/zshrc_alias
