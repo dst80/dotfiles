@@ -5,7 +5,8 @@ local M = {
         "williamboman/mason-lspconfig.nvim",
         "j-hui/fidget.nvim",
         "folke/neodev.nvim",
-        "simrat39/rust-tools.nvim"
+        "simrat39/rust-tools.nvim",
+        "p00f/clangd_extensions.nvim",
     },
     lazy = true,
     cmd = "Mason",
@@ -148,6 +149,15 @@ function M.config()
                     },
                 },
             }
+        end,
+        ["clangd"] = function()
+            require("clangd_extensions").setup({
+                server = {
+                    on_attach = function(_, bufnr)
+                        on_attach(_, bufnr)
+                    end,
+                },
+            })
         end,
     })
 
