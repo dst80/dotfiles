@@ -25,7 +25,7 @@ function M.config()
             match_paren = false,
         },
         custom_highlights = {
-            Cursorline = { bg = "#292f3a" },
+            CursorLine = { bg = "#292f3a" },
             CursorColumn = { bg = "#292f3a" },
             ColorColumn = { bg = "#292f3a" },
             Search = { fg = "#ebcb8b", bg = "#4c566a", style = "bold" },
