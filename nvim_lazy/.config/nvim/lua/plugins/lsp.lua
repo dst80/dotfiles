@@ -63,7 +63,6 @@ function M.config()
 
     local servers = {
         angularls = {},
-        bashls = {},
         clangd = {
             single_file_support = true,
             init_options = {
@@ -98,6 +97,11 @@ function M.config()
         },
         volar = {},
     }
+
+    -- not supported under windows
+    if (string.find(vim.loop.os_uname().sysname, "Windows") == nil) then
+        servers.bashls = {}
+    end
 
     require("neodev").setup()
     --
