@@ -6,7 +6,6 @@ local M = {
 
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
-        "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
         'nvim-tree/nvim-web-devicons',
         {
@@ -63,7 +62,6 @@ function M.config()
     }
 
     require('telescope').load_extension('fzf')
-    require('telescope').load_extension('file_browser')
     require('telescope').load_extension('ui-select')
 
     local path = require('plenary.path')
@@ -91,8 +89,6 @@ function M.config()
     vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
     vim.keymap.set("n", "<leader>sb", require('telescope.builtin').buffers, { desc = '[s]witch [b]uffer' })
-    vim.keymap.set("n", "<leader>fb", require('telescope').extensions.file_browser.file_browser,
-        { desc = '[f]ile [b]rowser]' })
 
     vim.keymap.set("n", "<leader>sf", function()
         require('telescope.builtin')
