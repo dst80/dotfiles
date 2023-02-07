@@ -11,7 +11,7 @@ local M = {
 function M.config()
     local null_ls = require("null-ls")
     require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "prettier", "clang_format", "beautysh" },
+        ensure_installed = { "stylua", "rome", "clang_format", "beautysh" },
     })
 
     require("mason-null-ls").setup_handlers({
@@ -22,7 +22,7 @@ function M.config()
             null_ls.register(null_ls.builtins.formatting.stylua)
         end,
         prettier = function(source_name, methods)
-            null_ls.register(null_ls.builtins.formatting.prettier)
+            null_ls.register(null_ls.builtins.formatting.rome)
         end,
         clang_format = function(source_name, methods)
             null_ls.register(null_ls.builtins.formatting.clang_format)
