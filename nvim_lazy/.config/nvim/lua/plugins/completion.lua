@@ -17,6 +17,7 @@ local M = {
         { "saadparwaiz1/cmp_luasnip" },
         { "tzachar/cmp-tabnine",     build = run_command },
         { "onsails/lspkind.nvim" },
+        { "nvim-lua/plenary.nvim" }
     },
     event = "BufReadPost",
     lazy = true,
@@ -95,12 +96,12 @@ function M.config()
             },
         },
     })
-
+    local path = require("plenary.path")
+    local config_path = path:new(vim.fn.stdpath("config"))
+    local vsc_snippet_path = config_path:parent():joinpath("snippets", "vsc-snippets"):absolute()
     local has_vsc_ldr, vsc_ldr = pcall(require, 'luasnip.loaders.from_vscode')
     if has_vsc_ldr then
-        vsc_ldr.lazy_load(
-            { paths = { "~/.config/snippets/vsc-snippets" } }
-        )
+        vsc_ldr.lazy_load({ paths = { vsc_snippet_path } })
     end
 
     -- local has_lua_ldr, lua_ldr = pcall(require, 'luasnip.loaders.from_lua')
