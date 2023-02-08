@@ -52,8 +52,8 @@ function M.setup()
 
     -- shortcuts for open, save and close
     map_key_non_silent("n", "<leader>o", [[:e <C-R>=expand("%:p:h") . "/"<CR>]], "create new file")
-    map_key("n", "<C-s>", ":w<CR>", 'fast save of buffer')
-    map_key("i", "<C-s>", "<Esc>:w<CR>", 'fast save of buffer')
+    map_key("n", "<C-s><C-s>", ":w<CR>", 'fast save of buffer')
+    map_key("i", "<C-s><C-s>", "<Esc>:w<CR>", 'fast save of buffer')
     map_key("n", "<C-x><C-x>", [[:bd!<CR>]], "close buffer without saving")
     map_key("n", "<C-q><C-q>", [[:w<CR>:bd<CR>]], "fast save and close buffer")
     map_key("n", "<leader><leader>x", ":luafile %<CR>", 'source luafile')
@@ -86,7 +86,6 @@ function M.setup()
     map_key("n", "]d", vim.diagnostic.goto_next, 'goto next [d]iagnostic')
     map_key("n", "<leader>e", vim.diagnostic.open_float, 'open float')
     map_key("n", "<leader>q", vim.diagnostic.setloclist, 'set local list')
-
 end
 
 return M
