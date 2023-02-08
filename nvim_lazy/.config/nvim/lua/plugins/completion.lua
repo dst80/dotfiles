@@ -17,7 +17,9 @@ local M = {
         { "saadparwaiz1/cmp_luasnip" },
         { "tzachar/cmp-tabnine",     build = run_command },
         { "onsails/lspkind.nvim" },
-        { "nvim-lua/plenary.nvim" }
+        { "nvim-lua/plenary.nvim" },
+        { "zbirenbaum/copilot.lua" },
+        { "zbirenbaum/copilot-cmp" },
     },
     event = "BufReadPost",
     lazy = true,
@@ -42,6 +44,9 @@ function M.config()
         end
     })
 
+    local copilot = require("copilot").setup()
+    local copilot_cmp = require("copilot_cmp").setup()
+
     -- lspkind
     local lspkind = require("lspkind")
     local source_mapping = {
@@ -52,6 +57,7 @@ function M.config()
         buffer = "[Buffer]",
         cmp_tabnine = "[TN]",
         cmdline = "[CMD]",
+        copilot = "[Pilot]",
     }
 
     local lspkind_format_function = function(entry, vim_item)
@@ -179,6 +185,7 @@ function M.config()
         preselect = cmp.PreselectMode.None,
         snippet = { expand = expand_function },
         sources = {
+            { name = 'copilot',     max_item_count = 10, priority = 300, group_index = 1 },
             { name = 'cmp_tabnine', max_item_count = 10, priority = 300, group_index = 1 },
             { name = 'nvim_lsp',    max_item_count = 10, priority = 300, group_index = 1 },
             { name = 'luasnip',     max_item_count = 10, priority = 300, group_index = 1 },
