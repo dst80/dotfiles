@@ -18,7 +18,6 @@ local M = {
         { "tzachar/cmp-tabnine",     build = run_command },
         { "onsails/lspkind.nvim" },
         { "nvim-lua/plenary.nvim" },
-        { "zbirenbaum/copilot.lua" },
         { "zbirenbaum/copilot-cmp" },
     },
     event = "BufReadPost",

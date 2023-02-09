@@ -3,7 +3,9 @@ local M = {
     "zbirenbaum/copilot-cmp",
     dependencies = {
         "zbirenbaum/copilot.lua",
-    }
+    },
+    lazy = true,
+    event = "BufReadPost",
 }
 
 function M.config()
