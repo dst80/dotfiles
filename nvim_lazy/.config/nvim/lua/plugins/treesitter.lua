@@ -19,7 +19,7 @@ function M.config()
             "bash", "c", "cpp", "c_sharp", "css", "cmake", "scss", "html",
             "javascript", "java", "json", "json5", "lua", "rust", "go", "vim",
             "typescript", "markdown", "python", "regex", "vue", "graphql",
-            "glsl", "make", "toml", "yaml", "dockerfile", "comment", "latex"
+            "glsl", "make", "toml", "yaml", "dockerfile", "comment", "latex", "wgsl",
         },
         incremental_selection = {
             enable = true,

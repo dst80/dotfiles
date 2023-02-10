@@ -50,7 +50,8 @@ function M.setup()
     vim.opt.smartcase = true
     vim.opt.inccommand = "nosplit"
     vim.opt.wildignorecase = true
-    vim.opt.wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
+    vim.opt.wildignore =
+    ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
 
     -- undo different
     vim.opt.backup = false
@@ -72,6 +73,8 @@ function M.setup()
     vim.opt.errorbells = false
     vim.opt.visualbell = true
     vim.o.termguicolors = true
+
+    vim.filetype.add({ extension = { wgsl = "wgsl" } })
 end
 
 return M

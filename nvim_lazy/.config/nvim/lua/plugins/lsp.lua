@@ -35,7 +35,6 @@ function M.config()
             nmap("<leader>ds", ts.lsp_document_symbols, "[d]ocument [s]ymbols")
             nmap("<leader>ws", ts.lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
         else
-
             nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
             nmap("gi", vim.lsp.buf.implementation, "[g]oto [i]mplementation")
             nmap("gr", vim.lsp.buf.references, "[g]oto [r]eferences")
@@ -96,6 +95,7 @@ function M.config()
             },
         },
         volar = {},
+        wgsl_analyzer = {},
     }
 
     -- not supported under windows
