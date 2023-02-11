@@ -1,10 +1,3 @@
-local run_command = '';
-if (vim.loop.os_uname().sysname == "Windows_NT") then
-    run_command = "powershell ./install.ps1"
-else
-    run_command = "./install.sh"
-end
-
 local M = {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -15,7 +8,6 @@ local M = {
         { "hrsh7th/cmp-cmdline" },
         { "L3MON4D3/LuaSnip" },
         { "saadparwaiz1/cmp_luasnip" },
-        { "tzachar/cmp-tabnine",     build = run_command },
         { "onsails/lspkind.nvim" },
         { "nvim-lua/plenary.nvim" },
         { "zbirenbaum/copilot-cmp" },
