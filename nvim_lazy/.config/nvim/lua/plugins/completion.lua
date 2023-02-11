@@ -25,29 +25,6 @@ local M = {
 }
 
 function M.config()
-    -- tabnine
-    require("cmp_tabnine.config"):setup({
-        max_lines = 1000,
-        max_num_results = 10,
-        sort = true,
-        run_on_every_keystroke = true,
-        ignored_file_types = {
-            lua = true,
-            markdown = true,
-            tex = true,
-            text = true,
-        },
-        snippet_placeholder = "..",
-        show_prediction_strength = true,
-    })
-
-    vim.api.nvim_create_autocmd('BufRead', {
-        group = vim.api.nvim_create_augroup("prefetch", { clear = true }),
-        callback = function()
-            require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
-        end
-    })
-
     require("copilot").setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
@@ -107,6 +84,7 @@ function M.config()
             },
         },
     })
+
 
     local config_path = require("plenary.path"):new(vim.fn.stdpath("config"))
     local vsc_snippet_path = config_path:parent():joinpath("snippets", "vsc-snippets"):absolute()
@@ -183,12 +161,11 @@ function M.config()
         preselect = cmp.PreselectMode.None,
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         sources = {
-            { name = 'nvim_lsp',    max_item_count = 100, priority = 400 },
-            { name = 'copilot',     max_item_count = 10,  priority = 300 },
-            { name = 'cmp_tabnine', max_item_count = 10,  priority = 300 },
-            { name = 'luasnip',     max_item_count = 10,  priority = 300 },
-            { name = 'path',        max_item_count = 10,  priority = 200 },
-            { name = 'buffer',      max_item_count = 10,  priority = 200 },
+            { name = 'nvim_lsp', max_item_count = 50, priority = 4, group_index = 1, },
+            { name = 'copilot',  max_item_count = 10, priority = 3, group_index = 1, keyword_length = 2 },
+            { name = 'luasnip',  max_item_count = 10, priority = 3, group_index = 1, },
+            { name = 'path',     max_item_count = 10, priority = 2, group_index = 1, trigger_characters = { "\\", "/" } },
+            { name = 'buffer',   max_item_count = 10, priority = 2, group_index = 2 },
         },
         window = {
             completion = window_desc,
@@ -198,13 +175,12 @@ function M.config()
 
     cmp.setup.filetype({ "lua" }, {
         sources = {
-            { name = 'nvim_lsp',    max_item_count = 100, priority = 400 },
-            { name = 'copilot',     max_item_count = 10,  priority = 300 },
-            { name = 'cmp_tabnine', max_item_count = 10,  priority = 300 },
-            { name = 'luasnip',     max_item_count = 10,  priority = 300 },
-            { name = 'path',        max_item_count = 10,  priority = 200 },
-            { name = 'buffer',      max_item_count = 10,  priority = 200 },
-            { name = 'nvim_lua',    max_item_count = 10,  priority = 100 },
+            { name = 'nvim_lsp', max_item_count = 50, priority = 4, group_index = 1, },
+            { name = 'copilot',  max_item_count = 10, priority = 3, group_index = 1, keyword_length = 2 },
+            { name = 'luasnip',  max_item_count = 10, priority = 3, group_index = 1, },
+            { name = 'path',     max_item_count = 10, priority = 2, group_index = 1, trigger_characters = { "\\", "/" } },
+            { name = 'nvim_lua', max_item_count = 10, priority = 1, group_index = 1, },
+            { name = 'buffer',   max_item_count = 10, priority = 2, group_index = 2, },
         }
     })
 
