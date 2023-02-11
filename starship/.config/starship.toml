@@ -6,10 +6,10 @@ $os\
 $username\
 [](fg:#eceff4 bg:#5e81ac)\
 $directory\
-[](fg:#5e81ac bg:#ebcb8b)\
+[](fg:#5e81ac bg:#4c566a)\
 $git_branch\
 $git_status\
-[](fg:#ebcb8b bg:#d08770)\
+[](fg:#4c566a bg:#d8dee9)\
 $c\
 $dotnet\
 $elixir\
@@ -21,24 +21,20 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-[](fg:#d08770 bg:#8fbcbb)\
 $docker_context\
-[ ](fg:#8fbcbb)\
+[ ](fg:#d8dee9)\
 """
 
 right_format = """
-[](fg:#5e81ac)\
-$time\
-[](fg:#3b4252 bg:#5e81ac)\
+[](fg:#3b4252)\
 [($status)](bg:#3b4252)\
 [$character](bg:#3b4252)\
 """
-
 # A continuation prompt that displays right half-circle and filled-in arrow
 continuation_prompt = "[ ](bg:#33658A)[](fg:#33658A)"
 
 # Disable the blank line at the start of the prompt
-add_newline = false
+add_newline = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
@@ -88,56 +84,56 @@ truncation_symbol = "…/"
 [aws]
 symbol = "  "
 style = "bg:#06969A"
-format = '[[ $symbol $context ](bg:#06969A)]($style) $path'
+format = '[[ $symbol$context ](bg:#06969A)]($style) $path'
 
 [buf]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [c]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [conda]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [dart]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [docker_context]
-symbol = "🐳 "
-style = "bg:#06969A"
-format = '[[ $symbol $context ](bg:#8fbcbb)]($style) $path'
+symbol = "🐳"
+style = "bg:#e5e9f0"
+format = '[[ $symbol$context ](bg:#e5e9f0)]($style) $path'
 
 [dotnet]
 symbol = " "
-style = "fg:#000000 bg:#d08770"
-format = '[$symbol ](bold fg:#33658A bg:#d08770)[$version ]($style)'
+style = "fg:#000000 bg:#d8dee9"
+format = '[ $symbol ](bold fg:#33658A bg:#d8dee9)[$version ]($style)'
 
 [elixir]
-symbol = "💧 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+symbol = "💧"
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [elm]
-symbol = "🌳 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+symbol = "🌳"
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#ebcb8b"
-format = '[[ $symbol $branch ](fg:#2e3440 bg:#ebcb8b)]($style)'
+style = "bg:#4c566a"
+format = '[[ $symbol $branch ](fg:#eceff4 bg:#4c566a)]($style)'
 
 [git_status]
-style = "bg:#d08770"
-format = '[[($all_status$ahead_behind)](fg:#2e3440 bg:#ebcb8b)]($style)'
+style = "bg:#d8dee9"
+format = '[[($all_status$ahead_behind)](fg:#eceff4 bg:#4c566a)]($style)'
 ahead = "⇡ $count "
 behind = "⇣ $count "
 deleted = "🗑 $count "
@@ -149,97 +145,97 @@ renamed = " $count "
 untracked = "🤷 ‍$count "
 
 [golang]
-symbol = "🐹 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+symbol = "🐹"
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [haskell]
 symbol = "λ "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [hg_branch]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [java]
-symbol = "☕ "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+symbol = "☕"
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [julia]
 symbol = "ஃ "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [lua]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [memory_usage]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [meson]
-symbol = "喝 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+symbol = "喝"
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [nim]
 symbol = "👑 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [nix_shell]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [nodejs]
 symbol = "🔷 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [package]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [python]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [rlang]
 symbol = "ﳒ "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [ruby]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [spack]
 symbol = "🅢 "
-style = "bg:#d08770"
-format = '[[ $symbol ($version) ](fg:#2e3440 bg:#d08770)]($style)'
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [time]
-disabled = false
+disabled = true
 time_format = "%R"                                    # Hour:Minute Format # %T for seconds
 style = "bg:#33658A"
 format = '[[ $time ](fg:#eceff4 bg:#5e81ac)]($style)'
