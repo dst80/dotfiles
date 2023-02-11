@@ -22,29 +22,37 @@ local M = {
     },
     event = "BufReadPost",
     lazy = true,
-    cmd = "InitCmp",
 }
 
 function M.config()
     -- tabnine
-    local tabnine = require("cmp_tabnine.config")
-    tabnine:setup({
-        max_lines = 200,
+    require("cmp_tabnine.config"):setup({
+        max_lines = 1000,
         max_num_results = 10,
         sort = true,
         run_on_every_keystroke = true,
+        ignored_file_types = {
+            lua = true,
+            markdown = true,
+            tex = true,
+            text = true,
+        },
         snippet_placeholder = "..",
+        show_prediction_strength = true,
     })
-    local prefetch = vim.api.nvim_create_augroup("prefetch", { clear = true })
+
     vim.api.nvim_create_autocmd('BufRead', {
-        group = prefetch,
+        group = vim.api.nvim_create_augroup("prefetch", { clear = true }),
         callback = function()
             require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
         end
     })
 
-    local copilot = require("copilot").setup()
-    local copilot_cmp = require("copilot_cmp").setup()
+    require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+    })
+    require("copilot_cmp").setup()
 
     -- lspkind
     local lspkind = require("lspkind")
@@ -80,9 +88,7 @@ function M.config()
 
     -- luasnip
     local has_luasnip, luasnip = pcall(require, "luasnip")
-    if not has_luasnip then
-        return
-    end
+    if not has_luasnip then return end
 
     local types = require('luasnip.util.types')
 
@@ -101,13 +107,12 @@ function M.config()
             },
         },
     })
-    local path = require("plenary.path")
-    local config_path = path:new(vim.fn.stdpath("config"))
+
+    local config_path = require("plenary.path"):new(vim.fn.stdpath("config"))
     local vsc_snippet_path = config_path:parent():joinpath("snippets", "vsc-snippets"):absolute()
+
     local has_vsc_ldr, vsc_ldr = pcall(require, 'luasnip.loaders.from_vscode')
-    if has_vsc_ldr then
-        vsc_ldr.lazy_load({ paths = { vsc_snippet_path } })
-    end
+    if has_vsc_ldr then vsc_ldr.lazy_load({ paths = { vsc_snippet_path } }) end
 
     -- local has_lua_ldr, lua_ldr = pcall(require, 'luasnip.loaders.from_lua')
     -- if has_lua_ldr then
@@ -116,7 +121,8 @@ function M.config()
     --     )
     -- end
 
-    local cmp = require('cmp')
+    local has_cmp, cmp = pcall(require, 'cmp')
+    if (not has_cmp) then return end
 
     local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -146,84 +152,60 @@ function M.config()
         end
     end
 
-    local confirm_config = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true
-    }
-
-    local expand_function = function(args)
-        luasnip.lsp_expand(args.body)
+    local enter_mapping = function(fallback)
+        if cmp.get_selected_entry() ~= nil then
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        else
+            fallback()
+        end
     end
 
-    local compare = require('cmp.config.compare')
+    local window_desc = cmp.config.window.bordered({
+            border = { ' ', '', ' ', ' ', ' ', '', ' ', ' ' },
+            scrollbar = true,
+            side_padding = 0,
+            winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:Match',
+        });
 
-    local window_config = cmp.config.window.bordered()
-    window_config.border = "none"
-
-    local WIDE_HEIGHT = 40
     cmp.setup({
         completion = { keyword_length = 1, },
-        experimental = { ghost_text = true },
         formatting = { format = lspkind_format_function },
         mapping = {
             ['<C-d>'] = cmp.mapping.scroll_docs( -4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
             ['<C-Space>'] = cmp.mapping.complete({}),
-            ['<C-S>'] = cmp.mapping.complete({
-                config = {
-                    sources = {
-                        { name = "vsnip" }
-                    }
-                },
-            }),
-            ['<CR>'] = cmp.mapping.confirm(confirm_config),
+            ['<C-S>'] = cmp.mapping.complete({ config = { sources = { { name = "vsnip" } } } }),
+            ['<CR>'] = enter_mapping,
             ['<Tab>'] = cmp.mapping(tab_mapping, { "i", "s" }),
             ['<S-Tab>'] = cmp.mapping(super_tab_mapping, { "i", "s" }),
             ['<C-e>'] = cmp.mapping.close(),
         },
         preselect = cmp.PreselectMode.None,
-        snippet = { expand = expand_function },
+        snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         sources = {
-            { name = 'copilot',     max_item_count = 10, priority = 300, group_index = 1 },
-            { name = 'cmp_tabnine', max_item_count = 10, priority = 300, group_index = 1 },
-            { name = 'nvim_lsp',    max_item_count = 10, priority = 300, group_index = 1 },
-            { name = 'luasnip',     max_item_count = 10, priority = 300, group_index = 1 },
-            { name = 'path',        max_item_count = 10, priority = 300, group_index = 1 },
-            { name = 'nvim_lua',    max_item_count = 10, priority = 100, group_index = 2 },
-        },
-        {
-            { name = 'buffer' },
-        },
-        sorting = {
-            priority_weight = 2,
-            comparators = {
-                require('cmp_tabnine.compare'),
-                compare.offset,
-                compare.exact,
-                compare.score,
-                compare.recently_used,
-                compare.kind,
-                compare.sort_text,
-                compare.length,
-                compare.order,
-            },
+            { name = 'nvim_lsp',    max_item_count = 100, priority = 400 },
+            { name = 'copilot',     max_item_count = 10,  priority = 300 },
+            { name = 'cmp_tabnine', max_item_count = 10,  priority = 300 },
+            { name = 'luasnip',     max_item_count = 10,  priority = 300 },
+            { name = 'path',        max_item_count = 10,  priority = 200 },
+            { name = 'buffer',      max_item_count = 10,  priority = 200 },
         },
         window = {
-            completion = {
-                border = nil,
-                winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None',
-                scrolloff = 0,
-                scrollbar = true,
-                col_offset = 0,
-                side_padding = 1,
-            },
-            documentation = {
-                border = nil,
-                max_height = math.floor(WIDE_HEIGHT * (WIDE_HEIGHT / vim.o.lines)),
-                max_width = math.floor((WIDE_HEIGHT * 2) * (vim.o.columns / (WIDE_HEIGHT * 2 * 16 / 9))),
-                winhighlight = 'FloatBorder:NormalFloat',
-            },
+            completion = window_desc,
+            documentation = window_desc,
         },
+    })
+
+    cmp.setup.filetype({ "lua" }, {
+        sources = {
+            { name = 'nvim_lsp',    max_item_count = 100, priority = 400 },
+            { name = 'copilot',     max_item_count = 10,  priority = 300 },
+            { name = 'cmp_tabnine', max_item_count = 10,  priority = 300 },
+            { name = 'luasnip',     max_item_count = 10,  priority = 300 },
+            { name = 'path',        max_item_count = 10,  priority = 200 },
+            { name = 'buffer',      max_item_count = 10,  priority = 200 },
+            { name = 'nvim_lua',    max_item_count = 10,  priority = 100 },
+        }
     })
 
     -- `/` cmdline setup.
@@ -237,9 +219,8 @@ function M.config()
     cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
+            { name = 'cmdline' },
             { name = 'path' }
-        }, {
-            { name = 'cmdline' }
         })
     })
 end
