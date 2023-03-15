@@ -88,11 +88,11 @@ super + {o,i}
 
 # focus to the given desktop
 super + {1-9,0}
-  bspc {desktop -f,node -d} focused:'^{1-9,10}'
+  bspc desktop -f focused:'^{1-9,10}'
 
 # send node to the given desktop
-super + shift {1-9,0}
-  bspc node -d '{1-9,10}'
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
 super + ctrl {1-9,0}
   bspc monitor -f '^{1-9,10}'
