@@ -55,6 +55,7 @@ disabled = false
 [os.symbols]
 Windows = " "
 Fedora = " "
+Manjaro = " "
 
 [username]
 show_always = false
@@ -142,7 +143,7 @@ stashed = "📦 $count "
 modified = "פֿ $count "
 staged = '[ $count ](green)'
 renamed = " $count "
-untracked = "🤷 ‍$count "
+untracked = " $count "
 
 [golang]
 symbol = "🐹"
