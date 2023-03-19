@@ -16,6 +16,8 @@ window:
 
   startup_mode: Windowed
 
+  opacity: 0.9
+
 font:
   normal:
     family: "FiraCode Nerd Font"
