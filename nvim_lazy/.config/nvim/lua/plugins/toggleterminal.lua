@@ -2,8 +2,8 @@ local M = {
     "akinsho/toggleterm.nvim",
     lazy = true,
     keys = {
-        { "<leader>t", "ToggleTerm", desc = '[t]oggle terminal' },
-        { "<leader>lg", "ToggleTerm", desc = '[t]oggle terminal' }
+        { "<leader>t",  "ToggleTerm", desc = '[t]oggle terminal' },
+        { "<leader>lg", "ToggleTerm", desc = '[l]azy [g]it' }
     }
 }
 
