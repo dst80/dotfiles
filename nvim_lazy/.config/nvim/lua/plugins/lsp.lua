@@ -17,6 +17,31 @@ function M.config()
     local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+        local function do_rename(win)
+            local new_name = vim.trim(vim.fn.getline("."))
+            vim.api.nvim_win_close(win, true)
+            vim.lsp.buf.rename(new_name)
+        end
+
+        local function rename()
+            local cword = vim.fn.expand('<cword>')
+            local opts = {
+                relative = 'cursor',
+                row = 0,
+                col = 0,
+                width = string.len(cword) + 20,
+                height = 1,
+                style = 'minimal',
+                border = 'rounded',
+            }
+            local buf = vim.api.nvim_create_buf(false, true)
+            local win = vim.api.nvim_open_win(buf, true, opts)
+
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })
+            vim.keymap.set({ 'i', 'n' }, '<CR>', function() do_rename(win) end, { silent = true, buffer = buf })
+            vim.keymap.set('n', '<ESC>', '<cmd>:q<CR>', { silent = true, buffer = buf })
+        end
+
         local nmap = function(keys, func, desc)
             if desc then
                 desc = "LSP: " .. desc
@@ -45,7 +70,7 @@ function M.config()
         nmap("<C-k>", vim.lsp.buf.signature_help, "signature help")
         nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[w]orkspace [a]dd folder")
         nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[w]orkspace [r]emove folder")
-        nmap("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
+        nmap("<leader>rn", rename, "[r]e[n]ame")
         nmap("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
         nmap("<leader>cr", vim.lsp.codelens.refresh, "[c]odelens [r]efresh")
         nmap("<leader>ce", vim.lsp.codelens.run, "[c]odelens [e]xecute")
