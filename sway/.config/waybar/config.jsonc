@@ -232,19 +232,6 @@
 		"exec-if": "[ -x \"$(command -v cliphist)\" ] && [ $(cliphist list | wc -l) -gt 0 ]",
 		"signal": 9
 	},
-	"custom/zeit": {
-		"return-type": "json",
-		"interval": "once",
-		"format": "{icon}",
-		"format-icons": {
-			"tracking": "華",
-			"stopped": ""
-		},
-		"exec": "/bin/sh $HOME/.config/sway/scripts/zeit.sh status",
-		"on-click": "/bin/sh $HOME/.config/sway/scripts/zeit.sh click; pkill -RTMIN+10 waybar",
-		"exec-if": "[ -x \"$(command -v zeit)\" ]",
-		"signal": 10
-	},
 	"custom/dnd": {
 		"interval": "once",
 		"return-type": "json",
