@@ -1,9 +1,9 @@
 configuration {
-  font: "FiraCode Retina Font 13";
+  font: "FiraCode Retina NF 13";
 
   modi: "window,drun,ssh,combi";
   combi-modi: "window,drun,ssh";
-
+  show-icons: true;
   levenshtein-sort: true;
   matching: "fuzzy";
 }
