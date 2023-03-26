@@ -10,7 +10,7 @@ function M.config()
         scrollbar.setup({
             marks = {
                 Cursor = {
-                    text = "",
+                    text = " ",
                 }
             }
         })
