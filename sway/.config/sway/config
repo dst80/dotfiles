@@ -1,0 +1,11 @@
+# vim: set filetype=swayconfig:
+
+include wayland.conf
+include nordic.conf
+include definitions.conf
+include programs.conf
+include keymaps.conf
+include ./modes/*.conf
+include program-rules.conf
+include inputs.conf
+include outputs.conf

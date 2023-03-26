@@ -1,0 +1,198 @@
+@import "nord.css";
+
+@keyframes blink-warning {
+    70% {
+        color: @nord5;
+    }
+
+    to {
+        color: @nord5;
+        background-color: @nord13;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @nord5;
+    }
+
+    to {
+        color: @nord5;
+        background-color: @nord11;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    font-family: "Fira Code NF", "Fira Code NF Mono", sans-serif;
+}
+
+/* The whole bar */
+window#waybar {
+    background: @nord1;
+    color: @nord5;
+    font-size: 14px;
+}
+
+/* Each module */
+#custom-pacman,
+#custom-menu,
+#custom-help,
+#custom-scratchpad,
+#custom-github,
+#custom-clipboard,
+#custom-zeit,
+#custom-dnd,
+#bluetooth,
+#battery,
+#clock,
+#cpu,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#idle_inhibitor,
+#backlight,
+#language,
+#custom-adaptive-light,
+#custom-sunset,
+#custom-playerctl,
+#tray {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#custom-scratchpad, #custom-menu, #workspaces button.focused, #clock  {
+    color: @nord1;
+    background-color: @nord10;
+}
+
+#custom-zeit.tracking {
+    background-color: @nord13;
+}
+
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.warning {
+    color: @nord13;
+}
+
+#battery.critical {
+    color: @nord11;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#clock {
+    font-weight: bold;
+	color: @nord6
+}
+
+#cpu.warning {
+    color: @nord13;
+}
+
+#cpu.critical {
+    color: @nord11;
+}
+
+#custom-menu {
+    padding-left: 8px;
+    padding-right: 13px;
+}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: @nord13;
+}
+
+#memory.critical {
+    color: @nord11;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#mode {
+    background: @nord1;
+}
+
+#network.disconnected {
+    color: @nord13;
+}
+
+#pulseaudio.muted {
+    color: @nord13;
+}
+
+#temperature.critical {
+    color: @nord11;
+}
+
+#workspaces button {
+    border-top: 2px solid transparent;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: @nord6;
+}
+
+#workspaces button.focused {
+    background-color: @nord10;
+    color: @nord6;
+}
+
+#workspaces button:hover {
+    background-color: @nord10;
+}
+
+#workspaces button.urgent {
+    background-color: @nord11;
+    color: @nord11;
+}
+
+#custom-pacman {
+    color: @nord13;
+}
+
+#bluetooth.disabled {
+    color: @nord13;
+}
+
+#custom-wf-recorder {
+    color: @nord11;
+    padding-right: 10px;
+}

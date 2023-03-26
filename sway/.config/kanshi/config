@@ -1,0 +1,10 @@
+# vim:set filetype=swayconfig:
+profile {
+    output eDP-1 position 0,0
+}
+
+profile {
+    output DP-3 position 0,0
+    output DP-5 position 1920,0
+    output eDP-1 position 3840,0
+}
