@@ -10,30 +10,23 @@ local M = {
 
 function M.config()
     local null_ls = require("null-ls")
-    require("mason-null-ls").setup({
-        ensure_installed = { "stylua", "rome", "clang_format", "beautysh" },
-    })
-
-    require("mason-null-ls").setup_handlers({
-        function(source_name, methods)
-            require("mason-null-ls.automatic_setup")(source_name, methods)
-        end,
-        stylua = function(source_name, methods)
-            null_ls.register(null_ls.builtins.formatting.stylua)
-        end,
-        prettier = function(source_name, methods)
-            null_ls.register(null_ls.builtins.formatting.rome)
-        end,
-        clang_format = function(source_name, methods)
-            null_ls.register(null_ls.builtins.formatting.clang_format)
-        end,
-        cmake_format = function(source_name, methods)
-            null_ls.register(null_ls.builtins.formatting.cmake_format)
-        end,
-    })
-
     null_ls.setup({
         debug = false,
+        sources = {
+            null_ls.builtins.code_actions.cspell,
+            null_ls.builtins.diagnostics.cspell,
+            null_ls.builtins.formatting.stylua,
+            null_ls.builtins.formatting.beautysh,
+            null_ls.builtins.formatting.rome,
+            null_ls.builtins.formatting.prettier,
+            null_ls.builtins.formatting.cmake_format,
+            null_ls.builtins.formatting.clang_format,
+        },
+    })
+    local mason_null_ls = require("mason-null-ls")
+    mason_null_ls.setup({
+        automatic_installation = true,
+        automatic_setup = false,
     })
 end
 
