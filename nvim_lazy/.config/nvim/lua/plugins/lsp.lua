@@ -16,71 +16,7 @@ local M = {
 function M.config()
     local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-        local function do_rename(win)
-            local new_name = vim.trim(vim.fn.getline("."))
-            vim.api.nvim_win_close(win, true)
-            vim.lsp.buf.rename(new_name)
-        end
-
-        local function rename()
-            local cword = vim.fn.expand('<cword>')
-            local opts = {
-                relative = 'cursor',
-                row = 0,
-                col = 0,
-                width = string.len(cword) + 20,
-                height = 1,
-                style = 'minimal',
-                border = 'rounded',
-            }
-            local buf = vim.api.nvim_create_buf(false, true)
-            local win = vim.api.nvim_open_win(buf, true, opts)
-
-            vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })
-            vim.keymap.set({ 'i', 'n' }, '<CR>', function() do_rename(win) end, { silent = true, buffer = buf })
-            vim.keymap.set('n', '<ESC>', '<cmd>:q<CR>', { silent = true, buffer = buf })
-        end
-
-        local nmap = function(keys, func, desc)
-            if desc then
-                desc = "LSP: " .. desc
-            end
-            vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-        end
-
-        local has_ts, ts = pcall(require, "telescope.builtin")
-        if has_ts then
-            nmap("gd", ts.lsp_definitions, "[g]oto [d]efinition")
-            nmap("gi", ts.lsp_implementations, "[g]oto [i]mplementatio")
-            nmap("gr", ts.lsp_references, "[g]oto [r]eferences")
-            nmap("gt", ts.lsp_type_definitions, "[g]oto [t]ype definitions")
-            nmap("<leader>ds", ts.lsp_document_symbols, "[d]ocument [s]ymbols")
-            nmap("<leader>ws", ts.lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
-        else
-            nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-            nmap("gi", vim.lsp.buf.implementation, "[g]oto [i]mplementation")
-            nmap("gr", vim.lsp.buf.references, "[g]oto [r]eferences")
-            nmap("gt", vim.lsp.buf.type_definition, "[g]oto [t]ype definitions")
-            nmap("<leader>ds", vim.lsp.buf.document_symbol, "[d]ocument [s]ymbols")
-            nmap("<leader>ws", vim.lsp.buf.workspace_symbol, "[w]orkspace [s]ymbols")
-        end
-
-        nmap("K", vim.lsp.buf.hover, "hover documentation")
-        nmap("<C-k>", vim.lsp.buf.signature_help, "signature help")
-        nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[w]orkspace [a]dd folder")
-        nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[w]orkspace [r]emove folder")
-        nmap("<leader>rn", rename, "[r]e[n]ame")
-        nmap("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
-        nmap("<leader>cr", vim.lsp.codelens.refresh, "[c]odelens [r]efresh")
-        nmap("<leader>ce", vim.lsp.codelens.run, "[c]odelens [e]xecute")
-        nmap("<leader>fo", function()
-            vim.lsp.buf.format({ async = true })
-        end, "[fo]rmat file")
-        nmap("[d", vim.diagnostic.goto_prev, "goto previous [d]iagnostic")
-        nmap("]d", vim.diagnostic.goto_next, "goto next [d]iagnostic")
-        nmap("<leader>e", vim.diagnostic.open_float, "open float")
-        nmap("<leader>q", vim.diagnostic.setloclist, "set local list")
+        require("lsp_keymap").set_lsp_keymap(bufnr)
     end
 
     local servers = {
