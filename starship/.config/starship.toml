@@ -56,6 +56,7 @@ disabled = false
 Windows = " "
 Fedora = " "
 Manjaro = " "
+Ubuntu = " "
 
 [username]
 show_always = false
@@ -102,28 +103,33 @@ symbol = " "
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
+[cmake]
+symbol = "󰯙 "
+style = "bg:#d8dee9"
+format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
+
 [dart]
 symbol = " "
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [docker_context]
-symbol = "🐳"
+symbol = " "
 style = "bg:#e5e9f0"
 format = '[[ $symbol$context ](bg:#e5e9f0)]($style) $path'
 
 [dotnet]
-symbol = " "
+symbol = "󰪮 "
 style = "fg:#000000 bg:#d8dee9"
 format = '[ $symbol ](bold fg:#33658A bg:#d8dee9)[$version ]($style)'
 
 [elixir]
-symbol = "💧"
+symbol = ""
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [elm]
-symbol = "🌳"
+symbol = " "
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
@@ -141,12 +147,12 @@ deleted = "🗑 $count "
 diverged = " $count "
 stashed = "📦 $count "
 modified = "פֿ $count "
-staged = '[ $count ](green)'
+staged = " $count"
 renamed = " $count "
 untracked = " $count "
 
 [golang]
-symbol = "🐹"
+symbol = ""
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
@@ -186,7 +192,7 @@ style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [nim]
-symbol = "👑 "
+symbol = " "
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
@@ -196,7 +202,7 @@ style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
 [nodejs]
-symbol = "🔷 "
+symbol = "󰎙 "
 style = "bg:#d8dee9"
 format = '[[ $symbol($version) ](fg:#2e3440 bg:#d8dee9)]($style)'
 
