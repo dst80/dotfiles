@@ -1,56 +1,72 @@
 #!/bin/sh
 
 if [ -f /bin/exa ]; then
-  alias ls="exa"
+    alias ls="exa"
 else
-  alias ls="ls --color=auto"
+    alias ls="ls --color=auto"
 fi
 
 alias ll="ls -lh"
 alias la="ls -all"
 
-alias vim="nvim"
-alias lg="lazygit"
+if [ -f /bin/bat ]; then
+    alias cat="bat"
+fi
+
+if [ -f /bin/zoxide ]; then
+    alias z="zoxide"
+    alias zz="z -"
+    alias cd="zoxide"
+fi
+
+if [ -f /bin/nvim ]; then
+    alias vim="nvim"
+fi
+
+if [ -f /bin/lazygit ]; then
+    alias lg="lazygit"
+fi
 
 if grep -q -i microsoft /proc/version; then
-  alias toclip="clip.exe"
+    alias toclip="clip.exe"
 else
-  alias toclip="xclip -selection clipboard"
+    alias toclip="xclip -selection clipboard"
 fi
-
 
 if [ -f /bin/fdfind ]; then
-  alias fd="fdfind"
+    alias fd="fdfind"
 fi
 
-alias find="fd"
+if [ -f /bin/fd ]; then
+    alias find="fd"
+fi
 
 function ff() {
-  fd -t f -L -H -E .git $*
+    fd -t f -L -H -E .git $*
 }
 
 function getpath() {
-  fd -t f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+    fd -t f | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
 function getabspath() {
-  fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
+    fd -t f -a | fzf | sed 's/^\.\///' | tr -d '\n' | toclip
 }
 
 function fcd() {
-  cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
+    cd "$(fd -d 5 -t d -L -H -E .git | fzf)"
 }
 
 function open() {
-  nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
+    nvim "$(fd -d 5 -t f -L -H -E .git | fzf)"
 }
 
 function rf() {
-  rm -f "$(fd -d 5 -t f -L -H | fzf -m)"
+    rm -f "$(fd -d 5 -t f -L -H | fzf -m)"
 }
 
 function rd() {
-  rm -rf "$(fd -d 5 -t d -L -H | fzf -m)"
+    rm -rf "$(fd -d 5 -t d -L -H | fzf -m)"
 }
 
 export FZF_DEFAULT_COMMAND='fd -t f -L -H -E .git'
