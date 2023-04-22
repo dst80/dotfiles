@@ -138,7 +138,7 @@ function M.config()
     })
 
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        command = [[lua vim.diagnostic.open_float(nil, {focus=false})]],
+        command = [[lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})]],
         group = lsp_group,
     })
 end
