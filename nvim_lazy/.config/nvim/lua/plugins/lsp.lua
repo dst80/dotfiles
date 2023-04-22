@@ -117,6 +117,11 @@ function M.config()
                 server = {
                     on_attach = function(_, bufnr)
                         on_attach(_, bufnr)
+                        vim.keymap.set("n", "<leader>tf", ":ClangdSwitchSourceHeader<cr>", {
+                            buffer = bufnr,
+                            silent = true,
+                            desc = "[t]oggle c++ [f]iles",
+                        })
                     end,
                 },
             })
