@@ -1,7 +1,7 @@
 local M = {
     "ThePrimeagen/refactoring.nvim",
     lazy = true,
-    event = "BufReadPost"
+    ft = { "go", "c", "cpp", "java", "typescript", "javascript", "python" },
 }
 
 function M.config()
@@ -9,20 +9,22 @@ function M.config()
         -- prompt for return type
         prompt_func_return_type = {
             go = true,
+            java = true,
             cpp = true,
             c = true,
             h = true,
             hpp = true,
-            java = true,
+            cxx = true,
         },
         -- prompt for function parameters
         prompt_func_param_type = {
             go = true,
+            java = true,
             cpp = true,
             c = true,
             h = true,
             hpp = true,
-            java = true,
+            cxx = true,
         },
     })
 
