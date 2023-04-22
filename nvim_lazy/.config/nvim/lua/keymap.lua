@@ -17,6 +17,10 @@ function M.setup()
     map_key("n", "<C-Right>", "<C-w>l", 'Window: jump to right window')
     map_key("n", "<C-Down>", "<C-w>j", 'Window: jump to bottom window')
     map_key("n", "<C-Up>", "<C-w>k", 'Window: jump to top window')
+    map_key("n", "<C-h>", "<C-w>h", 'Window: jump to left window')
+    map_key("n", "<C-l>", "<C-w>l", 'Window: jump to right window')
+    map_key("n", "<C-j>", "<C-w>j", 'Window: jump to bottom window')
+    map_key("n", "<C-k>", "<C-w>k", 'Window: jump to top window')
 
     -- move half page to center of the screen
     map_key("n", "<C-d>", "<C-d>zz", 'Movement: center page down movement')
@@ -84,7 +88,7 @@ function M.setup()
 
     map_key("n", "[d", vim.diagnostic.goto_prev, 'goto previous [d]iagnostic')
     map_key("n", "]d", vim.diagnostic.goto_next, 'goto next [d]iagnostic')
-    map_key("n", "<leader>e", vim.diagnostic.open_float, 'open float')
+    map_key("n", "<leader>d", vim.diagnostic.open_float, 'open float')
     map_key("n", "<leader>q", vim.diagnostic.setloclist, 'set local list')
 end
 
