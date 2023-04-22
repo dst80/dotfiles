@@ -54,6 +54,8 @@ M.list = {
     debug_scopes               = { key = "<Leader>dbs", desc = "[d]e[b]ug [s]copes" },
     debug_breakpoints_overview = { key = "<Leader>dbb", desc = "[d]e[b]ug [b]reakpoints" },
     debug_commands             = { key = "<Leader>dbc", desc = "[d]e[b]ug [c]ommands" },
+    -- Refactoring
+    refactor                   = { key = "<leader>rr", desc = "[r]un [r]efactor" },
 }
 
 function M.bufferline()
