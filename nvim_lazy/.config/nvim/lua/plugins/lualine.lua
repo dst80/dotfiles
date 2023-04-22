@@ -1,8 +1,5 @@
 local M = {
     "hoob3rt/lualine.nvim",
-    dependencies = {
-        'rmehri01/onenord.nvim',
-    },
 }
 
 function M.config()
