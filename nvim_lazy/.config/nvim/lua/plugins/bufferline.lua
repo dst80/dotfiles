@@ -1,20 +1,20 @@
 local M = {
-    'noib3/nvim-cokeline',
+    "noib3/nvim-cokeline",
     dependencies = {
         "nvim-tree/nvim-web-devicons"
     }
 }
 
 function M.config()
-    local get_hex = require('cokeline/utils').get_hex
-    local normal_fg = get_hex('Normal', "fg")
-    local normal_bg = get_hex('Normal', "bg")
-    local comment_fg = get_hex('Comment', "fg")
-    local cursor_coloum_bg = get_hex('CursorColumn', "bg")
-    local tree_bg = get_hex('NvimTreeNormal', "bg")
+    local get_hex = require("cokeline/utils").get_hex
+    local normal_fg = get_hex("Normal", "fg")
+    local normal_bg = get_hex("Normal", "bg")
+    local comment_fg = get_hex("Comment", "fg")
+    local cursor_coloum_bg = get_hex("CursorColumn", "bg")
+    local tree_bg = get_hex("NvimTreeNormal", "bg")
 
 
-    require('cokeline').setup({
+    require("cokeline").setup({
         default_hl = {
             fg = function()
                 return normal_fg
@@ -24,20 +24,20 @@ function M.config()
             end
         },
         sidebar = {
-            filetype = 'NvimTree',
+            filetype = "NvimTree",
             components = {
                 {
-                    text = '  File Explorer',
+                    text = "  File Explorer",
                     fg = normal_fg,
                     bg = tree_bg,
-                    style = 'bold',
+                    style = "bold",
                 },
             }
         },
         components = {
             {
                 text = function(buffer)
-                    return ' ' .. buffer.devicon.icon
+                    return " " .. buffer.devicon.icon
                 end,
                 fg = function(buffer)
                     return buffer.devicon.color
@@ -48,11 +48,11 @@ function M.config()
                     return buffer.unique_prefix
                 end,
                 fg = comment_fg,
-                style = 'italic',
+                style = "italic",
             },
             {
                 text = function(buffer)
-                    return buffer.filename .. ' '
+                    return buffer.filename .. " "
                 end,
                 fg = function(buffer)
                     return buffer.is_focused and normal_fg or comment_fg
@@ -62,11 +62,11 @@ function M.config()
                 end
             },
             {
-                text = '',
+                text = "",
                 delete_buffer_on_left_click = true,
             },
             {
-                text = ' ',
+                text = " ",
             }
         },
     })

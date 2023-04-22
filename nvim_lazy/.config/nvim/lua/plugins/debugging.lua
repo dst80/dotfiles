@@ -10,32 +10,32 @@ local M = {
 }
 
 function M.config()
-    local has_dap, dap = pcall(require, 'dap')
+    local has_dap, dap = pcall(require, "dap")
     if not has_dap then
         return
     end
 
 
     local function get_lldb_path()
-        return '/usr/bin/lldb-vscode'
+        return "/usr/bin/lldb-vscode"
     end
 
     dap.adapters.lldb = {
-        type = 'executable',
+        type = "executable",
         command = get_lldb_path(),
-        name = 'lldb'
+        name = "lldb"
     }
 
     dap.configurations.cpp = {
         {
-            name = 'Launch',
-            type = 'lldb',
-            request = 'launch',
+            name = "Launch",
+            type = "lldb",
+            request = "launch",
             program = function()
                 return vim.fn.input(
-                    'Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                    "Path to executable: ", vim.fn.getcwd() .. "/", "file")
             end,
-            cwd = '${workspaceFolder}',
+            cwd = "${workspaceFolder}",
             stopOnEntry = false,
             args = {},
         }
@@ -47,17 +47,17 @@ function M.config()
     -- python
     dap.configurations.python = {
         name = "Launch file",
-        type = 'python',
-        request = 'launch',
+        type = "python",
+        request = "launch",
         program = "${file}",
         pythonPath = function()
             local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-                return cwd .. '/venv/bin/python'
-            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-                return cwd .. '/.venv/bin/python'
+            if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+                return cwd .. "/venv/bin/python"
+            elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+                return cwd .. "/.venv/bin/python"
             else
-                return '/usr/bin/python'
+                return "/usr/bin/python"
             end
         end
     }
@@ -70,22 +70,22 @@ function M.config()
     vim.keymap.set("n", "<F12>", dap.step_out, options)
     vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, options)
     vim.keymap.set("n", "<Leader>scb", function()
-        dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
     end, options)
     vim.keymap.set("n", "<Leader>dr", dap.repl.open, options)
     vim.keymap.set("n", "<Leader>dl", dap.run_last, options)
-    vim.keymap.set({ 'n', 'v' }, '<Leader>dbh', function()
-        require('dap.ui.widgets').hover()
+    vim.keymap.set({ "n", "v" }, "<Leader>dbh", function()
+        require("dap.ui.widgets").hover()
     end, { desc = "[d]e[b]ug [h]overs" })
-    vim.keymap.set({ 'n', 'v' }, '<Leader>dbp', function()
-        require('dap.ui.widgets').preview()
+    vim.keymap.set({ "n", "v" }, "<Leader>dbp", function()
+        require("dap.ui.widgets").preview()
     end, { desc = "[d]e[b]ug [p]reviews" })
-    vim.keymap.set('n', '<Leader>dbf', function()
-        local widgets = require('dap.ui.widgets')
+    vim.keymap.set("n", "<Leader>dbf", function()
+        local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.frames)
     end, { desc = "[d]e[b]ug [f]rames" })
-    vim.keymap.set('n', '<Leader>dbs', function()
-        local widgets = require('dap.ui.widgets')
+    vim.keymap.set("n", "<Leader>dbs", function()
+        local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.scopes)
     end, { desc = "[d]e[b]ug [s]copes" })
 
@@ -95,15 +95,15 @@ function M.config()
     vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "warning", linehl = "", numhl = "" })
 
     -- not working :(
-    -- local dap_group = vim.api.nvim_create_augroup('DapRepl', { clean = true })
+    -- local dap_group = vim.api.nvim_create_augroup("DapRepl", { clean = true })
     -- vim.api.nvim_create_autocmd("FileType", {
     --     group = dap_group,
-    --     pattern = { 'dap-repl' },
-    --     callback = function() require('dap.ext.autocompl').attach() end
+    --     pattern = { "dap-repl" },
+    --     callback = function() require("dap.ext.autocompl").attach() end
     -- })
 
 
-    local has_dap_vt, dap_vt = pcall(require, 'nvim-dap-virtual-text')
+    local has_dap_vt, dap_vt = pcall(require, "nvim-dap-virtual-text")
     if has_dap_vt then
         dap_vt.setup({
             enabled_commands = true,
@@ -113,20 +113,20 @@ function M.config()
             commented = false,
             only_first_definition = true,
             all_references = false,
-            filter_references_pattern = '<module',
-            virt_text_pos = 'eol',
+            filter_references_pattern = "<module",
+            virt_text_pos = "eol",
             all_frames = false,
             virt_lines = false,
             virt_text_win_col = nil,
         })
     end
 
-    require('telescope').load_extension('dap')
-    vim.keymap.set('n', '<Leader>dbb', require 'telescope'.extensions.dap.list_breakpoints,
+    require("telescope").load_extension("dap")
+    vim.keymap.set("n", "<Leader>dbb", require "telescope".extensions.dap.list_breakpoints,
         { desc = "[d]e[b]ug [b]reakpoints" })
-    vim.keymap.set('n', '<Leader>dbc', require 'telescope'.extensions.dap.commands, { desc = "[d]e[b]ug [c]ommands" })
-    vim.keymap.set('n', '<Leader>dbp', require 'telescope'.extensions.dap.variables, { desc = "[d]e[b]ug [p]reviews" })
-    vim.keymap.set('n', '<Leader>dbf', require 'telescope'.extensions.dap.frames, { desc = "[d]e[b]ug [f]rames" })
+    vim.keymap.set("n", "<Leader>dbc", require "telescope".extensions.dap.commands, { desc = "[d]e[b]ug [c]ommands" })
+    vim.keymap.set("n", "<Leader>dbp", require "telescope".extensions.dap.variables, { desc = "[d]e[b]ug [p]reviews" })
+    vim.keymap.set("n", "<Leader>dbf", require "telescope".extensions.dap.frames, { desc = "[d]e[b]ug [f]rames" })
 end
 
 return M

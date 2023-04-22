@@ -42,12 +42,12 @@ function M.config()
         if entry.source.name == "cmp_tabnine" then
             local detail = (entry.completion_item.data or {}).detail
             vim_item.kind = ""
-            if detail and detail:find('.*%%.*') then
-                vim_item.kind = vim_item.kind .. ' ' .. detail
+            if detail and detail:find(".*%%.*") then
+                vim_item.kind = vim_item.kind .. " " .. detail
             end
 
             if (entry.completion_item.data or {}).multiline then
-                vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+                vim_item.kind = vim_item.kind .. " " .. "[ML]"
             end
         end
         local maxwidth = 80
@@ -59,7 +59,7 @@ function M.config()
     local has_luasnip, luasnip = pcall(require, "luasnip")
     if not has_luasnip then return end
 
-    local types = require('luasnip.util.types')
+    local types = require("luasnip.util.types")
 
     luasnip.config.setup({
         history = true,
@@ -81,17 +81,17 @@ function M.config()
     local config_path = require("plenary.path"):new(vim.fn.stdpath("config"))
     local vsc_snippet_path = config_path:parent():joinpath("snippets", "vsc-snippets"):absolute()
 
-    local has_vsc_ldr, vsc_ldr = pcall(require, 'luasnip.loaders.from_vscode')
+    local has_vsc_ldr, vsc_ldr = pcall(require, "luasnip.loaders.from_vscode")
     if has_vsc_ldr then vsc_ldr.lazy_load({ paths = { vsc_snippet_path } }) end
 
-    -- local has_lua_ldr, lua_ldr = pcall(require, 'luasnip.loaders.from_lua')
+    -- local has_lua_ldr, lua_ldr = pcall(require, "luasnip.loaders.from_lua")
     -- if has_lua_ldr then
     --     lua_ldr.lazy_load(
-    --         { paths = { '~/.config/nvim/lua/configuration/luasnip/filetypes' } }
+    --         { paths = { "~/.config/nvim/lua/configuration/luasnip/filetypes" } }
     --     )
     -- end
 
-    local has_cmp, cmp = pcall(require, 'cmp')
+    local has_cmp, cmp = pcall(require, "cmp")
     if (not has_cmp) then return end
 
     local has_words_before = function()
@@ -115,8 +115,8 @@ function M.config()
     local super_tab_mapping = function(fallback)
         if cmp.visible() then
             cmp.select_prev_item()
-        elseif luasnip.jumpable( -1) then
-            luasnip.jump( -1)
+        elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
         else
             fallback()
         end
@@ -131,33 +131,33 @@ function M.config()
     end
 
     local window_desc = cmp.config.window.bordered({
-            border = { ' ', '', ' ', ' ', ' ', '', ' ', ' ' },
-            scrollbar = true,
-            side_padding = 0,
-            winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:Match',
-        });
+        border = { " ", "", " ", " ", " ", "", " ", " " },
+        scrollbar = true,
+        side_padding = 0,
+        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:Match",
+    });
 
     cmp.setup({
         completion = { keyword_length = 1, },
         formatting = { format = lspkind_format_function },
         mapping = {
-            ['<C-d>'] = cmp.mapping.scroll_docs( -4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete({}),
-            ['<C-S>'] = cmp.mapping.complete({ config = { sources = { { name = "vsnip" } } } }),
-            ['<CR>'] = enter_mapping,
-            ['<Tab>'] = cmp.mapping(tab_mapping, { "i", "s" }),
-            ['<S-Tab>'] = cmp.mapping(super_tab_mapping, { "i", "s" }),
-            ['<C-e>'] = cmp.mapping.close(),
+            ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<C-Space>"] = cmp.mapping.complete({}),
+            ["<C-S>"] = cmp.mapping.complete({ config = { sources = { { name = "vsnip" } } } }),
+            ["<CR>"] = enter_mapping,
+            ["<Tab>"] = cmp.mapping(tab_mapping, { "i", "s" }),
+            ["<S-Tab>"] = cmp.mapping(super_tab_mapping, { "i", "s" }),
+            ["<C-e>"] = cmp.mapping.close(),
         },
         preselect = cmp.PreselectMode.None,
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         sources = {
-            { name = 'nvim_lsp', max_item_count = 50, priority = 4, group_index = 1, },
-            { name = 'copilot',  max_item_count = 10, priority = 3, group_index = 1, keyword_length = 2 },
-            { name = 'luasnip',  max_item_count = 10, priority = 3, group_index = 1, },
-            { name = 'path',     max_item_count = 10, priority = 2, group_index = 1, trigger_characters = { "\\", "/" } },
-            { name = 'buffer',   max_item_count = 10, priority = 2, group_index = 2 },
+            { name = "nvim_lsp", max_item_count = 50, priority = 4, group_index = 1, },
+            { name = "copilot",  max_item_count = 10, priority = 3, group_index = 1, keyword_length = 2 },
+            { name = "luasnip",  max_item_count = 10, priority = 3, group_index = 1, },
+            { name = "path",     max_item_count = 10, priority = 2, group_index = 1, trigger_characters = { "\\", "/" } },
+            { name = "buffer",   max_item_count = 10, priority = 2, group_index = 2 },
         },
         window = {
             completion = window_desc,
@@ -167,28 +167,28 @@ function M.config()
 
     cmp.setup.filetype({ "lua" }, {
         sources = {
-            { name = 'nvim_lsp', max_item_count = 50, priority = 4, group_index = 1, },
-            { name = 'copilot',  max_item_count = 10, priority = 3, group_index = 1, keyword_length = 2 },
-            { name = 'luasnip',  max_item_count = 10, priority = 3, group_index = 1, },
-            { name = 'path',     max_item_count = 10, priority = 2, group_index = 1, trigger_characters = { "\\", "/" } },
-            { name = 'nvim_lua', max_item_count = 10, priority = 1, group_index = 1, },
-            { name = 'buffer',   max_item_count = 10, priority = 2, group_index = 2, },
+            { name = "nvim_lsp", max_item_count = 50, priority = 4, group_index = 1, },
+            { name = "copilot",  max_item_count = 10, priority = 3, group_index = 1, keyword_length = 2 },
+            { name = "luasnip",  max_item_count = 10, priority = 3, group_index = 1, },
+            { name = "path",     max_item_count = 10, priority = 2, group_index = 1, trigger_characters = { "\\", "/" } },
+            { name = "nvim_lua", max_item_count = 10, priority = 1, group_index = 1, },
+            { name = "buffer",   max_item_count = 10, priority = 2, group_index = 2, },
         }
     })
 
     -- `/` cmdline setup.
-    cmp.setup.cmdline('/', {
+    cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-            { name = 'buffer' }
+            { name = "buffer" }
         }
     })
 
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-            { name = 'cmdline' },
-            { name = 'path' }
+            { name = "cmdline" },
+            { name = "path" }
         })
     })
 end

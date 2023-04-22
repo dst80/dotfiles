@@ -42,7 +42,7 @@ function M.setup()
 
     -- settings for :grep
     vim.opt.grepformat = "%f:%l:%c:%m"
-    vim.opt.grepprg = 'rg --hidden --vimgrep --smart-case --'
+    vim.opt.grepprg = "rg --hidden --vimgrep --smart-case --"
 
     -- searching
     vim.opt.hlsearch = false

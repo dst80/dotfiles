@@ -5,7 +5,7 @@ local M = {
 }
 
 function M.config()
-    require('Comment').setup({
+    require("Comment").setup({
         padding = true,
         sticky = true,
         mappings = {
@@ -13,17 +13,17 @@ function M.config()
             extra = true,
         },
         toggler = {
-            line = 'gcc',
-            block = 'gbc',
+            line = "gcc",
+            block = "gbc",
         },
         opleader = {
-            line = 'gc',
-            block = 'gb',
+            line = "gc",
+            block = "gb",
         },
         extra = {
-            above = 'gcO',
-            below = 'gco',
-            eol = 'gcA',
+            above = "gcO",
+            below = "gco",
+            eol = "gcA",
         },
     })
 end

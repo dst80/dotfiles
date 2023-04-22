@@ -3,27 +3,27 @@ local M = {
 }
 
 function M.config()
-    require 'lualine'.setup {
+    require "lualine".setup {
         options = {
             lower = true,
-            theme = 'auto',
+            theme = "auto",
             icons_enabled = 1,
             component_separators = {
-                left = '',
-                right = ''
+                left = "",
+                right = ""
             },
             section_separators = {
-                left = '',
-                right = ''
+                left = "",
+                right = ""
             }
         },
         sections = {
-            lualine_a = { { 'mode', lower = false } },
-            lualine_b = { 'branch' },
-            lualine_c = { 'filename' },
-            lualine_x = { 'encoding', 'fileformat', 'filetype' },
-            lualine_y = { 'progress' },
-            lualine_z = { 'location' }
+            lualine_a = { { "mode", lower = false } },
+            lualine_b = { "branch" },
+            lualine_c = { "filename" },
+            lualine_x = { "encoding", "fileformat", "filetype" },
+            lualine_y = { "progress" },
+            lualine_z = { "location" }
         }
     }
 end

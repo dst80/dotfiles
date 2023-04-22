@@ -5,7 +5,7 @@ local M = {
 }
 
 function M.config()
-    require('refactoring').setup({
+    require("refactoring").setup({
         -- prompt for return type
         prompt_func_return_type = {
             go = true,
@@ -34,7 +34,7 @@ function M.config()
     require("telescope").load_extension("refactoring")
 
     -- remap to open the Telescope refactoring menu in visual mode
-    vim.keymap.set("v", "<leader>rr", require('telescope').extensions.refactoring.refactors, options)
+    vim.keymap.set("v", "<leader>rr", require("telescope").extensions.refactoring.refactors, options)
 end
 
 return M
