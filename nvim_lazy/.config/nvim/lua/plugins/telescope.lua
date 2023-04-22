@@ -1,19 +1,34 @@
 local M = {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-
         "nvim-lua/popup.nvim",
-
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
         'nvim-tree/nvim-web-devicons',
         {
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+            build =
+            "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
         lazy = true,
-        event = "BufEnter",
+        cmd = "Telescope"
+    },
+}
+
+local options = {
+    defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "-L",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+        },
+        -- Developer configurations: Not meant for general override
     },
 }
 
@@ -21,12 +36,6 @@ local M = {
 function M.config()
     require('telescope').setup {
         defaults = {
-            file_sorter = require('telescope.sorters').get_fzy_sorter,
-
-            file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-            grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-            qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-            buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
             vimgrep_arguments = {
                 'rg',
                 '--no-heading',
@@ -38,10 +47,44 @@ function M.config()
                 '--ignore',
                 '--glob=!.git'
             },
+            file_sorter = require('telescope.sorters').get_fuzzy_file,
+            generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+            file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+            grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+            qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+            buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
+            file_ignore_patterns = { "node_modules" },
+            -- telescope view
+            layout_strategy = "horizontal",
+            layout_config = {
+                horizontal = {
+                    prompt_position = "bottom",
+                    preview_width = 0.55,
+                    results_width = 0.8,
+                },
+                vertical = {
+                    mirror = false,
+                },
+                width = 0.87,
+                height = 0.80,
+                preview_cutoff = 120,
+            },
             hidden = true,
-            prompt_prefix = '  :',
+            prompt_prefix = '  ',
             color_devicons = true,
-            set_env = { ['COLORTERM'] = 'truecolor' }
+            selection_caret = "  ",
+            entry_prefix = "  ",
+            initial_mode = "insert",
+            selection_strategy = "reset",
+            sorting_strategy = "ascending",
+            path_display = { "truncate" },
+            winblend = 0,
+            border = {},
+            borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+            set_env = { ['COLORTERM'] = 'truecolor' },
+            mappings = {
+                n = { ["q"] = require("telescope.actions").close },
+            },
         },
         pickers = {
             buffers = {
