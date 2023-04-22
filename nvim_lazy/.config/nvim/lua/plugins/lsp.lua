@@ -31,7 +31,6 @@ function M.config()
             },
         },
         gopls = {},
-        ltex = {},
         jedi_language_server = {},
         neocmake = {},
         marksman = {},

@@ -22,14 +22,13 @@ function M.config()
         debug = false,
         on_attach = on_attach,
         sources = {
-            null_ls.builtins.code_actions.cspell,
-            null_ls.builtins.diagnostics.cspell.with({
+            null_ls.builtins.code_actions.ltrs,
+            null_ls.builtins.diagnostics.ltrs.with({
                 diagnostics_postprocess = diagnostics_postprocess
             }),
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.beautysh,
             null_ls.builtins.formatting.rome,
-            null_ls.builtins.formatting.prettier,
             null_ls.builtins.formatting.cmake_format,
             null_ls.builtins.formatting.clang_format,
         },
