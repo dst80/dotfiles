@@ -100,7 +100,11 @@ function M.config()
                 server = {
                     on_attach = function(_, bufnr)
                         on_attach(_, bufnr)
-                        vim.keymap.set("n", "<leader>rf", rt.hover_actions.hover_actions, { buffer = bufnr })
+                        vim.keymap.set("n", "<leader>ra", rt.hover_actions.hover_actions, {
+                            buffer = bufnr,
+                            silent = true,
+                            desc = "[r]un hover [a]ction",
+                        })
                     end,
                 },
                 dap = {
