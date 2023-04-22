@@ -25,6 +25,17 @@ M.list = {
     select_buffer_7 = { key = "<leader>7", desc = "Bufferline: switch to buffer [7]" },
     select_buffer_8 = { key = "<leader>8", desc = "Bufferline: switch to buffer [8]" },
     select_buffer_9 = { key = "<leader>9", desc = "Bufferline: switch to buffer [9]" },
+    -- Telescope
+    show_buffer_overview = { key = "<leader>sb", desc = "Telescope: [s]how [b]buffer overview" },
+    show_diagnostics_overview = { key = "<leader>so", desc = "Telescope: [s]how [d]iagnostics" },
+    search_fuzzy_buffer = { key = "<leader>/", desc = "Telescope: search fuzzy in current buffer" },
+    search_file = { key = "<leader>sf", desc = "Telescope: [s]earch [f]ile" },
+    search_old_file = { key = "<leader>sof", desc = "Telescope: [s]earch [o]ld [f]ile" },
+    search_hidden_file = { key = "<leader>shf", desc = "Telescope: [s]earch [h]idden [f]ile" },
+    search_help = { key = "<leader>sh", desc = "Telescope: [s]earch [h]elp" },
+    search_word = { key = "<leader>sw", desc = "Telescope: [s]earch current [w]ord" },
+    search_by_grep = { key = "<leader>sg", desc = "Telescope: [s]earch by [g]rep" },
+    search_dotfiles = { key = "<leader>sdf", desc = "Telescope: [s]earch [d]ot[f]iles" },
     -- File browser
     toggle_file_browser = { key = "<leader>e", desc = "file [e]xplorer" },
 }
