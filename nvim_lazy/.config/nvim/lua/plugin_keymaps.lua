@@ -54,6 +54,13 @@ M.list = {
     debug_scopes               = { key = "<Leader>dbs", desc = "[d]e[b]ug [s]copes" },
     debug_breakpoints_overview = { key = "<Leader>dbb", desc = "[d]e[b]ug [b]reakpoints" },
     debug_commands             = { key = "<Leader>dbc", desc = "[d]e[b]ug [c]ommands" },
+    -- Testing
+    test_run_test              = { key = "<leader>trt", desc = "NeoTest: [t]est [r]un nearest [t]est" },
+    test_run_file              = { key = "<leader>trf", desc = "NeoTest: [t]est [r]un [f]ile" },
+    test_run_test_debug        = { key = "<leader>trd", desc = "NeoTest: [t]est [r]un [d]ebug" },
+    test_run_attach            = { key = "<leader>ta", desc = "NeoTest: [t]est [a]ttach" },
+    test_quit                  = { key = "<leader>tq", desc = "NeoTest: [t]est [q]uit/stop" },
+    test_summary               = { key = "<leader>ts", desc = "NeoTest: [t]est [s]ummary" },
     -- Refactoring
     refactor                   = { key = "<leader>rr", desc = "[r]un [r]efactor" },
 }
