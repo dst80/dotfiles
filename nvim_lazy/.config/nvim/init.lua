@@ -23,5 +23,6 @@ require('lazy').setup('plugins', {
     }
 })
 require('keymap').setup()
+require('plugin_keymaps').setup()
 require('diagnostics').setup()
 require('autocommands').setup()
