@@ -61,7 +61,7 @@ function M.set_lsp_keymap(bufnr)
     n_map("<leader>rf", function() vim.lsp.buf.format({ async = true }) end, "[r]un [f]ormat file")
     n_map("[d", vim.diagnostic.goto_prev, "goto previous [d]iagnostic")
     n_map("]d", vim.diagnostic.goto_next, "goto next [d]iagnostic")
-    n_map("<leader>e", vim.diagnostic.open_float, "open float")
+    n_map("<leader>d", vim.diagnostic.open_float, "open float")
     n_map("<leader>q", vim.diagnostic.setloclist, "set local list")
 end
 
