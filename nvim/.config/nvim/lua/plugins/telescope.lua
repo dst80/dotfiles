@@ -61,8 +61,8 @@ M.options = {
         sorting_strategy = "ascending",
         path_display = { "truncate" },
         winblend = 0,
-        border = {},
-        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+        border = true,
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
             n = { ["q"] = require("telescope.actions").close },
