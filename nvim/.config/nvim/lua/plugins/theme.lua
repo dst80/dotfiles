@@ -6,9 +6,10 @@ function M.config()
     local nightfox = require("nightfox")
     local shade = require("nightfox.lib.shade")
     nightfox.setup({
-        palette = {
+        palettes = {
             nordfox = {
                 white = shade.new("#e5e0f0", "#eceff4", "#d8dee9")
+
             }
         }
     })
