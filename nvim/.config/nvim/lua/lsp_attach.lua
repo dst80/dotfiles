@@ -15,7 +15,10 @@ function M.open_rename_dialog()
         width = string.len(cursor_word) + 20,
         height = 1,
         style = 'minimal',
-        border = "solid",
+        border = "single",
+        zindex = 100,
+        title = "Rename",
+        title_pos = "left",
     }
     local buffer = vim.api.nvim_create_buf(false, true)
     local window = vim.api.nvim_open_win(buffer, true, options)
