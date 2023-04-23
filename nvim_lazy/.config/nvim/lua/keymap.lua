@@ -75,7 +75,7 @@ function M.setup()
     map_key("v", ">", ">gv", "keeps selection for another indent")
 
     -- addtional useful commands
-    map_key("n", "<leader>e", [[/_<CR>l:noh<CR>:let @/=""<CR>]], "disable highlight")
+    map_key("n", "<leader>xx", [[/_<CR>l:noh<CR>:let @/=""<CR>]], "disable highlight")
     map_key("n", "<leader>m", "ct_", "")
     map_key("n", "<leader>w", [[/[A-Z]<CR>:noh<CR>:let @/=""<CR>]], "jump to next uppercase letter")
 
@@ -84,7 +84,7 @@ function M.setup()
 
     -- useful keymaps
     map_key_non_silent("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "replace word")
-    map_key("n", "<leader>xx", "<cmd>!chmod +x %<CR>", "make current file executable")
+    map_key("n", "<leader>ex", "<cmd>!chmod +x %<CR>", "make current file executable")
 
     map_key("n", "[d", vim.diagnostic.goto_prev, "goto previous [d]iagnostic")
     map_key("n", "]d", vim.diagnostic.goto_next, "goto next [d]iagnostic")
