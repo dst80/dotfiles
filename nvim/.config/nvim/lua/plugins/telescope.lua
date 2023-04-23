@@ -1,7 +1,6 @@
 local M = {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-        "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
@@ -12,7 +11,12 @@ local M = {
             "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
         lazy = true,
-        cmd = "Telescope"
+        cmd = "Telescope",
+        keys = {
+            require("plugin_keymaps").list.search_file.key,
+            require("plugin_keymaps").list.search_old_file.key,
+            require("plugin_keymaps").list.search_dotfiles.key,
+        }
     },
 }
 
