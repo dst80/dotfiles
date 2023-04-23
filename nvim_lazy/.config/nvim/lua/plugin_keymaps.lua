@@ -43,8 +43,8 @@ M.list = {
     -- File browser
     toggle_file_browser           = { key = "<leader>e", desc = "file [e]xplorer" },
     -- Editor
-    edit_goto_definition          = { key = "gd", desc = "Editor: [g]oto [d]efinition" },
-    edit_goto_implementation      = { key = "gi", desc = "Editor: [g]oto [i]mplementation" },
+    edit_goto_definitions         = { key = "gd", desc = "Editor: [g]oto [d]efinition" },
+    edit_goto_implementations     = { key = "gi", desc = "Editor: [g]oto [i]mplementation" },
     edit_goto_references          = { key = "gr", desc = "Editor: [g]oto [r]eferences" },
     edit_goto_type_definitions    = { key = "gt", desc = "Editor: [g]oto [t]ype definitions" },
     edit_rename                   = { key = "<leader>rn", desc = "Editor: [r]e[n]ame" },

@@ -15,6 +15,7 @@ function M.open_rename_dialog()
         width = string.len(cursor_word) + 20,
         height = 1,
         style = 'minimal',
+        border = "solid",
     }
     local buffer = vim.api.nvim_create_buf(false, true)
     local window = vim.api.nvim_open_win(buffer, true, options)
@@ -33,15 +34,15 @@ function M.attach(buffer)
     local keymap = require("plugin_keymaps")
     local has_ts, ts = pcall(require, "telescope.builtin")
     if has_ts then
-        keymap.map_for_buffer("n", keymap.list.edit_goto_definition, ts.lsp_definitions, buffer)
-        keymap.map_for_buffer("n", keymap.list.edit_goto_implementation, ts.lsp_implementations, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_definitions, ts.lsp_definitions, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_implementations, ts.lsp_implementations, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_goto_references, ts.lsp_references, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_goto_type_definitions, ts.lsp_type_definitions, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_document_symbols, ts.lsp_document_symbols, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_workspace_symbols, ts.lsp_dynamic_workspace_symbols, buffer)
     else
-        keymap.map_for_buffer("n", keymap.list.edit_goto_definition, vim.lsp.buf.definition, buffer)
-        keymap.map_for_buffer("n", keymap.list.edit_goto_implementation, vim.lsp.buf.implementation, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_definitions, vim.lsp.buf.definition, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_implementations, vim.lsp.buf.implementation, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_goto_references, vim.lsp.buf.references, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_goto_type_definitions, vim.lsp.buf.type_definition, buffer)
         keymap.map_for_buffer("n", keymap.list.edit_document_symbols, vim.lsp.buf.document_symbol, buffer)
