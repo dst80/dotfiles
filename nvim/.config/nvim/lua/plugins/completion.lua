@@ -16,12 +16,29 @@ local M = {
     lazy = true,
 }
 
-function M.config()
+function M.borders(hl_name)
+    return {
+        { "┌", hl_name },
+        { "─", hl_name },
+        { "┐", hl_name },
+        { "│", hl_name },
+        { "┘", hl_name },
+        { "─", hl_name },
+        { "└", hl_name },
+        { "│", hl_name },
+    }
+end
+
+function M.init_copilot()
     require("copilot").setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
     })
     require("copilot_cmp").setup()
+end
+
+function M.config()
+    M.init_copilot()
 
     -- lspkind
     local lspkind = require("lspkind")
@@ -84,13 +101,6 @@ function M.config()
     local has_vsc_ldr, vsc_ldr = pcall(require, "luasnip.loaders.from_vscode")
     if has_vsc_ldr then vsc_ldr.lazy_load({ paths = { vsc_snippet_path } }) end
 
-    -- local has_lua_ldr, lua_ldr = pcall(require, "luasnip.loaders.from_lua")
-    -- if has_lua_ldr then
-    --     lua_ldr.lazy_load(
-    --         { paths = { "~/.config/nvim/lua/configuration/luasnip/filetypes" } }
-    --     )
-    -- end
-
     local has_cmp, cmp = pcall(require, "cmp")
     if (not has_cmp) then return end
 
@@ -130,13 +140,6 @@ function M.config()
         end
     end
 
-    local window_desc = cmp.config.window.bordered({
-        border = { " ", "", " ", " ", " ", "", " ", " " },
-        scrollbar = true,
-        side_padding = 0,
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:Match",
-    });
-
     cmp.setup({
         completion = { keyword_length = 1, },
         formatting = { format = lspkind_format_function },
@@ -144,7 +147,7 @@ function M.config()
             ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             ["<C-f>"] = cmp.mapping.scroll_docs(4),
             ["<C-Space>"] = cmp.mapping.complete({}),
-            ["<C-S>"] = cmp.mapping.complete({ config = { sources = { { name = "vsnip" } } } }),
+            ["<C-S>"] = cmp.mapping.complete({ config = { sources = { { name = "luasnip" } } } }),
             ["<CR>"] = enter_mapping,
             ["<Tab>"] = cmp.mapping(tab_mapping, { "i", "s" }),
             ["<S-Tab>"] = cmp.mapping(super_tab_mapping, { "i", "s" }),
@@ -160,8 +163,15 @@ function M.config()
             { name = "buffer",   max_item_count = 10, priority = 2, group_index = 2 },
         },
         window = {
-            completion = window_desc,
-            documentation = window_desc,
+            completion = {
+                winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
+                scrollbar = false,
+            },
+            documentation = {
+                winhighlight = "Normal:CmpDoc",
+                border = M.borders("CmpDocBorder"),
+                title = "Docs",
+            },
         },
     })
 
@@ -186,10 +196,10 @@ function M.config()
 
     cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
+        sources = {
             { name = "cmdline" },
             { name = "path" }
-        })
+        }
     })
 end
 
