@@ -22,7 +22,7 @@ require('lazy').setup('plugins', {
         notify = false,
     }
 })
-require('keymap').setup()
+require('general_keymap').setup()
 require('plugin_keymaps').setup()
 require('diagnostics').setup()
 require('autocommands').setup()
