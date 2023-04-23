@@ -29,7 +29,7 @@ function M.format_file()
     vim.lsp.buf.format({ async = true })
 end
 
-function M.set_lsp_keymap(buffer)
+function M.attach(buffer)
     local keymap = require("plugin_keymaps")
     local has_ts, ts = pcall(require, "telescope.builtin")
     if has_ts then

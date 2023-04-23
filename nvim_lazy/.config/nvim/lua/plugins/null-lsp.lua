@@ -9,7 +9,7 @@ local M = {
 }
 
 local on_attach = function(_, bufnr)
-    require("lsp_keymap").set_lsp_keymap(bufnr)
+    require("lsp_attach").attach(bufnr)
 end
 
 local diagnostics_postprocess = function(diagnostic)

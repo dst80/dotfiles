@@ -16,7 +16,7 @@ local M = {
 function M.config()
     local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-        require("lsp_keymap").set_lsp_keymap(bufnr)
+        require("lsp_attach").attach(bufnr)
     end
 
     local servers = {
