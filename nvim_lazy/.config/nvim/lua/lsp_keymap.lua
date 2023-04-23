@@ -1,68 +1,66 @@
 local M = {}
 
-function M.set_lsp_keymap(bufnr)
-    local function do_rename(win)
-        local new_name = vim.trim(vim.fn.getline("."))
-        vim.api.nvim_win_close(win, true)
-        vim.lsp.buf.rename(new_name)
-    end
+function M.rename(window)
+    local new_name = vim.trim(vim.fn.getline("."))
+    vim.api.nvim_win_close(window, true)
+    vim.lsp.buf.rename(new_name)
+end
 
-    local function rename()
-        local cursor_word = vim.fn.expand('<cword>')
-        local opts = {
-            relative = 'cursor',
-            row = 0,
-            col = 0,
-            width = string.len(cursor_word) + 20,
-            height = 1,
-            style = 'minimal',
-            border = 'rounded',
-        }
-        local buf = vim.api.nvim_create_buf(false, true)
-        local win = vim.api.nvim_open_win(buf, true, opts)
+function M.open_rename_dialog()
+    local cursor_word = vim.fn.expand('<cword>')
+    local options = {
+        relative = 'cursor',
+        row = 0,
+        col = 0,
+        width = string.len(cursor_word) + 20,
+        height = 1,
+        style = 'minimal',
+    }
+    local buffer = vim.api.nvim_create_buf(false, true)
+    local window = vim.api.nvim_open_win(buffer, true, options)
 
-        vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cursor_word })
-        vim.keymap.set({ 'i', 'n' }, '<CR>', function() do_rename(win) end, { silent = true, buffer = buf })
-        vim.keymap.set('n', '<ESC>', '<cmd>:q<CR>', { silent = true, buffer = buf })
-    end
+    vim.api.nvim_buf_set_lines(buffer, 0, -1, false, { cursor_word })
+    vim.keymap.set({ 'i', 'n' }, '<CR>', function() M.rename(window) end, { silent = true, buffer = buffer })
+    vim.keymap.set('n', '<ESC>', '<cmd>:q<CR>', { silent = true, buffer = buffer })
+    vim.keymap.set('n', 'q', '<cmd>:q<CR>', { silent = true, buffer = buffer })
+end
 
+function M.format_file()
+    vim.lsp.buf.format({ async = true })
+end
 
-    local n_map = function(keys, func, desc)
-        if desc then
-            desc = "LSP: " .. desc
-        end
-        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-    end
+function M.set_lsp_keymap(buffer)
+    local keymap = require("plugin_keymaps")
     local has_ts, ts = pcall(require, "telescope.builtin")
     if has_ts then
-        n_map("gd", ts.lsp_definitions, "[g]oto [d]efinition")
-        n_map("gi", ts.lsp_implementations, "[g]oto [i]mplementation")
-        n_map("gr", ts.lsp_references, "[g]oto [r]eferences")
-        n_map("gt", ts.lsp_type_definitions, "[g]oto [t]ype definitions")
-        n_map("<leader>ds", ts.lsp_document_symbols, "[d]ocument [s]ymbols")
-        n_map("<leader>ws", ts.lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
+        keymap.map_for_buffer("n", keymap.list.edit_goto_definition, ts.lsp_definitions, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_implementation, ts.lsp_implementations, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_references, ts.lsp_references, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_type_definitions, ts.lsp_type_definitions, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_document_symbols, ts.lsp_document_symbols, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_workspace_symbols, ts.lsp_dynamic_workspace_symbols, buffer)
     else
-        n_map("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-        n_map("gi", vim.lsp.buf.implementation, "[g]oto [i]mplementation")
-        n_map("gr", vim.lsp.buf.references, "[g]oto [r]eferences")
-        n_map("gt", vim.lsp.buf.type_definition, "[g]oto [t]ype definitions")
-        n_map("<leader>ds", vim.lsp.buf.document_symbol, "[d]ocument [s]ymbols")
-        n_map("<leader>ws", vim.lsp.buf.workspace_symbol, "[w]orkspace [s]ymbols")
+        keymap.map_for_buffer("n", keymap.list.edit_goto_definition, vim.lsp.buf.definition, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_implementation, vim.lsp.buf.implementation, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_references, vim.lsp.buf.references, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_goto_type_definitions, vim.lsp.buf.type_definition, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_document_symbols, vim.lsp.buf.document_symbol, buffer)
+        keymap.map_for_buffer("n", keymap.list.edit_workspace_symbols, vim.lsp.buf.workspace_symbol, buffer)
     end
 
-    n_map("K", vim.lsp.buf.hover, "hover documentation")
-    n_map("<C-k>", vim.lsp.buf.signature_help, "signature help")
-    n_map("<leader>wa", vim.lsp.buf.add_workspace_folder, "[w]orkspace [a]dd folder")
-    n_map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[w]orkspace [r]emove folder")
-    n_map("<leader>rn", rename, "[r]e[n]ame")
-    n_map("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
-    n_map("<leader>cr", vim.lsp.codelens.refresh, "[c]odelens [r]efresh")
-    n_map("<leader>ce", vim.lsp.codelens.run, "[c]odelens [e]xecute")
-    n_map("<leader>rf", function() vim.lsp.buf.format({ async = true }) end, "[r]un [f]ormat file")
-    n_map("[d", vim.diagnostic.goto_prev, "goto previous [d]iagnostic")
-    n_map("]d", vim.diagnostic.goto_next, "goto next [d]iagnostic")
-    n_map("<leader>d", vim.diagnostic.open_float, "open float")
-    n_map("<leader>q", vim.diagnostic.setloclist, "set local list")
+    keymap.map_for_buffer("n", keymap.list.edit_hover_documentation, vim.lsp.buf.hover, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_signature_help, vim.lsp.buf.signature_help, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_add_workspace_folder, vim.lsp.buf.add_workspace_folder, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_remove_workspace_folder, vim.lsp.buf.remove_workspace_folder, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_rename, M.open_rename_dialog, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_code_action, vim.lsp.buf.code_action, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_codelens_refresh, vim.lsp.codelens.refresh, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_codelens_execute, vim.lsp.codelens.run, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_format_file, M.format_file, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_goto_previous_diagnostic, vim.diagnostic.goto_prev, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_goto_next_diagnostic, vim.diagnostic.goto_next, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_open_diagnostic_preview, vim.diagnostic.open_float, buffer)
+    keymap.map_for_buffer("n", keymap.list.edit_show_local_list, vim.diagnostic.setloclist, buffer)
 end
 
 return M

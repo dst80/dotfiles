@@ -141,7 +141,7 @@ function M.config()
     keymap.map("n", keymap.list.search_by_grep, require("telescope.builtin").live_grep)
     keymap.map("n", keymap.list.search_old_file, require("telescope.builtin").oldfiles)
     keymap.map("n", keymap.list.show_buffer_overview, require("telescope.builtin").buffers)
-    keymap.map("n", keymap.list.show_diagnostics_overview, require("telescope.builtin").diagnostics)
+    keymap.map("n", keymap.list.edit_open_diagnostic_preview, require("telescope.builtin").diagnostics)
 end
 
 return M

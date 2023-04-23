@@ -35,7 +35,7 @@ function M.config()
 
     -- remap to open the Telescope refactoring menu in visual mode
     local keymap = require("plugin_keymaps")
-    keymap.map("v", keymap.list.refactor, require("telescope").extensions.refactoring.refactors)
+    keymap.map("v", keymap.list.edit_refactor, require("telescope").extensions.refactoring.refactors)
 end
 
 return M
