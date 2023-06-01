@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -f /bin/exa ]; then
-    alias ls="exa"
+    alias ls="exa --git --icons --color=always --group-directories-first"
 else
     alias ls="ls --color=auto"
 fi
@@ -17,6 +17,14 @@ if [ -f /bin/zoxide ]; then
     alias z="zoxide"
     alias zz="z -"
     alias cd="zoxide"
+fi
+
+if [ -f /bin/xcp ]; then
+    alias cp="xcp"
+fi
+
+if [ -f /bin/sd ]; then
+    alias sed="sd"
 fi
 
 if [ -f /bin/nvim ]; then
