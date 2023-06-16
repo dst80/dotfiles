@@ -2,6 +2,7 @@ local M = {}
 
 M.dependencies = {
   "j-hui/fidget.nvim",
+  tag = "legacy",
 }
 
 M.mason_opts = {
