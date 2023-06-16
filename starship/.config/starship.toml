@@ -55,6 +55,7 @@ disabled = false
 [os.symbols]
 Windows = " "
 Fedora = " "
+Arch = " "
 Manjaro = " "
 Ubuntu = " "
 
