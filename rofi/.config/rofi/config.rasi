@@ -1,5 +1,5 @@
 configuration {
-  font: "FiraCode Retina NF 14";
+  font: "FiraCode Retina NF 16";
 
   modi: "run,drun,ssh,combi";
   combi-modi: "run,drun,ssh";
@@ -9,3 +9,7 @@ configuration {
 }
 
 @theme "nord"
+
+window {
+    width: 30%;
+}
