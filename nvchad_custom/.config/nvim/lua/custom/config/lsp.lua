@@ -17,8 +17,9 @@ M.mason_opts = {
     "wgsl-analyzer",
 
     "gopls",
-
     "jedi-language-server",
+
+    "css-lsp",
 
     "typescript-language-server",
     "angular-language-server",
@@ -94,12 +95,16 @@ function M.config()
   local servers = {
     "jedi_language_server",
     "taplo",
-
     "angularls",
     "volar",
 
     "neocmake",
     "wgsl_analyzer",
+
+    "cssls",
+    "tsserver",
+    "angularls",
+    "volar",
   }
 
   if string.find(vim.loop.os_uname().sysname, "Windows") == nil then
